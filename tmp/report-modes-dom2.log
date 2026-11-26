@@ -1,0 +1,196 @@
+TAP version 13
+# Subtest: 1. MAJOR is displayed and counted correctly
+ok 1 - 1. MAJOR is displayed and counted correctly
+  ---
+  duration_ms: 1.5637
+  type: 'test'
+  ...
+# Subtest: 2. MINOR is displayed and counted correctly
+ok 2 - 2. MINOR is displayed and counted correctly
+  ---
+  duration_ms: 0.3017
+  type: 'test'
+  ...
+# Subtest: 3. Lowercase and whitespace variations are normalized
+ok 3 - 3. Lowercase and whitespace variations are normalized
+  ---
+  duration_ms: 0.1622
+  type: 'test'
+  ...
+# Subtest: 4. Null classification is UNCLASSIFIED
+ok 4 - 4. Null classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.2277
+  type: 'test'
+  ...
+# Subtest: 5. Undefined classification is UNCLASSIFIED
+ok 5 - 5. Undefined classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.1422
+  type: 'test'
+  ...
+# Subtest: 6. Unknown classification is UNCLASSIFIED
+ok 6 - 6. Unknown classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.1155
+  type: 'test'
+  ...
+# Subtest: 7. Major + Minor + Unclassified counts remain internally consistent
+ok 7 - 7. Major + Minor + Unclassified counts remain internally consistent
+  ---
+  duration_ms: 3.3246
+  type: 'test'
+  ...
+# Subtest: 8. Existing report receives an updated classification from backend
+ok 8 - 8. Existing report receives an updated classification from backend
+  ---
+  duration_ms: 1.2016
+  type: 'test'
+  ...
+# Subtest: 9. Missing backend classification does not erase valid existing classification
+ok 9 - 9. Missing backend classification does not erase valid existing classification
+  ---
+  duration_ms: 0.5458
+  type: 'test'
+  ...
+# Subtest: 10. Repeated synchronization with unchanged data does not trigger unnecessary updates
+ok 10 - 10. Repeated synchronization with unchanged data does not trigger unnecessary updates
+  ---
+  duration_ms: 0.7052
+  type: 'test'
+  ...
+# Subtest: 11. Existing status and image synchronization still works
+ok 11 - 11. Existing status and image synchronization still works
+  ---
+  duration_ms: 0.7626
+  type: 'test'
+  ...
+# Subtest: 12. Explicit null from backend updates classification to null and renders as UNCLASSIFIED
+ok 12 - 12. Explicit null from backend updates classification to null and renders as UNCLASSIFIED
+  ---
+  duration_ms: 0.3902
+  type: 'test'
+  ...
+# Subtest: 13. Classification filtering works with normalized values
+ok 13 - 13. Classification filtering works with normalized values
+  ---
+  duration_ms: 0.224
+  type: 'test'
+  ...
+# Subtest: shared admin dialog loads the shared report view with admin review and prefixed ids
+ok 14 - shared admin dialog loads the shared report view with admin review and prefixed ids
+  ---
+  duration_ms: 7.1031
+  type: 'test'
+  ...
+# Subtest: shared dialog passes the authenticated barangay role to shared capabilities
+ok 15 - shared dialog passes the authenticated barangay role to shared capabilities
+  ---
+  duration_ms: 0.6964
+  type: 'test'
+  ...
+# Subtest: closing restores scroll, body overflow and opener focus exactly once
+ok 16 - closing restores scroll, body overflow and opener focus exactly once
+  ---
+  duration_ms: 1.3798
+  type: 'test'
+  ...
+# Subtest: escape collapses an expanded map before closing the dialog
+ok 17 - escape collapses an expanded map before closing the dialog
+  ---
+  duration_ms: 0.6243
+  type: 'test'
+  ...
+# Subtest: invalid report ids never open the dialog
+ok 18 - invalid report ids never open the dialog
+  ---
+  duration_ms: 0.3105
+  type: 'test'
+  ...
+# Subtest: a load that finishes after the dialog closed is discarded
+ok 19 - a load that finishes after the dialog closed is discarded
+  ---
+  duration_ms: 1.0868
+  type: 'test'
+  ...
+# Subtest: opening another report while open replaces content without stacking dialogs
+ok 20 - opening another report while open replaces content without stacking dialogs
+  ---
+  duration_ms: 0.7804
+  type: 'test'
+  ...
+# Subtest: review saves through the authorized API, notifies the list and reloads the shared view
+ok 21 - review saves through the authorized API, notifies the list and reloads the shared view
+  ---
+  duration_ms: 0.892
+  type: 'test'
+  ...
+# Subtest: a denied review replaces the view with the access message
+ok 22 - a denied review replaces the view with the access message
+  ---
+  duration_ms: 2.3036
+  type: 'test'
+  ...
+# Subtest: the dialog delegates evidence loading instead of adding another renewal lifecycle
+ok 23 - the dialog delegates evidence loading instead of adding another renewal lifecycle
+  ---
+  duration_ms: 1.3463
+  type: 'test'
+  ...
+# Subtest: report links are parsed only for report details urls
+ok 24 - report links are parsed only for report details urls
+  ---
+  duration_ms: 0.5225
+  type: 'test'
+  ...
+# Subtest: shared view loader enforces ids, sessions, access and identity
+ok 25 - shared view loader enforces ids, sessions, access and identity
+  ---
+  duration_ms: 2.1746
+  type: 'test'
+  ...
+# Subtest: filter sheet opens as a modal sheet, locks scroll and moves focus on mobile
+ok 26 - filter sheet opens as a modal sheet, locks scroll and moves focus on mobile
+  ---
+  duration_ms: 1.0248
+  type: 'test'
+  ...
+# Subtest: filter sheet clear runs the shared clear logic and apply closes with focus restored
+ok 27 - filter sheet clear runs the shared clear logic and apply closes with focus restored
+  ---
+  duration_ms: 0.4434
+  type: 'test'
+  ...
+# Subtest: filter sheet closes on Escape and stays inline on desktop
+ok 28 - filter sheet closes on Escape and stays inline on desktop
+  ---
+  duration_ms: 0.3531
+  type: 'test'
+  ...
+# Subtest: filter sheet count badge announces active filters
+ok 29 - filter sheet count badge announces active filters
+  ---
+  duration_ms: 0.2834
+  type: 'test'
+  ...
+# Subtest: opening report details from the admin list preserves page, filters and location
+ok 30 - opening report details from the admin list preserves page, filters and location
+  ---
+  duration_ms: 30.7955
+  type: 'test'
+  ...
+# Subtest: admin report links open the shared dialog unless the user asks for a new tab
+ok 31 - admin report links open the shared dialog unless the user asks for a new tab
+  ---
+  duration_ms: 2.5032
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 146.9517

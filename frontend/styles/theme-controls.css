@@ -1,0 +1,163 @@
+.appearance-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 8px 0;
+    padding: 6px 4px;
+    color: var(--color-text-primary);
+    font-size: 13px;
+    user-select: none;
+}
+
+.appearance-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.appearance-info i {
+    font-size: 18px;
+    color: var(--accent-blue);
+    transition: color 0.2s ease;
+}
+
+.appearance-mode-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.theme-switch input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.theme-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: var(--color-surface-hover, #cbd5e1);
+    border: 0px solid var(--color-border);
+    transition: 0.25s ease;
+    border-radius: 24px;
+    pointer-events: none;
+}
+
+.theme-switch-slider::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.theme-switch input:checked+.theme-switch-slider {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.theme-switch input:checked+.theme-switch-slider::before {
+    transform: translateX(20px);
+    background-color: #080b10;
+}
+
+.theme-switch input:focus-visible+.theme-switch-slider {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+}
+
+.portal-account-menu:has(.appearance-control) {
+    width: min(240px, calc(100vw - 28px));
+}
+
+.portal-account-menu .appearance-control {
+    margin: 0 6px 4px;
+    padding: 8px 0 12px;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+:root[data-theme] input::placeholder,
+:root[data-theme] textarea::placeholder {
+    color: var(--color-input-placeholder);
+    opacity: 1;
+}
+
+:root[data-theme] :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 3px;
+}
+
+:root[data-theme] .leaflet-control-zoom a,
+:root[data-theme] .leaflet-popup-content-wrapper,
+:root[data-theme] .leaflet-popup-tip,
+:root[data-theme] .leaflet-tooltip,
+:root[data-theme] .leaflet-control-attribution {
+    color-scheme: light;
+    background: var(--color-map-control-bg);
+    color: var(--color-map-control-text);
+}
+
+:root[data-theme] .leaflet-bar {
+    border-color: var(--color-map-control-border);
+}
+
+:root[data-theme] .leaflet-control-zoom a:hover,
+:root[data-theme] .leaflet-control-zoom a:focus-visible {
+    background: var(--color-map-control-hover);
+}
+
+:root[data-theme] .leaflet-control-attribution a,
+:root[data-theme] .leaflet-popup-close-button {
+    color: var(--color-map-control-link);
+}
+
+#signupGeoCanvas {
+    margin-bottom: 12px;
+}
+
+#signupGeoCanvas .leaflet-bottom.leaflet-right {
+    max-width: 100%;
+}
+
+#signupGeoCanvas .leaflet-control-attribution {
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 10px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    :root[data-theme] *,
+    :root[data-theme] *::before,
+    :root[data-theme] *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}

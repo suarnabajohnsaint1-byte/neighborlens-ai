@@ -1,0 +1,314 @@
+TAP version 13
+# (node:33924) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Phase 2 accepts a correct suggestion and persists a versioned independent snapshot
+ok 1 - Phase 2 accepts a correct suggestion and persists a versioned independent snapshot
+  ---
+  duration_ms: 2050.4977
+  type: 'test'
+  ...
+# Subtest: Phase 2 correction preserves the displayed original despite changed submission-time inference
+ok 2 - Phase 2 correction preserves the displayed original despite changed submission-time inference
+  ---
+  duration_ms: 109.1737
+  type: 'test'
+  ...
+# Subtest: Phase 2 LOW_CONFIDENCE supports manual selection without invented acceptance
+ok 3 - Phase 2 LOW_CONFIDENCE supports manual selection without invented acceptance
+  ---
+  duration_ms: 131.1368
+  type: 'test'
+  ...
+# Subtest: Phase 2 NO_DETECTION supports manual selection without invented acceptance
+ok 4 - Phase 2 NO_DETECTION supports manual selection without invented acceptance
+  ---
+  duration_ms: 102.2445
+  type: 'test'
+  ...
+# Subtest: Phase 2 AI_UNAVAILABLE supports manual selection without invented acceptance
+ok 5 - Phase 2 AI_UNAVAILABLE supports manual selection without invented acceptance
+  ---
+  duration_ms: 124.4364
+  type: 'test'
+  ...
+# Subtest: Phase 2 unauthorized users cannot modify categories and barangay reads remain isolated
+ok 6 - Phase 2 unauthorized users cannot modify categories and barangay reads remain isolated
+  ---
+  duration_ms: 131.7073
+  type: 'test'
+  ...
+# Subtest: Phase 2 invalid correction pothole is rejected before inference
+ok 7 - Phase 2 invalid correction pothole is rejected before inference
+  ---
+  duration_ms: 6.8655
+  type: 'test'
+  ...
+# Subtest: Phase 2 invalid correction Electrical is rejected before inference
+ok 8 - Phase 2 invalid correction Electrical is rejected before inference
+  ---
+  duration_ms: 7.17
+  type: 'test'
+  ...
+# Subtest: Phase 2 invalid correction Unsupported is rejected before inference
+ok 9 - Phase 2 invalid correction Unsupported is rejected before inference
+  ---
+  duration_ms: 7.2457
+  type: 'test'
+  ...
+# Subtest: Phase 2 legacy generic reporting remains accepted with a NULL snapshot
+ok 10 - Phase 2 legacy generic reporting remains accepted with a NULL snapshot
+  ---
+  duration_ms: 67.2018
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects tampered assessment proofs
+ok 11 - Phase 2 rejects tampered assessment proofs
+  ---
+  duration_ms: 61.3577
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects expired assessment proofs
+ok 12 - Phase 2 rejects expired assessment proofs
+  ---
+  duration_ms: 71.0584
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects wrong citizen assessment proofs
+ok 13 - Phase 2 rejects wrong citizen assessment proofs
+  ---
+  duration_ms: 75.6018
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects wrong order assessment proofs
+ok 14 - Phase 2 rejects wrong order assessment proofs
+  ---
+  duration_ms: 59.5445
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects different bytes assessment proofs
+ok 15 - Phase 2 rejects different bytes assessment proofs
+  ---
+  duration_ms: 60.8132
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects duplicate assessment proofs
+ok 16 - Phase 2 rejects duplicate assessment proofs
+  ---
+  duration_ms: 59.6654
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects malformed assessment proofs
+ok 17 - Phase 2 rejects malformed assessment proofs
+  ---
+  duration_ms: 60.8645
+  type: 'test'
+  ...
+# Subtest: Phase 2 prevents full and partial proof replay after committed submission
+ok 18 - Phase 2 prevents full and partial proof replay after committed submission
+  ---
+  duration_ms: 255.232
+  type: 'test'
+  ...
+# Subtest: Phase 2 proof cannot be used as an authentication bearer token
+ok 19 - Phase 2 proof cannot be used as an authentication bearer token
+  ---
+  duration_ms: 33.0747
+  type: 'test'
+  ...
+# Subtest: Phase 2 failed transaction removes mocked storage objects and does not consume proofs
+ok 20 - Phase 2 failed transaction removes mocked storage objects and does not consume proofs
+  ---
+  duration_ms: 162.9393
+  type: 'test'
+  ...
+# Subtest: Phase 2 rejects malformed repository snapshots before database writes
+ok 21 - Phase 2 rejects malformed repository snapshots before database writes
+  ---
+  duration_ms: 0.5926
+  type: 'test'
+  ...
+# Subtest: Phase 2 status updates do not provide an alternate category modification route
+ok 22 - Phase 2 status updates do not provide an alternate category modification route
+  ---
+  duration_ms: 98.4283
+  type: 'test'
+  ...
+# Subtest: Phase 2 admin status change keeps the original and correction immutable and omits proof metadata
+ok 23 - Phase 2 admin status change keeps the original and correction immutable and omits proof metadata
+  ---
+  duration_ms: 113.1064
+  type: 'test'
+  ...
+# Subtest: Phase 2 explicit read mapping strips internal fields even inside stored original photos
+ok 24 - Phase 2 explicit read mapping strips internal fields even inside stored original photos
+  ---
+  duration_ms: 104.587
+  type: 'test'
+  ...
+# Subtest: Phase 2 ordered preview rejects corrupt evidence before inference or proof issuance
+ok 25 - Phase 2 ordered preview rejects corrupt evidence before inference or proof issuance
+  ---
+  duration_ms: 5.4586
+  type: 'test'
+  ...
+# Subtest: Phase 2 proof issuance remains citizen-only and validates the declared photo order
+ok 26 - Phase 2 proof issuance remains citizen-only and validates the declared photo order
+  ---
+  duration_ms: 5.9515
+  type: 'test'
+  ...
+# Subtest: Phase 2 malformed provider success is unavailable, never fabricated no detection
+ok 27 - Phase 2 malformed provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 94.2089
+  type: 'test'
+  ...
+# Subtest: Phase 2 missing-confidence provider success is unavailable, never fabricated no detection
+ok 28 - Phase 2 missing-confidence provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 95.0352
+  type: 'test'
+  ...
+# Subtest: Phase 2 classless provider success is unavailable, never fabricated no detection
+ok 29 - Phase 2 classless provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 97.0921
+  type: 'test'
+  ...
+# Subtest: Phase 2 conflicting-class provider success is unavailable, never fabricated no detection
+ok 30 - Phase 2 conflicting-class provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 96.7193
+  type: 'test'
+  ...
+# Subtest: Phase 2 unsupported-evidence provider success is unavailable, never fabricated no detection
+ok 31 - Phase 2 unsupported-evidence provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 89.9989
+  type: 'test'
+  ...
+# Subtest: Phase 2 invalid-eligibility provider success is unavailable, never fabricated no detection
+ok 32 - Phase 2 invalid-eligibility provider success is unavailable, never fabricated no detection
+  ---
+  duration_ms: 93.0523
+  type: 'test'
+  ...
+# Subtest: Phase 2 LOW_CONFIDENCE still submits without an optional category selection
+ok 33 - Phase 2 LOW_CONFIDENCE still submits without an optional category selection
+  ---
+  duration_ms: 355.9182
+  type: 'test'
+  ...
+# Subtest: Phase 2 NO_DETECTION still submits without an optional category selection
+ok 34 - Phase 2 NO_DETECTION still submits without an optional category selection
+  ---
+  duration_ms: 362.2198
+  type: 'test'
+  ...
+# Subtest: Phase 2 AI_UNAVAILABLE still submits without an optional category selection
+ok 35 - Phase 2 AI_UNAVAILABLE still submits without an optional category selection
+  ---
+  duration_ms: 367.4368
+  type: 'test'
+  ...
+# (node:33864) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: details API: authorized reload reads both original AI and correction without inference
+ok 36 - details API: authorized reload reads both original AI and correction without inference
+  ---
+  duration_ms: 2155.6947
+  type: 'test'
+  ...
+# Subtest: details API: two submitted images load in their persisted order
+ok 37 - details API: two submitted images load in their persisted order
+  ---
+  duration_ms: 18.1269
+  type: 'test'
+  ...
+# Subtest: details API: missing authentication and different citizen cannot read report or history
+ok 38 - details API: missing authentication and different citizen cannot read report or history
+  ---
+  duration_ms: 7.5283
+  type: 'test'
+  ...
+# Subtest: details API: admin and same-jurisdiction barangay can read; other barangay cannot
+ok 39 - details API: admin and same-jurisdiction barangay can read; other barangay cannot
+  ---
+  duration_ms: 12.6611
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID abc is rejected
+ok 40 - details API: invalid report ID abc is rejected
+  ---
+  duration_ms: 2.7604
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID 0 is rejected
+ok 41 - details API: invalid report ID 0 is rejected
+  ---
+  duration_ms: 3.1722
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID -1 is rejected
+ok 42 - details API: invalid report ID -1 is rejected
+  ---
+  duration_ms: 2.9308
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID 1abc is rejected
+ok 43 - details API: invalid report ID 1abc is rejected
+  ---
+  duration_ms: 3.901
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID 1.5 is rejected
+ok 44 - details API: invalid report ID 1.5 is rejected
+  ---
+  duration_ms: 3.5013
+  type: 'test'
+  ...
+# Subtest: details API: invalid report ID 9007199254740992 is rejected
+ok 45 - details API: invalid report ID 9007199254740992 is rejected
+  ---
+  duration_ms: 3.6829
+  type: 'test'
+  ...
+# Subtest: details API: status history contains actual transitions only
+ok 46 - details API: status history contains actual transitions only
+  ---
+  duration_ms: 16.9781
+  type: 'test'
+  ...
+# Subtest: details API: Supabase references are signed only after authorization and renewed on reload
+ok 47 - details API: Supabase references are signed only after authorization and renewed on reload
+  ---
+  duration_ms: 19.4079
+  type: 'test'
+  ...
+# Subtest: details API: legacy image-path-only reports retain their actual image without fabricating another
+ok 48 - details API: legacy image-path-only reports retain their actual image without fabricating another
+  ---
+  duration_ms: 8.9986
+  type: 'test'
+  ...
+# Subtest: details API: missing and deleted reports return safe 404s for details and history
+ok 49 - details API: missing and deleted reports return safe 404s for details and history
+  ---
+  duration_ms: 16.4242
+  type: 'test'
+  ...
+# Subtest: details page is served without exposing server sources
+ok 50 - details page is served without exposing server sources
+  ---
+  duration_ms: 7.1686
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11931.3193

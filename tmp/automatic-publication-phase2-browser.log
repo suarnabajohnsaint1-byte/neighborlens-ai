@@ -1,0 +1,474 @@
+
+> neighborlens-ai-capstone@1.0.0 test:e2e:phase2
+> playwright test --config=playwright.phase2.config.js
+
+[WebServer] (node:6912) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 42 tests using 1 worker
+
+(node:32608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\phase-2.spec.js:61:1 › accepts the suggestion with exactly three mapped choices and no subtype selector (1.3s)
+  ok  2 [desktop] › tests\browser\phase-2.spec.js:73:1 › corrects a suggestion, preserves description, and survives rerenders and reload (1.5s)
+  ok  3 [desktop] › tests\browser\phase-2.spec.js:100:3 › LOW_CONFIDENCE retains the existing optional category submission path (1.0s)
+  ok  4 [desktop] › tests\browser\phase-2.spec.js:110:3 › LOW_CONFIDENCE permits manual category without invented accepted AI evidence (1.2s)
+  ok  5 [desktop] › tests\browser\phase-2.spec.js:100:3 › NO_DETECTION retains the existing optional category submission path (1.1s)
+  ok  6 [desktop] › tests\browser\phase-2.spec.js:110:3 › NO_DETECTION permits manual category without invented accepted AI evidence (1.2s)
+  ok  7 [desktop] › tests\browser\phase-2.spec.js:100:3 › AI_UNAVAILABLE retains the existing optional category submission path (1.1s)
+  ok  8 [desktop] › tests\browser\phase-2.spec.js:110:3 › AI_UNAVAILABLE permits manual category without invented accepted AI evidence (1.1s)
+  ok  9 [desktop] › tests\browser\phase-2.spec.js:126:1 › replacement invalidates prior correction but preserves citizen-written description (1.2s)
+  ok 10 [desktop] › tests\browser\phase-2.spec.js:139:1 › replacement updates AI-generated description rather than retaining old AI text (816ms)
+  ok 11 [desktop] › tests\browser\phase-2.spec.js:148:1 › older real signed responses cannot restore a stale correction or AI assessment (1.1s)
+  ok 12 [desktop] › tests\browser\phase-2.spec.js:173:1 › unbound transport errors retain legacy submission without creating fake proofs (1.1s)
+  x  13 [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately (1.9s)
+(node:32736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  14 [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately (2.0s)
+(node:36528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  15 [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data (1.7s)
+(node:35520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  16 [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data (1.7s)
+(node:36556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 17 [desktop] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data (2.2s)
+  x  18 [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels (1.2s)
+(node:34036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  19 [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge (1.4s)
+(node:34624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  20 [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels (1.3s)
+(node:6800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  21 [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge (1.5s)
+(node:14712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 22 [mobile] › tests\browser\phase-2.spec.js:61:1 › accepts the suggestion with exactly three mapped choices and no subtype selector (1.5s)
+  ok 23 [mobile] › tests\browser\phase-2.spec.js:73:1 › corrects a suggestion, preserves description, and survives rerenders and reload (1.5s)
+  ok 24 [mobile] › tests\browser\phase-2.spec.js:100:3 › LOW_CONFIDENCE retains the existing optional category submission path (955ms)
+  ok 25 [mobile] › tests\browser\phase-2.spec.js:110:3 › LOW_CONFIDENCE permits manual category without invented accepted AI evidence (998ms)
+  ok 26 [mobile] › tests\browser\phase-2.spec.js:100:3 › NO_DETECTION retains the existing optional category submission path (944ms)
+  ok 27 [mobile] › tests\browser\phase-2.spec.js:110:3 › NO_DETECTION permits manual category without invented accepted AI evidence (1.0s)
+  ok 28 [mobile] › tests\browser\phase-2.spec.js:100:3 › AI_UNAVAILABLE retains the existing optional category submission path (938ms)
+  ok 29 [mobile] › tests\browser\phase-2.spec.js:110:3 › AI_UNAVAILABLE permits manual category without invented accepted AI evidence (980ms)
+  ok 30 [mobile] › tests\browser\phase-2.spec.js:126:1 › replacement invalidates prior correction but preserves citizen-written description (983ms)
+  ok 31 [mobile] › tests\browser\phase-2.spec.js:139:1 › replacement updates AI-generated description rather than retaining old AI text (747ms)
+  ok 32 [mobile] › tests\browser\phase-2.spec.js:148:1 › older real signed responses cannot restore a stale correction or AI assessment (1.1s)
+  ok 33 [mobile] › tests\browser\phase-2.spec.js:173:1 › unbound transport errors retain legacy submission without creating fake proofs (835ms)
+  x  34 [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately (1.5s)
+(node:35896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  35 [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately (1.8s)
+(node:30792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  36 [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data (1.4s)
+(node:26452) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  37 [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data (1.6s)
+(node:36288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 38 [mobile] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data (2.0s)
+  x  39 [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels (1.1s)
+(node:31412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  40 [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge (1.4s)
+(node:2996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  41 [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels (1.3s)
+(node:35848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  42 [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge (1.5s)
+
+
+  1) [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      247 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), firstSession);
+      248 |   await page.goto(`/${firstRole}.html`);
+    > 249 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      250 |   await page.evaluate(() => { localStorage.setItem('theme-preference', 'dark'); logout(); });
+      251 |   await page.waitForURL('**/login.html');
+      252 |   expect(await page.evaluate(() => localStorage.getItem('up_reports'))).toBeNull();
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+
+    Error: locator.allTextContents: Execution context was destroyed, most likely because of a navigation
+
+      277 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      278 |   await page.goto(`/${role}.html`);
+    > 279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+          |                                                                                                                   ^
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+      281 |     expect(choices).toContain(category);
+      282 |   }
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:279:115
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      290 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      291 |   await page.goto(`/${role}.html`);
+    > 292 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      293 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      294 |   const row = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      295 |   await expect(row).toContainText('Citizen category');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected value: "Road Damage"
+    Received array: []
+
+      279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+    > 281 |     expect(choices).toContain(category);
+          |                     ^
+      282 |   }
+      283 | });
+      284 | test(`${role} unchanged category is labeled as citizen category without an AI badge`, async ({ page }) => {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:281:21
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      247 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), firstSession);
+      248 |   await page.goto(`/${firstRole}.html`);
+    > 249 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      250 |   await page.evaluate(() => { localStorage.setItem('theme-preference', 'dark'); logout(); });
+      251 |   await page.waitForURL('**/login.html');
+      252 |   expect(await page.evaluate(() => localStorage.getItem('up_reports'))).toBeNull();
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+
+    Error: locator.allTextContents: Execution context was destroyed, most likely because of a navigation
+
+      277 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      278 |   await page.goto(`/${role}.html`);
+    > 279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+          |                                                                                                                   ^
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+      281 |     expect(choices).toContain(category);
+      282 |   }
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:279:115
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      290 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      291 |   await page.goto(`/${role}.html`);
+    > 292 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      293 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      294 |   const row = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      295 |   await expect(row).toContainText('Citizen category');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected value: "Road Damage"
+    Received array: []
+
+      279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+    > 281 |     expect(choices).toContain(category);
+          |                     ^
+      282 |   }
+      283 | });
+      284 | test(`${role} unchanged category is labeled as citizen category without an AI badge`, async ({ page }) => {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:281:21
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\phase-2-browser-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16 failed
+    [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+    [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+    [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+    [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+    [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+    [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+    [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+    [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+    [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+    [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+    [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+    [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+    [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+    [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+    [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+    [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+  26 passed (1.3m)

@@ -1,0 +1,1632 @@
+[WebServer] (node:22984) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 216 tests using 1 worker
+
+(node:35032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok   1 [desktop] › tests\browser\phase-1b.spec.js:115:1 › low scene similarity remains advisory and a valid report submits (1.2s)
+  ok   2 [desktop] › tests\browser\phase-1b.spec.js:135:1 › different road classes share a category without class agreement (628ms)
+  ok   3 [desktop] › tests\browser\phase-1b.spec.js:145:1 › provisional predictions retain low confidence and never acquire priority (736ms)
+  ok   4 [desktop] › tests\browser\phase-1b.spec.js:156:1 › identical bytes with different names remain accepted and match the scene (648ms)
+  ok   5 [desktop] › tests\browser\phase-1b.spec.js:163:1 › corrupt images terminate with validation error before inference (599ms)
+  ok   6 [desktop] › tests\browser\phase-1b.spec.js:180:1 › older responses cannot overwrite a replacement or manual description (761ms)
+  ok   7 [desktop] › tests\browser\phase-1b.spec.js:203:1 › provider timeout remains distinct from no detection (664ms)
+  ok   8 [desktop] › tests\browser\phase-1b.spec.js:218:1 › no detection in both images stays separate from provider errors (654ms)
+  ok   9 [desktop] › tests\browser\phase-1b.spec.js:231:1 › unsupported class retains its original identifier and confidence (657ms)
+  ok  10 [desktop] › tests\browser\phase-1b.spec.js:247:1 › Node image validation rejection stays separate from provider unavailable (632ms)
+  ok  11 [desktop] › tests\browser\phase-2.spec.js:61:1 › accepts the suggestion with exactly three mapped choices and no subtype selector (838ms)
+  ok  12 [desktop] › tests\browser\phase-2.spec.js:73:1 › corrects a suggestion, preserves description, and survives rerenders and reload (1.2s)
+  ok  13 [desktop] › tests\browser\phase-2.spec.js:100:3 › LOW_CONFIDENCE retains the existing optional category submission path (843ms)
+  ok  14 [desktop] › tests\browser\phase-2.spec.js:110:3 › LOW_CONFIDENCE permits manual category without invented accepted AI evidence (872ms)
+  ok  15 [desktop] › tests\browser\phase-2.spec.js:100:3 › NO_DETECTION retains the existing optional category submission path (851ms)
+  ok  16 [desktop] › tests\browser\phase-2.spec.js:110:3 › NO_DETECTION permits manual category without invented accepted AI evidence (870ms)
+  ok  17 [desktop] › tests\browser\phase-2.spec.js:100:3 › AI_UNAVAILABLE retains the existing optional category submission path (834ms)
+  ok  18 [desktop] › tests\browser\phase-2.spec.js:110:3 › AI_UNAVAILABLE permits manual category without invented accepted AI evidence (851ms)
+  ok  19 [desktop] › tests\browser\phase-2.spec.js:126:1 › replacement invalidates prior correction but preserves citizen-written description (951ms)
+  ok  20 [desktop] › tests\browser\phase-2.spec.js:139:1 › replacement updates AI-generated description rather than retaining old AI text (747ms)
+  ok  21 [desktop] › tests\browser\phase-2.spec.js:148:1 › older real signed responses cannot restore a stale correction or AI assessment (956ms)
+  ok  22 [desktop] › tests\browser\phase-2.spec.js:173:1 › unbound transport errors retain legacy submission without creating fake proofs (770ms)
+  x   23 [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately (1.4s)
+(node:27400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   24 [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately (1.5s)
+(node:30776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   25 [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data (1.4s)
+(node:34304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   26 [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data (1.5s)
+(node:37592) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   27 [desktop] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data (1.4s)
+(node:36368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   28 [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels (1.1s)
+(node:36996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   29 [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge (1.3s)
+(node:32728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   30 [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels (1.2s)
+(node:17792) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   31 [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge (1.3s)
+(node:36584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  32 [desktop] › tests\browser\report-details.spec.js:149:1 › citizen navigates from My Reports, refreshes, and sees actual correction, photos, map, and history (1.8s)
+  ok  33 [desktop] › tests\browser\report-details.spec.js:195:1 › two evidence photos enlarge accessibly and restore keyboard focus (814ms)
+  ok  34 [desktop] › tests\browser\report-details.spec.js:211:1 › My Reports paginates actual submissions with search, status, sorting, borderless statuses, and responsive rows (4.3s)
+  ok  35 [desktop] › tests\browser\report-details.spec.js:297:1 › My Reports clamps a removed page and clears private rows and search state on session loss (1.3s)
+  ok  36 [desktop] › tests\browser\report-details.spec.js:312:1 › My Reports safely renders literal descriptions and locations and labels unavailable legacy evidence (709ms)
+  ok  37 [desktop] › tests\browser\report-details.spec.js:335:3 › citizen portal reuses the branded sidebar, shared width, and existing menu actions (985ms)
+  ok  38 [desktop] › tests\browser\report-details.spec.js:335:3 › admin portal reuses the branded sidebar, shared width, and existing menu actions (1.1s)
+  x   39 [desktop] › tests\browser\report-details.spec.js:335:3 › barangay portal reuses the branded sidebar, shared width, and existing menu actions (133ms)
+(node:5164) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   40 [desktop] › tests\browser\report-details.spec.js:380:1 › shared sidebar remounts once and treats account fields as text (233ms)
+(node:28680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   41 [desktop] › tests\browser\report-details.spec.js:400:1 › citizen navigation preserves desktop and mobile layouts without fetching the unopened Community Feed (270ms)
+(node:35652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   42 [desktop] › tests\browser\report-details.spec.js:453:1 › citizen avatar opens a compact appearance and logout dropdown without a redundant mobile sidebar (227ms)
+(node:23960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   43 [desktop] › tests\browser\report-details.spec.js:519:1 › mobile branding and report filters remain visible while scrolling without redundant portal badges (270ms)
+(node:35364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  44 [desktop] › tests\browser\report-details.spec.js:562:1 › citizen submits without an address input and the saved address appears in refreshable Report Details (1.6s)
+  ok  45 [desktop] › tests\browser\report-details.spec.js:592:1 › sidebar preserves role navigation and the reference layout across screen sizes (1.6s)
+  ok  46 [desktop] › tests\browser\report-details.spec.js:624:1 › mobile sidebar traps focus, closes accessibly, resizes safely, and navigates (2.1s)
+  ok  47 [desktop] › tests\browser\report-details.spec.js:673:1 › map enlargement is interactive, reversible, and does not change recorded GPS (1.0s)
+  ok  48 [desktop] › tests\browser\report-details.spec.js:685:3 › admin uses the same authorized details view without proof material (1.1s)
+  x   49 [desktop] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material (6.5s)
+(node:38056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   50 [desktop] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog (6.6s)
+(node:6556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  51 [desktop] › tests\browser\report-details.spec.js:763:1 › admin report notifications track read activity and link to the shared details (2.1s)
+  ok  52 [desktop] › tests\browser\report-details.spec.js:788:1 › admin can review a report on the shared details page without a modal or document reload (906ms)
+  ok  53 [desktop] › tests\browser\report-details.spec.js:807:1 › admin synchronization preserves unchanged DOM, updates API fields, and recovers visibly from errors (1.1s)
+  ok  54 [desktop] › tests\browser\report-details.spec.js:856:1 › admin shared components stay responsive and follow the selected theme (5.3s)
+  ok  55 [desktop] › tests\browser\report-details.spec.js:911:3 › admin reports preserve light theme and show uploaded evidence thumbnails (2.1s)
+  ok  56 [desktop] › tests\browser\report-details.spec.js:911:3 › admin reports preserve dark theme and show uploaded evidence thumbnails (2.3s)
+  ok  57 [desktop] › tests\browser\report-details.spec.js:956:1 › admin report thumbnail failure keeps a stable placeholder (908ms)
+  ok  58 [desktop] › tests\browser\report-details.spec.js:982:3 › outside citizen account cannot open another report (853ms)
+  ok  59 [desktop] › tests\browser\report-details.spec.js:982:3 › outside barangay account cannot open another report (1.4s)
+  ok  60 [desktop] › tests\browser\report-details.spec.js:996:1 › only actual server status changes appear after refreshing (845ms)
+  ok  61 [desktop] › tests\browser\report-details.spec.js:1013:3 › Low confidence never becomes a confirmed original detection (658ms)
+  ok  62 [desktop] › tests\browser\report-details.spec.js:1013:3 › No detection never becomes a confirmed original detection (676ms)
+  ok  63 [desktop] › tests\browser\report-details.spec.js:1013:3 › AI unavailable never becomes a confirmed original detection (705ms)
+  ok  64 [desktop] › tests\browser\report-details.spec.js:1022:1 › legacy report does not invent an original assessment or missing second image (679ms)
+  ok  65 [desktop] › tests\browser\report-details.spec.js:1033:1 › private attachment failure is bounded without refetching its parent report (600ms)
+  ok  66 [desktop] › tests\browser\report-details.spec.js:1047:1 › missing, invalid, and deleted reports clear all details safely (1.0s)
+  ok  67 [desktop] › tests\browser\report-details.spec.js:1060:1 › missing GPS and unavailable history do not create a map position or review events (698ms)
+  ok  68 [desktop] › tests\browser\report-details.spec.js:1071:1 › logout clears rendered photos and report content before leaving the page (890ms)
+  ok  69 [desktop] › tests\browser\report-details.spec.js:1084:1 › expired enlarged cloud evidence renews once through an authorized read (753ms)
+  ok  70 [desktop] › tests\browser\report-details.spec.js:1104:1 › history authorization denial clears the whole view even if the first report read succeeded (566ms)
+  ok  71 [desktop] › tests\browser\report-details.spec.js:1112:1 › delayed report response cannot render after the authenticated account changes (959ms)
+  ok  72 [desktop] › tests\browser\report-details.spec.js:1129:1 › Citizen My Reports remains visible when an Admin tab refreshes, navigates and logs out (1.9s)
+  ok  73 [desktop] › tests\browser\theme.cases.js:59:5 › theme: light preserves detected, provisional, no-detection, provider-error and validation feedback (1.6s)
+  ok  74 [desktop] › tests\browser\theme.cases.js:86:5 › theme: light styles actual GPS accuracy warnings and denied-location errors without changing the threshold (719ms)
+  x   75 [desktop] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls (1.1s)
+(node:30056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   76 [desktop] › tests\browser\theme.cases.js:152:5 › theme: light covers report rows, correction, Details, image dialog, and map enlargement (2.0s)
+(node:10436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  77 [desktop] › tests\browser\theme.cases.js:59:5 › theme: dark preserves detected, provisional, no-detection, provider-error and validation feedback (2.1s)
+  ok  78 [desktop] › tests\browser\theme.cases.js:86:5 › theme: dark styles actual GPS accuracy warnings and denied-location errors without changing the threshold (834ms)
+  x   79 [desktop] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls (1.3s)
+(node:28204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  80 [desktop] › tests\browser\theme.cases.js:152:5 › theme: dark covers report rows, correction, Details, image dialog, and map enlargement (1.9s)
+  ok  81 [desktop] › tests\browser\theme.cases.js:190:3 › theme: first-render theme is resolved before body paint and survives actual refresh and navigation (1.0s)
+  ok  82 [desktop] › tests\browser\theme.cases.js:214:3 › theme: automatic follows system changes and manual selection remains an override (1.1s)
+  ok  83 [desktop] › tests\browser\theme.cases.js:233:3 › theme: switching keeps evidence, manual correction, description, and the Leaflet instance intact (1.0s)
+  ok  84 [desktop] › tests\browser\theme.cases.js:265:3 › theme: actual cross-tab changes synchronize appearance without sharing authentication or losing form text (1.3s)
+  ok  85 [desktop] › tests\browser\theme.cases.js:295:3 › theme: blocked storage permits in-memory appearance; restored storage permits existing logout (953ms)
+  ok  86 [desktop] › tests\browser\theme.cases.js:315:5 › theme: citizen defaults to light on dark systems and preserves saved dark mode across pages (1.2s)
+  ok  87 [desktop] › tests\browser\theme.cases.js:315:5 › theme: admin defaults to light on dark systems and preserves saved dark mode across pages (2.0s)
+  ok  88 [desktop] › tests\browser\theme.cases.js:315:5 › theme: barangay defaults to light on dark systems and preserves saved dark mode across pages (2.1s)
+  ok  89 [desktop] › tests\browser\auth-design.cases.js:12:3 › Citizen login design uses shared controls and remains responsive in both themes (2.1s)
+  ok  90 [desktop] › tests\browser\auth-design.cases.js:44:3 › Citizen login shares Admin card sizing with one continuous backdrop (1.9s)
+  x   91 [desktop] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes (6.3s)
+(node:35104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   92 [desktop] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username (6.2s)
+(node:25416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  93 [desktop] › tests\browser\auth-design.cases.js:173:3 › primary CTAs use the shared blue and stay reachable on mobile in Citizen and Admin (2.5s)
+  ok  94 [desktop] › tests\browser\auth-design.cases.js:201:3 › Admin login keeps the same bright illustration in dark mode with readable scene copy (998ms)
+  x   95 [desktop] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once (1.5s)
+(node:34084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  96 [desktop] › tests\browser\auth-design.cases.js:245:3 › Citizen two-photo scan keeps its document, form, files, and map with exactly two damage requests (979ms)
+  ok  97 [desktop] › tests\browser\auth-design.cases.js:264:3 › Citizen report refresh preserves unchanged rows and displays later API data (1.2s)
+  x   98 [desktop] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh (7.1s)
+(node:14740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  99 [desktop] › tests\browser\admin-refresh.cases.js:38:3 › admin report details reuses the full dashboard menu and retains its source section (2.8s)
+  x  100 [desktop] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section (6.2s)
+(node:33820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 101 [desktop] › tests\browser\admin-refresh.cases.js:105:3 › admin refresh keeps last valid data and DOM during a temporary service outage (1.2s)
+  x  102 [desktop] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation (6.9s)
+(node:11444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 103 [desktop] › tests\browser\admin-refresh.cases.js:153:3 › admin receives new reports and status changes through live events without polling or navigation (1.4s)
+  ok 104 [desktop] › tests\browser\admin-analytics.cases.js:23:3 › admin analytics renders real line and horizontal bar data at 375, 768 and 1440 in both themes (3.8s)
+  ok 105 [desktop] › tests\browser\admin-analytics.cases.js:86:3 › admin analytics ignores stale range responses and reuses chart instances through navigation (1.4s)
+  ok 106 [desktop] › tests\browser\admin-analytics.cases.js:117:3 › admin analytics has stable error, retry, empty and unavailable-history states (1.2s)
+  ok 107 [desktop] › tests\browser\admin-analytics.cases.js:142:3 › admin analytics retries a failed ECharts download without duplicate initialization (983ms)
+  ok 108 [desktop] › tests\browser\admin-analytics.cases.js:158:3 › admin analytics refreshes after committed status events without losing filters, page or document (1.4s)
+(node:33556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 109 [mobile] › tests\browser\phase-1b.spec.js:115:1 › low scene similarity remains advisory and a valid report submits (1.1s)
+  ok 110 [mobile] › tests\browser\phase-1b.spec.js:135:1 › different road classes share a category without class agreement (701ms)
+  ok 111 [mobile] › tests\browser\phase-1b.spec.js:145:1 › provisional predictions retain low confidence and never acquire priority (700ms)
+  ok 112 [mobile] › tests\browser\phase-1b.spec.js:156:1 › identical bytes with different names remain accepted and match the scene (778ms)
+  ok 113 [mobile] › tests\browser\phase-1b.spec.js:163:1 › corrupt images terminate with validation error before inference (735ms)
+  ok 114 [mobile] › tests\browser\phase-1b.spec.js:180:1 › older responses cannot overwrite a replacement or manual description (805ms)
+  ok 115 [mobile] › tests\browser\phase-1b.spec.js:203:1 › provider timeout remains distinct from no detection (627ms)
+  ok 116 [mobile] › tests\browser\phase-1b.spec.js:218:1 › no detection in both images stays separate from provider errors (660ms)
+  ok 117 [mobile] › tests\browser\phase-1b.spec.js:231:1 › unsupported class retains its original identifier and confidence (635ms)
+  ok 118 [mobile] › tests\browser\phase-1b.spec.js:247:1 › Node image validation rejection stays separate from provider unavailable (634ms)
+  ok 119 [mobile] › tests\browser\phase-2.spec.js:61:1 › accepts the suggestion with exactly three mapped choices and no subtype selector (881ms)
+  ok 120 [mobile] › tests\browser\phase-2.spec.js:73:1 › corrects a suggestion, preserves description, and survives rerenders and reload (1.3s)
+  ok 121 [mobile] › tests\browser\phase-2.spec.js:100:3 › LOW_CONFIDENCE retains the existing optional category submission path (803ms)
+  ok 122 [mobile] › tests\browser\phase-2.spec.js:110:3 › LOW_CONFIDENCE permits manual category without invented accepted AI evidence (856ms)
+  ok 123 [mobile] › tests\browser\phase-2.spec.js:100:3 › NO_DETECTION retains the existing optional category submission path (830ms)
+  ok 124 [mobile] › tests\browser\phase-2.spec.js:110:3 › NO_DETECTION permits manual category without invented accepted AI evidence (837ms)
+  ok 125 [mobile] › tests\browser\phase-2.spec.js:100:3 › AI_UNAVAILABLE retains the existing optional category submission path (821ms)
+  ok 126 [mobile] › tests\browser\phase-2.spec.js:110:3 › AI_UNAVAILABLE permits manual category without invented accepted AI evidence (839ms)
+  ok 127 [mobile] › tests\browser\phase-2.spec.js:126:1 › replacement invalidates prior correction but preserves citizen-written description (919ms)
+  ok 128 [mobile] › tests\browser\phase-2.spec.js:139:1 › replacement updates AI-generated description rather than retaining old AI text (698ms)
+  ok 129 [mobile] › tests\browser\phase-2.spec.js:148:1 › older real signed responses cannot restore a stale correction or AI assessment (1.0s)
+  ok 130 [mobile] › tests\browser\phase-2.spec.js:173:1 › unbound transport errors retain legacy submission without creating fake proofs (752ms)
+  x  131 [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately (1.6s)
+(node:20676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  132 [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately (1.5s)
+(node:37564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  133 [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data (1.4s)
+(node:37920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  134 [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data (1.6s)
+(node:1488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  135 [mobile] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data (1.6s)
+(node:16624) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  136 [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels (1.2s)
+(node:32776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  137 [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge (1.5s)
+(node:32784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  138 [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels (1.2s)
+(node:15616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  139 [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge (1.6s)
+(node:35348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 140 [mobile] › tests\browser\report-details.spec.js:149:1 › citizen navigates from My Reports, refreshes, and sees actual correction, photos, map, and history (2.2s)
+  ok 141 [mobile] › tests\browser\report-details.spec.js:195:1 › two evidence photos enlarge accessibly and restore keyboard focus (812ms)
+  ok 142 [mobile] › tests\browser\report-details.spec.js:211:1 › My Reports paginates actual submissions with search, status, sorting, borderless statuses, and responsive rows (4.3s)
+  ok 143 [mobile] › tests\browser\report-details.spec.js:297:1 › My Reports clamps a removed page and clears private rows and search state on session loss (1.3s)
+  ok 144 [mobile] › tests\browser\report-details.spec.js:312:1 › My Reports safely renders literal descriptions and locations and labels unavailable legacy evidence (722ms)
+  ok 145 [mobile] › tests\browser\report-details.spec.js:335:3 › citizen portal reuses the branded sidebar, shared width, and existing menu actions (1.1s)
+  ok 146 [mobile] › tests\browser\report-details.spec.js:335:3 › admin portal reuses the branded sidebar, shared width, and existing menu actions (1.6s)
+  ok 147 [mobile] › tests\browser\report-details.spec.js:335:3 › barangay portal reuses the branded sidebar, shared width, and existing menu actions (2.0s)
+  ok 148 [mobile] › tests\browser\report-details.spec.js:380:1 › shared sidebar remounts once and treats account fields as text (784ms)
+  ok 149 [mobile] › tests\browser\report-details.spec.js:400:1 › citizen navigation preserves desktop and mobile layouts without fetching the unopened Community Feed (2.5s)
+  ok 150 [mobile] › tests\browser\report-details.spec.js:453:1 › citizen avatar opens a compact appearance and logout dropdown without a redundant mobile sidebar (1.8s)
+  ok 151 [mobile] › tests\browser\report-details.spec.js:519:1 › mobile branding and report filters remain visible while scrolling without redundant portal badges (2.4s)
+  ok 152 [mobile] › tests\browser\report-details.spec.js:562:1 › citizen submits without an address input and the saved address appears in refreshable Report Details (1.4s)
+  ok 153 [mobile] › tests\browser\report-details.spec.js:592:1 › sidebar preserves role navigation and the reference layout across screen sizes (1.3s)
+  ok 154 [mobile] › tests\browser\report-details.spec.js:624:1 › mobile sidebar traps focus, closes accessibly, resizes safely, and navigates (1.7s)
+  ok 155 [mobile] › tests\browser\report-details.spec.js:673:1 › map enlargement is interactive, reversible, and does not change recorded GPS (794ms)
+  ok 156 [mobile] › tests\browser\report-details.spec.js:685:3 › admin uses the same authorized details view without proof material (927ms)
+  x  157 [mobile] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material (6.3s)
+(node:38788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  158 [mobile] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog (6.6s)
+(node:38084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 159 [mobile] › tests\browser\report-details.spec.js:763:1 › admin report notifications track read activity and link to the shared details (2.2s)
+  ok 160 [mobile] › tests\browser\report-details.spec.js:788:1 › admin can review a report on the shared details page without a modal or document reload (931ms)
+  ok 161 [mobile] › tests\browser\report-details.spec.js:807:1 › admin synchronization preserves unchanged DOM, updates API fields, and recovers visibly from errors (1.1s)
+  ok 162 [mobile] › tests\browser\report-details.spec.js:856:1 › admin shared components stay responsive and follow the selected theme (6.5s)
+  x  163 [mobile] › tests\browser\report-details.spec.js:911:3 › admin reports preserve light theme and show uploaded evidence thumbnails (6.8s)
+(node:25416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 164 [mobile] › tests\browser\report-details.spec.js:911:3 › admin reports preserve dark theme and show uploaded evidence thumbnails (2.6s)
+  ok 165 [mobile] › tests\browser\report-details.spec.js:956:1 › admin report thumbnail failure keeps a stable placeholder (857ms)
+  ok 166 [mobile] › tests\browser\report-details.spec.js:982:3 › outside citizen account cannot open another report (872ms)
+  ok 167 [mobile] › tests\browser\report-details.spec.js:982:3 › outside barangay account cannot open another report (1.4s)
+  ok 168 [mobile] › tests\browser\report-details.spec.js:996:1 › only actual server status changes appear after refreshing (842ms)
+  ok 169 [mobile] › tests\browser\report-details.spec.js:1013:3 › Low confidence never becomes a confirmed original detection (678ms)
+  ok 170 [mobile] › tests\browser\report-details.spec.js:1013:3 › No detection never becomes a confirmed original detection (693ms)
+  ok 171 [mobile] › tests\browser\report-details.spec.js:1013:3 › AI unavailable never becomes a confirmed original detection (876ms)
+  ok 172 [mobile] › tests\browser\report-details.spec.js:1022:1 › legacy report does not invent an original assessment or missing second image (680ms)
+  ok 173 [mobile] › tests\browser\report-details.spec.js:1033:1 › private attachment failure is bounded without refetching its parent report (663ms)
+  ok 174 [mobile] › tests\browser\report-details.spec.js:1047:1 › missing, invalid, and deleted reports clear all details safely (1.2s)
+  ok 175 [mobile] › tests\browser\report-details.spec.js:1060:1 › missing GPS and unavailable history do not create a map position or review events (647ms)
+  ok 176 [mobile] › tests\browser\report-details.spec.js:1071:1 › logout clears rendered photos and report content before leaving the page (884ms)
+  ok 177 [mobile] › tests\browser\report-details.spec.js:1084:1 › expired enlarged cloud evidence renews once through an authorized read (765ms)
+  ok 178 [mobile] › tests\browser\report-details.spec.js:1104:1 › history authorization denial clears the whole view even if the first report read succeeded (581ms)
+  ok 179 [mobile] › tests\browser\report-details.spec.js:1112:1 › delayed report response cannot render after the authenticated account changes (956ms)
+  ok 180 [mobile] › tests\browser\report-details.spec.js:1129:1 › Citizen My Reports remains visible when an Admin tab refreshes, navigates and logs out (1.9s)
+  ok 181 [mobile] › tests\browser\theme.cases.js:59:5 › theme: light preserves detected, provisional, no-detection, provider-error and validation feedback (1.9s)
+  ok 182 [mobile] › tests\browser\theme.cases.js:86:5 › theme: light styles actual GPS accuracy warnings and denied-location errors without changing the threshold (782ms)
+  x  183 [mobile] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls (1.3s)
+(node:25472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 184 [mobile] › tests\browser\theme.cases.js:152:5 › theme: light covers report rows, correction, Details, image dialog, and map enlargement (2.6s)
+  ok 185 [mobile] › tests\browser\theme.cases.js:59:5 › theme: dark preserves detected, provisional, no-detection, provider-error and validation feedback (2.3s)
+  ok 186 [mobile] › tests\browser\theme.cases.js:86:5 › theme: dark styles actual GPS accuracy warnings and denied-location errors without changing the threshold (950ms)
+  x  187 [mobile] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls (1.5s)
+(node:35620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 188 [mobile] › tests\browser\theme.cases.js:152:5 › theme: dark covers report rows, correction, Details, image dialog, and map enlargement (2.5s)
+  ok 189 [mobile] › tests\browser\theme.cases.js:190:3 › theme: first-render theme is resolved before body paint and survives actual refresh and navigation (1.2s)
+  ok 190 [mobile] › tests\browser\theme.cases.js:214:3 › theme: automatic follows system changes and manual selection remains an override (1.5s)
+  ok 191 [mobile] › tests\browser\theme.cases.js:233:3 › theme: switching keeps evidence, manual correction, description, and the Leaflet instance intact (1.5s)
+  ok 192 [mobile] › tests\browser\theme.cases.js:265:3 › theme: actual cross-tab changes synchronize appearance without sharing authentication or losing form text (1.9s)
+  ok 193 [mobile] › tests\browser\theme.cases.js:295:3 › theme: blocked storage permits in-memory appearance; restored storage permits existing logout (1.2s)
+  ok 194 [mobile] › tests\browser\theme.cases.js:315:5 › theme: citizen defaults to light on dark systems and preserves saved dark mode across pages (1.5s)
+  ok 195 [mobile] › tests\browser\theme.cases.js:315:5 › theme: admin defaults to light on dark systems and preserves saved dark mode across pages (2.1s)
+  ok 196 [mobile] › tests\browser\theme.cases.js:315:5 › theme: barangay defaults to light on dark systems and preserves saved dark mode across pages (2.7s)
+  ok 197 [mobile] › tests\browser\auth-design.cases.js:12:3 › Citizen login design uses shared controls and remains responsive in both themes (4.9s)
+  ok 198 [mobile] › tests\browser\auth-design.cases.js:44:3 › Citizen login shares Admin card sizing with one continuous backdrop (3.2s)
+  x  199 [mobile] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes (6.3s)
+(node:36612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  200 [mobile] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username (6.3s)
+(node:1828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 201 [mobile] › tests\browser\auth-design.cases.js:173:3 › primary CTAs use the shared blue and stay reachable on mobile in Citizen and Admin (2.6s)
+  ok 202 [mobile] › tests\browser\auth-design.cases.js:201:3 › Admin login keeps the same bright illustration in dark mode with readable scene copy (2.0s)
+  x  203 [mobile] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once (1.7s)
+(node:29012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 204 [mobile] › tests\browser\auth-design.cases.js:245:3 › Citizen two-photo scan keeps its document, form, files, and map with exactly two damage requests (1.0s)
+  ok 205 [mobile] › tests\browser\auth-design.cases.js:264:3 › Citizen report refresh preserves unchanged rows and displays later API data (1.2s)
+  x  206 [mobile] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh (7.0s)
+(node:34728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 207 [mobile] › tests\browser\admin-refresh.cases.js:38:3 › admin report details reuses the full dashboard menu and retains its source section (2.7s)
+  x  208 [mobile] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section (6.3s)
+(node:9536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 209 [mobile] › tests\browser\admin-refresh.cases.js:105:3 › admin refresh keeps last valid data and DOM during a temporary service outage (1.4s)
+  x  210 [mobile] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation (6.7s)
+(node:37296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 211 [mobile] › tests\browser\admin-refresh.cases.js:153:3 › admin receives new reports and status changes through live events without polling or navigation (1.4s)
+  ok 212 [mobile] › tests\browser\admin-analytics.cases.js:23:3 › admin analytics renders real line and horizontal bar data at 375, 768 and 1440 in both themes (5.8s)
+  ok 213 [mobile] › tests\browser\admin-analytics.cases.js:86:3 › admin analytics ignores stale range responses and reuses chart instances through navigation (1.3s)
+  ok 214 [mobile] › tests\browser\admin-analytics.cases.js:117:3 › admin analytics has stable error, retry, empty and unavailable-history states (1.2s)
+  ok 215 [mobile] › tests\browser\admin-analytics.cases.js:142:3 › admin analytics retries a failed ECharts download without duplicate initialization (999ms)
+  ok 216 [mobile] › tests\browser\admin-analytics.cases.js:158:3 › admin analytics refreshes after committed status events without losing filters, page or document (1.3s)
+
+
+  1) [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      197 |   await page.addInitScript(session => { sessionStorage.setItem('up_session', JSON.stringify(session)); localStorage.removeItem('up_reports'); }, reviewer);
+      198 |   await page.goto(`/${role}.html`);
+    > 199 |   await expect.poll(() => page.evaluate(id => getAllReports().find(row => row.backendId === id)?.citizenCategory, report.id)).toBe('Street Light Damage');
+          |                                ^
+      200 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      201 |   const reportRow = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      202 |   await expect(reportRow).toContainText('Citizen correction');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      197 |   await page.addInitScript(session => { sessionStorage.setItem('up_session', JSON.stringify(session)); localStorage.removeItem('up_reports'); }, reviewer);
+      198 |   await page.goto(`/${role}.html`);
+    > 199 |   await expect.poll(() => page.evaluate(id => getAllReports().find(row => row.backendId === id)?.citizenCategory, report.id)).toBe('Street Light Damage');
+          |                                ^
+      200 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      201 |   const reportRow = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      202 |   await expect(reportRow).toContainText('Citizen correction');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      247 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), firstSession);
+      248 |   await page.goto(`/${firstRole}.html`);
+    > 249 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      250 |   await page.evaluate(() => { localStorage.setItem('theme-preference', 'dark'); logout(); });
+      251 |   await page.waitForURL('**/login.html');
+      252 |   expect(await page.evaluate(() => localStorage.getItem('up_reports'))).toBeNull();
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+
+    Error: locator.allTextContents: Execution context was destroyed, most likely because of a navigation
+
+      277 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      278 |   await page.goto(`/${role}.html`);
+    > 279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+          |                                                                                                                   ^
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+      281 |     expect(choices).toContain(category);
+      282 |   }
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:279:115
+
+    Error Context: .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      290 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      291 |   await page.goto(`/${role}.html`);
+    > 292 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      293 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      294 |   const row = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      295 |   await expect(row).toContainText('Citizen category');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected value: "Road Damage"
+    Received array: []
+
+      279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+    > 281 |     expect(choices).toContain(category);
+          |                     ^
+      282 |   }
+      283 | });
+      284 | test(`${role} unchanged category is labeled as citizen category without an AI badge`, async ({ page }) => {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:281:21
+
+    Error Context: .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      290 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      291 |   await page.goto(`/${role}.html`);
+    > 292 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      293 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      294 |   const row = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      295 |   await expect(row).toContainText('Citizen category');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [desktop] › tests\browser\report-details.spec.js:335:3 › barangay portal reuses the branded sidebar, shared width, and existing menu actions 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 429
+
+      45 |   page.on('pageerror', error => errors.get(page).push(error.message));
+      46 |   const response = await request.post('/api/auth/register', { data: { username: `details_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, password: 'password123', barangay: 'Barangay Central' } });
+    > 47 |   expect(response.status()).toBe(201);
+         |                             ^
+      48 |   const owner = await response.json();
+      49 |   const session = { ...owner.user, apiToken: owner.token };
+      50 |   sessions.set(page, session);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:47:29
+
+    Error Context: .data\community-regression-results\report-details-barangay-po-e1649-h-and-existing-menu-actions-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-barangay-po-e1649-h-and-existing-menu-actions-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-barangay-po-e1649-h-and-existing-menu-actions-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [desktop] › tests\browser\report-details.spec.js:380:1 › shared sidebar remounts once and treats account fields as text 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 429
+
+      45 |   page.on('pageerror', error => errors.get(page).push(error.message));
+      46 |   const response = await request.post('/api/auth/register', { data: { username: `details_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, password: 'password123', barangay: 'Barangay Central' } });
+    > 47 |   expect(response.status()).toBe(201);
+         |                             ^
+      48 |   const owner = await response.json();
+      49 |   const session = { ...owner.user, apiToken: owner.token };
+      50 |   sessions.set(page, session);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:47:29
+
+    Error Context: .data\community-regression-results\report-details-shared-side-3ed07-eats-account-fields-as-text-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-shared-side-3ed07-eats-account-fields-as-text-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-shared-side-3ed07-eats-account-fields-as-text-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [desktop] › tests\browser\report-details.spec.js:400:1 › citizen navigation preserves desktop and mobile layouts without fetching the unopened Community Feed 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 429
+
+      45 |   page.on('pageerror', error => errors.get(page).push(error.message));
+      46 |   const response = await request.post('/api/auth/register', { data: { username: `details_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, password: 'password123', barangay: 'Barangay Central' } });
+    > 47 |   expect(response.status()).toBe(201);
+         |                             ^
+      48 |   const owner = await response.json();
+      49 |   const session = { ...owner.user, apiToken: owner.token };
+      50 |   sessions.set(page, session);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:47:29
+
+    Error Context: .data\community-regression-results\report-details-citizen-nav-89fed-the-unopened-Community-Feed-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-citizen-nav-89fed-the-unopened-Community-Feed-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-citizen-nav-89fed-the-unopened-Community-Feed-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [desktop] › tests\browser\report-details.spec.js:453:1 › citizen avatar opens a compact appearance and logout dropdown without a redundant mobile sidebar 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 429
+
+      45 |   page.on('pageerror', error => errors.get(page).push(error.message));
+      46 |   const response = await request.post('/api/auth/register', { data: { username: `details_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, password: 'password123', barangay: 'Barangay Central' } });
+    > 47 |   expect(response.status()).toBe(201);
+         |                             ^
+      48 |   const owner = await response.json();
+      49 |   const session = { ...owner.user, apiToken: owner.token };
+      50 |   sessions.set(page, session);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:47:29
+
+    Error Context: .data\community-regression-results\report-details-citizen-ava-117d9--a-redundant-mobile-sidebar-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-citizen-ava-117d9--a-redundant-mobile-sidebar-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-citizen-ava-117d9--a-redundant-mobile-sidebar-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [desktop] › tests\browser\report-details.spec.js:519:1 › mobile branding and report filters remain visible while scrolling without redundant portal badges 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 201
+    Received: 429
+
+      45 |   page.on('pageerror', error => errors.get(page).push(error.message));
+      46 |   const response = await request.post('/api/auth/register', { data: { username: `details_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, password: 'password123', barangay: 'Barangay Central' } });
+    > 47 |   expect(response.status()).toBe(201);
+         |                             ^
+      48 |   const owner = await response.json();
+      49 |   const session = { ...owner.user, apiToken: owner.token };
+      50 |   sessions.set(page, session);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:47:29
+
+    Error Context: .data\community-regression-results\report-details-mobile-bran-1bb0d-out-redundant-portal-badges-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-mobile-bran-1bb0d-out-redundant-portal-badges-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-mobile-bran-1bb0d-out-redundant-portal-badges-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [desktop] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#detailsNav a')
+    Expected: 5
+    Received: 3
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#detailsNav a') with timeout 5000ms
+      - waiting for locator('#detailsNav a')
+        14 × locator resolved to 3 elements
+           - unexpected value "3"
+
+
+      692 |     await expect(page.locator('.rd-summary')).toContainText('Citizen correction');
+      693 |     await expect(page.locator('#backToReports')).toHaveAttribute('href', role === 'admin' ? 'admin.html#reports' : `${role}.html`);
+    > 694 |     await expect(page.locator('#detailsNav a')).toHaveCount(5);
+          |                                                 ^
+      695 |     await expect(page.locator('.rd-review-form')).toBeVisible();
+      696 |     await expect(page.locator('#detailsNav a').first()).toHaveAttribute('href', role === 'admin' ? 'admin.html#overview' : `${role}.html#reports`);
+      697 |     await expect(page.locator('body')).not.toContainText('proof_id');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:694:49
+
+    Error Context: .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [desktop] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#hierarchyGrid > article')
+    Expected: 12
+    Received: 5
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#hierarchyGrid > article') with timeout 5000ms
+      - waiting for locator('#hierarchyGrid > article')
+        14 × locator resolved to 5 elements
+           - unexpected value "5"
+
+
+      717 |   await page.goto('/admin.html');
+      718 |   await expect(page.locator('#statTotal')).toHaveText('27');
+    > 719 |   await expect(page.locator('#hierarchyGrid > article')).toHaveCount(12);
+          |                                                          ^
+      720 |   await expect(page.locator('#overviewPrev')).toBeDisabled();
+      721 |   await page.locator('#overviewNext').click();
+      722 |   await expect(page.locator('#overviewPageInfo')).toHaveText('13-24 of 61 barangays');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:719:58
+
+    Error Context: .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [desktop] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls 
+
+    Error: light: text-muted on bg
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    4.013003060700822
+
+      114 |       await expect(page.locator('#description')).toHaveValue('Keep this text while changing appearance.');
+      115 |       const contrast = await contrastPairs(page);
+    > 116 |       for (const pair of contrast) expect(pair.ratio, `${appearance}: ${pair.foreground} on ${pair.background}`).toBeGreaterThanOrEqual(pair.minimum);
+          |                                                                                                                  ^
+      117 |       await fs.mkdir(`${artifactRoot}/theme-results`, { recursive: true });
+      118 |       await fs.writeFile(`${artifactRoot}/theme-results/${info.project.name}-${appearance}-contrast.json`, JSON.stringify(contrast, null, 2));
+      119 |       for (const width of widths) {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\theme.cases.js:116:114
+
+    Error Context: .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [desktop] › tests\browser\theme.cases.js:152:5 › theme: light covers report rows, correction, Details, image dialog, and map enlargement 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    Expected: {"candidate": {"accepted": true, "canonical_class": "broken_streetlight", "confidence": 0.9}, "canonical_class": "broken_streetlight", "class_agreement": true, "confidence": 0.9, "detected": true, "photos": [{"candidate": {"accepted": true, "canonical_class": "broken_streetlight", "confidence": 0.9, "display_name": "Broken Streetlight"}, "canonical_class": "broken_streetlight", "confidence": 0.9, "detected": true, "detections": [{"canonical_class": "broken_streetlight", "confidence": 0.9, "eligible": true, "reported_class": "broken_streetlight"}], "model": "NeighborLens test fixture", "status": "DETECTED", "suggested_category": "Street Light Damage"}, {"candidate": {"accepted": true, "canonical_class": "broken_streetlight", "confidence": 0.9, "display_name": "Broken Streetlight"}, "canonical_class": "broken_streetlight", "confidence": 0.9, "detected": true, "detections": [{"canonical_class": "broken_streetlight", "confidence": 0.9, "eligible": true, "reported_class": "broken_streetlight"}], "model": "NeighborLens test fixture", "status": "DETECTED", "suggested_category": "Street Light Damage"}], "same_report_category": true, "shared_report_category": "Street Light Damage", "status": "DETECTED", "suggested_category": "Street Light Damage"}
+    Received: undefined
+
+      182 |       const body = await response.json();
+      183 |       const persisted = body.report || body;
+    > 184 |       expect(persisted.originalAi).toEqual(report.originalAi);
+          |                                    ^
+      185 |       expect(persisted.citizenCategory).toBe(report.citizenCategory);
+      186 |       expect(persisted.description).toBe(report.description);
+      187 |     });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\theme.cases.js:184:36
+
+    Error Context: .data\community-regression-results\report-details-theme-light-e814a--dialog-and-map-enlargement-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-theme-light-e814a--dialog-and-map-enlargement-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-theme-light-e814a--dialog-and-map-enlargement-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [desktop] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls 
+
+    Error: dark: text-muted on surface
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    4.046640794932234
+
+      114 |       await expect(page.locator('#description')).toHaveValue('Keep this text while changing appearance.');
+      115 |       const contrast = await contrastPairs(page);
+    > 116 |       for (const pair of contrast) expect(pair.ratio, `${appearance}: ${pair.foreground} on ${pair.background}`).toBeGreaterThanOrEqual(pair.minimum);
+          |                                                                                                                  ^
+      117 |       await fs.mkdir(`${artifactRoot}/theme-results`, { recursive: true });
+      118 |       await fs.writeFile(`${artifactRoot}/theme-results/${info.project.name}-${appearance}-contrast.json`, JSON.stringify(contrast, null, 2));
+      119 |       for (const width of widths) {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\theme.cases.js:116:114
+
+    Error Context: .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [desktop] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes 
+
+    Error: expect(locator).toHaveCSS(expected) failed
+
+    Locator:  locator('.rl-feature p').first()
+    Expected: "rgb(8, 28, 73)"
+    Received: "rgb(64, 89, 141)"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCSS" locator('.rl-feature p').first() with timeout 5000ms
+      - waiting for locator('.rl-feature p').first()
+        14 × locator resolved to <p>Submit photos and details of problems in your bar…</p>
+           - unexpected value "rgb(64, 89, 141)"
+
+
+      120 |         await expect(page.locator(selector)).toHaveCSS('box-shadow', `${rgb(colors.field)} 0px 0px 0px 1000px inset`);
+      121 |       }
+    > 122 |       await expect(page.locator('.rl-feature p').first()).toHaveCSS('color', 'rgb(8, 28, 73)');
+          |                                                           ^
+      123 |       await expect(page.locator('.rl-feature h2').first()).toHaveCSS('color', 'rgb(8, 28, 73)');
+      124 |       await expect(page.locator('.rl-brand-tagline')).toHaveCSS('color', 'rgb(64, 89, 141)');
+      125 |       await expect(page.locator('.rl-panel h1')).toHaveCSS('color', rgb(colors.ink));
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:122:59
+
+    Error Context: .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [desktop] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#loginMsg')
+    Expected substring: "unavailable"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('#loginMsg') with timeout 5000ms
+      - waiting for locator('#loginMsg')
+        4 × locator resolved to <div id="loginMsg" role="status"></div>
+          - unexpected value ""
+
+
+      156 |     await page.locator('#loginRemember').check();
+      157 |     await page.locator('#citizenLoginSubmit').click();
+    > 158 |     await expect(page.locator('#loginMsg')).toContainText('unavailable');
+          |                                             ^
+      159 |     expect(requests).toBe(1);
+      160 |     expect(await page.evaluate(() => sessionStorage.getItem('up_session'))).toBeNull();
+      161 |     await page.unroute('**/api/auth/login');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:158:45
+
+    Error Context: .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [desktop] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      238 |     await page.locator('#roleLoginSubmit').click();
+      239 |     await expect(page).toHaveURL(/admin\.html$/);
+    > 240 |     expect(logins).toBe(1);
+          |                    ^
+      241 |     expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('up_session')).role)).toBe('admin');
+      242 |     expect(await page.evaluate(() => localStorage.getItem('neighborlens:remembered-username:admin'))).toBe('admin');
+      243 |   });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:240:20
+
+    Error Context: .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [desktop] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#hierarchyGrid .overview-report')
+    Expected: 12
+    Received: 5
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#hierarchyGrid .overview-report') with timeout 5000ms
+      - waiting for locator('#hierarchyGrid .overview-report')
+        14 × locator resolved to 5 elements
+           - unexpected value "5"
+
+
+      31 |     await page.getByRole('button', { name: 'View reports for Villamonte', exact: true }).click();
+      32 |     await page.locator('#overviewSearch').fill('citizen-2');
+    > 33 |     await expect(page.locator('#hierarchyGrid .overview-report')).toHaveCount(12);
+         |                                                                   ^
+      34 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 1 of 3');
+      35 |     await client.detach();
+      36 |   });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:33:67
+
+    Error Context: .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [desktop] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#reportsPageNumber')
+    Expected: "Page 2 of 3"
+    Received: "Page 2 of 5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#reportsPageNumber') with timeout 5000ms
+      - waiting for locator('#reportsPageNumber')
+        14 × locator resolved to <span id="reportsPageNumber" class="portal-page-number">Page 2 of 5</span>
+           - unexpected value "Page 2 of 5"
+
+
+      79 |     if (await close.isVisible()) await close.click();
+      80 |     await page.locator('#reportsNext').click();
+    > 81 |     await expect(page.locator('#reportsPageNumber')).toHaveText('Page 2 of 3');
+         |                                                      ^
+      82 |     const client = await page.context().newCDPSession(page);
+      83 |     await client.send('Network.enable');
+      84 |     await client.send('Network.setCacheDisabled', { cacheDisabled: true });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:81:54
+
+    Error Context: .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [desktop] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#overviewPageNumber')
+    Expected: "Page 2 of 3"
+    Received: "Page 2 of 5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#overviewPageNumber') with timeout 5000ms
+      - waiting for locator('#overviewPageNumber')
+        14 × locator resolved to <span id="overviewPageNumber" class="portal-page-number">Page 2 of 5</span>
+           - unexpected value "Page 2 of 5"
+
+
+      138 |     await page.getByRole('button', { name: 'View reports for Villamonte', exact: true }).click();
+      139 |     await page.locator('#overviewNext').click();
+    > 140 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 2 of 3');
+          |                                                       ^
+      141 |     await page.reload();
+      142 |     await expect(page.locator('#gridHeader')).toHaveText('Villamonte Reports');
+      143 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 2 of 3');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:140:55
+
+    Error Context: .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:1)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-reviewer--646a0-tizen-categories-separately-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      197 |   await page.addInitScript(session => { sessionStorage.setItem('up_session', JSON.stringify(session)); localStorage.removeItem('up_reports'); }, reviewer);
+      198 |   await page.goto(`/${role}.html`);
+    > 199 |   await expect.poll(() => page.evaluate(id => getAllReports().find(row => row.backendId === id)?.citizenCategory, report.id)).toBe('Street Light Damage');
+          |                                ^
+      200 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      201 |   const reportRow = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      202 |   await expect(reportRow).toContainText('Citizen correction');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:199:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-reviewer-see-f1d58-tizen-categories-separately-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      247 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), firstSession);
+      248 |   await page.goto(`/${firstRole}.html`);
+    > 249 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      250 |   await page.evaluate(() => { localStorage.setItem('theme-preference', 'dark'); logout(); });
+      251 |   await page.waitForURL('**/login.html');
+      252 |   expect(await page.evaluate(() => localStorage.getItem('up_reports'))).toBeNull();
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-logout-then--b2fff-not-reuse-prior-report-data-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-logout-th-b136c-not-reuse-prior-report-data-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [mobile] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:249:3
+
+    Error Context: .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-citizen-logout-the-92fb5-not-reuse-prior-report-data-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+
+    Error: locator.allTextContents: Execution context was destroyed, most likely because of a navigation
+
+      277 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      278 |   await page.goto(`/${role}.html`);
+    > 279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+          |                                                                                                                   ^
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+      281 |     expect(choices).toContain(category);
+      282 |   }
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:279:115
+
+    Error Context: .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-category-fil-1896e-ed-and-legacy-report-labels-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: Execution context was destroyed, most likely because of a navigation
+
+      290 |   await page.addInitScript(session => sessionStorage.setItem('up_session', JSON.stringify(session)), reviewer);
+      291 |   await page.goto(`/${role}.html`);
+    > 292 |   await expect.poll(() => page.evaluate(id => getAllReports().some(row => row.backendId === id), report.id)).toBe(true);
+          |                                ^
+      293 |   const cacheId = await page.evaluate(id => getAllReports().find(row => row.backendId === id).id, report.id);
+      294 |   const row = page.locator(role === 'admin' ? '#adminReportsBody tr' : '#reportsBody tr').filter({ has: page.locator(`button[onclick*="'${cacheId}'"]`) });
+      295 |   await expect(row).toContainText('Citizen category');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-admin-unchanged-ca-03483-ategory-without-an-AI-badge-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected value: "Road Damage"
+    Received array: []
+
+      279 |   const choices = await page.locator(role === 'admin' ? '#adminFilterCategory option' : '#filterCategory option').allTextContents();
+      280 |   for (const category of ['Road Damage', 'Flooding / Drainage', 'Street Light Damage', 'Electrical', 'Fallen Tree', 'Sanitation', 'Structural', 'Infrastructure']) {
+    > 281 |     expect(choices).toContain(category);
+          |                     ^
+      282 |   }
+      283 | });
+      284 | test(`${role} unchanged category is labeled as citizen category without an AI badge`, async ({ page }) => {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:281:21
+
+    Error Context: .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-category--0d307-ed-and-legacy-report-labels-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+
+    Error: page.evaluate: ReferenceError: getAllReports is not defined
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:370:30), <anonymous>:1:23)
+        at UtilityScript.evaluate (<anonymous>:372:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:32
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\phase-2.spec.js:292:3
+
+    Error Context: .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\phase-2-barangay-unchanged-0831a-ategory-without-an-AI-badge-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) [mobile] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#detailsNav a')
+    Expected: 5
+    Received: 3
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#detailsNav a') with timeout 5000ms
+      - waiting for locator('#detailsNav a')
+        14 × locator resolved to 3 elements
+           - unexpected value "3"
+
+
+      692 |     await expect(page.locator('.rd-summary')).toContainText('Citizen correction');
+      693 |     await expect(page.locator('#backToReports')).toHaveAttribute('href', role === 'admin' ? 'admin.html#reports' : `${role}.html`);
+    > 694 |     await expect(page.locator('#detailsNav a')).toHaveCount(5);
+          |                                                 ^
+      695 |     await expect(page.locator('.rd-review-form')).toBeVisible();
+      696 |     await expect(page.locator('#detailsNav a').first()).toHaveAttribute('href', role === 'admin' ? 'admin.html#overview' : `${role}.html#reports`);
+      697 |     await expect(page.locator('body')).not.toContainText('proof_id');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:694:49
+
+    Error Context: .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-barangay-us-8e065-view-without-proof-material-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  36) [mobile] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#hierarchyGrid > article')
+    Expected: 12
+    Received: 5
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#hierarchyGrid > article') with timeout 5000ms
+      - waiting for locator('#hierarchyGrid > article')
+        14 × locator resolved to 5 elements
+           - unexpected value "5"
+
+
+      717 |   await page.goto('/admin.html');
+      718 |   await expect(page.locator('#statTotal')).toHaveText('27');
+    > 719 |   await expect(page.locator('#hierarchyGrid > article')).toHaveCount(12);
+          |                                                          ^
+      720 |   await expect(page.locator('#overviewPrev')).toBeDisabled();
+      721 |   await page.locator('#overviewNext').click();
+      722 |   await expect(page.locator('#overviewPageInfo')).toHaveText('13-24 of 61 barangays');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:719:58
+
+    Error Context: .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-overv-1901a-isting-shared-report-dialog-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  37) [mobile] › tests\browser\report-details.spec.js:911:3 › admin reports preserve light theme and show uploaded evidence thumbnails 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#adminReportDialogContent .rd-header')
+    Expected substring: "Report #139"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('#adminReportDialogContent .rd-header') with timeout 5000ms
+      - waiting for locator('#adminReportDialogContent .rd-header')
+
+
+      937 |     await page.getByRole('link', { name: `View report RPT_SRV_${report.id}`, exact: true }).click();
+      938 |     await expect(page.locator('#adminReportDialog')).toBeVisible();
+    > 939 |     await expect(page.locator('#adminReportDialogContent .rd-header')).toContainText(`Report #${report.id}`);
+          |                                                                        ^
+      940 |     await expect(page.locator('html')).toHaveAttribute('data-theme', appearance);
+      941 |     expect(await page.evaluate(() => window.firstBodyTheme)).toBe(appearance);
+      942 |     await page.screenshot({ path: `${artifactRoot}/admin-overview-screenshots/details-${appearance}-${info.project.name}.png` });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\report-details.spec.js:939:72
+
+    Error Context: .data\community-regression-results\report-details-admin-repor-8f929-ploaded-evidence-thumbnails-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-repor-8f929-ploaded-evidence-thumbnails-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-repor-8f929-ploaded-evidence-thumbnails-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  38) [mobile] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls 
+
+    Error: light: text-muted on bg
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    4.013003060700822
+
+      114 |       await expect(page.locator('#description')).toHaveValue('Keep this text while changing appearance.');
+      115 |       const contrast = await contrastPairs(page);
+    > 116 |       for (const pair of contrast) expect(pair.ratio, `${appearance}: ${pair.foreground} on ${pair.background}`).toBeGreaterThanOrEqual(pair.minimum);
+          |                                                                                                                  ^
+      117 |       await fs.mkdir(`${artifactRoot}/theme-results`, { recursive: true });
+      118 |       await fs.writeFile(`${artifactRoot}/theme-results/${info.project.name}-${appearance}-contrast.json`, JSON.stringify(contrast, null, 2));
+      119 |       for (const width of widths) {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\theme.cases.js:116:114
+
+    Error Context: .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-theme-light-d68fc-responsive-account-controls-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  39) [mobile] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls 
+
+    Error: dark: text-muted on surface
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    4.046640794932234
+
+      114 |       await expect(page.locator('#description')).toHaveValue('Keep this text while changing appearance.');
+      115 |       const contrast = await contrastPairs(page);
+    > 116 |       for (const pair of contrast) expect(pair.ratio, `${appearance}: ${pair.foreground} on ${pair.background}`).toBeGreaterThanOrEqual(pair.minimum);
+          |                                                                                                                  ^
+      117 |       await fs.mkdir(`${artifactRoot}/theme-results`, { recursive: true });
+      118 |       await fs.writeFile(`${artifactRoot}/theme-results/${info.project.name}-${appearance}-contrast.json`, JSON.stringify(contrast, null, 2));
+      119 |       for (const width of widths) {
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\theme.cases.js:116:114
+
+    Error Context: .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-theme-dark--24799-responsive-account-controls-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  40) [mobile] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes 
+
+    Error: expect(locator).toHaveCSS(expected) failed
+
+    Locator:  locator('.rl-feature p').first()
+    Expected: "rgb(8, 28, 73)"
+    Received: "rgb(64, 89, 141)"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCSS" locator('.rl-feature p').first() with timeout 5000ms
+      - waiting for locator('.rl-feature p').first()
+        14 × locator resolved to <p>Submit photos and details of problems in your bar…</p>
+           - unexpected value "rgb(64, 89, 141)"
+
+
+      120 |         await expect(page.locator(selector)).toHaveCSS('box-shadow', `${rgb(colors.field)} 0px 0px 0px 1000px inset`);
+      121 |       }
+    > 122 |       await expect(page.locator('.rl-feature p').first()).toHaveCSS('color', 'rgb(8, 28, 73)');
+          |                                                           ^
+      123 |       await expect(page.locator('.rl-feature h2').first()).toHaveCSS('color', 'rgb(8, 28, 73)');
+      124 |       await expect(page.locator('.rl-brand-tagline')).toHaveCSS('color', 'rgb(64, 89, 141)');
+      125 |       await expect(page.locator('.rl-panel h1')).toHaveCSS('color', rgb(colors.ink));
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:122:59
+
+    Error Context: .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Citizen-log-53af9-utofill-follows-both-themes-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  41) [mobile] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#loginMsg')
+    Expected substring: "unavailable"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('#loginMsg') with timeout 5000ms
+      - waiting for locator('#loginMsg')
+        4 × locator resolved to <div id="loginMsg" role="status"></div>
+          - unexpected value ""
+        - waiting for "http://127.0.0.1:4331/citizen.html" navigation to finish...
+        - navigated to "http://127.0.0.1:4331/citizen.html"
+
+
+      156 |     await page.locator('#loginRemember').check();
+      157 |     await page.locator('#citizenLoginSubmit').click();
+    > 158 |     await expect(page.locator('#loginMsg')).toContainText('unavailable');
+          |                                             ^
+      159 |     expect(requests).toBe(1);
+      160 |     expect(await page.evaluate(() => sessionStorage.getItem('up_session'))).toBeNull();
+      161 |     await page.unroute('**/api/auth/login');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:158:45
+
+    Error Context: .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Citizen-log-dd297-remembers-only-the-username-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  42) [mobile] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+      238 |     await page.locator('#roleLoginSubmit').click();
+      239 |     await expect(page).toHaveURL(/admin\.html$/);
+    > 240 |     expect(logins).toBe(1);
+          |                    ^
+      241 |     expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem('up_session')).role)).toBe('admin');
+      242 |     expect(await page.evaluate(() => localStorage.getItem('neighborlens:remembered-username:admin'))).toBe('admin');
+      243 |   });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\auth-design.cases.js:240:20
+
+    Error Context: .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-Admin-login-e22eb-trols-and-submits-only-once-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  43) [mobile] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#hierarchyGrid .overview-report')
+    Expected: 12
+    Received: 5
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#hierarchyGrid .overview-report') with timeout 5000ms
+      - waiting for locator('#hierarchyGrid .overview-report')
+        14 × locator resolved to 5 elements
+           - unexpected value "5"
+
+
+      31 |     await page.getByRole('button', { name: 'View reports for Villamonte', exact: true }).click();
+      32 |     await page.locator('#overviewSearch').fill('citizen-2');
+    > 33 |     await expect(page.locator('#hierarchyGrid .overview-report')).toHaveCount(12);
+         |                                                                   ^
+      34 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 1 of 3');
+      35 |     await client.detach();
+      36 |   });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:33:67
+
+    Error Context: .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-overv-9c7f7-re-and-after-a-hard-refresh-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  44) [mobile] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#reportsPageNumber')
+    Expected: "Page 2 of 3"
+    Received: "Page 2 of 5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#reportsPageNumber') with timeout 5000ms
+      - waiting for locator('#reportsPageNumber')
+        14 × locator resolved to <span id="reportsPageNumber" class="portal-page-number">Page 2 of 5</span>
+           - unexpected value "Page 2 of 5"
+
+
+      79 |     if (await close.isVisible()) await close.click();
+      80 |     await page.locator('#reportsNext').click();
+    > 81 |     await expect(page.locator('#reportsPageNumber')).toHaveText('Page 2 of 3');
+         |                                                      ^
+      82 |     const client = await page.context().newCDPSession(page);
+      83 |     await client.send('Network.enable');
+      84 |     await client.send('Network.setCacheDisabled', { cacheDisabled: true });
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:81:54
+
+    Error Context: .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-hard--042b1-d-the-first-visible-section-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45) [mobile] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#overviewPageNumber')
+    Expected: "Page 2 of 3"
+    Received: "Page 2 of 5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#overviewPageNumber') with timeout 5000ms
+      - waiting for locator('#overviewPageNumber')
+        14 × locator resolved to <span id="overviewPageNumber" class="portal-page-number">Page 2 of 5</span>
+           - unexpected value "Page 2 of 5"
+
+
+      138 |     await page.getByRole('button', { name: 'View reports for Villamonte', exact: true }).click();
+      139 |     await page.locator('#overviewNext').click();
+    > 140 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 2 of 3');
+          |                                                       ^
+      141 |     await page.reload();
+      142 |     await expect(page.locator('#gridHeader')).toHaveText('Villamonte Reports');
+      143 |     await expect(page.locator('#overviewPageNumber')).toHaveText('Page 2 of 3');
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\admin-refresh.cases.js:140:55
+
+    Error Context: .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\community-regression-results\report-details-admin-refre-9a5d8-down-and-history-navigation-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  45 failed
+    [desktop] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+    [desktop] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+    [desktop] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+    [desktop] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+    [desktop] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data 
+    [desktop] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+    [desktop] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+    [desktop] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+    [desktop] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+    [desktop] › tests\browser\report-details.spec.js:335:3 › barangay portal reuses the branded sidebar, shared width, and existing menu actions 
+    [desktop] › tests\browser\report-details.spec.js:380:1 › shared sidebar remounts once and treats account fields as text 
+    [desktop] › tests\browser\report-details.spec.js:400:1 › citizen navigation preserves desktop and mobile layouts without fetching the unopened Community Feed 
+    [desktop] › tests\browser\report-details.spec.js:453:1 › citizen avatar opens a compact appearance and logout dropdown without a redundant mobile sidebar 
+    [desktop] › tests\browser\report-details.spec.js:519:1 › mobile branding and report filters remain visible while scrolling without redundant portal badges 
+    [desktop] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material 
+    [desktop] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog 
+    [desktop] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls 
+    [desktop] › tests\browser\theme.cases.js:152:5 › theme: light covers report rows, correction, Details, image dialog, and map enlargement 
+    [desktop] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls 
+    [desktop] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes 
+    [desktop] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username 
+    [desktop] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once 
+    [desktop] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh 
+    [desktop] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section 
+    [desktop] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation 
+    [mobile] › tests\browser\phase-2.spec.js:185:1 › barangay reviewer sees original and citizen categories separately 
+    [mobile] › tests\browser\phase-2.spec.js:185:1 › admin reviewer sees original and citizen categories separately 
+    [mobile] › tests\browser\phase-2.spec.js:240:1 › admin logout then another account cannot reuse prior report data 
+    [mobile] › tests\browser\phase-2.spec.js:240:1 › barangay logout then another account cannot reuse prior report data 
+    [mobile] › tests\browser\phase-2.spec.js:240:1 › citizen logout then another account cannot reuse prior report data 
+    [mobile] › tests\browser\phase-2.spec.js:273:1 › admin category filter preserves mapped and legacy report labels 
+    [mobile] › tests\browser\phase-2.spec.js:284:1 › admin unchanged category is labeled as citizen category without an AI badge 
+    [mobile] › tests\browser\phase-2.spec.js:273:1 › barangay category filter preserves mapped and legacy report labels 
+    [mobile] › tests\browser\phase-2.spec.js:284:1 › barangay unchanged category is labeled as citizen category without an AI badge 
+    [mobile] › tests\browser\report-details.spec.js:685:3 › barangay uses the same authorized details view without proof material 
+    [mobile] › tests\browser\report-details.spec.js:702:1 › admin overview paginates, filters, sorts, and opens the existing shared report dialog 
+    [mobile] › tests\browser\report-details.spec.js:911:3 › admin reports preserve light theme and show uploaded evidence thumbnails 
+    [mobile] › tests\browser\theme.cases.js:102:5 › theme: light covers form, GPS, map, keyboard focus, and responsive account controls 
+    [mobile] › tests\browser\theme.cases.js:102:5 › theme: dark covers form, GPS, map, keyboard focus, and responsive account controls 
+    [mobile] › tests\browser\auth-design.cases.js:97:3 › Citizen login copy stays separated from the illustration and autofill follows both themes 
+    [mobile] › tests\browser\auth-design.cases.js:147:3 › Citizen login retries once, submits once, and remembers only the username 
+    [mobile] › tests\browser\auth-design.cases.js:223:3 › Admin login reuses the shared controls and submits only once 
+    [mobile] › tests\browser\admin-refresh.cases.js:15:3 › admin overview finds reporter names consistently before and after a hard refresh 
+    [mobile] › tests\browser\admin-refresh.cases.js:70:3 › admin hard refresh preserves reports filters, pagination and the first visible section 
+    [mobile] › tests\browser\admin-refresh.cases.js:122:3 › admin refresh restores account tabs, barangay drill-down and history navigation 
+  171 passed (7.4m)

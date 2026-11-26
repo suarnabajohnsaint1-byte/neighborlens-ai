@@ -1,0 +1,4 @@
+ai/
+models/
+.vercel/
+__pycache__/

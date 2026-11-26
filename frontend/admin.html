@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+    <title>Neighborlens AI Admin Dashboard</title>
+    <script src="js/shared/themeManager.js"></script>
+    <link rel="stylesheet" href="styles/report-gis.css">
+    <link rel="stylesheet" href="styles/report-export.css">
+    <script src="js/admin/adminViewState.js"></script>
+    <style>
+        html[data-admin-section] .admin-portal main>section {
+            display: none;
+        }
+
+        html[data-admin-section="analyticsSection"] #analyticsSection,
+        html[data-admin-section="accountsSection"] #accountsSection,
+        html[data-admin-section="reportsSection"] #reportsSection,
+        html[data-admin-section="gisMapSection"] #gisMapSection,
+        html[data-admin-section="logsSection"] #logsSection {
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/sidebar.css?v=brand-logo">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet.css" integrity="sha256-LJzbbQFquR1Trwrwy++9x2Pl6ipfBZUR8Da0GGJ8Wfo=" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/theme-controls.css">
+    <link rel="stylesheet" href="styles/notifications.css">
+    <link rel="stylesheet" href="styles/report-details.css">
+    <link rel="stylesheet" href="styles/portal-components.css">
+    <link rel="stylesheet" href="styles/report-card.css">
+    <link rel="stylesheet" href="styles/admin-overview.css">
+    <link rel="stylesheet" href="styles/admin-analytics.css">
+    <link rel="stylesheet" href="styles/report-management.css">
+    <link rel="stylesheet" href="styles/report-print.css" media="print">
+    <script src="js/auth/security.js" defer></script>
+    <script src="js/shared/appearanceControl.js" defer></script>
+    <script src="js/shared/portalSidebar.js?v=brand-logo" defer></script>
+</head>
+
+<body class="staff-portal admin-portal">
+    <div class="dashboard">
+        <div id="adminSidebarBackdrop" hidden></div>
+        <aside id="adminSidebar" class="sidebar" data-portal-sidebar="admin" data-sidebar-mode="drawer"
+            data-sidebar-content="adminContent" data-sidebar-toggle="adminMenuButton"
+            data-sidebar-backdrop="adminSidebarBackdrop" aria-label="Portal sidebar" tabindex="-1"></aside>
+
+        <main id="adminContent" class="content">
+            <header class="admin-header">
+                <button id="adminMenuButton" class="portal-sidebar-control portal-sidebar-toggle" type="button"
+                    aria-label="Open navigation" aria-controls="adminSidebar" aria-expanded="false"
+                    title="Open navigation"><i class="bx bx-menu" aria-hidden="true"></i></button>
+                <div class="admin-page-heading"><h1 id="adminPageTitle">Analytics</h1><p id="adminPageDescription">Track report trends and damage categories across Bacolod City.</p></div>
+                <div class="admin-header-actions">
+                    <div class="notification-bell-container" data-staff-notifications="admin"></div>
+                    <div class="header-badge admin">Admin</div>
+                </div>
+            </header>
+
+            <p class="admin-summary-scope">All-time reports</p>
+            <div class="portal-report-summary admin-stats" data-report-summary="admin" role="group" aria-label="All-time report summaries"></div>
+
+            <div id="adminReportsFeedback" class="portal-feedback" role="status" aria-live="polite" hidden></div>
+
+            <section id="analyticsSection" data-analytics-details aria-label="Report analytics">
+                <div id="adminAnalytics"></div>
+            </section>
+
+            <section id="accountsSection">
+                <div class="section-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2 id="accountsHeading">Barangay Accounts</h2>
+                            <p id="accountsSubheading" class="section-caption">
+                                Only admin can create, edit, suspend, or reactivate barangay official accounts.
+                            </p>
+                        </div>
+                        <div class="section-actions portal-action-grid">
+                            <button class="portal-button-secondary" type="button" aria-label="My Account" onclick="openOwnAccountModal()">
+                                <i class='bx bxs-user-account' aria-hidden="true"></i><span class="account-label-full">My Account</span><span class="account-label-short" aria-hidden="true">Account</span>
+                            </button>
+                            <button class="btn-main" id="addAdminBtn" type="button" hidden
+                                aria-label="Add Administrator" onclick="openCreateAdminModal()">
+                                <i class='bx bxs-shield-plus' aria-hidden="true"></i><span class="account-label-full">Add Administrator</span><span class="account-label-short" aria-hidden="true">Add admin</span>
+                            </button>
+                            <button class="btn-main" id="addOfficialBtn" type="button"
+                                aria-label="Add Barangay Account" onclick="openCreateAccountModal()">
+                                <i class='bx bxs-user-plus' aria-hidden="true"></i><span class="account-label-full">Add Barangay Account</span><span class="account-label-short" aria-hidden="true">Add brgy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-bar portal-chip-row" role="tablist" aria-label="Account type">
+                        <button class="filter-btn active" role="tab" aria-selected="true" data-account-tab="barangay"
+                            onclick="setAccountTab('barangay')">Barangay Officials</button>
+                        <button class="filter-btn" role="tab" aria-selected="false" data-account-tab="admin"
+                            onclick="setAccountTab('admin')">Administrators</button>
+                    </div>
+
+                    <div class="portal-toolbar">
+                        <label class="portal-search">
+                            <i class="bx bx-search" aria-hidden="true"></i>
+                            <input type="search" id="accountSearch" autocomplete="off" aria-label="Search accounts"
+                                placeholder="Username, name, or barangay"
+                                oninput="setAccountQuery('search', this.value)">
+                        </label>
+                        <button type="button" class="portal-filter-toggle" data-sheet-open="accountFilters"
+                            aria-controls="accountFilters" aria-expanded="false" aria-label="Filters"><i
+                                class="bx bx-slider-alt" aria-hidden="true"></i><span>Filters</span><span
+                                class="portal-filter-count" hidden></span></button>
+                    </div>
+                    <div id="accountFilters" class="portal-sheet" data-sheet tabindex="-1"
+                        aria-labelledby="accountFiltersTitle">
+                        <div class="portal-sheet-header">
+                            <h3 id="accountFiltersTitle">Filter accounts</h3>
+                            <button type="button" class="portal-icon-button" data-sheet-close
+                                aria-label="Close filters"><i class="bx bx-x" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="portal-sheet-body portal-filter-grid">
+                            <label class="portal-field" for="accountStatusFilter"><span>Status</span>
+                                <select id="accountStatusFilter" class="filter-select"
+                                    onchange="setAccountQuery('status', this.value)">
+                                    <option value="all">All statuses</option>
+                                    <option value="active">Active</option>
+                                    <option value="suspended">Suspended</option>
+                                </select></label>
+                            <label class="portal-field" for="accountSort"><span>Sort by</span>
+                                <select id="accountSort" class="filter-select"
+                                    onchange="setAccountQuery('sort', this.value)">
+                                    <option value="username">Username (A to Z)</option>
+                                    <option value="newest">Newest first</option>
+                                    <option value="oldest">Oldest first</option>
+                                    <option value="barangay">Barangay</option>
+                                </select></label>
+                        </div>
+                        <div class="portal-sheet-actions">
+                            <button type="button" class="portal-button-secondary" data-sheet-clear>Clear</button>
+                            <button type="button" class="btn-main" data-sheet-apply>Show results</button>
+                        </div>
+                    </div>
+
+                    <div id="legacyAccountsNotice" class="portal-notice" role="status" style="display:none;"></div>
+
+                    <div id="adminRequestsPanel" class="portal-notice portal-notice--accent" style="display:none;">
+                        <h3>Pending administrator access requests</h3>
+                        <p>Requests become administrator accounts only after you approve them. New administrators
+                            cannot provision others.</p>
+                        <div id="adminRequestsList"></div>
+                    </div>
+
+                    <div class="portal-table-wrap">
+                        <table class="portal-table account-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th id="accountScopeColumn">Assigned Barangay</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="brgyAccountsBody">
+                                <tr>
+                                    <td colspan="5" class="portal-table-state">Loading…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav class="portal-pagination" aria-label="Accounts pagination">
+                        <span id="accountPageInfo" class="portal-page-info" role="status" aria-live="polite"></span>
+                        <label class="portal-page-size">Per page<select id="accountPageSize" onchange="changeAccountPage(0)"><option>5</option><option selected>10</option><option>20</option></select></label>
+                        <div class="portal-page-buttons">
+                            <button class="portal-icon-button" id="accountPrevPage" type="button"
+                                aria-label="Previous accounts page" title="Previous page"
+                                onclick="changeAccountPage(-1)"><i class="bx bx-chevron-left"
+                                    aria-hidden="true"></i></button>
+                            <span id="accountPageNumber" class="portal-page-number"></span>
+                            <button class="portal-icon-button" id="accountNextPage" type="button"
+                                aria-label="Next accounts page" title="Next page" onclick="changeAccountPage(1)"><i
+                                    class="bx bx-chevron-right" aria-hidden="true"></i></button>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+
+            <section id="reportsSection">
+                <div class="section-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2>All Reports</h2>
+                            <p id="adminReportCount" class="section-caption"></p>
+                        </div>
+                        <div class="section-actions">
+                            <button id="adminExportReports" type="button" class="portal-button-secondary report-export-button" title="Export all reports matching current filters"><i class="bx bx-spreadsheet" aria-hidden="true"></i>Export Excel</button>
+                            <button id="adminClearFiltersBtn" type="button" class="portal-button-secondary"
+                                onclick="clearAdminFilters()">
+                                <i class="bx bx-filter-alt" aria-hidden="true"></i>Clear filters
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-bar portal-chip-row">
+                        <button class="filter-btn active" type="button" data-admin-filter="all"
+                            onclick="setFilter('all')">All</button>
+                        <button class="filter-btn" type="button" data-admin-filter="pending"
+                            onclick="setFilter('pending')">Pending</button>
+                        <button class="filter-btn" type="button" data-admin-filter="ongoing"
+                            onclick="setFilter('ongoing')">Ongoing</button>
+                        <button class="filter-btn" type="button" data-admin-filter="resolved"
+                            onclick="setFilter('resolved')">Resolved</button>
+                    </div>
+
+                    <div class="portal-toolbar">
+                        <label class="portal-search">
+                            <i class="bx bx-search" aria-hidden="true"></i>
+                            <input type="search" id="adminSearch" autocomplete="off" aria-label="Search reports"
+                                placeholder="Search keyword, barangay, reporter, or location">
+                        </label>
+                        <button type="button" class="portal-filter-toggle" data-sheet-open="reportFilters"
+                            aria-controls="reportFilters" aria-expanded="false" aria-label="Filters"><i
+                                class="bx bx-slider-alt" aria-hidden="true"></i><span>Filters</span><span
+                                class="portal-filter-count" hidden></span></button>
+                    </div>
+
+                    <div id="reportFilters" class="portal-sheet" data-sheet tabindex="-1"
+                        aria-labelledby="reportFiltersTitle">
+                        <div class="portal-sheet-header">
+                            <h3 id="reportFiltersTitle">Filter reports</h3>
+                            <button type="button" class="portal-icon-button" data-sheet-close
+                                aria-label="Close filters"><i class="bx bx-x" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="portal-sheet-body portal-filter-grid">
+                            <label class="portal-field"><span>Barangay</span>
+                                <select id="adminFilterBarangay" class="filter-select">
+                                    <option value="all">All Barangays</option>
+                                    <option>Barangay 1</option>
+                                    <option>Barangay 2</option>
+                                    <option>Barangay 3</option>
+                                    <option>Barangay 4</option>
+                                    <option>Barangay 5</option>
+                                    <option>Barangay 6</option>
+                                    <option>Barangay 7</option>
+                                    <option>Barangay 8</option>
+                                    <option>Barangay 9</option>
+                                    <option>Barangay 10</option>
+                                    <option>Barangay 11</option>
+                                    <option>Barangay 12</option>
+                                    <option>Barangay 13</option>
+                                    <option>Barangay 14</option>
+                                    <option>Barangay 15</option>
+                                    <option>Barangay 16</option>
+                                    <option>Barangay 17</option>
+                                    <option>Barangay 18</option>
+                                    <option>Barangay 19</option>
+                                    <option>Barangay 20</option>
+                                    <option>Barangay 21</option>
+                                    <option>Barangay 22</option>
+                                    <option>Barangay 23</option>
+                                    <option>Barangay 24</option>
+                                    <option>Barangay 25</option>
+                                    <option>Barangay 26</option>
+                                    <option>Barangay 27</option>
+                                    <option>Barangay 28</option>
+                                    <option>Barangay 29</option>
+                                    <option>Barangay 30</option>
+                                    <option>Barangay 31</option>
+                                    <option>Barangay 32</option>
+                                    <option>Barangay 33</option>
+                                    <option>Barangay 34</option>
+                                    <option>Barangay 35</option>
+                                    <option>Barangay 36</option>
+                                    <option>Barangay 37</option>
+                                    <option>Barangay 38</option>
+                                    <option>Barangay 39</option>
+                                    <option>Barangay 40</option>
+                                    <option>Barangay 41</option>
+                                    <option>Alangilan</option>
+                                    <option>Alijis</option>
+                                    <option>Banago</option>
+                                    <option>Bata</option>
+                                    <option>Cabug</option>
+                                    <option>Estefania</option>
+                                    <option>Felisa</option>
+                                    <option>Granada</option>
+                                    <option>Handumanan</option>
+                                    <option>Mandalagan</option>
+                                    <option>Mansilingan</option>
+                                    <option>Montevista</option>
+                                    <option>Pahanocoy</option>
+                                    <option>Punta Taytay</option>
+                                    <option>Singcang-Airport</option>
+                                    <option>Sum-ag</option>
+                                    <option>Taculing</option>
+                                    <option>Tangub</option>
+                                    <option>Villamonte</option>
+                                    <option>Vista Alegre</option>
+                                </select></label>
+                            <label class="portal-field"><span>Classification</span>
+                                <select id="adminFilterClassification" class="filter-select">
+                                    <option value="all">All</option>
+                                    <option value="MAJOR">Major</option>
+                                    <option value="MINOR">Minor</option>
+                                </select></label>
+                            <label class="portal-field"><span>Priority</span>
+                                <select id="adminFilterPriority" class="filter-select">
+                                    <option value="all">All</option>
+                                    <option value="Critical">Critical</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select></label>
+                            <label class="portal-field"><span>Category</span>
+                                <select id="adminFilterCategory" class="filter-select">
+                                    <option value="all">All Categories</option>
+                                    <option>Road Damage</option>
+                                    <option>Flooding / Drainage</option>
+                                    <option>Street Light Damage</option>
+                                    <option>Electrical</option>
+                                    <option>Fallen Tree</option>
+                                    <option>Sanitation</option>
+                                    <option>Structural</option>
+                                    <option>Infrastructure</option>
+                                </select></label>
+                            <label class="portal-field"><span>Sort by</span>
+                                <select id="adminFilterSort" class="filter-select">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="priority">By Priority</option>
+                                </select></label>
+                            <label class="portal-field"><span>Date from</span>
+                                <input type="date" id="adminFilterDateFrom" class="filter-select"></label>
+                            <label class="portal-field"><span>Date to</span>
+                                <input type="date" id="adminFilterDateTo" class="filter-select"></label>
+                        </div>
+                        <div class="portal-sheet-actions">
+                            <button type="button" class="portal-button-secondary" data-sheet-clear>Clear</button>
+                            <button type="button" class="btn-main" data-sheet-apply>Show results</button>
+                        </div>
+                    </div>
+
+                    <div class="portal-table-wrap">
+                        <table class="portal-table report-table">
+                            <thead>
+                                <tr>
+                                    <th class="report-col-date">Date</th>
+                                    <th class="report-col-photo">Photo</th>
+                                    <th class="report-col-issue">Issue</th>
+                                    <th class="report-col-barangay">Barangay</th>
+                                    <th class="report-col-class">Severity</th>
+                                    <th class="report-col-priority">Priority</th>
+                                    <th class="report-col-status">Operational status</th>
+                                    <th class="report-col-publication">Publication status</th>
+                                    <th class="report-col-actions">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminReportsBody">
+                                <tr>
+                                    <td colspan="9" class="portal-table-state">Loading…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav class="portal-pagination" aria-label="Reports pagination"><span id="reportsPageInfo"
+                            class="portal-page-info" role="status" aria-live="polite"></span>
+                        <div class="portal-page-buttons"><button id="reportsPrev" class="portal-icon-button"
+                                type="button" aria-label="Previous reports page" title="Previous page"
+                                onclick="changeReportsPage(-1)"><i class="bx bx-chevron-left"
+                                    aria-hidden="true"></i></button><span id="reportsPageNumber"
+                                class="portal-page-number"></span><button id="reportsNext" class="portal-icon-button"
+                                type="button" aria-label="Next reports page" title="Next page"
+                                onclick="changeReportsPage(1)"><i class="bx bx-chevron-right"
+                                    aria-hidden="true"></i></button></div>
+                    </nav>
+                </div>
+            </section>
+
+            <section id="gisMapSection">
+                <div class="section-card">
+                    <div class="section-heading">
+                        <div>
+                            <h2>City-Wide GIS Map</h2>
+                        </div>
+                        <span id="gisMapReportCount" class="section-caption"></span>
+                    </div>
+
+                    <form id="adminGisFilters" class="gis-filters" aria-label="Map filters">
+                        <label>Status<select name="status"><option value="all">All statuses</option><option value="pending">Pending</option><option value="ongoing">Ongoing</option><option value="resolved">Resolved</option><option value="rejected">Rejected</option></select></label>
+                        <label>Classification<select name="classification"><option value="all">All classifications</option><option value="MAJOR">Major</option><option value="MINOR">Minor</option><option value="UNCLASSIFIED">Unclassified</option></select></label>
+                        <label>Category<select name="category"><option value="all">All categories</option><option>Road Damage</option><option>Flooding / Drainage</option><option>Street Light Damage</option><option>Uncategorized</option></select></label>
+                    </form>
+                    <div id="adminGisMapCanvas" class="admin-gis-map"></div>
+
+                    <div id="adminGisLegend"></div>
+                </div>
+            </section>
+
+            <section id="logsSection">
+                <div class="section-card">
+                    <div class="log-container" id="logBox" tabindex="0" aria-label="System activity log">
+                        <div class="log-entry">Loading audit log…</div>
+                    </div>
+                    <nav class="portal-pagination" aria-label="System activity pages">
+                        <span id="auditPageInfo" class="portal-page-info" role="status"></span>
+                        <label class="portal-page-size">Per page<select id="auditPageSize" onchange="changeAuditPage(0)"><option>5</option><option selected>10</option><option>20</option></select></label>
+                        <div class="portal-page-buttons"><button id="auditPrev" class="portal-icon-button" type="button" onclick="changeAuditPage(-1)" aria-label="Previous activity page"><i class="bx bx-chevron-left" aria-hidden="true"></i></button><span id="auditPageNumber" class="portal-page-number"></span><button id="auditNext" class="portal-icon-button" type="button" onclick="changeAuditPage(1)" aria-label="Next activity page"><i class="bx bx-chevron-right" aria-hidden="true"></i></button></div>
+                    </nav>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <dialog id="adminReportDialog" class="report-dialog" aria-labelledby="adminReportDialogTitle">
+        <div class="report-dialog-header">
+            <h2 id="adminReportDialogTitle" data-report-dialog-title>Report details</h2>
+            <button type="button" class="portal-icon-button" id="adminReportDialogClose" data-report-dialog-close
+                aria-label="Close report details"><i class="bx bx-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="report-dialog-body">
+            <p id="adminReportDialogState" class="rd-state" data-report-dialog-state hidden role="status"
+                aria-live="polite"></p>
+            <div id="adminReportDialogContent" data-report-dialog-content></div>
+        </div>
+    </dialog>
+
+    <div id="dataModal" class="modal">
+        <div class="modal-content modal-content--wide" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-heading">
+                <h2 id="modalTitle">Report Details</h2>
+                <button type="button" class="portal-icon-button" onclick="closeModal()" aria-label="Close"><i
+                        class="bx bx-x" aria-hidden="true"></i></button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+            <div class="modal-heading">
+                <h2 id="accountModalTitle">Add Barangay Account</h2>
+                <button type="button" class="portal-icon-button" onclick="closeAccountModal()" aria-label="Close"><i
+                        class="bx bx-x" aria-hidden="true"></i></button>
+            </div>
+            <form id="accountModalBody" class="portal-form" novalidate
+                onsubmit="event.preventDefault(); saveBarangayAccount();">
+                <div class="input-group">
+                    <label for="accUsername">Username</label>
+                    <input type="text" id="accUsername" placeholder="e.g. brgy_poblacion" autocomplete="off"
+                        aria-describedby="accUsernameError">
+                    <p class="field-error" id="accUsernameError" hidden></p>
+                </div>
+                <div class="input-group" id="accFullNameGroup">
+                    <label for="accFullName">Full Name (optional)</label>
+                    <input type="text" id="accFullName" maxlength="190" placeholder="e.g. Juan Dela Cruz"
+                        autocomplete="off">
+                </div>
+                <div class="input-group" id="accBarangayGroup">
+                    <label for="accBarangay">Assigned Barangay</label>
+                    <select id="accBarangay" aria-describedby="accBarangayError">
+                        <option value="">Loading barangays…</option>
+                    </select>
+                    <p class="field-error" id="accBarangayError" hidden></p>
+                </div>
+                <div class="input-group" id="accCurrentPassGroup" style="display:none;">
+                    <label for="accCurrentPassword">Current Password</label>
+                    <input type="password" id="accCurrentPassword" placeholder="Required to change your password"
+                        autocomplete="current-password" aria-describedby="accCurrentPasswordError">
+                    <p class="field-error" id="accCurrentPasswordError" hidden></p>
+                </div>
+                <div class="input-group">
+                    <label id="accPassLabel" for="accPassword">Password</label>
+                    <input type="password" id="accPassword" placeholder="Min. 8 characters with letters and numbers"
+                        autocomplete="new-password" aria-describedby="accPasswordError accPassHint">
+                    <p class="field-error" id="accPasswordError" hidden></p>
+                    <p class="field-hint" id="accPassHint">
+                        Leave blank to keep the current password. Entering a new one resets it and signs the official
+                        out.
+                    </p>
+                </div>
+                <div class="input-group">
+                    <label for="accPasswordConfirm">Confirm password</label>
+                    <input type="password" id="accPasswordConfirm" placeholder="Re-enter the password" autocomplete="new-password" aria-describedby="accPasswordConfirmError">
+                    <p class="field-error" id="accPasswordConfirmError" hidden></p>
+                </div>
+                <div id="accountFormMsg" class="form-message" role="status" aria-live="polite"></div>
+                <div class="modal-actions">
+                    <button type="button" class="portal-button-secondary" onclick="closeAccountModal()">Cancel</button>
+                    <button type="submit" class="btn-main" id="accSaveBtn">
+                        <i class='bx bxs-save' aria-hidden="true"></i> Save Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content modal-content--narrow" role="alertdialog" aria-modal="true"
+            aria-labelledby="statusModalTitle" aria-describedby="deleteModalMsg">
+            <div class="modal-heading">
+                <h2 id="statusModalTitle">Suspend Account</h2>
+                <button type="button" class="portal-icon-button" onclick="closeDeleteModal()" aria-label="Close"><i
+                        class="bx bx-x" aria-hidden="true"></i></button>
+            </div>
+            <p id="deleteModalMsg" class="modal-message"></p>
+            <div class="modal-actions">
+                <button type="button" class="portal-button-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button type="button" class="btn-main" id="statusConfirmBtn" onclick="confirmAccountStatus()">
+                    Suspend
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/reportVocabulary.js"></script>
+    <script src="../shared/manilaDates.js"></script>
+    <script src="js/shared/api.js"></script>
+    <script src="js/shared/reportExport.js"></script>
+    <script src="js/shared/reportPrint.js"></script>
+    <script src="js/shared/reportMutations.js"></script>
+    <script src="js/shared/reportEvidence.js"></script>
+    <script src="js/shared/portalComponents.js"></script>
+    <script src="js/shared/reports.js"></script>
+    <script src="js/shared/reportPresentation.js"></script>
+    <script src="js/shared/reportCard.js"></script>
+    <script src="js/shared/reportManagement.js"></script>
+    <script src="js/shared/mediaCarousel.js"></script>
+    <script src="js/shared/communityPublication.js"></script>
+    <script src="js/shared/evidenceZoom.js"></script>
+    <script src="js/shared/evidenceViewer.js"></script>
+    <script src="js/reports/reportReviewPanel.js"></script>
+    <script src="js/reports/incidentReviewPanel.js"></script>
+    <script src="js/reports/reportDetailsView.js"></script>
+    <script src="js/shared/vision.js"></script>
+    <script src="shared/geoContainment.js"></script>
+    <script src="js/map/mapConfig.js?v=osm-land-v3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet-global.js" integrity="sha256-nl7XkKmiNbIIlFaAzV6sKcwMkspAqOxnm90ogLJ7Duo=" crossorigin="anonymous"></script>
+    <script src="js/map/geofence.js"></script>
+    <script src="js/shared/reportDetailsApi.js"></script>
+    <script src="js/shared/reportDialog.js"></script>
+    <script src="js/shared/reportGisPresentation.js"></script>
+    <script src="js/shared/reportGis.js"></script>
+    <script src="js/shared/activityLogView.js"></script>
+    <script src="js/admin/admin_logic.js"></script>
+    <script src="js/shared/staffNotifications.js"></script>
+    <script src="js/shared/chartLifecycle.js"></script>
+    <script src="js/shared/analyticsApi.js"></script>
+    <script src="js/shared/analyticsState.js"></script>
+    <script src="js/shared/analyticsCharts.js"></script>
+    <script src="js/shared/analyticsPanel.js"></script>
+    <script src="js/shared/analyticsDashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+const express = require('express');
+const multer = require('multer');
+const controller = require('../controllers/community.controller');
+const { requireAuth, requireRole } = require('../middleware/auth.middleware');
+const { createRequestRateLimit } = require('../middleware/requestRateLimit.middleware');
+const { createUploadCapacity } = require('../middleware/uploadCapacity.middleware');
+
+const router = express.Router();
+const limit = maximum => createRequestRateLimit({ maximum, key: req => String(req.user.id) });
+const upload = multer({ storage: multer.memoryStorage(), limits: { files: 3, fileSize: 5 * 1024 * 1024, fields: 4, parts: 7, fieldSize: 8000 } }).array('photos', 3);
+const imageCapacity = createUploadCapacity();
+const uploadCapacity = (req, res, next) => req.is('multipart/form-data') ? imageCapacity(req, res, next) : next();
+router.use(createRequestRateLimit({ maximum: 600 }), requireAuth, limit(240));
+router.get('/posts/:id/identity', requireRole('admin'), controller.identity);
+router.use(requireRole('citizen', 'barangay'));
+router.get('/publication-requests', requireRole('citizen'), require('../controllers/communityPublication.controller').owned);
+router.get('/eligible-reports', controller.eligibleReports);
+router.get('/posts', controller.list);
+router.post('/posts', limit(10), uploadCapacity, (req, res, next) => upload(req, res, error => {
+  if (error) return res.status(400).json({ error: 'Attach up to three photos, each no larger than 5 MB.' });
+  return next();
+}), controller.publish);
+router.get('/posts/:id', controller.get);
+router.patch('/posts/:id', limit(30), controller.edit);
+router.delete('/posts/:id', limit(20), controller.remove);
+router.put('/posts/:id/reaction', limit(120), controller.react);
+router.get('/posts/:id/comments', controller.comments);
+router.post('/posts/:id/comments', limit(30), controller.comment);
+router.patch('/posts/:id/comments/:comment', limit(30), controller.editComment);
+router.delete('/posts/:id/comments/:comment', limit(30), controller.deleteComment);
+router.put('/posts/:id/comments/:comment/reaction', limit(120), controller.reactComment);
+router.post('/posts/:id/comments/:comment/reaction', limit(120), controller.reactComment);
+router.get('/posts/:id/media/:image', controller.media);
+router.get('/posts/:id/report', controller.report);
+module.exports = router;

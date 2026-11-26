@@ -1,0 +1,1296 @@
+{
+  "audit_date": "2026-11-16",
+  "commit": "14f742c6a0524dd2390634dee185343343be4907",
+  "branch": "fine-tuning/neighborlens_final_v2/13-11-2026",
+  "git_status_porcelain_before_audit_artifacts": [
+    " M .gitignore",
+    "A  .idea/.gitignore",
+    "A  .idea/vcs.xml",
+    " M README.md",
+    " M ai/inference/inference_api.py",
+    " M ai/tests/test_inference_api_contract.py",
+    " M frontend/citizen.html",
+    " M frontend/js/citizen/citizen.js",
+    " M frontend/js/citizen/damagePairAssessment.js",
+    " M frontend/js/citizen/yoloDamageDetector.js",
+    " M frontend/js/shared/reportPresentation.js",
+    " M models/production/best.pt",
+    " M server/application/use-cases/damageDetection.service.js",
+    " M server/application/use-cases/report.service.js",
+    " M server/domain/reports/submissionAssessment.rules.js",
+    " M server/infrastructure/storage/imageInput.adapter.js",
+    " M server/presentation/http/controllers/ai.controller.js",
+    " M server/tests/application-ports.test.js",
+    " M server/tests/assessment-evidence-remediation.test.js",
+    " M server/tests/damage-contract.test.js",
+    " M server/tests/damage-detection.test.js",
+    " M server/tests/pair-stability.test.js",
+    " M server/tests/report.service.storage.test.js",
+    " M server/tests/report.service.test.js",
+    " M tests/browser/auth-design.cases.js",
+    " M tests/browser/phase-1b.spec.js",
+    " M tests/browser/phase-2.spec.js",
+    " M tests/browser/report-details.spec.js",
+    " M tests/e2e/mysql-runtime.e2e.test.js",
+    " M tests/integration/ai-upload-memory.test.js",
+    " M tests/integration/audit-remediation.test.js",
+    " M tests/integration/backend-qa.test.js",
+    " M tests/integration/citizen-ai-damage.test.js",
+    " M tests/integration/citizen-ai-frontend.test.js",
+    " M tests/integration/notification-security.test.js",
+    " M tests/integration/notifications.test.js",
+    " M tests/integration/phase-1b-pair-workflow.test.js",
+    " M tests/integration/phase-2-correction.test.js",
+    " M tests/integration/report-image-security.test.js",
+    " M tests/integration/report-transaction-rollback.test.js",
+    " M tests/integration/report-workflow.test.js",
+    " M tests/integration/reports.test.js",
+    " M tests/integration/supabase-transaction-rollback.test.js",
+    " M tests/migrations/community-publication-mysql.test.js",
+    " M tests/migrations/qa-backend-lifecycle-mysql.test.js",
+    " M tests/mysql/fullstack-auth.mysql.test.js",
+    " M tests/mysql/multi-admin-isolation.mysql.test.js",
+    " M tests/support/image-fixtures.js",
+    "?? ai/tests/test_migrate_yolov8m_v9.py",
+    "?? ai/training/migrate_yolov8m_v9.py",
+    "?? docs/qa/citizen-evidence-regression-2026-11-16.md",
+    "?? models/production/archive/yolo11s-beta_testing_v3-20261116T062023411825Z/",
+    "?? models/production/model_manifest.json",
+    "?? server/application/use-cases/reportEvidence.js",
+    "?? server/domain/reports/evidenceSuitability.rules.js",
+    "?? tests/fixtures/",
+    "?? tests/integration/report-evidence.test.js"
+  ],
+  "runtime": {
+    "platform": "Windows",
+    "python": "3.13.7",
+    "torch": "2.14.0+cu126",
+    "ultralytics": "8.4.150",
+    "opencv": "5.0.0",
+    "fastapi": "0.141.1",
+    "host_cuda_device": "NVIDIA GeForce RTX 3060",
+    "serving_device_instrumented": false,
+    "base_url": "http://127.0.0.1:8000",
+    "confidence": 0.3,
+    "image_size": 640
+  },
+  "checkpoints": {
+    "production": {
+      "path": "models/production/best.pt",
+      "sha256": "6e55d6fec65531180e1655e1b3c5931101fbf96e23346dff272b29c5422cd3d2",
+      "size_bytes": 52017042
+    },
+    "manifest": {
+      "path": "models/production/model_manifest.json",
+      "sha256": "496e188ae54de7fad40b49c2d999bdcd5d01a1414a96831394a371cba9bba08c",
+      "size_bytes": 1716
+    },
+    "training_source": {
+      "path": "runs/neighborlens-v9/yolov8m_v9_qa_filtered_exp01/weights/best.pt",
+      "sha256": "6e55d6fec65531180e1655e1b3c5931101fbf96e23346dff272b29c5422cd3d2",
+      "size_bytes": 52017042
+    },
+    "yolo11s_backup": {
+      "path": "models/production/archive/yolo11s-beta_testing_v3-20261116T062023411825Z/best.pt",
+      "sha256": "f218ccde1a6d27455250fa40a6b38515170fba746512be7c10198fc46d1e6ef2",
+      "size_bytes": 19166426
+    }
+  },
+  "test_results": {
+    "python": {
+      "passed": 175,
+      "skipped": 1,
+      "setup_errors": 2
+    },
+    "vercel_temp_old_pin": {
+      "passed": 2,
+      "failed": 1
+    },
+    "focused_node": {
+      "passed": 53,
+      "failed": 0
+    }
+  },
+  "measurement": {
+    "warmup_per_route": 3,
+    "serial_samples_per_route": 25,
+    "p95": "nearest rank",
+    "latency_scope": "loopback multipart request and response",
+    "normalized_response_digest": "SHA-256 of compact JSON sorted by key, ASCII-escaped, recursively omitting request_id and damage_id"
+  },
+  "fixtures": {
+    "A": {
+      "path": "data/raw/damages_road/2.jpg",
+      "sha256": "cb92eddc894bae670c69df584f9fe2c53dc446803a0a7c61ae58996c9f34071a"
+    },
+    "B": {
+      "path": "data/raw/damages_road/25.jpg",
+      "sha256": "eca9ae6ed076580509e36a4b05f69f25e875d2142f4ae92e34b4df80ef456166"
+    },
+    "C": {
+      "path": "data/raw/damages_road/11.jpg",
+      "sha256": "608bf3c27d08b43fb4844c9b4557328ee833aaf079c5b040b820f58a400b4f61"
+    },
+    "D": {
+      "path": "data/raw/damages_road/24.jpg",
+      "sha256": "905a1551f88988b7eb33b79866bb2d6a79ba17932d4f489a69fc8a5a5c11e499"
+    },
+    "CAMO": {
+      "path": "tests/fixtures/report-evidence/camo-studio.png",
+      "sha256": "3c0991790c7e551ef6e0be4f1d0c334a50fae4d6ccddc2a74d9f74232f8445f7"
+    }
+  },
+  "contract": {
+    "single_B": {
+      "http": 200,
+      "ms": 409.82,
+      "normalized_sha256": "4d18bcc6cd2270052d326ee3e3fd78c853fc2278d9e3c7e268785b65baa85f2e",
+      "body": {
+        "ok": true,
+        "detected": true,
+        "inconclusive": false,
+        "reason": null,
+        "category": "pothole",
+        "canonical_category": "pothole",
+        "display_category": "Pothole",
+        "confidence": 0.6944,
+        "source": "yolo_backend",
+        "inference_status": "accepted",
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.6944,
+          "accepted": true
+        },
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "model_info": {
+          "name": "NeighborLens YOLOv8m",
+          "architecture": "YOLOv8m",
+          "version": "neighborlens_yolov8m_v9",
+          "release_label": "v9",
+          "checkpoint": "production/best.pt",
+          "target_eligible": false,
+          "classes": {
+            "0": "broken_streetlight",
+            "1": "clogged_drainage",
+            "2": "pothole",
+            "3": "road_crack"
+          }
+        },
+        "task": "detect",
+        "scan_scope": "full_image",
+        "image_size": {
+          "width": 259,
+          "height": 426
+        },
+        "detections": [
+          {
+            "class": "pothole",
+            "confidence": 0.6944,
+            "eligible": true,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.57,
+              "y": 186.34,
+              "width": 154.07,
+              "height": 74.71
+            }
+          }
+        ]
+      }
+    },
+    "single_A": {
+      "http": 200,
+      "ms": 68.23,
+      "normalized_sha256": "efc52b2fbaede229cfb429c3e1569191b7d51a0fead6f7cde6adfa0bcdc0dbfc",
+      "body": {
+        "ok": true,
+        "detected": false,
+        "inconclusive": true,
+        "reason": "LOW_CONFIDENCE",
+        "category": "Inconclusive",
+        "canonical_category": null,
+        "display_category": "Inconclusive",
+        "confidence": 0.2252,
+        "source": "yolo_backend",
+        "inference_status": "low_confidence",
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.2252,
+          "accepted": false
+        },
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "model_info": {
+          "name": "NeighborLens YOLOv8m",
+          "architecture": "YOLOv8m",
+          "version": "neighborlens_yolov8m_v9",
+          "release_label": "v9",
+          "checkpoint": "production/best.pt",
+          "target_eligible": false,
+          "classes": {
+            "0": "broken_streetlight",
+            "1": "clogged_drainage",
+            "2": "pothole",
+            "3": "road_crack"
+          }
+        },
+        "task": "detect",
+        "scan_scope": "full_image",
+        "image_size": {
+          "width": 251,
+          "height": 426
+        },
+        "detections": [
+          {
+            "class": "pothole",
+            "confidence": 0.2252,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.55,
+              "y": 92.27,
+              "width": 247.03,
+              "height": 153.97
+            }
+          },
+          {
+            "class": "pothole",
+            "confidence": 0.15,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 161.12,
+              "width": 151.08,
+              "height": 74.16
+            }
+          },
+          {
+            "class": "pothole",
+            "confidence": 0.0923,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 77.07,
+              "y": 95.23,
+              "width": 168.85,
+              "height": 46.55
+            }
+          },
+          {
+            "class": "broken_streetlight",
+            "confidence": 0.0558,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.39,
+              "y": 90.82,
+              "width": 247.1,
+              "height": 158.86
+            }
+          },
+          {
+            "class": "clogged_drainage",
+            "confidence": 0.0515,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.66,
+              "y": 91.17,
+              "width": 249.71,
+              "height": 196.77
+            }
+          }
+        ]
+      }
+    },
+    "single_Camo_raw": {
+      "http": 200,
+      "ms": 74.59,
+      "normalized_sha256": "66cedc3771f22da966e58eb4fcc1a6b39981e42aa8f2b1042b21ea021024754c",
+      "body": {
+        "ok": true,
+        "detected": true,
+        "inconclusive": false,
+        "reason": null,
+        "category": "broken_streetlight",
+        "canonical_category": "broken_streetlight",
+        "display_category": "Broken Streetlight",
+        "confidence": 0.57,
+        "source": "yolo_backend",
+        "inference_status": "accepted",
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "broken_streetlight",
+          "display_category": "Broken Streetlight",
+          "confidence": 0.57,
+          "accepted": true
+        },
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "model_info": {
+          "name": "NeighborLens YOLOv8m",
+          "architecture": "YOLOv8m",
+          "version": "neighborlens_yolov8m_v9",
+          "release_label": "v9",
+          "checkpoint": "production/best.pt",
+          "target_eligible": false,
+          "classes": {
+            "0": "broken_streetlight",
+            "1": "clogged_drainage",
+            "2": "pothole",
+            "3": "road_crack"
+          }
+        },
+        "task": "detect",
+        "scan_scope": "full_image",
+        "image_size": {
+          "width": 575,
+          "height": 208
+        },
+        "detections": [
+          {
+            "class": "broken_streetlight",
+            "confidence": 0.57,
+            "eligible": true,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 523.8,
+              "y": 6.76,
+              "width": 47.06,
+              "height": 43.95
+            }
+          },
+          {
+            "class": "clogged_drainage",
+            "confidence": 0.472,
+            "eligible": true,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 9.49,
+              "y": 3.26,
+              "width": 558.86,
+              "height": 204.74
+            }
+          },
+          {
+            "class": "broken_streetlight",
+            "confidence": 0.3967,
+            "eligible": true,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 207.66,
+              "y": 5.94,
+              "width": 159.17,
+              "height": 132.64
+            }
+          },
+          {
+            "class": "broken_streetlight",
+            "confidence": 0.0982,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 26.29,
+              "y": 153.23,
+              "width": 37.85,
+              "height": 41.07
+            }
+          },
+          {
+            "class": "broken_streetlight",
+            "confidence": 0.0652,
+            "eligible": false,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 25.94,
+              "y": 153.19,
+              "width": 61.94,
+              "height": 41.25
+            }
+          }
+        ]
+      }
+    },
+    "pair_A_B": {
+      "http": 200,
+      "ms": 152.67,
+      "normalized_sha256": "e9bc8f2e7e0bd817f923e25486e6d360b154bf4b04825e62e3e24ca7c9ac61d2",
+      "body": {
+        "ok": true,
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "detected": false,
+        "inconclusive": true,
+        "category": "Inconclusive",
+        "canonical_category": null,
+        "display_category": "Inconclusive",
+        "confidence": 0.4598,
+        "agreement": false,
+        "is_valid_match": false,
+        "source": "yolo_backend",
+        "summary": {
+          "is_valid_match": false,
+          "composite_similarity_score": 0.5788,
+          "embedding_similarity": 0.6888,
+          "damage_type_consensus": "pothole",
+          "highest_severity": null,
+          "alignment": {
+            "perspective_aligned": true,
+            "good_matches_count": 11,
+            "inlier_ratio": 0.8462,
+            "homography_matrix": [
+              [
+                1.0057263989323204,
+                -0.4088491093694049,
+                -63.59637876817793
+              ],
+              [
+                0.7094360918777166,
+                -1.1073804577449533,
+                147.2479746633045
+              ],
+              [
+                0.00415438384798453,
+                -0.00882994588987356,
+                1.0
+              ]
+            ]
+          },
+          "scene_status": "MISMATCH"
+        },
+        "image1_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.2252,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.55,
+              "y": 92.27,
+              "width": 247.03,
+              "height": 153.97
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.15,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 161.12,
+              "width": 151.08,
+              "height": 74.16
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0923,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 77.07,
+              "y": 95.23,
+              "width": 168.85,
+              "height": 46.55
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "broken_streetlight",
+            "confidence_score": 0.0558,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.39,
+              "y": 90.82,
+              "width": 247.1,
+              "height": 158.86
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "clogged_drainage",
+            "confidence_score": 0.0515,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.66,
+              "y": 91.17,
+              "width": 249.71,
+              "height": 196.77
+            },
+            "eligible": false
+          }
+        ],
+        "image2_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.6944,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.57,
+              "y": 186.34,
+              "width": 154.07,
+              "height": 74.71
+            },
+            "eligible": true
+          }
+        ],
+        "status": "LOW_CONFIDENCE",
+        "class_agreement": true,
+        "provisional_class_agreement": true,
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.4598,
+          "accepted": false
+        },
+        "image1_assessment": {
+          "detected": false,
+          "inconclusive": true,
+          "reason": "LOW_CONFIDENCE",
+          "category": "Inconclusive",
+          "canonical_category": null,
+          "display_category": "Inconclusive",
+          "confidence": 0.2252,
+          "source": "yolo_backend",
+          "inference_status": "low_confidence",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.2252,
+            "accepted": false
+          }
+        },
+        "image2_assessment": {
+          "detected": true,
+          "inconclusive": false,
+          "reason": null,
+          "category": "pothole",
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.6944,
+          "source": "yolo_backend",
+          "inference_status": "accepted",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.6944,
+            "accepted": true
+          }
+        }
+      }
+    },
+    "pair_C_D": {
+      "http": 200,
+      "ms": 206.74,
+      "normalized_sha256": "6cf7381032710f808bd419390beb78f833c43147f5132380bd4fcd7c8346ba1b",
+      "body": {
+        "ok": true,
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "detected": true,
+        "inconclusive": false,
+        "category": "pothole",
+        "canonical_category": "pothole",
+        "display_category": "Pothole",
+        "confidence": 0.7005,
+        "agreement": true,
+        "is_valid_match": false,
+        "source": "yolo_backend",
+        "summary": {
+          "is_valid_match": false,
+          "composite_similarity_score": 0.6672,
+          "embedding_similarity": 0.7586,
+          "damage_type_consensus": "pothole",
+          "highest_severity": null,
+          "alignment": {
+            "perspective_aligned": false,
+            "good_matches_count": 5,
+            "inlier_ratio": 0.0,
+            "homography_matrix": null
+          },
+          "scene_status": "MISMATCH"
+        },
+        "image1_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.5606,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 203.4,
+              "y": 98.16,
+              "width": 218.34,
+              "height": 76.54
+            },
+            "eligible": true
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.4059,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 54.92,
+              "y": 63.73,
+              "width": 104.81,
+              "height": 29.27
+            },
+            "eligible": true
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.3985,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 199.51,
+              "y": 101.55,
+              "width": 209.27,
+              "height": 54.76
+            },
+            "eligible": true
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.3349,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 83.07,
+              "y": 116.9,
+              "width": 100.78,
+              "height": 58.18
+            },
+            "eligible": true
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.2761,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 201.79,
+              "y": 98.98,
+              "width": 182.3,
+              "height": 91.62
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.2098,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.45,
+              "y": 322.78,
+              "width": 144.67,
+              "height": 41.51
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1782,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 48.2,
+              "y": 62.08,
+              "width": 112.12,
+              "height": 39.16
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1623,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 203.29,
+              "y": 69.16,
+              "width": 69.6,
+              "height": 22.07
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1573,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.02,
+              "y": 306.34,
+              "width": 143.81,
+              "height": 56.67
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1498,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 92.82,
+              "y": 113.09,
+              "width": 104.73,
+              "height": 55.07
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.1062,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 420.64,
+              "y": 74.58,
+              "width": 130.7,
+              "height": 133.95
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.1054,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 327.28,
+              "width": 145.59,
+              "height": 38.23
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1009,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 205.7,
+              "y": 104.27,
+              "width": 118.93,
+              "height": 31.3
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0961,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 204.19,
+              "y": 70.33,
+              "width": 60.91,
+              "height": 17.6
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0914,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 200.95,
+              "y": 67.34,
+              "width": 91.08,
+              "height": 28.17
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0792,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 91.84,
+              "y": 123.8,
+              "width": 73.59,
+              "height": 43.42
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0699,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 197.44,
+              "y": 66.89,
+              "width": 94.71,
+              "height": 28.92
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0693,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 421.25,
+              "y": 80.68,
+              "width": 130.45,
+              "height": 92.62
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0587,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 16.31,
+              "y": 56.5,
+              "width": 145.35,
+              "height": 42.91
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0561,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 192.63,
+              "y": 59.78,
+              "width": 208.66,
+              "height": 41.12
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0517,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 201.87,
+              "y": 63.31,
+              "width": 199.78,
+              "height": 30.1
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0511,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 3.77,
+              "y": 15.45,
+              "width": 177.26,
+              "height": 347.46
+            },
+            "eligible": false
+          }
+        ],
+        "image2_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.8404,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 118.74,
+              "y": 145.4,
+              "width": 438.78,
+              "height": 210.89
+            },
+            "eligible": true
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1798,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 239.32,
+              "y": 269.05,
+              "width": 141.55,
+              "height": 82.87
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.1103,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 123.25,
+              "y": 203.8,
+              "width": 84.14,
+              "height": 78.36
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0834,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 432.45,
+              "y": 218.39,
+              "width": 128.82,
+              "height": 64.98
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0762,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 185.37,
+              "width": 113.47,
+              "height": 167.92
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "road_crack",
+            "confidence_score": 0.0577,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 507.75,
+              "y": 286.23,
+              "width": 132.25,
+              "height": 72.58
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.053,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 208.09,
+              "width": 106.57,
+              "height": 139.28
+            },
+            "eligible": false
+          }
+        ],
+        "status": "DETECTED",
+        "class_agreement": true,
+        "provisional_class_agreement": false,
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.7005,
+          "accepted": true
+        },
+        "image1_assessment": {
+          "detected": true,
+          "inconclusive": false,
+          "reason": null,
+          "category": "pothole",
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.5606,
+          "source": "yolo_backend",
+          "inference_status": "accepted",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.5606,
+            "accepted": true
+          }
+        },
+        "image2_assessment": {
+          "detected": true,
+          "inconclusive": false,
+          "reason": null,
+          "category": "pothole",
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.8404,
+          "source": "yolo_backend",
+          "inference_status": "accepted",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.8404,
+            "accepted": true
+          }
+        }
+      }
+    },
+    "pair_alias": {
+      "http": 200,
+      "ms": 175.9,
+      "normalized_sha256": "e9bc8f2e7e0bd817f923e25486e6d360b154bf4b04825e62e3e24ca7c9ac61d2",
+      "body": {
+        "ok": true,
+        "model": "NeighborLens YOLOv8m neighborlens_yolov8m_v9",
+        "detected": false,
+        "inconclusive": true,
+        "category": "Inconclusive",
+        "canonical_category": null,
+        "display_category": "Inconclusive",
+        "confidence": 0.4598,
+        "agreement": false,
+        "is_valid_match": false,
+        "source": "yolo_backend",
+        "summary": {
+          "is_valid_match": false,
+          "composite_similarity_score": 0.5788,
+          "embedding_similarity": 0.6888,
+          "damage_type_consensus": "pothole",
+          "highest_severity": null,
+          "alignment": {
+            "perspective_aligned": true,
+            "good_matches_count": 11,
+            "inlier_ratio": 0.8462,
+            "homography_matrix": [
+              [
+                1.0057263989323204,
+                -0.4088491093694049,
+                -63.59637876817793
+              ],
+              [
+                0.7094360918777166,
+                -1.1073804577449533,
+                147.2479746633045
+              ],
+              [
+                0.00415438384798453,
+                -0.00882994588987356,
+                1.0
+              ]
+            ]
+          },
+          "scene_status": "MISMATCH"
+        },
+        "image1_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.2252,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.55,
+              "y": 92.27,
+              "width": 247.03,
+              "height": 153.97
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.15,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.0,
+              "y": 161.12,
+              "width": 151.08,
+              "height": 74.16
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.0923,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 77.07,
+              "y": 95.23,
+              "width": 168.85,
+              "height": 46.55
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "broken_streetlight",
+            "confidence_score": 0.0558,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.39,
+              "y": 90.82,
+              "width": 247.1,
+              "height": 158.86
+            },
+            "eligible": false
+          },
+          {
+            "damage_type": "clogged_drainage",
+            "confidence_score": 0.0515,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.66,
+              "y": 91.17,
+              "width": 249.71,
+              "height": 196.77
+            },
+            "eligible": false
+          }
+        ],
+        "image2_detections": [
+          {
+            "damage_type": "pothole",
+            "confidence_score": 0.6944,
+            "severity_level": null,
+            "bounding_box": {
+              "x": 0.57,
+              "y": 186.34,
+              "width": 154.07,
+              "height": 74.71
+            },
+            "eligible": true
+          }
+        ],
+        "status": "LOW_CONFIDENCE",
+        "class_agreement": true,
+        "provisional_class_agreement": true,
+        "min_confidence": 0.3,
+        "candidate": {
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.4598,
+          "accepted": false
+        },
+        "image1_assessment": {
+          "detected": false,
+          "inconclusive": true,
+          "reason": "LOW_CONFIDENCE",
+          "category": "Inconclusive",
+          "canonical_category": null,
+          "display_category": "Inconclusive",
+          "confidence": 0.2252,
+          "source": "yolo_backend",
+          "inference_status": "low_confidence",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.2252,
+            "accepted": false
+          }
+        },
+        "image2_assessment": {
+          "detected": true,
+          "inconclusive": false,
+          "reason": null,
+          "category": "pothole",
+          "canonical_category": "pothole",
+          "display_category": "Pothole",
+          "confidence": 0.6944,
+          "source": "yolo_backend",
+          "inference_status": "accepted",
+          "min_confidence": 0.3,
+          "candidate": {
+            "canonical_category": "pothole",
+            "display_category": "Pothole",
+            "confidence": 0.6944,
+            "accepted": true
+          }
+        }
+      }
+    },
+    "pair_duplicate": {
+      "http": 422,
+      "ms": 3.64,
+      "normalized_sha256": "04e03ac8571e90fc50792902c17f27022393c57f3f5164f68cafb7ccd5a7aac5",
+      "body": {
+        "detail": {
+          "code": "DUPLICATE_EVIDENCE",
+          "message": "Retake the issue from two different angles."
+        }
+      }
+    },
+    "bad_bytes": {
+      "http": 400,
+      "ms": 81.08,
+      "normalized_sha256": "4ed9e0534e285be80e70bd1eca004a3c1fc42ac2abfc0b3a6ed34bd8acfa4782",
+      "body": {
+        "detail": "The uploaded image is invalid."
+      }
+    },
+    "bad_mime": {
+      "http": 415,
+      "ms": 1.66,
+      "normalized_sha256": "bc808d6cd1f5b57cee641d6618a3df4cee0739bfdd839f6836fbe6c2c35f2468",
+      "body": {
+        "detail": "Upload must be a JPEG, PNG, or WebP image."
+      }
+    },
+    "over_limit": {
+      "http": 413,
+      "ms": 42.24,
+      "normalized_sha256": "a8b46ba58e866f0d631022fc4c401c05eca40346b7430a4a35954ec25539244b",
+      "body": {
+        "detail": "Image exceeds the 4 MB inference limit."
+      }
+    }
+  },
+  "latency_ms": {
+    "predict_B": {
+      "n": 25,
+      "min": 59.35,
+      "median": 61.06,
+      "p95": 75.59,
+      "max": 100.67
+    },
+    "pair_A_B": {
+      "n": 25,
+      "min": 147.86,
+      "median": 210.34,
+      "p95": 884.04,
+      "max": 1482.26
+    }
+  },
+  "health": {
+    "ok": true,
+    "service": "neighborlens-yolo-api",
+    "status": "running",
+    "classes": {
+      "0": "broken_streetlight",
+      "1": "clogged_drainage",
+      "2": "pothole",
+      "3": "road_crack"
+    },
+    "min_confidence": 0.3,
+    "model_info": {
+      "name": "NeighborLens YOLOv8m",
+      "architecture": "YOLOv8m",
+      "version": "neighborlens_yolov8m_v9",
+      "release_label": "v9",
+      "checkpoint": "production/best.pt",
+      "target_eligible": false,
+      "classes": {
+        "0": "broken_streetlight",
+        "1": "clogged_drainage",
+        "2": "pothole",
+        "3": "road_crack"
+      }
+    }
+  },
+  "overlap": {
+    "idle_health_ms": [
+      2.41,
+      2.16,
+      3.21,
+      9.15,
+      18.37
+    ],
+    "pair_and_overlapping_health_ms": [
+      [
+        412.71,
+        394.84
+      ],
+      [
+        210.44,
+        120.14
+      ],
+      [
+        299.0,
+        187.15
+      ],
+      [
+        249.55,
+        192.35
+      ],
+      [
+        213.03,
+        140.48
+      ]
+    ]
+  }
+}

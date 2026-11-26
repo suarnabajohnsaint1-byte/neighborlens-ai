@@ -1,0 +1,24 @@
+
+> neighborlens-ai-capstone@1.0.0 test:e2e:publication
+> playwright test --config=playwright.publication.config.js
+
+[WebServer] (node:5932) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:5932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 8 tests using 1 worker
+
+(node:36584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.3s)
+  ok 2 [desktop] › tests\browser\community-publication.spec.js:55:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (1.5s)
+  ok 3 [desktop] › tests\browser\community-publication.spec.js:74:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.4s)
+  ok 4 [desktop] › tests\browser\community-publication.spec.js:95:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.5s)
+(node:28816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [mobile] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.4s)
+  ok 6 [mobile] › tests\browser\community-publication.spec.js:55:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (1.4s)
+  ok 7 [mobile] › tests\browser\community-publication.spec.js:74:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.3s)
+  ok 8 [mobile] › tests\browser\community-publication.spec.js:95:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.2s)
+
+  8 passed (16.3s)

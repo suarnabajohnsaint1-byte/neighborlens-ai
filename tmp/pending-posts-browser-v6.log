@@ -1,0 +1,120 @@
+TAP version 13
+# Subtest: publication lifecycle on isolated MySQL and real browser UI
+    # Subtest: forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+    ok 1 - forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+      ---
+      duration_ms: 610.3177
+      type: 'test'
+      ...
+    # Subtest: migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+    ok 2 - migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+      ---
+      duration_ms: 604.9766
+      type: 'test'
+      ...
+    # Subtest: missing publication setup fails closed with actionable 503 responses on both endpoints
+    ok 3 - missing publication setup fails closed with actionable 503 responses on both endpoints
+      ---
+      duration_ms: 165.0276
+      type: 'test'
+      ...
+    # Subtest: concurrent citizen requests persist one pending request with zero new posts and no public event
+    ok 4 - concurrent citizen requests persist one pending request with zero new posts and no public event
+      ---
+      duration_ms: 95.7771
+      type: 'test'
+      ...
+    # Subtest: roles, ownership and barangay authorization reject direct bypass and private resource access
+    ok 5 - roles, ownership and barangay authorization reject direct bypass and private resource access
+      ---
+      duration_ms: 52.7308
+      type: 'test'
+      ...
+    # Subtest: only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+    ok 6 - only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+      ---
+      duration_ms: 78.8278
+      type: 'test'
+      ...
+    # Subtest: publication outcomes notify only the citizen after a committed decision
+    ok 7 - publication outcomes notify only the citizen after a committed decision
+      ---
+      duration_ms: 42.124
+      type: 'test'
+      ...
+    # Subtest: rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+    ok 8 - rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+      ---
+      duration_ms: 93.9892
+      type: 'test'
+      ...
+    # Subtest: notification failure rolls back publication, decision and realtime delivery
+    ok 9 - notification failure rolls back publication, decision and realtime delivery
+      ---
+      duration_ms: 30.9367
+      type: 'test'
+      ...
+    # Subtest: no active reviewer leaves a private unassigned request until transactional reassignment
+    ok 10 - no active reviewer leaves a private unassigned request until transactional reassignment
+      ---
+      duration_ms: 47.5686
+      type: 'test'
+      ...
+    # Subtest: three attempts retain rejection history and full length reasons without changing operational status
+    ok 11 - three attempts retain rejection history and full length reasons without changing operational status
+      ---
+      duration_ms: 100.8799
+      type: 'test'
+      ...
+    # Subtest: unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+    ok 12 - unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+      ---
+      duration_ms: 44.6762
+      type: 'test'
+      ...
+    # Subtest: comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+    ok 13 - comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+      ---
+      duration_ms: 296.416
+      type: 'test'
+      ...
+    # Subtest: report API automatically queues review and assigned Admin opens approval from the persisted notification
+    ok 14 - report API automatically queues review and assigned Admin opens approval from the persisted notification
+      ---
+      duration_ms: 3791.1973
+      type: 'test'
+      ...
+    # Subtest: real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+    ok 15 - real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+      ---
+      duration_ms: 4127.2785
+      type: 'test'
+      ...
+    # Subtest: Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+    ok 16 - Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+      ---
+      duration_ms: 1690.8983
+      type: 'test'
+      ...
+    # Subtest: feed and publication error layouts recover on retry without hiding setup failures
+    ok 17 - feed and publication error layouts recover on retry without hiding setup failures
+      ---
+      duration_ms: 1554.5428
+      type: 'test'
+      ...
+    1..17
+ok 1 - publication lifecycle on isolated MySQL and real browser UI
+  ---
+  duration_ms: 26226.6545
+  type: 'test'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+1..1
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 26966.2062

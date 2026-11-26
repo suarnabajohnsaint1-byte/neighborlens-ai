@@ -1,0 +1,166 @@
+TAP version 13
+# Subtest: publication lifecycle on isolated MySQL and real browser UI
+    # Subtest: forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+    ok 1 - forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+      ---
+      duration_ms: 694.3414
+      type: 'test'
+      ...
+    # Subtest: migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+    ok 2 - migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+      ---
+      duration_ms: 624.0516
+      type: 'test'
+      ...
+    # Subtest: missing publication setup fails closed with actionable 503 responses on both endpoints
+    ok 3 - missing publication setup fails closed with actionable 503 responses on both endpoints
+      ---
+      duration_ms: 173.6736
+      type: 'test'
+      ...
+    # Subtest: concurrent citizen requests persist one pending request with zero new posts and no public event
+    ok 4 - concurrent citizen requests persist one pending request with zero new posts and no public event
+      ---
+      duration_ms: 98.7142
+      type: 'test'
+      ...
+    # Subtest: roles, ownership and barangay authorization reject direct bypass and private resource access
+    ok 5 - roles, ownership and barangay authorization reject direct bypass and private resource access
+      ---
+      duration_ms: 70.4965
+      type: 'test'
+      ...
+    # Subtest: only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+    ok 6 - only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+      ---
+      duration_ms: 90.1331
+      type: 'test'
+      ...
+    # Subtest: publication outcomes notify only the citizen after a committed decision
+    ok 7 - publication outcomes notify only the citizen after a committed decision
+      ---
+      duration_ms: 50.3107
+      type: 'test'
+      ...
+    # Subtest: rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+    ok 8 - rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+      ---
+      duration_ms: 114.0853
+      type: 'test'
+      ...
+    # Subtest: notification failure rolls back publication, decision and realtime delivery
+    ok 9 - notification failure rolls back publication, decision and realtime delivery
+      ---
+      duration_ms: 44.3996
+      type: 'test'
+      ...
+    # Subtest: no active reviewer leaves a private unassigned request until transactional reassignment
+    ok 10 - no active reviewer leaves a private unassigned request until transactional reassignment
+      ---
+      duration_ms: 54.1177
+      type: 'test'
+      ...
+    # Subtest: three attempts retain rejection history and full length reasons without changing operational status
+    ok 11 - three attempts retain rejection history and full length reasons without changing operational status
+      ---
+      duration_ms: 109.1475
+      type: 'test'
+      ...
+    # Subtest: unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+    ok 12 - unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+      ---
+      duration_ms: 52.6597
+      type: 'test'
+      ...
+    # Subtest: comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+    ok 13 - comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+      ---
+      duration_ms: 354.2674
+      type: 'test'
+      ...
+    # Subtest: report API automatically queues review and assigned Admin opens approval from the persisted notification
+    not ok 14 - report API automatically queues review and assigned Admin opens approval from the persisted notification
+      ---
+      duration_ms: 2104.5267
+      type: 'test'
+      location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:284:13'
+      failureType: 'testCodeFailure'
+      error: '{"theme":"light","width":390,"cards":[{"y":158,"width":174,"height":100.390625},{"y":158,"width":174,"height":100.390625},{"y":268.390625,"width":174,"height":100.390625},{"y":268.390625,"width":174,"height":100.390625},{"y":378.78125,"width":174,"height":100.390625},{"y":378.78125,"width":174,"height":100.390625}]}'
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected: true
+      actual: false
+      operator: '=='
+      stack: |-
+        TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:335:18)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:284:5)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+      ...
+# Error: Request aborted
+#     at onaborted (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1062:15)
+#     at Immediate._onImmediate (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1104:9)
+#     at process.processImmediate (node:internal/timers:485:21)
+#     at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+#   code: 'ECONNABORTED'
+# }
+# Error: Request aborted
+#     at onaborted (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1062:15)
+#     at Immediate._onImmediate (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1104:9)
+#     at process.processImmediate (node:internal/timers:485:21)
+#     at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+#   code: 'ECONNABORTED'
+# }
+    # Subtest: real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+    ok 15 - real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+      ---
+      duration_ms: 4900.8635
+      type: 'test'
+      ...
+# Error: Request aborted
+#     at onaborted (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1062:15)
+#     at Immediate._onImmediate (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1104:9)
+#     at process.processImmediate (node:internal/timers:485:21)
+#     at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+#   code: 'ECONNABORTED'
+# }
+# Error: Request aborted
+#     at onaborted (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1062:15)
+#     at Immediate._onImmediate (C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\node_modules\\express\\lib\\response.js:1104:9)
+#     at process.processImmediate (node:internal/timers:485:21)
+#     at process.callbackTrampoline (node:internal/async_hooks:130:17) {
+#   code: 'ECONNABORTED'
+# }
+    # Subtest: Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+    ok 16 - Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+      ---
+      duration_ms: 2266.3253
+      type: 'test'
+      ...
+    # Subtest: feed and publication error layouts recover on retry without hiding setup failures
+    ok 17 - feed and publication error layouts recover on retry without hiding setup failures
+      ---
+      duration_ms: 1975.9613
+      type: 'test'
+      ...
+    1..17
+not ok 1 - publication lifecycle on isolated MySQL and real browser UI
+  ---
+  duration_ms: 30958.9831
+  type: 'test'
+  location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:12:1'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+1..1
+# tests 18
+# suites 0
+# pass 16
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 31867.874

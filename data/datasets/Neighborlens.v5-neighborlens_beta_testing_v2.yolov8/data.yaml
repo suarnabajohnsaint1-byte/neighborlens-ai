@@ -1,0 +1,11 @@
+path: C:/Users/cleme/Documents/GitHub/Neighborlens-AI/data/datasets/Neighborlens.v5-neighborlens_beta_testing_v2.yolov8
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 4
+names:
+  0: broken_streetlight
+  1: clogged_drainage
+  2: pothole
+  3: road_crack

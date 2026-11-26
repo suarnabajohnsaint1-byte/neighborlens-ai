@@ -1,0 +1,23 @@
+{
+  "version": "bacolod-map-reference-v3",
+  "city": {
+    "file": "bacolod-city-boundary.json",
+    "sha256": "e3918e98d774c3e555a6c583a739f82cd3a8864b7cd0931a09a9d64854514e61"
+  },
+  "barangays": {
+    "file": "bacolod-barangay-boundaries.json",
+    "version": "bacolod-barangay-display-v4",
+    "sha256": "ceabd32dee2a6ca37605fb5611435880cd41921c0d5da7fe37556f7a72e490ca"
+  },
+  "display": {
+    "version": "bacolod-display-osm-land-v3",
+    "city": {
+      "file": "bacolod-display-city.json",
+      "sha256": "2d83c9c8af22d4e7f7e92347bb617ce0a744801688bf5b16a1a1d17f5dfe4183"
+    },
+    "barangays": {
+      "file": "bacolod-display-barangays.json",
+      "sha256": "68072c4f7298ea719a16068adacd4abe05fbedfbb6c5f4a09e605d9f9dce6543"
+    }
+  }
+}

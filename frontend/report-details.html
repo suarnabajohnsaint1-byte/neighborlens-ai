@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Report Details | NeighborLens AI</title>
+    <script src="js/shared/themeManager.js"></script>
+    <script src="js/admin/adminViewState.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/sidebar.css?v=brand-logo">
+    <link rel="stylesheet" href="styles/report-details.css">
+    <link rel="stylesheet" href="styles/report-gis.css">
+    <link rel="stylesheet" href="styles/portal-components.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet.css" integrity="sha256-LJzbbQFquR1Trwrwy++9x2Pl6ipfBZUR8Da0GGJ8Wfo=" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/theme-controls.css">
+    <script src="js/auth/security.js" defer></script>
+    <script src="js/shared/appearanceControl.js" defer></script>
+    <script src="js/shared/portalSidebar.js?v=brand-logo" defer></script>
+    <script src="../shared/reportVocabulary.js" defer></script>
+    <script src="../shared/manilaDates.js" defer></script>
+    <script src="js/shared/api.js" defer></script>
+    <script src="js/shared/reportMutations.js" defer></script>
+    <script src="js/shared/reportEvidence.js" defer></script>
+    <script src="js/shared/reportPresentation.js" defer></script>
+    <script src="js/shared/reportDetailsApi.js" defer></script>
+    <script src="js/shared/portalRefresh.js" defer></script>
+    <script src="js/shared/mediaCarousel.js" defer></script>
+    <script src="js/shared/communityPublication.js" defer></script>
+    <script src="js/shared/portalComponents.js" defer></script>
+    <script src="js/shared/evidenceViewer.js" defer></script>
+    <script src="js/reports/reportReviewPanel.js" defer></script>
+    <script src="js/shared/visualExtentPresentation.js" defer></script>
+    <script src="js/reports/reportSeverityPanel.js" defer></script>
+    <script src="js/reports/incidentReviewPanel.js"></script>
+    <script src="js/reports/reportDetailsView.js" defer></script>
+    <script src="shared/geoContainment.js" defer></script>
+    <script src="js/map/mapConfig.js?v=osm-land-v3" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.5/dist/leaflet-global.js" integrity="sha256-nl7XkKmiNbIIlFaAzV6sKcwMkspAqOxnm90ogLJ7Duo=" crossorigin="anonymous" defer></script>
+    <script src="js/shared/evidenceZoom.js" defer></script>
+    <script src="js/admin/adminViewState.js" defer></script>
+    <script src="js/reports/reportDetails.js" defer></script>
+</head>
+
+<body class="rd-page">
+    <div class="dashboard portal-layout">
+        <div id="sidebarBackdrop" hidden></div>
+        <aside id="detailsSidebar" class="sidebar" data-portal-sidebar="details" data-sidebar-mode="drawer"
+            data-sidebar-content="detailsContent" data-sidebar-toggle="openSidebar"
+            data-sidebar-backdrop="sidebarBackdrop" aria-label="Portal sidebar" tabindex="-1"></aside>
+        <main id="detailsContent" class="rd-content">
+            <nav class="rd-navigation" aria-label="Report navigation">
+                <button id="openSidebar" class="portal-sidebar-control portal-sidebar-toggle" type="button"
+                    aria-label="Open navigation" aria-controls="detailsSidebar" aria-expanded="false"
+                    title="Open navigation"><i class="bx bx-menu" aria-hidden="true"></i></button>
+                <a id="backToReports" href="citizen.html#my-reports"><i class="bx bx-arrow-back"
+                        aria-hidden="true"></i><span>Back to My Reports</span></a>
+            </nav>
+            <div id="reportState" class="rd-state" role="status" aria-live="polite">Loading report details...</div>
+            <div id="reportDetails" hidden></div>
+        </main>
+    </div>
+</body>
+
+</html>

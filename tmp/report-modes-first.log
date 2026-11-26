@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: publication lifecycle on isolated MySQL and real browser UI
+    # Subtest: forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+    ok 1 - forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+      ---
+      duration_ms: 607.1626
+      type: 'test'
+      ...
+    # Subtest: migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+    ok 2 - migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+      ---
+      duration_ms: 633.1845
+      type: 'test'
+      ...
+    # Subtest: missing publication setup fails closed with actionable 503 responses on both endpoints
+    ok 3 - missing publication setup fails closed with actionable 503 responses on both endpoints
+      ---
+      duration_ms: 161.1833
+      type: 'test'
+      ...
+    # Subtest: concurrent citizen requests persist one pending request with zero new posts and no public event
+    ok 4 - concurrent citizen requests persist one pending request with zero new posts and no public event
+      ---
+      duration_ms: 92.9999
+      type: 'test'
+      ...
+    # Subtest: roles, ownership and barangay authorization reject direct bypass and private resource access
+    ok 5 - roles, ownership and barangay authorization reject direct bypass and private resource access
+      ---
+      duration_ms: 57.6101
+      type: 'test'
+      ...
+    # Subtest: only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+    ok 6 - only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+      ---
+      duration_ms: 74.4352
+      type: 'test'
+      ...
+    # Subtest: publication outcomes notify only the citizen after a committed decision
+    ok 7 - publication outcomes notify only the citizen after a committed decision
+      ---
+      duration_ms: 37.7045
+      type: 'test'
+      ...
+    # Subtest: rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+    ok 8 - rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+      ---
+      duration_ms: 98.2371
+      type: 'test'
+      ...
+    # Subtest: notification failure rolls back publication, decision and realtime delivery
+    ok 9 - notification failure rolls back publication, decision and realtime delivery
+      ---
+      duration_ms: 38.7672
+      type: 'test'
+      ...
+    # Subtest: no active reviewer leaves a private unassigned request until transactional reassignment
+    ok 10 - no active reviewer leaves a private unassigned request until transactional reassignment
+      ---
+      duration_ms: 44.8998
+      type: 'test'
+      ...
+    # Subtest: three attempts retain rejection history and full length reasons without changing operational status
+    ok 11 - three attempts retain rejection history and full length reasons without changing operational status
+      ---
+      duration_ms: 93.8875
+      type: 'test'
+      ...
+    # Subtest: unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+    ok 12 - unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+      ---
+      duration_ms: 41.266
+      type: 'test'
+      ...
+    # Subtest: comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+    ok 13 - comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+      ---
+      duration_ms: 293.7153
+      type: 'test'
+      ...
+    # Subtest: report API automatically queues review and assigned Admin opens approval from the persisted notification
+    ok 14 - report API automatically queues review and assigned Admin opens approval from the persisted notification
+      ---
+      duration_ms: 7741.0698
+      type: 'test'
+      ...
+    # Subtest: real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+    not ok 15 - real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+      ---
+      duration_ms: 6160.4764
+      type: 'test'
+      location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:425:13'
+      failureType: 'testCodeFailure'
+      error: |-
+        expect(locator).not.toHaveText(expected) failed
+        
+        Locator: locator('#communityReviewCount')
+        Expected: not ""
+        Timeout: 5000ms
+        Error: element(s) not found
+        
+        Call log:
+          - Expect "not toHaveText" locator('#communityReviewCount') with timeout 5000ms
+          - waiting for locator('#communityReviewCount')
+        
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        captureRawStack (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright-core\lib\coreBundle.js:9282:17)
+        callMatcherAsStep (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13316:57)
+        Object.toHaveText (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13308:23)
+        TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:447:68)
+        async TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:425:5)
+      ...
+    # Subtest: Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+    not ok 16 - Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+      ---
+      duration_ms: 5842.8158
+      type: 'test'
+      location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:498:13'
+      failureType: 'testCodeFailure'
+      error: |-
+        expect(received).toEqual(expected) // deep equality
+        
+        - Expected  - 2
+        + Received  + 2
+        
+          Array [
+        -   4,
+            5,
+        +   4,
+            6,
+            12,
+        -   13,
+        +   19,
+          ]
+        
+        Call Log:
+        - Timeout 5000ms exceeded while waiting on the predicate
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        captureRawStack (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright-core\lib\coreBundle.js:9282:17)
+        callMatcherAsStep (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13316:57)
+        Object.toEqual (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13308:23)
+        TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:517:37)
+        async TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:498:5)
+      ...
+    # Subtest: feed and publication error layouts recover on retry without hiding setup failures
+    ok 17 - feed and publication error layouts recover on retry without hiding setup failures
+      ---
+      duration_ms: 1563.9886
+      type: 'test'
+      ...
+    1..17
+not ok 1 - publication lifecycle on isolated MySQL and real browser UI
+  ---
+  duration_ms: 36247.4253
+  type: 'test'
+  location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:12:1'
+  failureType: 'subtestsFailed'
+  error: '2 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+1..1
+# tests 18
+# suites 0
+# pass 15
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 37341.767

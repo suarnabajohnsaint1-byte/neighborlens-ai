@@ -1,0 +1,163 @@
+TAP version 13
+# Subtest: publication lifecycle on isolated MySQL and real browser UI
+    # Subtest: forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+    ok 1 - forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+      ---
+      duration_ms: 584.0175
+      type: 'test'
+      ...
+    # Subtest: migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+    ok 2 - migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+      ---
+      duration_ms: 655.3269
+      type: 'test'
+      ...
+    # Subtest: missing publication setup fails closed with actionable 503 responses on both endpoints
+    ok 3 - missing publication setup fails closed with actionable 503 responses on both endpoints
+      ---
+      duration_ms: 160.1947
+      type: 'test'
+      ...
+    # Subtest: concurrent citizen requests persist one pending request with zero new posts and no public event
+    ok 4 - concurrent citizen requests persist one pending request with zero new posts and no public event
+      ---
+      duration_ms: 91.6384
+      type: 'test'
+      ...
+    # Subtest: roles, ownership and barangay authorization reject direct bypass and private resource access
+    ok 5 - roles, ownership and barangay authorization reject direct bypass and private resource access
+      ---
+      duration_ms: 69.5871
+      type: 'test'
+      ...
+    # Subtest: only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+    ok 6 - only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+      ---
+      duration_ms: 98.6055
+      type: 'test'
+      ...
+    # Subtest: publication outcomes notify only the citizen after a committed decision
+    ok 7 - publication outcomes notify only the citizen after a committed decision
+      ---
+      duration_ms: 45.1887
+      type: 'test'
+      ...
+    # Subtest: rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+    ok 8 - rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+      ---
+      duration_ms: 101.2734
+      type: 'test'
+      ...
+    # Subtest: notification failure rolls back publication, decision and realtime delivery
+    ok 9 - notification failure rolls back publication, decision and realtime delivery
+      ---
+      duration_ms: 42.3999
+      type: 'test'
+      ...
+    # Subtest: no active reviewer leaves a private unassigned request until transactional reassignment
+    ok 10 - no active reviewer leaves a private unassigned request until transactional reassignment
+      ---
+      duration_ms: 50.6792
+      type: 'test'
+      ...
+    # Subtest: three attempts retain rejection history and full length reasons without changing operational status
+    ok 11 - three attempts retain rejection history and full length reasons without changing operational status
+      ---
+      duration_ms: 103.0536
+      type: 'test'
+      ...
+    # Subtest: unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+    ok 12 - unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+      ---
+      duration_ms: 45.2293
+      type: 'test'
+      ...
+    # Subtest: comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+    ok 13 - comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+      ---
+      duration_ms: 282.2483
+      type: 'test'
+      ...
+    # Subtest: report API automatically queues review and assigned Admin opens approval from the persisted notification
+    ok 14 - report API automatically queues review and assigned Admin opens approval from the persisted notification
+      ---
+      duration_ms: 4651.3
+      type: 'test'
+      ...
+    # Subtest: real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+    ok 15 - real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+      ---
+      duration_ms: 4046.3026
+      type: 'test'
+      ...
+    # Subtest: Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+    ok 16 - Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+      ---
+      duration_ms: 2525.2365
+      type: 'test'
+      ...
+    # Subtest: server-filtered review membership and Excel scope remain independent of operational status
+    ok 17 - server-filtered review membership and Excel scope remain independent of operational status
+      ---
+      duration_ms: 191.2657
+      type: 'test'
+      ...
+    # Subtest: shared Admin and Barangay controls support separate dialogs, views and responsive themes
+    not ok 18 - shared Admin and Barangay controls support separate dialogs, views and responsive themes
+      ---
+      duration_ms: 7577.7742
+      type: 'test'
+      location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:584:13'
+      failureType: 'testCodeFailure'
+      error: |-
+        expect(locator).toBeVisible() failed
+        
+        Locator: locator('#adminReportCards .report-card').first()
+        Expected: visible
+        Timeout: 5000ms
+        Error: element(s) not found
+        
+        Call log:
+          - Expect "toBeVisible" locator('#adminReportCards .report-card').first() with timeout 5000ms
+          - waiting for locator('#adminReportCards .report-card').first()
+        
+      code: 'ERR_TEST_FAILURE'
+      stack: |-
+        captureRawStack (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright-core\lib\coreBundle.js:9282:17)
+        callMatcherAsStep (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13316:57)
+        Object.toBeVisible (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\node_modules\playwright\lib\matchers\expect.js:13308:23)
+        TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:656:140)
+        async TestContext.<anonymous> (C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\migrations\community-publication-mysql.test.js:584:5)
+      ...
+    # Subtest: review decisions update the active queue and card without deleting operational reports
+    ok 19 - review decisions update the active queue and card without deleting operational reports
+      ---
+      duration_ms: 2123.8536
+      type: 'test'
+      ...
+    # Subtest: feed and publication error layouts recover on retry without hiding setup failures
+    ok 20 - feed and publication error layouts recover on retry without hiding setup failures
+      ---
+      duration_ms: 1590.8318
+      type: 'test'
+      ...
+    1..20
+not ok 1 - publication lifecycle on isolated MySQL and real browser UI
+  ---
+  duration_ms: 38124.8392
+  type: 'test'
+  location: 'C:\\Users\\cleme\\Documents\\GitHub\\Neighborlens-AI\\tests\\migrations\\community-publication-mysql.test.js:12:1'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+1..1
+# tests 21
+# suites 0
+# pass 19
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38969.3227

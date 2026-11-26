@@ -1,0 +1,320 @@
+
+> neighborlens-ai-capstone@1.0.0 test:publication
+> node --test --test-concurrency=1 server/tests/community-publication.test.js tests/migrations/community-publication-mysql.test.js tests/migrations/community-mysql.test.js
+
+TAP version 13
+# Subtest: service rejects citizen moderation without database reliance
+ok 1 - service rejects citizen moderation without database reliance
+  ---
+  duration_ms: 2.0791
+  type: 'test'
+  ...
+# Subtest: service rejects barangay moderation without database reliance
+ok 2 - service rejects barangay moderation without database reliance
+  ---
+  duration_ms: 0.2976
+  type: 'test'
+  ...
+# Subtest: service rejects anonymous moderation without database reliance
+ok 3 - service rejects anonymous moderation without database reliance
+  ---
+  duration_ms: 0.3117
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome pending
+ok 4 - rejects invalid publication outcome pending
+  ---
+  duration_ms: 0.2211
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome resolved
+ok 5 - rejects invalid publication outcome resolved
+  ---
+  duration_ms: 0.2033
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome approved 
+ok 6 - rejects invalid publication outcome approved 
+  ---
+  duration_ms: 0.1174
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome null
+ok 7 - rejects invalid publication outcome null
+  ---
+  duration_ms: 0.7906
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason 
+ok 8 - rejects invalid publication rejection reason 
+  ---
+  duration_ms: 0.2183
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason  
+ok 9 - rejects invalid publication rejection reason  
+  ---
+  duration_ms: 0.3945
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason aaaaaaaaaaaaaaa
+ok 10 - rejects invalid publication rejection reason aaaaaaaaaaaaaaa
+  ---
+  duration_ms: 0.4312
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason null
+ok 11 - rejects invalid publication rejection reason null
+  ---
+  duration_ms: 0.1802
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason 123
+ok 12 - rejects invalid publication rejection reason 123
+  ---
+  duration_ms: 0.1075
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 0
+ok 13 - rejects malformed publication version 0
+  ---
+  duration_ms: 0.1404
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version -1
+ok 14 - rejects malformed publication version -1
+  ---
+  duration_ms: 0.0821
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 1e2
+ok 15 - rejects malformed publication version 1e2
+  ---
+  duration_ms: 0.0801
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 2147483648
+ok 16 - rejects malformed publication version 2147483648
+  ---
+  duration_ms: 0.0791
+  type: 'test'
+  ...
+# Subtest: foreign owner cannot request publication and no audit is written
+ok 17 - foreign owner cannot request publication and no audit is written
+  ---
+  duration_ms: 0.899
+  type: 'test'
+  ...
+# Subtest: Barangay cannot submit citizen publication requests
+ok 18 - Barangay cannot submit citizen publication requests
+  ---
+  duration_ms: 0.1735
+  type: 'test'
+  ...
+# Subtest: stale Admin sessions cannot access the publication queue
+ok 19 - stale Admin sessions cannot access the publication queue
+  ---
+  duration_ms: 0.177
+  type: 'test'
+  ...
+# Subtest: private MySQL Community migration, concurrency and real browser integration
+    # Subtest: forward migration preserves legacy reports; rollback and reapplication work
+    ok 1 - forward migration preserves legacy reports; rollback and reapplication work
+      ---
+      duration_ms: 2761.0669
+      type: 'test'
+      ...
+    # Subtest: concurrent duplicate publication and reactions are atomic on MySQL
+    ok 2 - concurrent duplicate publication and reactions are atomic on MySQL
+      ---
+      duration_ms: 383.5523
+      type: 'test'
+      ...
+    # Subtest: existing shell requests review with photos, links owned report and refreshes after approval
+    ok 3 - existing shell requests review with photos, links owned report and refreshes after approval
+      ---
+      duration_ms: 992.1364
+      type: 'test'
+      ...
+    # Subtest: reaction picker, comments, carousel and privacy-safe shared viewer work
+    ok 4 - reaction picker, comments, carousel and privacy-safe shared viewer work
+      ---
+      duration_ms: 517.7035
+      type: 'test'
+      ...
+    # Subtest: light and dark preserve layout at 375, 768 and 1440 pixels without refetch on theme or resize
+    ok 5 - light and dark preserve layout at 375, 768 and 1440 pixels without refetch on theme or resize
+      ---
+      duration_ms: 658.6206
+      type: 'test'
+      ...
+    # Subtest: navigation, search, actual SSE and unread update banner preserve existing report screens
+    ok 6 - navigation, search, actual SSE and unread update banner preserve existing report screens
+      ---
+      duration_ms: 1729.171
+      type: 'test'
+      ...
+    # Subtest: an interrupted acknowledgement retries one pending request and preserves the saved report
+    ok 7 - an interrupted acknowledgement retries one pending request and preserves the saved report
+      ---
+      duration_ms: 496.5029
+      type: 'test'
+      ...
+    # Subtest: feed sorting and pagination are backed by real deterministic queries
+    ok 8 - feed sorting and pagination are backed by real deterministic queries
+      ---
+      duration_ms: 266.0327
+      type: 'test'
+      ...
+    # Subtest: rollback of populated Community tables leaves existing users and private reports intact
+    ok 9 - rollback of populated Community tables leaves existing users and private reports intact
+      ---
+      duration_ms: 1799.9425
+      type: 'test'
+      ...
+    1..9
+ok 20 - private MySQL Community migration, concurrency and real browser integration
+  ---
+  duration_ms: 22954.2942
+  type: 'test'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+# Browser frontend: http://127.0.0.1:61834/frontend; actual isolated API on a different loopback origin. No API success responses mocked.
+# Actual private MySQL/API persistence, concurrent operations, protected media, Live Server-compatible cross-origin browser requests and SSE verified. Supabase not contacted.
+# Subtest: publication lifecycle on isolated MySQL and real browser UI
+    # Subtest: forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+    ok 1 - forward, legacy preservation, rollback and reapplication do not modify existing reports or posts
+      ---
+      duration_ms: 588.0637
+      type: 'test'
+      ...
+    # Subtest: migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+    ok 2 - migration 012 preserves existing rows and safely rolls back before new jurisdiction data is used
+      ---
+      duration_ms: 589.3783
+      type: 'test'
+      ...
+    # Subtest: missing publication setup fails closed with actionable 503 responses on both endpoints
+    ok 3 - missing publication setup fails closed with actionable 503 responses on both endpoints
+      ---
+      duration_ms: 153.71
+      type: 'test'
+      ...
+    # Subtest: concurrent citizen requests persist one pending request with zero new posts and no public event
+    ok 4 - concurrent citizen requests persist one pending request with zero new posts and no public event
+      ---
+      duration_ms: 93.1458
+      type: 'test'
+      ...
+    # Subtest: roles, ownership and barangay authorization reject direct bypass and private resource access
+    ok 5 - roles, ownership and barangay authorization reject direct bypass and private resource access
+      ---
+      duration_ms: 61.059
+      type: 'test'
+      ...
+    # Subtest: only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+    ok 6 - only assigned reviewer decides; conflicting concurrent decisions create one post and one notification
+      ---
+      duration_ms: 74.868
+      type: 'test'
+      ...
+    # Subtest: publication outcomes notify only the citizen after a committed decision
+    ok 7 - publication outcomes notify only the citizen after a committed decision
+      ---
+      duration_ms: 41.6987
+      type: 'test'
+      ...
+    # Subtest: rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+    ok 8 - rejection requires reason; owner sees outcome, controlled resubmission and reassignment are auditable
+      ---
+      duration_ms: 95.5324
+      type: 'test'
+      ...
+    # Subtest: notification failure rolls back publication, decision and realtime delivery
+    ok 9 - notification failure rolls back publication, decision and realtime delivery
+      ---
+      duration_ms: 31.8699
+      type: 'test'
+      ...
+    # Subtest: no active reviewer leaves a private unassigned request until transactional reassignment
+    ok 10 - no active reviewer leaves a private unassigned request until transactional reassignment
+      ---
+      duration_ms: 52.1205
+      type: 'test'
+      ...
+    # Subtest: three attempts retain rejection history and full length reasons without changing operational status
+    ok 11 - three attempts retain rejection history and full length reasons without changing operational status
+      ---
+      duration_ms: 92.4717
+      type: 'test'
+      ...
+    # Subtest: unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+    ok 12 - unapproved directly inserted citizen posts are hidden from list, detail, media and engagement endpoints
+      ---
+      duration_ms: 47.5097
+      type: 'test'
+      ...
+    # Subtest: comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+    ok 13 - comments, nested replies, stable pseudonyms, desired-state likes and public endpoint isolation persist
+      ---
+      duration_ms: 282.6395
+      type: 'test'
+      ...
+    # Subtest: report API automatically queues review and assigned Admin opens approval from the persisted notification
+    ok 14 - report API automatically queues review and assigned Admin opens approval from the persisted notification
+      ---
+      duration_ms: 4650.9396
+      type: 'test'
+      ...
+    # Subtest: real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+    ok 15 - real citizen sharing stays pending, assigned Admin approves in existing Report Details and outcome is visible after refresh
+      ---
+      duration_ms: 3746.9803
+      type: 'test'
+      ...
+    # Subtest: Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+    ok 16 - Pending Posts card preserves oldest-first pagination, refresh state and real unread counts independently
+      ---
+      duration_ms: 2647.3358
+      type: 'test'
+      ...
+    # Subtest: server-filtered review membership and Excel scope remain independent of operational status
+    ok 17 - server-filtered review membership and Excel scope remain independent of operational status
+      ---
+      duration_ms: 186.7624
+      type: 'test'
+      ...
+    # Subtest: shared Admin and Barangay controls support separate dialogs, views and responsive themes
+    ok 18 - shared Admin and Barangay controls support separate dialogs, views and responsive themes
+      ---
+      duration_ms: 3078.2371
+      type: 'test'
+      ...
+    # Subtest: review decisions update the active queue and card without deleting operational reports
+    ok 19 - review decisions update the active queue and card without deleting operational reports
+      ---
+      duration_ms: 2052.8843
+      type: 'test'
+      ...
+    # Subtest: feed and publication error layouts recover on retry without hiding setup failures
+    ok 20 - feed and publication error layouts recover on retry without hiding setup failures
+      ---
+      duration_ms: 1527.2658
+      type: 'test'
+      ...
+    1..20
+ok 21 - publication lifecycle on isolated MySQL and real browser UI
+  ---
+  duration_ms: 33372.3693
+  type: 'test'
+  ...
+# Private MySQL 8.0.46, verified temporary data directory and random loopback port.
+1..21
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 57735.3851

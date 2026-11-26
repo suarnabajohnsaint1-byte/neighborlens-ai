@@ -1,0 +1,9 @@
+train: train/images
+val: valid/images
+test: test/images
+nc: 4
+names:
+  0: broken_streetlight
+  1: clogged_drainage
+  2: pothole
+  3: road_crack

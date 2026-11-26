@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborlens AI Login</title>
+    <script src="js/shared/themeManager.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+    <style>
+        /* ── SCAN PROGRESS PANEL ── */
+        .scan-progress-box {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+        }
+
+        .scan-progress-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .scan-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .scan-step {
+            font-size: 0.78rem;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: color 0.3s;
+        }
+
+        .scan-step--loading {
+            color: var(--text-dim);
+        }
+
+        .scan-step--done {
+            color: var(--accent-green);
+        }
+
+        .scan-step--warn {
+            color: var(--accent-orange);
+        }
+
+        .scan-step--fail {
+            color: var(--accent-pink);
+        }
+
+        /* ── RESULT PANELS ── */
+        .result-box {
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            font-size: 0.82rem;
+        }
+
+        .result-box--ok {
+            background: rgba(0, 232, 135, 0.06);
+            border: 1px solid rgba(0, 232, 135, 0.3);
+        }
+
+        .result-box--fail {
+            background: rgba(255, 45, 120, 0.06);
+            border: 1px solid rgba(255, 45, 120, 0.3);
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .result-box--ok .result-title {
+            color: var(--accent-green);
+        }
+
+        .result-box--fail .result-title {
+            color: var(--accent-pink);
+        }
+
+        .result-name {
+            font-size: 0.84rem;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .result-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .result-meta strong {
+            color: var(--accent-green);
+        }
+
+        .result-hits {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        .result-tip {
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            margin-top: 8px;
+        }
+
+        .result-reason {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .result-errors {
+            color: var(--accent-pink);
+            font-size: 0.75rem;
+            margin: 0 0 8px 16px;
+            line-height: 1.7;
+        }
+
+        .result-tips-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 8px 0 4px;
+            font-size: 0.78rem;
+            border-top: 1px solid rgba(255, 45, 120, 0.15);
+            padding-top: 8px;
+        }
+
+        .result-tips {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            margin: 0 0 0 16px;
+            line-height: 1.8;
+        }
+
+        /* ── STEP BAR ── */
+        .step-bar {
+            display: flex;
+            border: 0px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        .step-bar-item {
+            flex: 1;
+            padding: 9px 6px;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--text-dim);
+            transition: all 0.3s;
+        }
+
+        .step-bar-item+.step-bar-item {
+            border-left: 1px solid var(--border);
+        }
+
+        .step-bar-item.active {
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--accent-blue);
+        }
+
+        .step-bar-item.done {
+            background: rgba(0, 232, 135, 0.08);
+            color: var(--accent-green);
+        }
+
+        /* ── GPS STATUS STYLES ── */
+        .geo-status {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+
+        .geo-status--loading {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            color: var(--accent-blue);
+        }
+
+        .geo-status--ok {
+            background: rgba(0, 232, 135, 0.06);
+        }
+
+        .geo-status--warn {
+            background: rgba(255, 124, 61, 0.06);
+            border: 1px solid rgba(255, 124, 61, 0.25);
+        }
+
+        .geo-status--error {
+            background: rgba(255, 45, 120, 0.06);
+            border: 1px solid rgba(255, 45, 120, 0.25);
+            color: var(--accent-pink);
+        }
+
+        .geo-accuracy {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        .geo-brgy {
+            font-size: 0.78rem;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .geo-address {
+            width: 100%;
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* ── SCAN HINT ── */
+        .scan-hint {
+            color: var(--accent-blue);
+            font-size: 0.82rem;
+            margin: 0;
+            padding: 8px 12px;
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.15);
+            border-radius: 8px;
+        }
+
+        /* ── UPLOAD AREA ── */
+        #idUploadArea {
+            cursor: pointer;
+            padding: 22px 16px;
+        }
+
+        #idUploadArea:hover {
+            border-color: var(--accent-blue);
+            background: rgba(0, 210, 255, 0.03);
+        }
+
+        /* ── DISABLED SUBMIT BUTTON ── */
+        #signupSubmitBtn {
+            position: relative;
+        }
+
+        #signupSubmitBtn:disabled {
+            cursor: not-allowed;
+        }
+
+        /* ── SHAKE ── */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-6px);
+            }
+
+            40% {
+                transform: translateX(6px);
+            }
+
+            60% {
+                transform: translateX(-4px);
+            }
+
+            80% {
+                transform: translateX(4px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles/role-login.css?v=brand-logo">
+    <link rel="stylesheet" href="styles/citizen-login.css">
+</head>
+
+<body class="role-login-page citizen-login-page">
+    <div class="rl-scene cl-scene" aria-hidden="true">
+        <img class="cl-backdrop" src="assets/neighborlens-citizen-design-assets/citizen-login-background.png" alt=""
+            fetchpriority="high" width="1672" height="941">
+    </div>
+    <div class="rl-layout">
+        <header class="rl-brand login-logo">
+            <p class="rl-brand-name"><span class="neighborlens-emblem" aria-hidden="true"><img
+                        src="assets/logo/neighborlens-logo.png" alt=""></span><b
+                    class="neighborlens-wordmark">Neighbor<span>Lens AI</span></b></p>
+            <p class="rl-brand-tagline">Smart Community Infrastructure Monitoring System</p>
+        </header>
+        <ul class="rl-features">
+            <li class="rl-feature"><span class="cl-feature-icon" aria-hidden="true"><i class="bx bxs-camera"></i></span>
+                <div>
+                    <h2>Report infrastructure issues</h2>
+                    <p>Submit photos and details of problems in your barangay.</p>
+                </div>
+            </li>
+            <li class="rl-feature"><span class="cl-feature-icon" aria-hidden="true"><i class="bx bx-file"></i></span>
+                <div>
+                    <h2>Track your reports</h2>
+                    <p>Follow the review status<br>and updates in real time.</p>
+                </div>
+            </li>
+            <li class="rl-feature"><span class="cl-feature-icon cl-feature-icon--community" aria-hidden="true"><i
+                        class="bx bxs-group"></i></span>
+                <div>
+                    <h2>Help improve the community</h2>
+                    <p>Be part of a safer, cleaner, and more responsive Bacolod City.</p>
+                </div>
+            </li>
+        </ul>
+        <main class="rl-panel login-card">
+
+            <!-- ══════════ LOGIN ══════════ -->
+            <div id="loginSection">
+                <div class="cl-login-heading"><span class="cl-community-badge cl-system-logo"><img
+                            src="assets/admin-assets-login/assets/brand/neighborlens-wordmark.svg"
+                            alt="Scan by NeighborLens-AI"></span>
+                    <h1>Citizen Login</h1>
+                    <p class="rl-subhead">Sign in to access NeighborLens AI<br>and report issues in your community.</p>
+                </div>
+                <form id="loginForm" autocomplete="off">
+                    <label class="rl-field" for="loginUser">Username<span class="rl-frame"><i class="bx bx-user"
+                                aria-hidden="true"></i><input type="text" id="loginUser" name="username"
+                                placeholder="Enter your username" required autocomplete="username"></span></label>
+                    <label class="rl-field" for="loginPass">Password<span class="rl-frame"><i class="bx bx-lock-alt"
+                                aria-hidden="true"></i><input type="password" id="loginPass" name="password"
+                                placeholder="Enter your password" required autocomplete="current-password"><button
+                                type="button" id="loginEye" class="rl-eye" aria-label="Show password"
+                                aria-pressed="false"><i class="bx bx-show"
+                                    aria-hidden="true"></i></button></span></label>
+                    <div class="rl-options"><label class="rl-remember"><input type="checkbox"
+                                id="loginRemember">Remember me</label><button type="button" class="rl-link"
+                            id="loginForgot" aria-expanded="false" aria-controls="loginHelp">Forgot password?</button>
+                    </div>
+                    <p id="loginHelp" class="rl-help" hidden>Contact your barangay or system administrator for account
+                        recovery. Remember me only saves your username on this device.</p>
+                    <button type="submit" id="citizenLoginSubmit" class="rl-submit btn-primary"><i
+                            class="bx bx-right-arrow-alt" aria-hidden="true"></i>Sign In</button>
+                </form>
+                <div id="loginMsg" style="margin-top:8px;"></div>
+                <button type="button" id="recoverIdentityBtn" class="media-toggle-btn" hidden>Continue identity
+                    submission</button>
+                <p class="auth-switch rl-signup">New citizen? <a href="#" onclick="toggleAuth(); return false;">Create
+                        Account</a></p>
+            </div>
+
+            <!-- ══════════ SIGNUP ══════════ -->
+            <div id="signupSection" style="display:none;">
+                <h2 class="auth-title">Create Citizen Account</h2>
+
+                <!-- Step bar -->
+                <div class="step-bar" id="stepBar">
+                    <div class="step-bar-item active" id="stepBarID">1 · VERIFY GOVERNMENT ID</div>
+                    <div class="step-bar-item" id="stepBarCreds">2 · SET CREDENTIALS</div>
+                </div>
+
+                <form id="signupForm" autocomplete="off">
+
+                    <!-- Real-Time Live Location Detection for Account Registration -->
+                    <div class="input-group">
+                        <label>
+                            <i class="bx bx-current-location" aria-hidden="true"></i> Real-Time Live Location
+                            <span id="signupLocationHint"
+                                style="color:var(--accent-green); font-size:0.72rem; font-weight:400; margin-left:4px;">
+                                auto-detecting your location…
+                            </span>
+                        </label>
+                        <div id="signupGpsStatus"></div>
+                        <div id="signupGeoCanvas" class="live-map"
+                            style="display:none; min-height:160px; margin-top:8px;"
+                            aria-label="Live registration location map"></div>
+                        <p id="signupMapStatus" role="status" hidden></p>
+                        <label for="regBarangay">Registration Barangay</label>
+                        <select id="regBarangay" required>
+                            <option value="">Select an official Bacolod barangay</option>
+                        </select>
+                    </div>
+
+                    <!-- ID Input Mode Selector -->
+                    <div class="input-group">
+                        <label>
+                            Government ID Photo
+                            <span style="color:var(--accent-pink);">*</span>
+                            <!-- <span style="color:var(--text-dim); font-size:0.72rem; font-weight:400; margin-left:4px;">
+                                choose upload or live camera</span> -->
+                        </label>
+
+                        <div class="media-toggle-bar">
+                            <button type="button" class="media-toggle-btn" id="idModeUploadBtn" hidden
+                                onclick="switchIdInputMode('upload')">
+                                <i class="bx bx-folder-open" aria-hidden="true"></i> Upload ID File
+                            </button>
+                            <button type="button" class="media-toggle-btn" id="idModeCameraBtn"
+                                onclick="switchIdInputMode('camera')">
+                                <i class="bx bx-camera" aria-hidden="true"></i> Scan ID
+                            </button>
+                        </div>
+                        <p id="idEnrollmentDocumentHint" class="scan-hint" hidden> Scan by NeighborLens AI</p>
+
+                        <!-- 1. Upload Mode Area -->
+                        <div id="idUploadAreaWrapper" style="display:none;">
+                            <div class="upload-area" id="idUploadArea" role="button" tabindex="0"
+                                aria-label="Upload government ID">
+                                <input type="file" id="govIdInput" accept="image/jpeg,image/png,image/webp"
+                                    style="display:none;">
+                                <img id="govIdPreview" alt="Selected government ID"
+                                    style="display:none; width:100%; max-height:170px; object-fit:cover; border-radius:6px; margin-bottom:10px;">
+                                <div class="upload-placeholder">
+                                    <div style="font-size:2.2rem; margin-bottom:8px;"><i class="bx bx-id-card"
+                                            aria-hidden="true"></i></div>
+                                    <p style="color:var(--text-dim); font-size:0.83rem; font-weight:600;">Click to
+                                        upload
+                                        your Philippine Government ID</p>
+                                    <p
+                                        style="color:var(--text-dim); font-size:0.72rem; margin-top:5px; line-height:1.6;">
+                                        PhilSys · SSS · GSIS/UMID · PhilHealth · Pag-IBIG<br>
+                                        Driver's License · Voter's ID · Passport · PRC · Postal ID
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Live Camera Mode Area -->
+                        <div id="idCameraAreaWrapper" style="display:none;">
+                            <div class="camera-container" id="idCameraContainer">
+                                <div class="camera-video-wrapper">
+                                    <video id="idCameraVideo" class="camera-video" playsinline autoplay muted></video>
+                                    <div class="camera-id-guide" id="idCardGuide">
+                                        <div class="guide-corner tl"></div>
+                                        <div class="guide-corner tr"></div>
+                                        <div class="guide-corner bl"></div>
+                                        <div class="guide-corner br"></div>
+                                        <div id="idAlignmentStatus" role="status" hidden></div>
+                                    </div>
+                                </div>
+                                <div class="camera-controls-bar">
+                                    <div class="camera-actions">
+                                        <button type="button" class="btn-camera-switch" id="idSwitchCamBtn"
+                                            title="Switch camera" style="display:none;"
+                                            onclick="switchIdCameraDevice()">
+                                            <i class="bx bx-refresh" aria-hidden="true"></i> Switch camera
+                                        </button>
+                                        <button type="button" class="btn-shutter" id="idCaptureBtn"
+                                            onclick="captureIdFromCamera()">
+                                            <i class="bx bx-camera" aria-hidden="true"></i> <span
+                                                id="idCaptureLabel">Capture ID Photo</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Captured Snapshot Preview for Camera Mode -->
+                        <div id="idCameraCapturedPreviewWrapper" style="display:none; margin-bottom:12px;">
+                            <div
+                                style="position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--accent-green); background:#000;">
+                                <div class="id-scan-preview">
+                                    <img id="idCapturedImg" alt="Captured government ID">
+                                    <div id="idCaptureProgress" class="id-capture-progress" hidden>
+                                        <span id="idCaptureProgressText"></span>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--card-bg);">
+                                    <span style="font-size:0.75rem; color:var(--accent-green); font-weight:700;">ID
+                                        Photo
+                                        Captured</span>
+                                    <button type="button" class="btn-thumb-retake" onclick="retakeIdFromCamera()"><i
+                                            class="bx bx-refresh" aria-hidden="true"></i>
+                                        Retake</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Verify button (hidden until file/photo picked) -->
+                    <button type="button" id="verifyIdBtn" class="btn-main"
+                        style="display:none; width:100%; margin-bottom:14px;">
+                        <i class="bx bx-search" aria-hidden="true"></i> Verify ID
+                    </button>
+
+                    <!-- Live scan progress / result -->
+                    <button type="button" id="cancelIdScanBtn" class="media-toggle-btn" hidden>Cancel scan</button>
+                    <div id="idVerifyStatus" role="status" style="margin-bottom:14px;"></div>
+                    <div id="idUploadTestResult" hidden>
+                        <h3>Scanned details · OCR test</h3>
+                        <dl id="idUploadTestFields"></dl>
+                        <button type="button" id="idUploadContinueBtn" class="media-toggle-btn"
+                            onclick="switchIdInputMode('camera')">Continue with live camera</button>
+                    </div>
+                    <p id="idScreeningStatus" class="scan-hint" role="status" hidden></p>
+                    <p id="idVerifiedStatus" class="id-verified-status" role="status" hidden>
+                        <i class="bx bx-check-circle" aria-hidden="true"></i> Government ID verified
+                    </p>
+
+                    <!-- Identity fields are populated from the local OCR result -->
+                    <div id="identityFields" style="display:none;">
+                        <div class="input-group">
+                            <label for="regFullName">Full Name</label>
+                            <input type="text" id="regFullName" maxlength="190">
+                        </div>
+                        <div class="input-group">
+                            <label for="regBirthDate">Date of Birth</label>
+                            <input type="date" id="regBirthDate">
+                        </div>
+                        <div class="input-group">
+                            <label for="regAddress">Address on Government ID</label>
+                            <textarea id="regAddress" rows="2" maxlength="255"></textarea>
+                        </div>
+                        <div class="input-group"><label for="regDocumentType">ID Type</label><select
+                                id="regDocumentType">
+                                <option value="">Select supported government ID</option>
+                            </select></div>
+                        <div class="input-group"><label for="regIdNumber">ID Number</label><input type="text"
+                                id="regIdNumber" maxlength="100"></div>
+                        <div class="input-group" id="regExpiryField"><label for="regExpiryDate">Expiration Date, if
+                                present</label><input type="date" id="regExpiryDate"></div>
+                        <p id="regExpiryHint" class="scan-hint" hidden>No expiration date required.</p>
+                        <p class="scan-hint">Review the details against your government ID before submitting.</p>
+                        <p id="identityReviewStatus" class="identity-review-status" role="status" aria-live="polite">
+                        </p>
+                        <button type="button" id="confirmIdentityBtn" class="media-toggle-btn">Confirm reviewed
+                            information</button>
+                    </div>
+
+                    <!-- Credentials -->
+                    <div id="signupCredentials" hidden>
+                        <div style="border-top:1px solid var(--border); padding-top:18px; margin-bottom:14px;">
+                            <p
+                                style="font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-dim); font-weight:700; margin:0;">
+                                Step 2 — Account Credentials
+                            </p>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Username <span style="color:var(--text-dim); font-weight:400;">(min. 3
+                                    chars)</span></label>
+                            <input type="text" id="regUser" placeholder="Choose a username" required minlength="3"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Password <span style="color:var(--text-dim); font-weight:400;">(min. 6
+                                    chars)</span></label>
+                            <input type="password" id="regPass" placeholder="Min. 6 characters" required minlength="6">
+                        </div>
+                        <div class="input-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="regPassConfirm" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+
+                    <!-- Submit — disabled by default, unlocked only after OCR passes -->
+                    <p id="signupSubmitStatus" class="identity-review-status" role="status" aria-live="polite"></p>
+                    <button type="submit" id="signupSubmitBtn" class="btn-main btn-primary"
+                        aria-describedby="signupSubmitStatus" style="width:100%; margin-top:4px; opacity:0.4;" disabled
+                        title="Verify your government ID first">
+                        Register as Citizen
+                    </button>
+
+                </form>
+
+                <div id="signupMsg" role="status" aria-live="polite" style="margin-top:8px;"></div>
+
+                <p class="auth-switch" style="margin-top:14px;">
+                    Already have an account? <a href="#" onclick="toggleAuth()">Login</a>
+                </p>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/shared/api.js"></script>
+    <script src="js/map/reverseGeocode.js"></script>
+    <script src="shared/geoContainment.js"></script>
+    <script src="js/map/mapConfig.js?v=osm-land-v3"></script>
+    <script src="assets/vendor/leaflet/leaflet-global.js"></script>
+    <script src="js/map/geofence.js"></script>
+    <script src="shared/identityDocumentPolicy.js"></script>
+    <script src="js/auth/idIdentityService.js"></script>
+    <script src="js/shared/vision.js"></script>
+    <script src="js/auth/security.js"></script>
+    <script src="js/auth/authClient.js"></script>
+    <script src="js/auth/idEnrollment.js"></script>
+    <script src="js/auth/registrationFlags.js"></script>
+    <script src="js/auth/auth.js"></script>
+    <script src="js/shared/loginControls.js"></script>
+    <script src="js/auth/citizenLoginPresentation.js"></script>
+</body>
+
+</html>

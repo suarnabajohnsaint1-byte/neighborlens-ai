@@ -1,0 +1,74 @@
+{
+  "train": {
+    "images": 93,
+    "background_images": 8,
+    "independent_scenes": 92,
+    "boxes": 122,
+    "per_class": {
+      "broken_streetlight": {
+        "scenes": 13,
+        "boxes": 14
+      },
+      "clogged_drainage": {
+        "scenes": 39,
+        "boxes": 42
+      },
+      "pothole": {
+        "scenes": 17,
+        "boxes": 33
+      },
+      "road_crack": {
+        "scenes": 24,
+        "boxes": 33
+      }
+    }
+  },
+  "valid": {
+    "images": 31,
+    "background_images": 0,
+    "independent_scenes": 30,
+    "boxes": 47,
+    "per_class": {
+      "broken_streetlight": {
+        "scenes": 5,
+        "boxes": 6
+      },
+      "clogged_drainage": {
+        "scenes": 14,
+        "boxes": 16
+      },
+      "pothole": {
+        "scenes": 6,
+        "boxes": 13
+      },
+      "road_crack": {
+        "scenes": 8,
+        "boxes": 12
+      }
+    }
+  },
+  "test": {
+    "images": 30,
+    "background_images": 0,
+    "independent_scenes": 29,
+    "boxes": 54,
+    "per_class": {
+      "broken_streetlight": {
+        "scenes": 4,
+        "boxes": 4
+      },
+      "clogged_drainage": {
+        "scenes": 14,
+        "boxes": 16
+      },
+      "pothole": {
+        "scenes": 6,
+        "boxes": 18
+      },
+      "road_crack": {
+        "scenes": 9,
+        "boxes": 16
+      }
+    }
+  }
+}

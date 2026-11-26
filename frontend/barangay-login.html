@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeighborLens AI Barangay Login</title>
+    <script src="js/shared/themeManager.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="styles/role-login.css?v=brand-logo">
+</head>
+
+<body class="role-login-page" data-login-role="barangay">
+    <div class="rl-scene" aria-hidden="true">
+        <img class="rl-landmark" src="assets/admin-assets-login/assets/illustrations/bacolod-city-hall.png" alt="">
+    </div>
+
+    <div class="rl-layout">
+        <header class="rl-brand">
+            <p class="rl-brand-name"><span class="neighborlens-emblem" aria-hidden="true"><img src="assets/logo/neighborlens-logo.png" alt=""></span><b class="neighborlens-wordmark">Neighbor<span>Lens AI</span></b></p>
+            <p class="rl-brand-tagline">Smart Community Infrastructure Monitoring System</p>
+        </header>
+
+        <ul class="rl-features">
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-report.svg" alt="">
+                <div>
+                    <h2>Review Citizen reports</h2>
+                    <p>Validate and assess citizen submissions with AI support.</p>
+                </div>
+            </li>
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-geotag.svg" alt="">
+                <div>
+                    <h2>OCR and geotag validation</h2>
+                    <p>Verify report details, location, and extracted information.</p>
+                </div>
+            </li>
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-accounts.svg" alt="">
+                <div>
+                    <h2>Act on local reports</h2>
+                    <p>Start, update, and resolve reports filed in your assigned barangay.</p>
+                </div>
+            </li>
+        </ul>
+
+        <main class="rl-panel">
+            <img class="rl-badge rl-system-logo" src="assets/admin-assets-login/assets/brand/neighborlens-wordmark.svg" alt="NeighborLens AI">
+            <h1>Barangay Official Login</h1>
+            <p class="rl-subhead">Sign in to access the Barangay Action Center</p>
+
+            <form id="roleLoginForm" novalidate>
+                <label class="rl-field" for="roleLoginUser">Username
+                    <span class="rl-frame">
+                        <i class="bx bx-user" aria-hidden="true"></i>
+                        <input id="roleLoginUser" name="username" type="text" placeholder="Enter your official username"
+                            autocomplete="username" autocapitalize="none" spellcheck="false" required>
+                    </span>
+                </label>
+                <label class="rl-field" for="roleLoginPass">Password
+                    <span class="rl-frame">
+                        <i class="bx bx-lock-alt" aria-hidden="true"></i>
+                        <input id="roleLoginPass" name="password" type="password" placeholder="Enter your password"
+                            autocomplete="current-password" required>
+                        <button type="button" class="rl-eye" id="roleLoginEye" aria-label="Show password"
+                            aria-pressed="false">
+                            <i class="bx bx-show" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </label>
+                <div class="rl-options">
+                    <label class="rl-remember"><input type="checkbox" id="roleLoginRemember"> Remember me</label>
+                    <button type="button" class="rl-link" id="roleLoginForgot" aria-expanded="false"
+                        aria-controls="roleLoginHelp">Forgot password?</button>
+                </div>
+                <p class="rl-help" id="roleLoginHelp" hidden>
+                    Barangay official passwords are reset by a NeighborLens administrator from Manage Accounts. Contact
+                    your
+                    city administrator to request a reset. "Remember me" only remembers your username on this device.
+                </p>
+                <button type="submit" class="rl-submit" id="roleLoginSubmit">
+                    <i class="bx bx-right-arrow-alt" aria-hidden="true"></i>
+                    Sign In
+                </button>
+                <p class="rl-message" id="roleLoginMsg" hidden></p>
+            </form>
+            <p class="rl-switch">Administrator? <a href="admin-login.html">Admin login</a> &middot; Citizen? <a
+                    href="login.html">Citizen login</a></p>
+        </main>
+    </div>
+
+    <script src="js/shared/api.js"></script>
+    <script src="js/auth/security.js"></script>
+    <script src="js/auth/authClient.js"></script>
+    <script src="js/shared/loginControls.js"></script>
+    <script src="js/auth/roleLogin.js"></script>
+</body>
+
+</html>

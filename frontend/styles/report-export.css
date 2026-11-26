@@ -1,0 +1,4 @@
+.report-export-button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; white-space: nowrap; }
+.report-export-feedback { max-width: 260px; font-size: 12px; line-height: 1.4; color: var(--color-text-secondary); overflow-wrap: anywhere; }
+.report-export-button:disabled { opacity: .65; cursor: wait; }
+.rm-print-section { display: none; }

@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: service rejects citizen moderation without database reliance
+ok 1 - service rejects citizen moderation without database reliance
+  ---
+  duration_ms: 3.2683
+  type: 'test'
+  ...
+# Subtest: service rejects barangay moderation without database reliance
+ok 2 - service rejects barangay moderation without database reliance
+  ---
+  duration_ms: 0.3078
+  type: 'test'
+  ...
+# Subtest: service rejects anonymous moderation without database reliance
+ok 3 - service rejects anonymous moderation without database reliance
+  ---
+  duration_ms: 0.3057
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome pending
+ok 4 - rejects invalid publication outcome pending
+  ---
+  duration_ms: 0.233
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome resolved
+ok 5 - rejects invalid publication outcome resolved
+  ---
+  duration_ms: 0.2168
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome approved 
+ok 6 - rejects invalid publication outcome approved 
+  ---
+  duration_ms: 0.1406
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication outcome null
+ok 7 - rejects invalid publication outcome null
+  ---
+  duration_ms: 0.1984
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason 
+ok 8 - rejects invalid publication rejection reason 
+  ---
+  duration_ms: 0.2294
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason  
+ok 9 - rejects invalid publication rejection reason  
+  ---
+  duration_ms: 0.4214
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason aaaaaaaaaaaaaaa
+ok 10 - rejects invalid publication rejection reason aaaaaaaaaaaaaaa
+  ---
+  duration_ms: 0.4237
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason null
+ok 11 - rejects invalid publication rejection reason null
+  ---
+  duration_ms: 0.1898
+  type: 'test'
+  ...
+# Subtest: rejects invalid publication rejection reason 123
+ok 12 - rejects invalid publication rejection reason 123
+  ---
+  duration_ms: 0.1118
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 0
+ok 13 - rejects malformed publication version 0
+  ---
+  duration_ms: 0.1483
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version -1
+ok 14 - rejects malformed publication version -1
+  ---
+  duration_ms: 0.1112
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 1e2
+ok 15 - rejects malformed publication version 1e2
+  ---
+  duration_ms: 0.0941
+  type: 'test'
+  ...
+# Subtest: rejects malformed publication version 2147483648
+ok 16 - rejects malformed publication version 2147483648
+  ---
+  duration_ms: 0.0954
+  type: 'test'
+  ...
+# Subtest: foreign owner cannot request publication and no audit is written
+ok 17 - foreign owner cannot request publication and no audit is written
+  ---
+  duration_ms: 0.9364
+  type: 'test'
+  ...
+# Subtest: Barangay cannot submit citizen publication requests
+ok 18 - Barangay cannot submit citizen publication requests
+  ---
+  duration_ms: 0.1741
+  type: 'test'
+  ...
+# Subtest: stale Admin sessions cannot access the publication queue
+ok 19 - stale Admin sessions cannot access the publication queue
+  ---
+  duration_ms: 0.1939
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 108.2603

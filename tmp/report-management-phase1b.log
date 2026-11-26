@@ -1,0 +1,36 @@
+
+> neighborlens-ai-capstone@1.0.0 test:e2e:browser
+> playwright test --config=playwright.phase1b.config.js
+
+[WebServer] (node:37676) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:37676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 20 tests using 1 worker
+
+(node:38412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\phase-1b.spec.js:115:1 › low scene similarity remains advisory and a valid report submits (1.3s)
+  ok  2 [desktop] › tests\browser\phase-1b.spec.js:135:1 › different road classes share a category without class agreement (743ms)
+  ok  3 [desktop] › tests\browser\phase-1b.spec.js:145:1 › provisional predictions retain low confidence and never acquire priority (728ms)
+  ok  4 [desktop] › tests\browser\phase-1b.spec.js:156:1 › identical bytes with different names remain accepted and match the scene (741ms)
+  ok  5 [desktop] › tests\browser\phase-1b.spec.js:163:1 › corrupt images terminate with validation error before inference (633ms)
+  ok  6 [desktop] › tests\browser\phase-1b.spec.js:180:1 › older responses cannot overwrite a replacement or manual description (873ms)
+  ok  7 [desktop] › tests\browser\phase-1b.spec.js:203:1 › provider timeout remains distinct from no detection (695ms)
+  ok  8 [desktop] › tests\browser\phase-1b.spec.js:218:1 › no detection in both images stays separate from provider errors (674ms)
+  ok  9 [desktop] › tests\browser\phase-1b.spec.js:231:1 › unsupported class retains its original identifier and confidence (668ms)
+  ok 10 [desktop] › tests\browser\phase-1b.spec.js:247:1 › Node image validation rejection stays separate from provider unavailable (726ms)
+(node:200) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 [mobile] › tests\browser\phase-1b.spec.js:115:1 › low scene similarity remains advisory and a valid report submits (1.2s)
+  ok 12 [mobile] › tests\browser\phase-1b.spec.js:135:1 › different road classes share a category without class agreement (706ms)
+  ok 13 [mobile] › tests\browser\phase-1b.spec.js:145:1 › provisional predictions retain low confidence and never acquire priority (731ms)
+  ok 14 [mobile] › tests\browser\phase-1b.spec.js:156:1 › identical bytes with different names remain accepted and match the scene (715ms)
+  ok 15 [mobile] › tests\browser\phase-1b.spec.js:163:1 › corrupt images terminate with validation error before inference (655ms)
+  ok 16 [mobile] › tests\browser\phase-1b.spec.js:180:1 › older responses cannot overwrite a replacement or manual description (938ms)
+  ok 17 [mobile] › tests\browser\phase-1b.spec.js:203:1 › provider timeout remains distinct from no detection (716ms)
+  ok 18 [mobile] › tests\browser\phase-1b.spec.js:218:1 › no detection in both images stays separate from provider errors (726ms)
+  ok 19 [mobile] › tests\browser\phase-1b.spec.js:231:1 › unsupported class retains its original identifier and confidence (724ms)
+  ok 20 [mobile] › tests\browser\phase-1b.spec.js:247:1 › Node image validation rejection stays separate from provider unavailable (751ms)
+
+  20 passed (21.0s)

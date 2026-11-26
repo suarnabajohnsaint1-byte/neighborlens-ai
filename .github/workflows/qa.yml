@@ -1,0 +1,118 @@
+name: Local QA
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [unit, integration, security]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Test
+        shell: bash
+        run: |
+          mkdir -p .data/ci
+          set -o pipefail
+          if [ '${{ matrix.suite }}' = security ]; then
+            node --test --test-concurrency=1 tests/integration/phase0-security-corrections.test.js tests/integration/static-exposure-security.test.js tests/integration/report-image-security.test.js tests/integration/notification-security.test.js 2>&1 | tee .data/ci/security.log
+          else
+            npm run test:${{ matrix.suite }} 2>&1 | tee .data/ci/${{ matrix.suite }}.log
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          include-hidden-files: true
+          name: node-${{ matrix.suite }}
+          path: .data/ci
+  mysql:
+    runs-on: ubuntu-latest
+    env:
+      PRIVATE_MYSQL_EXECUTABLE: /usr/sbin/mysqld
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y mysql-server
+      - run: npx playwright install --with-deps chromium
+      - name: Isolated MySQL
+        shell: bash
+        run: |
+          mkdir -p .data/ci
+          set -o pipefail
+          node tests/support/run-isolated-mysql.js 2>&1 | tee .data/ci/mysql-runtime.log
+          node --test --test-concurrency=1 tests/migrations/*.test.js 2>&1 | tee .data/ci/migrations.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          include-hidden-files: true
+          name: mysql
+          path: |
+            .data/ci
+            .data/*screenshots*
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Browser regression
+        shell: bash
+        run: |
+          mkdir -p .data/ci
+          set -o pipefail
+          npm run test:e2e:browser 2>&1 | tee .data/ci/browser.log
+          npm run test:e2e:phase2 2>&1 | tee .data/ci/phase2.log
+          npm run test:e2e:details 2>&1 | tee .data/ci/details.log
+          npm run test:e2e:publication 2>&1 | tee .data/ci/publication.log
+          npx playwright test --config=playwright.report-review.config.js 2>&1 | tee .data/ci/report-review.log
+          npx playwright test --config=playwright.shared-reports.config.js 2>&1 | tee .data/ci/shared.log
+          npx playwright test --config=playwright.barangay.config.js 2>&1 | tee .data/ci/barangay.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          include-hidden-files: true
+          name: browser
+          path: |
+            .data/*browser-results*
+            .data/shared-reports
+            /tmp/neighborlens-*-browser-results
+            .data/ci
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -r requirements.txt
+      - name: AI contract and tooling tests
+        shell: bash
+        run: |
+          mkdir -p .data/ci
+          set -o pipefail
+          python -m pytest ai/tests -q 2>&1 | tee .data/ci/python.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          include-hidden-files: true
+          name: python
+          path: .data/ci

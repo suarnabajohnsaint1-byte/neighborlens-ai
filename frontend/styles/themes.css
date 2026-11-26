@@ -1,0 +1,164 @@
+:root[data-theme] {
+    --color-upload-hover: var(--color-accent-subtle);
+    --color-control-hover: var(--color-surface-hover);
+    --color-control-selected: var(--color-accent-subtle);
+    --color-step-bg: var(--color-info-subtle);
+    --color-step-border: var(--color-info-border);
+    --color-step-selected: var(--color-accent-subtle);
+    --color-step-done: var(--color-success-subtle);
+    --color-capture-ready: var(--color-success-subtle);
+    --color-state-text: var(--color-text-secondary);
+    --shadow-capture: none;
+    --shadow-capture-hover: none;
+    --color-status-pending: var(--report-indicator-orange);
+    --color-status-pending-bg: var(--color-warning-subtle);
+    --color-status-ongoing: var(--report-indicator-yellow);
+    --color-status-ongoing-bg: var(--color-warning-subtle);
+    --color-status-resolved: var(--color-success);
+    --color-status-resolved-bg: var(--color-success-subtle);
+    --color-status-rejected: var(--color-danger);
+    --color-status-rejected-bg: var(--color-danger-subtle);
+    --color-priority-critical: var(--color-danger);
+    --color-priority-critical-bg: var(--color-danger-subtle);
+    --color-priority-high: var(--color-warning);
+    --color-priority-high-bg: var(--color-warning-subtle);
+    --color-priority-medium: var(--color-warning);
+    --color-priority-medium-bg: var(--color-warning-subtle);
+    --color-priority-low: var(--color-info);
+    --color-priority-low-bg: var(--color-info-subtle);
+    --color-legacy-ai-bg: var(--color-info-subtle);
+    --color-legacy-ai-border: var(--color-info-border);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-bg: #080b10;
+    --color-sidebar: #090d14;
+    --color-surface: #141926;
+    --color-surface-raised: #0f1420;
+    --color-surface-hover: rgba(255, 255, 255, 0.04);
+    --color-surface-selected: #13243d;
+    --color-text-primary: #e8edf5;
+    --color-text-secondary: #9aaac0;
+    --color-text-muted: #7788a3;
+    --color-border: #1e2535;
+    --color-border-strong: #334456;
+    --color-divider: var(--color-border);
+    --color-accent: #4c9dff;
+    --color-accent-hover: #75b4ff;
+    --color-accent-contrast: #04122b;
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-danger: #f87171;
+    --color-accent-subtle: #13243d;
+    --color-accent-border: rgba(76, 157, 255, 0.3);
+    --color-success-subtle: #0e261f;
+    --color-success-border: rgba(52, 211, 153, 0.28);
+    --color-warning-subtle: #27200e;
+    --color-warning-border: rgba(251, 191, 36, 0.28);
+    --color-danger-subtle: #281518;
+    --color-danger-border: rgba(248, 113, 113, 0.28);
+    --color-info-surface: #13243d;
+    --color-info-text: #a9cdff;
+    --color-input-bg: var(--color-surface);
+    --color-input-border: var(--color-border);
+    --color-media-surface: #101722;
+    --shadow-menu: 0 8px 20px #0005;
+    --shadow-input-focus: 0 0 0 3px rgba(76, 157, 255, 0.18);
+    --shadow-accent-hover: 0 6px 18px rgba(8, 122, 248, 0.35);
+    --shadow-selected: 0 0 12px rgba(76, 157, 255, 0.15);
+    --capture-button-bg: linear-gradient(135deg, #087af8, #006add);
+    --bg-dark: var(--color-bg);
+    --card-bg: var(--color-surface-raised);
+    --sidebar-bg: var(--color-sidebar);
+    --surface: var(--color-surface);
+    --accent-blue: var(--color-accent);
+    --accent-pink: var(--color-danger);
+    --accent-orange: var(--color-warning);
+    --accent-green: var(--color-success);
+    --text-primary: var(--color-text-primary);
+    --text-dim: var(--color-text-muted);
+    --border: var(--color-border);
+    --border-glow: var(--color-accent-border);
+    --success: var(--color-success);
+    --control-disabled-opacity: 0.65;
+    --color-primary: #087AF8;
+    --color-primary-hover: #006add;
+    --color-primary-contrast: #ffffff;
+
+}
+
+:root[data-theme="light"] {
+    --color-chart-resolved: #081c49;
+    color-scheme: light;
+    --color-bg: #f4f8fd;
+    --color-sidebar: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-raised: #f7faff;
+    --color-surface-hover: #edf3fb;
+    --color-surface-selected: #e4f1ff;
+    --color-text-primary: #081c49;
+    --color-text-secondary: #40598d;
+    --color-text-muted: #566c92;
+    --color-border: #dbe7f7;
+    --color-border-strong: #cbdefa;
+    --color-divider: var(--color-border);
+    --color-accent: #0665d0;
+    --color-accent-hover: #0558b6;
+    --color-accent-contrast: #ffffff;
+    --color-success: #047857;
+    --color-warning: #b45309;
+    --color-danger: #b91c1c;
+    --color-accent-subtle: #eef6ff;
+    --color-accent-border: #cbdefa;
+    --color-success-subtle: #ecfdf5;
+    --color-success-border: #a7f3d0;
+    --color-warning-subtle: #fffbeb;
+    --color-warning-border: #fde68a;
+    --color-danger-subtle: #fef2f2;
+    --color-danger-border: #fecaca;
+    --color-info-surface: #eef6ff;
+    --color-info-text: #0665d0;
+    --color-input-bg: #ffffff;
+    --color-input-border: #cbdefa;
+    --color-media-surface: #f8fafc;
+    --shadow-menu: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-input-focus: 0 0 0 3px rgba(8, 122, 248, 0.15);
+    --shadow-accent-hover: 0 6px 18px rgba(8, 122, 248, 0.25);
+    --shadow-selected: 0 0 10px rgba(8, 122, 248, 0.12);
+    --capture-button-bg: linear-gradient(135deg, #087af8, #006add);
+    --bg-dark: var(--color-bg);
+    --card-bg: var(--color-surface-raised);
+    --sidebar-bg: var(--color-sidebar);
+    --surface: var(--color-surface);
+    --accent-blue: var(--color-accent);
+    --accent-pink: var(--color-danger);
+    --accent-orange: var(--color-warning);
+    --accent-green: var(--color-success);
+    --text-primary: var(--color-text-primary);
+    --text-dim: var(--color-text-muted);
+    --border: var(--color-border);
+    --border-glow: var(--color-accent-border);
+    --success: var(--color-success);
+    --control-disabled-opacity: 0.65;
+    --color-primary: #087AF8;
+    --color-primary-hover: #006add;
+    --color-primary-contrast: #ffffff;
+
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    border: 0;
+    min-height: 44px;
+    cursor: pointer;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+}
+
+.btn-primary:disabled {
+    cursor: not-allowed;
+}

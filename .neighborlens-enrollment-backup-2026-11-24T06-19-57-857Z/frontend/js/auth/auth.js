@@ -1,0 +1,1381 @@
+﻿(function () {
+  "use strict";
+  const byId = (id) => document.getElementById(id);
+  const client = window.AuthClient;
+  const { freshPosition, cameraFrame, alignedCard } = window.IdEnrollment;
+  const documentPolicy = window.IdentityDocumentPolicy;
+  const enrollmentHint = byId("idEnrollmentDocumentHint");
+  const defaultEnrollmentHint = enrollmentHint.textContent;
+  const uploadTestEnabled = window.location.hash === "#id-upload-test";
+  let testingUpload = false;
+  let selectedDocumentType = "";
+  let transaction;
+  let account = null;
+  let file = null;
+  let preview = null;
+  let scan = null;
+  let confirmed = false;
+  let busy = false;
+  let scanning = false;
+  let identitySaved = false;
+  let registrationComplete = false;
+  let generation = 0;
+  let cameraGeneration = 0;
+  let stream = null;
+  let alignmentTimer;
+  let cardAligned = false;
+  const alignmentCanvas = document.createElement("canvas");
+  let devices = [];
+  let signupActive = false;
+  let barangayEdited = false;
+
+  let enrollment = null;
+  let provisionalReview = false;
+  let reviewToken = null;
+  let reviewTimer;
+  let reviewGeneration = 0;
+  let localScreenWarning = false;
+  const screeningClasses = new Set(["LOW_RISK", "SUSPICIOUS", "POTENTIALLY_FAKE", "INVALID", "UNABLE_TO_ASSESS"]);
+  const editedFields = new Set();
+  const fields = [
+    "regFullName",
+    "regBirthDate",
+    "regAddress",
+    "regDocumentType",
+    "regIdNumber",
+    "regExpiryDate",
+  ];
+  const fieldLabels = {
+    fullName: "Full name",
+    birthDate: "Date of birth",
+    address: "Address on government ID",
+    idType: "ID type",
+    idNumber: "ID number",
+    expiryDate: "Expiration date",
+  };
+  function reviewStatus() {
+    if (!scan) return;
+    if (!scan.valid) {
+      message(
+        "identityReviewStatus",
+        "The scan did not meet the document-reading requirements. Re-scan a clearer photo before confirming.",
+        true,
+      );
+      return;
+    }
+    const missing = IdIdentityService.validateDocumentFields({
+      ...facts(),
+      idType: byId("regDocumentType").value,
+      expiryDatePresent: scan.idType === byId("regDocumentType").value && scan.expiryDatePresent,
+    }).missingFields;
+    const text = missing.length
+      ? "Not read from the image. Enter or correct: " +
+      missing.map((key) => fieldLabels[key] || key).join(", ") +
+      "."
+      : provisionalReview
+        ? confirmed
+          ? "Details confirmed. Your application is pending in-person verification."
+          : "Review and confirm the extracted details. In-person verification is required to register."
+        : registrationComplete
+          ? "Identity information saved. Manual review is not identity verification."
+          : confirmed
+            ? account
+              ? "Reviewed information confirmed for your existing citizen account."
+              : "Reviewed information confirmed. Complete your barangay and credentials below."
+            : enrollment
+              ? "Check the verified details, then select Confirm reviewed information."
+              : "Check the scanned fields, then select Confirm reviewed information.";
+    message("identityReviewStatus", text, missing.length > 0);
+    return missing;
+  }
+
+  function message(id, value, error = false) {
+    const element = byId(id);
+    element.textContent = value;
+    element.setAttribute("role", error ? "alert" : "status");
+    element.style.color = error ? "var(--accent-pink)" : "var(--text-dim)";
+  }
+  function screeningClassification(result) {
+    if (result?.decision === "BLOCK_INVALID" || result?.code === "REGISTRATION_ID_INVALID") return "INVALID";
+    const classification = result?.screening?.classification;
+    if (!screeningClasses.has(classification)) return "UNABLE_TO_ASSESS";
+    return classification === "LOW_RISK" && localScreenWarning ? "SUSPICIOUS" : classification;
+  }
+  function showScanResult({ verifiedType, confirmedFraud = false, unableReason } = {}) {
+    const labels = { PHILSYS: "National ID", NATIONAL_ID: "National ID", DRIVERS_LICENSE: "Driver's License", REVIEWED: "Government ID" };
+    const type = Object.hasOwn(labels, verifiedType) ? labels[verifiedType]
+      : Object.hasOwn(IdIdentityService.SUPPORTED_ID_TYPES, verifiedType) ? IdIdentityService.SUPPORTED_ID_TYPES[verifiedType].label : "";
+    let title = "Unable to Verify";
+    let detail = unableReason || (reviewToken
+      ? "Your scan was submitted for in-person review. Use the review reference above."
+      : "We couldn't verify your ID. Please scan again or request a review.");
+    if (confirmedFraud) {
+      title = "Fake ID";
+      detail = "This ID failed verification. Please use a genuine government-issued ID.";
+    } else if (type) {
+      title = `Valid ${type}`;
+      detail = "Your ID has been verified. Please review your information below.";
+    }
+    message("idVerifyStatus", "", !type || confirmedFraud);
+    const heading = document.createElement("strong");
+    heading.textContent = title;
+    const description = document.createElement("div");
+    description.textContent = detail;
+    byId("idVerifyStatus").append(heading, description);
+  }
+  function clearUnreviewedFields() {
+    for (const id of fields) if (!editedFields.has(id)) byId(id).value = "";
+  }
+  function saveReview(token) {
+    clearTimeout(reviewTimer);
+    reviewGeneration++;
+    reviewToken = token;
+    if (!token) {
+      enrollmentHint.textContent = defaultEnrollmentHint;
+      updateEnrollmentHint();
+    }
+    try {
+      if (token) sessionStorage.setItem("pending_citizen_enrollment", token);
+      else sessionStorage.removeItem("pending_citizen_enrollment");
+    } catch { /* The open page can still check for approval. */ }
+  }
+  function discardProvisionalReview() {
+    if (!provisionalReview) return;
+    provisionalReview = false;
+    confirmed = false;
+    scan = null;
+    clearUnreviewedFields();
+    byId("identityFields").style.display = "none";
+    update();
+  }
+  function showPendingReview(result) {
+    enrollmentHint.textContent = `Present review reference ${result.reference} with your physical ID.`;
+    updateEnrollmentHint();
+    showScanResult();
+  }
+  async function checkPendingReview(token) {
+    if (!signupActive || reviewToken !== token) return;
+    if (busy) {
+      reviewTimer = setTimeout(() => checkPendingReview(token), 1500);
+      return;
+    }
+    const current = reviewGeneration;
+    try {
+      const result = await client.enrollmentStatus(token);
+      if (!signupActive || current !== reviewGeneration) return;
+      if (busy) {
+        reviewTimer = setTimeout(() => checkPendingReview(token), 1500);
+        return;
+      }
+      if (result.state === "pending") {
+        showPendingReview(result);
+      } else if (result.state === "approved") {
+        enrollment = { token, classification: screeningClassification(result), manual: true };
+        provisionalReview = false;
+        scan ??= { valid: true };
+        byId("identityFields").style.display = "block";
+        updateExpiryField();
+        reviewStatus();
+        enrollmentHint.textContent = defaultEnrollmentHint;
+        showScanResult({ verifiedType: "REVIEWED" });
+        update();
+        return;
+      } else {
+        saveReview(null);
+        discardProvisionalReview();
+        showScanResult();
+        return;
+      }
+    } catch (error) {
+      if (!signupActive || current !== reviewGeneration) return;
+      if (busy) {
+        reviewTimer = setTimeout(() => checkPendingReview(token), 1500);
+        return;
+      }
+      if (error.code === "REGISTRATION_PROOF_REQUIRED" || error.status === 403) {
+        saveReview(null);
+        discardProvisionalReview();
+        showScanResult();
+        return;
+      }
+    }
+    reviewTimer = setTimeout(() => checkPendingReview(token), 15_000);
+  }
+  function resumePendingReview() {
+    try {
+      reviewToken ??= sessionStorage.getItem("pending_citizen_enrollment");
+    } catch { /* Browser storage is optional. */ }
+    if (reviewToken) void checkPendingReview(reviewToken);
+  }
+  function releasePhoto() {
+    if (preview) URL.revokeObjectURL(preview);
+    preview = null;
+    file = null;
+    testingUpload = false;
+    updateEnrollmentHint();
+    byId("idCaptureProgress").hidden = true;
+    for (const id of ["govIdPreview", "idCapturedImg"]) {
+      byId(id).removeAttribute("src");
+      byId(id).style.display = "none";
+    }
+  }
+  function showCaptureProgress(container, status) {
+    const progress = byId("idCaptureProgress");
+    container.append(progress);
+    byId("idCaptureProgressText").textContent = status;
+    progress.hidden = false;
+    message("idVerifyStatus", status);
+  }
+  function updateEnrollmentHint() {
+    const pendingReference = reviewToken && enrollmentHint.textContent !== defaultEnrollmentHint;
+    enrollmentHint.hidden = Boolean(account || (!preview && !pendingReference));
+  }
+  function stopCamera() {
+    clearInterval(alignmentTimer);
+    setCardAlignment(false);
+
+    byId("idCaptureLabel").textContent = "Capture ID Photo";
+    cameraGeneration++;
+    stream?.getTracks().forEach((track) => track.stop());
+    stream = null;
+    byId("idCameraVideo").srcObject = null;
+  }
+  function setCardAlignment(aligned) {
+    cardAligned = aligned;
+    byId("idCardGuide").classList.toggle("is-aligned", aligned);
+
+    const hint = aligned
+      ? "Card aligned. Capture is ready."
+      : "Fit all four card edges inside the outline.";
+
+    const status = byId("idAlignmentStatus");
+    if (status.textContent !== hint) status.textContent = hint;
+
+    byId("idCaptureBtn").disabled = busy || !stream || !aligned;
+  }
+  function update() {
+    const eligible = Boolean(scan?.valid && confirmed && (account || enrollment));
+    const identityReviewed = Boolean(scan?.valid && confirmed && (account || enrollment || provisionalReview));
+    byId("signupCredentials").hidden = !account && !identityReviewed;
+    const canChooseFile = Boolean(account || (uploadTestEnabled && !reviewToken && !enrollment));
+    byId("idModeUploadBtn").hidden = !canChooseFile;
+    updateEnrollmentHint();
+    byId("idModeUploadBtn").style.display = canChooseFile ? "" : "none";
+    if (!account) byId("idUploadAreaWrapper").style.display = "none";
+    const submit = byId("signupSubmitBtn");
+    submit.disabled = busy || registrationComplete || !eligible;
+    submit.style.opacity = submit.disabled ? "0.4" : "1";
+    if (registrationComplete) submit.textContent = "Opening Citizen Portal...";
+    else if (busy && eligible && !scanning) submit.textContent = "Submitting...";
+    else if (account)
+      submit.textContent = identitySaved
+        ? "Save identity corrections"
+        : "Retry Identity Submission";
+    else submit.textContent = "Register as Citizen";
+    let status;
+    if (registrationComplete)
+      status = "Registration saved. Opening Citizen Portal...";
+    else if (scanning)
+      status = "Government ID scan in progress. Registration is not ready yet.";
+    else if (busy && eligible)
+      status = "Waiting for the server to confirm account and identity submission...";
+    else if (busy)
+      status = "Government ID verification is in progress.";
+    else if (testingUpload) status = "Upload test only. Use the live camera to register.";
+    else if (reviewToken && !enrollment) status = "Your application is pending in-person review.";
+    else if (!scan) status = preview ? "A verified ID is required to register." : "Government ID scan required before registration.";
+    else if (!scan.valid)
+      status = "The ID scan did not pass the reading requirements. A clearer image is required.";
+    else if (!account && !enrollment)
+      status = "ID verification is required before registration.";
+    else if (!confirmed)
+      status = "Scanned identity information must be reviewed and confirmed before submission.";
+    else if (account)
+      status = "Existing account. Only identity information will be submitted.";
+    else
+      status = "Identity information confirmed. Complete your account credentials to register.";
+    byId("signupSubmitStatus").textContent = status;
+    submit.title = eligible ? "" : status;
+    byId("verifyIdBtn").style.display = file && !enrollment?.manual ? "inline-flex" : "none";
+    byId("verifyIdBtn").disabled = busy;
+    byId("cancelIdScanBtn").hidden = !scanning;
+    byId("cancelIdScanBtn").style.display = scanning ? "inline-flex" : "none";
+    byId("verifyIdBtn").textContent = busy
+      ? "Reading ID..."
+      : scan
+        ? "Re-scan ID"
+        : "Verify ID";
+    byId("stepBarID").className =
+      "step-bar-item " + (identityReviewed ? "done" : "active");
+    byId("stepBarCreds").className =
+      "step-bar-item" + (identityReviewed ? " active" : "");
+    for (const id of [
+      ...fields,
+      "regUser",
+      "regPass",
+      "regPassConfirm",
+      "confirmIdentityBtn",
+      "govIdInput",
+      "idModeUploadBtn",
+      "idModeCameraBtn",
+      "idCaptureBtn",
+      "idSwitchCamBtn",
+    ])
+      byId(id).disabled =
+        busy ||
+        registrationComplete ||
+        (Boolean(account) &&
+          ["regUser", "regPass", "regPassConfirm"].includes(id));
+    byId("idCaptureBtn").disabled ||= !stream || !cardAligned;
+
+    byId("confirmIdentityBtn").disabled ||= !account && !enrollment && !provisionalReview;
+    byId("regPass").required = byId("regPassConfirm").required = !account;
+    byId("idCameraCapturedPreviewWrapper").querySelector(
+      ".btn-thumb-retake",
+    ).disabled = busy;
+  }
+  function isoDate(value) {
+    if (!value) return "";
+    const raw = String(value).slice(0, 10);
+    const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    return match
+      ? `${match[3]}-${match[1]}-${match[2]}`
+      : /^\d{4}-\d{2}-\d{2}$/.test(raw)
+        ? raw
+        : "";
+  }
+  function updateExpiryField() {
+    const type = byId("regDocumentType").value;
+    const field = byId("regExpiryDate");
+    const requirement = documentPolicy.expiryRequirement(type);
+    const sawExpiry = scan?.idType === type && scan.expiryDatePresent;
+    const hide = requirement === "not_applicable" && !field.value && !sawExpiry;
+    byId("regExpiryField").hidden = hide;
+    byId("regExpiryHint").hidden = !hide;
+    field.required = requirement === "required" || Boolean(sawExpiry);
+    byId("regExpiryField").querySelector("label").textContent = field.required
+      ? "Expiration Date" : "Expiration Date, if present";
+    selectedDocumentType = type;
+  }
+  function populate(facts, preserveEdits = false) {
+    byId("identityFields").style.display = "block";
+    const values = {
+      regFullName: facts.fullName || "",
+      regBirthDate: isoDate(facts.birthDate),
+      regAddress: facts.address || "",
+      regDocumentType: facts.idType || facts.documentType || "",
+      regIdNumber: facts.idNumber || "",
+      regExpiryDate: isoDate(facts.expiryDate),
+    };
+    for (const [id, value] of Object.entries(values)) {
+      if ((id === "regExpiryDate" || id === "regIdNumber") && values.regDocumentType !== byId("regDocumentType").value) {
+        if (!preserveEdits || !editedFields.has(id)) byId(id).value = "";
+        continue;
+      }
+      if (!preserveEdits || !editedFields.has(id)) {
+        byId(id).value = value;
+      } else if (!byId(id).value.trim() && value) {
+        byId(id).value = value;
+      }
+    }
+    updateExpiryField();
+  }
+  function facts() {
+    return {
+      documentType: byId("regDocumentType").value,
+      fullName: byId("regFullName").value.trim(),
+      birthDate: byId("regBirthDate").value || null,
+      address: byId("regAddress").value.trim(),
+      idNumber: byId("regIdNumber").value.trim(),
+      expiryDate: byId("regExpiryDate").value || null,
+      ocrConfidence: scan?.confidence ?? null,
+    };
+  }
+  function validateFacts() {
+    const data = facts();
+    const validation = IdIdentityService.validateDocumentFields({
+      ...data,
+      idType: data.documentType,
+      expiryDatePresent: scan?.idType === data.documentType && scan.expiryDatePresent,
+    });
+    if (validation.missingFields.length)
+      throw new Error(
+        "Complete the required identity fields: " +
+        validation.missingFields.join(", ") +
+        ".",
+      );
+    const type = IdIdentityService.SUPPORTED_ID_TYPES[data.documentType];
+    if (!type)
+      throw new Error(
+        "Select a supported government ID type. Student IDs are not supported.",
+      );
+    if (data.birthDate > new Date().toISOString().slice(0, 10))
+      throw new Error("Date of birth cannot be in the future.");
+    for (const key of ["birthDate", "expiryDate"])
+      if (data[key]) {
+        const parsed = new Date(`${data[key]}T00:00:00Z`);
+        if (
+          !Number.isFinite(parsed.getTime()) ||
+          parsed.toISOString().slice(0, 10) !== data[key]
+        )
+          throw new Error("Enter a valid calendar date.");
+      }
+    if (scan?.idType && scan.idType !== "UNKNOWN" && scan.idType !== data.documentType)
+      throw new Error("The selected ID type differs from the scan. Re-scan the selected document.");
+    const match = type.idNumberRegex.exec(data.idNumber);
+    if (!match || match[0] !== data.idNumber)
+      throw new Error("Check the ID number format for the selected document.");
+    if (validation.isExpired)
+      throw new Error("The document has expired. Use a current supported ID.");
+    return data;
+  }
+  async function locate() {
+    const current = generation;
+    if (!window.autoDetectBarangay) {
+      byId("signupLocationHint").textContent =
+        "Select your registration barangay below.";
+      return;
+    }
+    try {
+      await window.autoDetectBarangay({
+        statusElId: "signupGpsStatus",
+        canvasId: "signupGeoCanvas",
+        selectElId: null,
+        onPolygonBarangay(name) {
+          if (signupActive && !account && !barangayEdited)
+            byId("regBarangay").value = window.BACOLOD_BARANGAYS.includes(name) ? name : "";
+        },
+      });
+      if (current !== generation || !signupActive) return;
+      byId("signupLocationHint").textContent =
+        "Confirm your registration barangay below.";
+    } catch {
+      if (current === generation)
+        message(
+          "signupGpsStatus",
+          "Location unavailable. Select your barangay manually.",
+          true,
+        );
+    }
+  }
+  function reset() {
+    window.stopAutoDetectBarangay?.("signupGeoCanvas");
+    barangayEdited = false;
+    generation++;
+    provisionalReview = false;
+    reviewGeneration++;
+    clearTimeout(reviewTimer);
+    editedFields.clear();
+    enrollment = null;
+    localScreenWarning = false;
+    enrollmentHint.textContent = defaultEnrollmentHint;
+    stopCamera();
+    releasePhoto();
+    window._visionStepCb = null;
+    window.stopIdentityOCR()?.catch(() => { });
+    scan = null;
+    scanning = false;
+    identitySaved = false;
+    registrationComplete = false;
+    confirmed = false;
+    account = null;
+    transaction = window.AuthRegistration(client);
+    byId("signupForm").reset();
+    byId("regUser").removeAttribute("aria-invalid");
+    byId("regUser").removeAttribute("aria-describedby");
+    byId("identityFields").style.display = "none";
+    byId("idCameraAreaWrapper").style.display = "none";
+    byId("idCameraCapturedPreviewWrapper").style.display = "none";
+    byId("idUploadAreaWrapper").style.display = "block";
+    byId("idModeUploadBtn").classList.add("active");
+    byId("idModeCameraBtn").classList.remove("active");
+    byId("idUploadArea").querySelector(".upload-placeholder").style.display =
+      "";
+    message("signupMsg", "");
+    message("idVerifyStatus", "");
+    message("identityReviewStatus", "");
+    update();
+  }
+  window.toggleAuth = function () {
+    if (busy) return;
+    signupActive = !signupActive;
+    byId("loginSection").style.display = signupActive ? "none" : "block";
+    byId("signupSection").style.display = signupActive ? "block" : "none";
+    byId("loginPass").value = "";
+    if (signupActive) {
+      locate();
+      resumePendingReview();
+    }
+    else reset();
+  };
+  async function selectPhoto(selected, camera = false, recognized = null) {
+    if (busy || (!account && (!camera || (!enrollment && !provisionalReview)))) return;
+    const current = ++generation;
+    if (account) editedFields.clear();
+    registrationComplete = false;
+    confirmed = false;
+    scan = null;
+    busy = true;
+    scanning = true;
+    clearUnreviewedFields();
+    byId("identityFields").style.display = "none";
+    message("idVerifyStatus", recognized ? "Preparing ID detailsâ€¦" : "Preparing ID photoâ€¦");
+    message("identityReviewStatus", "");
+    update();
+    try {
+      await window.validateIdentityImageFile(selected);
+    } catch (error) {
+      if (current === generation) {
+        releasePhoto();
+        busy = false;
+        scanning = false;
+        if (account) message("idVerifyStatus", error.message, true);
+        else {
+          enrollment = null;
+          discardProvisionalReview();
+          showScanResult();
+        }
+        update();
+      }
+      return;
+    }
+    if (current !== generation || !signupActive) return;
+    busy = false;
+    scanning = false;
+    stopCamera();
+    releasePhoto();
+    file = selected;
+    preview = URL.createObjectURL(selected);
+    const image = byId(camera ? "idCapturedImg" : "govIdPreview");
+    image.src = preview;
+    image.style.display = "block";
+    byId("idCameraAreaWrapper").style.display = "none";
+    byId("idCameraCapturedPreviewWrapper").style.display = camera
+      ? "block"
+      : "none";
+    if (!camera)
+      byId("idUploadArea").querySelector(".upload-placeholder").style.display =
+        "none";
+    message("signupMsg", "");
+    update();
+    await readPhoto(recognized);
+  }
+  async function recognizeId(image) {
+    const result = await window.verifyGovernmentID(image);
+    if (result.error) throw new Error(result.reason);
+    if (!result.rawText?.trim())
+      throw new Error(account ? "No readable text found. Retake or upload a clearer image." : "No readable text found. Retake a clearer live photo.");
+    return result;
+  }
+  async function testUploadedId(image) {
+    if (!uploadTestEnabled || !signupActive || busy || reviewToken || enrollment) return;
+    const current = ++generation;
+    stopCamera();
+    releasePhoto();
+    scan = null;
+    confirmed = false;
+    busy = true;
+    testingUpload = true;
+    byId("idCameraAreaWrapper").style.display = "none";
+    byId("idCameraCapturedPreviewWrapper").style.display = "none";
+    message("idVerifyStatus", "Preparing test imageâ€¦");
+    update();
+    try {
+      await window.validateIdentityImageFile(image);
+      if (current !== generation || !signupActive) return;
+      preview = URL.createObjectURL(image);
+      const captured = byId("idCapturedImg");
+      captured.src = preview;
+      captured.style.display = "block";
+      byId("idCameraCapturedPreviewWrapper").style.display = "block";
+      showCaptureProgress(captured.parentElement, "Scanning ID textâ€¦");
+      const result = await recognizeId(image);
+      if (current !== generation || !signupActive) return;
+      message("idVerifyStatus", result.valid
+        ? "Upload test complete. ID text was read. Use the live camera for verification."
+        : "Upload test could not read enough ID text. Try a clearer image.", !result.valid);
+    } catch {
+      if (current === generation && signupActive)
+        message("idVerifyStatus", "Upload test could not read this image. Choose a clear JPEG, PNG, or WebP.", true);
+    } finally {
+      if (current === generation) {
+        busy = false;
+        byId("idCaptureProgress").hidden = true;
+        update();
+      }
+    }
+  }
+  function reviewScan(result, verifiedFacts) {
+    const parsed = verifiedFacts ? { ...verifiedFacts, idType: verifiedFacts.documentType }
+      : IdIdentityService.prepareScanFields(
+        result.fields || IdIdentityService.extractIdentityFields(result.rawText, result.words),
+      );
+    scan = { valid: result.valid, confidence: result.confidence ?? null, idType: parsed.idType, expiryDatePresent: Boolean(parsed.expiryDate || parsed.expiryDatePresent) };
+    populate(parsed, true);
+    return reviewStatus();
+  }
+  async function readPhoto(recognized) {
+    if (!file || busy || enrollment?.manual ||
+      (!account && !enrollment && !provisionalReview)) return;
+    const current = ++generation;
+    registrationComplete = false;
+    confirmed = false;
+    if (account) scan = null;
+    else reviewStatus();
+    busy = true;
+    scanning = true;
+    update();
+    if (!recognized) {
+      const capturedImage = byId("idCapturedImg");
+      if (capturedImage.hasAttribute("src"))
+        showCaptureProgress(capturedImage.parentElement, "Scanning IDâ€¦");
+      else message("idVerifyStatus", "Scanning IDâ€¦");
+    }
+    try {
+      const result = recognized ?? await recognizeId(file);
+      if (current !== generation || !signupActive) return;
+      if (provisionalReview) {
+        const fields = result.fields || IdIdentityService.extractIdentityFields(result.rawText, result.words);
+        const idType = documentPolicy.enrollmentDocumentType(fields.idType);
+        if (result.valid && idType) {
+          reviewScan({ ...result, fields: { ...fields, idType } });
+          showScanResult();
+        } else {
+          scan = null;
+          clearUnreviewedFields();
+          byId("identityFields").style.display = "none";
+          showScanResult();
+        }
+        return;
+      }
+      if (!account) {
+        const { facts: verified, classification } = enrollment;
+        const parsed = { ...verified, idType: verified.documentType };
+        const validation = IdIdentityService.validateDocumentFields(parsed);
+        const type = IdIdentityService.SUPPORTED_ID_TYPES[parsed.idType];
+        if (!result.valid || validation.missingFields.length || validation.isExpired ||
+          type?.idNumberRegex.exec(parsed.idNumber)?.[0] !== parsed.idNumber) {
+          showScanResult();
+          return;
+        }
+        if (["LOW_RISK", "SUSPICIOUS"].includes(classification)) reviewScan(result, verified);
+        else if (classification === "POTENTIALLY_FAKE") {
+          // Independent approval still allows manual entry and server-side matching.
+          scan = { valid: true, idType: parsed.idType, confidence: result.confidence ?? null };
+          byId("identityFields").style.display = "block";
+          updateExpiryField();
+          reviewStatus();
+        }
+        showScanResult({ verifiedType: classification === "LOW_RISK" ? parsed.idType : undefined });
+        return;
+      }
+      const missing = reviewScan(result);
+      const summary = !result.valid ? "Scan needs a clearer image."
+        : missing?.length ? "Some ID details could not be read. Re-scan the ID or enter the missing fields below."
+          : "Check the scanned details below.";
+      message(
+        "idVerifyStatus",
+        summary,
+        !result.valid,
+      );
+    } catch (error) {
+      if (current === generation) {
+        if (account) message("idVerifyStatus", error.message, true);
+        else showScanResult();
+      }
+    } finally {
+      if (current === generation) {
+        busy = false;
+        scanning = false;
+        byId("idCaptureProgress").hidden = true;
+        window._visionStepCb = null;
+        update();
+      }
+    }
+  }
+  window.switchIdInputMode = async function (mode) {
+    if (mode === "upload" && !account) return;
+    if (busy) return;
+    if (!account && mode === "camera") saveReview(null);
+    stopCamera();
+    byId("idModeUploadBtn").classList.toggle("active", mode !== "camera");
+    byId("idModeCameraBtn").classList.toggle("active", mode === "camera");
+    byId("idUploadAreaWrapper").style.display =
+      mode === "camera" ? "none" : "block";
+    byId("idCameraAreaWrapper").style.display = "none";
+    byId("idCameraCapturedPreviewWrapper").style.display = "none";
+    if (mode === "camera") await startCamera();
+  };
+  async function startCamera(deviceId) {
+    stopCamera();
+    const cameraArea = byId("idCameraAreaWrapper");
+    cameraArea.style.display = "none";
+    const current = cameraGeneration;
+    let previewReady = false;
+    try {
+      if (!navigator.mediaDevices?.getUserMedia)
+        throw new Error("Camera unavailable.");
+      if (!account) {
+        enrollment = null;
+        provisionalReview = false;
+        localScreenWarning = false;
+        enrollmentHint.textContent = defaultEnrollmentHint;
+        scan = null;
+        confirmed = false;
+        clearUnreviewedFields();
+        releasePhoto();
+        byId("identityFields").style.display = "none";
+        byId("idCameraCapturedPreviewWrapper").style.display = "none";
+        update();
+      }
+      message("idVerifyStatus", "Opening cameraâ€¦");
+      const acquired = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+          ...(deviceId
+            ? { deviceId: { exact: deviceId } }
+            : { facingMode: { ideal: "environment" } }),
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+        },
+      });
+      if (current !== cameraGeneration || !signupActive) {
+        acquired.getTracks().forEach((track) => track.stop());
+        return;
+      }
+      stream = acquired;
+      const video = byId("idCameraVideo");
+      video.srcObject = stream;
+      cameraArea.style.display = "block";
+      await video.play();
+      if (current !== cameraGeneration) return;
+      previewReady = true;
+      let stableFrames = 0;
+      alignmentTimer = setInterval(() => {
+        if (busy) return;
+        stableFrames = alignedCard(video, byId("idCardGuide"), alignmentCanvas) ? stableFrames + 1 : 0;
+        setCardAlignment(stableFrames >= 2);
+      }, 150);
+      update();
+      message("idVerifyStatus", "Align your ID front in the guide and capture the first photo.");
+      devices = await navigator.mediaDevices
+        .enumerateDevices()
+        .then((rows) => rows.filter((row) => row.kind === "videoinput"))
+        .catch(() => []);
+      byId("idSwitchCamBtn").style.display =
+        devices.length > 1 ? "inline-block" : "none";
+    } catch (error) {
+      if (current === cameraGeneration) {
+        if (!previewReady) {
+          stopCamera();
+          cameraArea.style.display = "none";
+        }
+        update();
+        message(
+          "idVerifyStatus",
+          error.name === "NotAllowedError" ? "Allow camera access, then try again." : error.message,
+          true,
+        );
+      }
+    }
+  }
+  window.switchIdCameraDevice = async function () {
+    if (busy) return;
+    const index = devices.findIndex(
+      (device) =>
+        device.deviceId === stream?.getVideoTracks()[0]?.getSettings().deviceId,
+    );
+    if (devices.length > 1)
+      await startCamera(devices[(index + 1) % devices.length].deviceId);
+  };
+  window.captureIdFromCamera = async function () {
+    if (busy) return;
+    const video = byId("idCameraVideo");
+    if (!video.videoWidth) {
+      message(
+        "idVerifyStatus",
+        "Wait for a camera frame before capturing.",
+        true,
+      );
+      return;
+    }
+    const current = cameraGeneration;
+
+    const guide = byId("idCardGuide");
+    if (!stream || !cardAligned || !alignedCard(video, guide, alignmentCanvas)) {
+      setCardAlignment(false);
+      return;
+    }
+    busy = true;
+    update();
+    let capturedCrop;
+    let stage = "camera";
+    const recordOutcome = (code, status = null) => {
+      byId("idVerifyStatus").dataset.scanStage = stage;
+      byId("idVerifyStatus").dataset.scanCode = code;
+      byId("idVerifyStatus").dataset.httpStatus = status ?? "";
+    };
+    recordOutcome("CAPTURE_STARTED");
+    function showCapturedFrame(frame) {
+      releasePhoto();
+      preview = URL.createObjectURL(frame);
+      updateEnrollmentHint();
+      const image = byId("idCapturedImg");
+      image.src = preview;
+      image.style.display = "block";
+      byId("idCameraAreaWrapper").style.display = "none";
+      byId("idCameraCapturedPreviewWrapper").style.display = "block";
+    }
+    try {
+      const [crop, frame] = await Promise.all([
+        cameraFrame(video, guide),
+        account ? null : cameraFrame(video),
+      ]);
+      if (current !== cameraGeneration || !signupActive) return;
+      capturedCrop = crop;
+      const livePreview = video.parentElement;
+
+      if (!account) {
+        showCaptureProgress(livePreview, "Scanning ID textâ€¦");
+
+        const capturedImage = new File(
+          [crop],
+          "captured-id.jpg",
+          { type: "image/jpeg" }
+        );
+
+        stage = "recognizeId";
+        const recognized = await recognizeId(capturedImage);
+
+        if (current !== cameraGeneration || !signupActive) return;
+
+        const idType = (
+          recognized.fields ||
+          IdIdentityService.extractIdentityFields(
+            recognized.rawText,
+            recognized.words
+          )
+        ).idType;
+
+        showCaptureProgress(livePreview, "Checking IDâ€¦");
+
+        stage = "screenContext";
+        const screenContext = await window.hasScreenContextInIdCapture(frame);
+
+        if (current !== cameraGeneration || !signupActive) return;
+
+        localScreenWarning = screenContext;
+
+        if (
+          idType &&
+          idType !== "UNKNOWN" &&
+          !documentPolicy.enrollmentDocumentType(idType)
+        ) {
+          recordOutcome("UNSUPPORTED_DOCUMENT");
+
+          const label =
+            IdIdentityService.SUPPORTED_ID_TYPES[idType]?.label ||
+            "Government ID";
+
+          stopCamera();
+          showCapturedFrame(crop);
+
+          enrollmentHint.textContent = `NeighborLens AI Â· ${label}`;
+
+          showScanResult({
+            unableReason:
+              "This ID type is unsupported for registration. Scan a supported government ID."
+          });
+
+          return;
+        }
+
+        if (!recognized.valid) {
+          stage = "recognizeId";
+          recordOutcome("OCR_UNREADABLE");
+
+          stopCamera();
+          showCapturedFrame(crop);
+
+          showScanResult({
+            unableReason:
+              "The ID text is unreadable. Retake the scan in even light."
+          });
+
+          return;
+        }
+
+        showCaptureProgress(
+          livePreview,
+          "Checking your Bacolod locationâ€¦"
+        );
+
+        stage = "freshPosition";
+        const startPosition = await freshPosition();
+
+        stage = "startEnrollment";
+        const { token } = await client.startEnrollment(startPosition);
+
+        if (current !== cameraGeneration || !signupActive) return;
+
+        recordOutcome("CHALLENGE_ISSUED", 200);
+
+        showCaptureProgress(livePreview, "Verifying IDâ€¦");
+
+        stage = "freshPosition";
+        const capturePosition = await freshPosition();
+
+        stage = "submitEnrollmentCapture";
+
+        const approved = await client.submitEnrollmentCapture(
+          token,
+          capturePosition,
+          [frame]
+        );
+
+        if (current !== cameraGeneration || !signupActive) return;
+
+        recordOutcome(
+          ["REVIEW_REQUIRED", "VERIFIED"].includes(approved.decision)
+            ? approved.decision
+            : "UNEXPECTED_DECISION",
+          200
+        );
+
+        showCapturedFrame(crop);
+
+        if (approved.decision === "REVIEW_REQUIRED" && approved.reference) {
+          stopCamera();
+
+          saveReview(token);
+          showPendingReview(approved);
+
+          if (
+            approved.ocrPrefillAllowed === true &&
+            screeningClassification(approved) === "LOW_RISK"
+          ) {
+            provisionalReview = true;
+            busy = false;
+
+            await selectPhoto(capturedImage, true, recognized);
+          }
+
+          reviewTimer = setTimeout(
+            () => checkPendingReview(token),
+            15_000
+          );
+
+          return;
+        }
+
+        const classification = screeningClassification(approved);
+
+        if (
+          approved.decision !== "VERIFIED" ||
+          ["INVALID", "UNABLE_TO_ASSESS"].includes(classification)
+        ) {
+          stopCamera();
+          showScanResult();
+          return;
+        }
+
+        enrollment = {
+          ...approved,
+          token,
+          classification
+        };
+
+        busy = false;
+
+        await selectPhoto(capturedImage, true, recognized);
+        return;
+      }
+
+      busy = false;
+
+      await selectPhoto(
+        new File([crop], "captured-id.jpg", { type: "image/jpeg" }),
+        true
+      );
+
+
+    } catch (error) {
+      if (current === cameraGeneration) {
+        recordOutcome(
+          /^REGISTRATION_[A-Z_]{1,48}$/.test(error.code || "")
+            ? error.code
+            : "SCAN_STAGE_FAILED",
+          error.status
+        );
+
+        stopCamera();
+        byId("idCameraAreaWrapper").style.display = "none";
+
+        if (capturedCrop) showCapturedFrame(capturedCrop);
+
+        byId("idCaptureProgress").hidden = true;
+
+        if (account) {
+          message("idVerifyStatus", error.message, true);
+        } else {
+          enrollment = null;
+          clearUnreviewedFields();
+
+          if (error.code === "REGISTRATION_OUTSIDE_BACOLOD") {
+            message("signupGpsStatus", "Your GPS is outside Bacolod City.", true);
+          }
+
+          const retryDetail = {
+            REGISTRATION_LOCATION_RETRY: "A fresh, more precise location is needed. Allow precise location and scan again.",
+            REGISTRATION_PROOF_REQUIRED: "Your capture session ended. Start a new scan.",
+            REGISTRATION_ID_RETAKE_REQUIRED: "Retake the ID photo in even light. Keep all four edges visible.",
+            REGISTRATION_STORAGE_UNAVAILABLE: "Your review application could not be saved. Please try again later."
+          };
+
+          showScanResult({
+            confirmedFraud: error.code === "REGISTRATION_ID_COUNTERFEIT",
+            unableReason: error.code === "REGISTRATION_OUTSIDE_BACOLOD"
+              ? "Citizen registration requires your current location to be within Bacolod City."
+              : error.code === "REGISTRATION_FRAUD_UNAVAILABLE" ||
+                error.code === "REGISTRATION_VERIFICATION_UNAVAILABLE"
+                ? "The verification service is temporarily unavailable. Please try again later."
+                : retryDetail[error.code] ||
+                (stage === "freshPosition"
+                  ? "Allow precise location and scan again."
+                  : stage === "recognizeId"
+                    ? "The ID text could not be read. Retake the scan in even light."
+                    : undefined)
+          });
+        }
+      }
+    } finally {
+      if (current === cameraGeneration || !stream) {
+        busy = false;
+        update();
+      }
+    }
+  };
+  window.retakeIdFromCamera = async function () {
+    if (busy) return;
+    if (testingUpload) {
+      byId("govIdInput").click();
+      return;
+    }
+    registrationComplete = false;
+    confirmed = false;
+    scan = null;
+    releasePhoto();
+    byId("identityFields").style.display = "none";
+    update();
+    await window.switchIdInputMode("camera");
+  };
+  async function recover() {
+    try {
+      const session = client.stored();
+      if (!session?.apiToken) {
+        history.replaceState(null, "", "login.html?complete-identity=1");
+        showIdentityRecovery();
+        message(
+          "loginMsg",
+          "Log in to continue identity submission without creating another account.",
+        );
+        return;
+      }
+      const verified = await client.verify(session.apiToken);
+      if (
+        verified.user?.role !== "citizen" ||
+        Number(verified.user.id) !== Number(session.id)
+      )
+        throw new Error("Log in with your citizen account to continue.");
+      const result = await client.identity(session.apiToken);
+      if (!signupActive) window.toggleAuth();
+      account = session;
+      transaction = window.AuthRegistration(client, account);
+      byId("regUser").value = account.username;
+      byId("regBarangay").value = account.barangay || "";
+      if (result.identity) {
+        identitySaved = true;
+        populate(result.identity);
+        scan = { valid: true, confidence: result.identity.ocrConfidence };
+        message(
+          "idVerifyStatus",
+          "Previously saved identity facts. Review and confirm; this is not a new OCR result.",
+        );
+      }
+      message(
+        "signupMsg",
+        "Account already exists. Complete or retry only identity submission.",
+      );
+      update();
+    } catch (error) {
+      history.replaceState(null, "", "login.html?complete-identity=1");
+      showIdentityRecovery();
+      message("loginMsg", error.message, true);
+    }
+  }
+  function showIdentityRecovery() {
+    const recoverBtn = byId("recoverIdentityBtn");
+    if (!recoverBtn) return;
+    recoverBtn.hidden = !new URLSearchParams(
+      window.location.search,
+    ).has("complete-identity");
+  }
+  function clearLoginForm() {
+    byId("loginUser").value = "";
+    byId("loginPass").value = "";
+  }
+  if (new URLSearchParams(window.location.search).get("session") === "expired") {
+    message("loginMsg", "Your session has ended. Please sign in again.", true);
+    history.replaceState(null, "", "login.html");
+  }
+  showIdentityRecovery();
+  byId("loginForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (busy) return;
+    const button = event.target.querySelector('[type="submit"]');
+    busy = true;
+    button.disabled = true;
+    message("loginMsg", "");
+    try {
+      const session = await client.login(
+        byId("loginUser").value.trim(),
+        byId("loginPass").value,
+      );
+      window.LoginControls?.get(byId("loginForm"))?.rememberUsername();
+      byId("loginPass").value = "";
+      if (
+        session.role === "citizen" &&
+        new URLSearchParams(window.location.search).has("complete-identity")
+      ) {
+        busy = false;
+        await recover();
+      } else {
+        clearLoginForm();
+        window.location.replace(window.portalForRole(session.role));
+      }
+    } catch (error) {
+      message("loginMsg", error.message, true);
+    } finally {
+      busy = false;
+      button.disabled = false;
+    }
+  });
+  byId("signupForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (busy || registrationComplete) return;
+    try {
+      if (!scan?.valid || !confirmed)
+        throw new Error(
+          "Read your ID and confirm the reviewed information first.",
+        );
+      if (!account && !enrollment)
+        throw new Error("ID verification is required before registration.");
+      const data = validateFacts();
+      const barangay = byId("regBarangay").value;
+      if (!window.BACOLOD_BARANGAYS.includes(barangay))
+        throw new Error("Select an official Bacolod barangay.");
+      const username = byId("regUser").value.trim();
+      const password = byId("regPass").value;
+      if (!account && (username.length < 3 || username.length > 190))
+        throw new Error("Username must be 3 to 190 characters.");
+      if (
+        !account &&
+        (password.length < 6 || new TextEncoder().encode(password).length > 72)
+      )
+        throw new Error(
+          "Password must be at least 6 characters and at most 72 UTF-8 bytes.",
+        );
+      if (!account && password !== byId("regPassConfirm").value)
+        throw new Error("Passwords do not match.");
+      busy = true;
+      update();
+      message(
+        "signupMsg",
+        "Submitting account and identity information. Waiting for server confirmation...",
+      );
+      const result = await transaction.submit(
+        account ? { username, password, fullName: data.fullName, barangay } :
+          { username, password, barangay, token: enrollment?.token, position: await freshPosition() },
+        data,
+      );
+      account = result.account;
+      identitySaved = true;
+      const status = result.identity.documentValidationStatus;
+      registrationComplete = status !== "fail";
+      if (registrationComplete && enrollment?.manual) saveReview(null);
+      reviewStatus();
+      message(
+        "signupMsg",
+        status === "fail"
+          ? "Account created. Identity saved but failed document validation; correct the details."
+          : status === "needs_review"
+            ? "Account created. Identity saved and needs manual review. Opening Citizen Portal..."
+            : enrollment ? "Registration verified. Opening Citizen Portal..."
+              : "Account created. Identity information saved. Opening Citizen Portal...",
+        status === "fail",
+      );
+      releasePhoto();
+      byId("idUploadArea").querySelector(".upload-placeholder").style.display =
+        "";
+      window.stopIdentityOCR()?.catch(() => { });
+    } catch (error) {
+      account = transaction.account();
+      message(
+        "signupMsg",
+        (account
+          ? identitySaved
+            ? "Account exists; identity changes were not saved. "
+            : "Account created; identity was not saved. Retry identity submission. "
+          : "") + error.message,
+        true,
+      );
+      if (!account && error.status === 409 && error.code !== "REGISTRATION_ID_ALREADY_USED") {
+        byId("regUser").setAttribute("aria-invalid", "true");
+        byId("regUser").setAttribute("aria-describedby", "signupMsg");
+      }
+    } finally {
+      if (account) {
+        byId("regPass").value = "";
+        byId("regPassConfirm").value = "";
+      }
+      busy = false;
+      update();
+      if (!account && byId("regUser").hasAttribute("aria-invalid"))
+        byId("regUser").focus();
+    }
+    if (registrationComplete) window.location.replace("citizen.html");
+  });
+  byId("signupForm").addEventListener(
+    "invalid",
+    (event) => {
+      const label = {
+        regBarangay: "Registration barangay",
+        regUser: "Username",
+        regPass: "Password",
+        regPassConfirm: "Confirm password",
+      }[event.target.id] || "Registration information";
+      message("signupMsg", `${label}: ${event.target.validationMessage}`, true);
+    },
+    true,
+  );
+  byId("regUser").addEventListener("input", () => {
+    if (byId("regUser").hasAttribute("aria-invalid")) {
+      byId("regUser").removeAttribute("aria-invalid");
+      byId("regUser").removeAttribute("aria-describedby");
+      message("signupMsg", "");
+    }
+  });
+  byId("govIdInput").addEventListener("change", (event) => {
+    const selected = event.target.files[0];
+    if (selected && !busy) {
+      if (account) void selectPhoto(selected);
+      else void testUploadedId(selected);
+    }
+    event.target.value = "";
+  });
+  byId("idUploadArea").addEventListener("click", (event) => {
+    if (event.target !== byId("govIdInput") && !busy)
+      byId("govIdInput").click();
+  });
+  byId("idUploadArea").addEventListener("keydown", (event) => {
+    if (["Enter", " "].includes(event.key)) {
+      event.preventDefault();
+      byId("govIdInput").click();
+    }
+  });
+  byId("idModeUploadBtn").addEventListener("click", () => {
+    if (!busy) byId("govIdInput").click();
+  });
+  byId("verifyIdBtn").addEventListener("click", () => readPhoto());
+  byId("cancelIdScanBtn").addEventListener("click", () => {
+    generation++;
+    scanning = false;
+    byId("idCaptureProgress").hidden = true;
+    busy = false;
+    confirmed = false;
+    window._visionStepCb = null;
+    window.stopIdentityOCR()?.catch(() => { });
+    if (account || (!enrollment && !provisionalReview) || !scan?.valid) {
+      scan = null;
+      byId("identityFields").style.display = "none";
+    }
+    message("idVerifyStatus", "Scan cancelled. Select Verify ID to retry.");
+    update();
+  });
+  byId("confirmIdentityBtn").addEventListener("click", () => {
+    if (!account && !enrollment && !provisionalReview) return;
+    try {
+      validateFacts();
+      if (!scan?.valid)
+        throw new Error(
+          "The image did not meet the existing scan threshold. Retake or upload a clearer ID.",
+        );
+      confirmed = true;
+      message(
+        "signupMsg",
+        "Information confirmed for submission.",
+      );
+      reviewStatus();
+      update();
+    } catch (error) {
+      message("signupMsg", error.message, true);
+      message("identityReviewStatus", error.message, true);
+    }
+  });
+  for (const id of fields) {
+    const el = byId(id);
+    const handleFieldChange = () => {
+      if (id === "regDocumentType" && el.value !== selectedDocumentType) {
+        byId("regExpiryDate").value = "";
+        editedFields.delete("regExpiryDate");
+        updateExpiryField();
+      }
+      editedFields.add(id);
+      if (registrationComplete)
+        message(
+          "signupMsg",
+          "Account already exists. Confirm your corrections, then save identity changes.",
+        );
+      registrationComplete = false;
+      confirmed = false;
+      reviewStatus();
+      update();
+    };
+    el.addEventListener("input", handleFieldChange);
+    el.addEventListener("change", handleFieldChange);
+  }
+  byId("recoverIdentityBtn")?.addEventListener("click", recover);
+  window.addEventListener("pagehide", () => {
+    window.stopAutoDetectBarangay?.("signupGeoCanvas");
+    generation++;
+    signupActive = false;
+    stopCamera();
+    releasePhoto();
+    scan = null;
+    window._visionStepCb = null;
+    window.stopIdentityOCR()?.catch(() => { });
+    for (const id of [...fields, "regPass", "regPassConfirm", "loginUser", "loginPass"])
+      byId(id).value = "";
+  });
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      busy = false;
+      signupActive = false;
+      reset();
+      clearLoginForm();
+      message("loginMsg", "");
+      showIdentityRecovery();
+      byId("loginSection").style.display = "block";
+      byId("signupSection").style.display = "none";
+    }
+  });
+  for (const [value, type] of Object.entries(
+    IdIdentityService.SUPPORTED_ID_TYPES,
+  ))
+    byId("regDocumentType").add(new Option(type.label, value));
+  byId("regBarangay").addEventListener("change", () => { barangayEdited = true; });
+  for (const barangay of window.BACOLOD_BARANGAYS)
+    byId("regBarangay").add(new Option(barangay, barangay));
+  reset();
+})();
+

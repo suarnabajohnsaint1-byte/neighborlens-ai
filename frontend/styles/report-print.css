@@ -1,0 +1,95 @@
+html:has(body > .rm-print-section), body:has(> .rm-print-section) {
+    display: block;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    margin: 0;
+    color: #141414;
+    background: #fff;
+}
+
+body:has(> .rm-print-section) > :not(.rm-print-section) { display: none !important; }
+
+body > .rm-print-section {
+    page: neighborlens-report;
+    display: block;
+    width: 100%;
+    max-width: 185mm;
+    margin-inline: auto;
+    color: #141414;
+    font: 10.5pt/1.4 Arial, sans-serif;
+    overflow-wrap: anywhere;
+}
+
+.rm-print-section :is(h1, h2, h3, h4, p, li, dt, dd, figcaption, span) { color: inherit; }
+.rm-print-section h1 { font-size: 18pt; margin: 0 0 4pt; }
+.rm-print-section h2 { font-size: 14pt; margin: 0 0 7pt; }
+.rm-print-section h3 { font-size: 11pt; margin: 8pt 0 3pt; }
+.rm-print-section :is(h1, h2, h3, h4) { break-after: avoid; }
+.rm-print-section p { margin: 0 0 4pt; white-space: pre-wrap; }
+.rm-print-section .rm-print-brand { font-size: 9pt; font-weight: 700; }
+
+.rm-print-report { margin-top: 12pt; }
+.rm-print-report + .rm-print-report { margin-top: 20pt; }
+.rm-print-report dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5pt 14pt; margin: 0 0 6pt; }
+.rm-print-report dl > div, .rm-print-section .rm-breakdown > div { break-inside: avoid; }
+.rm-print-report dt { font-size: 9pt; font-weight: 700; }
+.rm-print-report dd { margin: 0; }
+
+.rm-print-photo-row {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    break-inside: avoid;
+    margin: 0 0 5pt;
+}
+
+.rm-print-photo-row figure {
+    display: table-cell;
+    width: 50%;
+    padding-inline-end: 6pt;
+    vertical-align: top;
+    margin: 0;
+}
+
+.rm-print-photo-row figure + figure { padding-inline: 6pt 0; }
+.rm-print-photo-row:has(> figure:only-child) { width: 50%; }
+.rm-print-photo-row figcaption { font-size: 9pt; margin-top: 3pt; }
+.rm-print-photo-frame {
+    display: grid;
+    place-items: center;
+    height: 190pt;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.rm-print-photo-frame img {
+    display: block;
+    width: 100%;
+    height: 190pt;
+    object-fit: contain;
+}
+
+.rm-print-photo-frame img[hidden] { display: none; }
+.rm-print-activity { margin: 0; padding-left: 15pt; }
+.rm-print-activity > li { margin-bottom: 5pt; }
+.rm-print-activity > li:has(.rm-print-photo-row) { break-inside: avoid; }
+@page neighborlens-report {
+    margin: 12mm;
+
+    @top-left { content: ""; }
+    @top-center {
+        content: var(--report-print-heading, "");
+        font: 9pt Arial, sans-serif;
+        color: #141414;
+    }
+    @top-right { content: ""; }
+    @bottom-left { content: ""; }
+    @bottom-right {
+        content: counter(page) " / " counter(pages);
+        font: 9pt Arial, sans-serif;
+        color: #141414;
+    }
+}
+

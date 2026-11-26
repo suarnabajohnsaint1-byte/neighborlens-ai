@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1677FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">Export Excel</title>
+  <path d="M13.5 2.75H6.75A2.25 2.25 0 0 0 4.5 5v14a2.25 2.25 0 0 0 2.25 2.25h10.5A2.25 2.25 0 0 0 19.5 19V8.75L13.5 2.75Z"/>
+  <path d="M13.5 2.75V7a1.75 1.75 0 0 0 1.75 1.75h4.25"/>
+  <rect x="7.5" y="11" width="9" height="7" rx="0.6"/>
+  <path d="M12 11v7M7.5 14.5h9"/>
+</svg>

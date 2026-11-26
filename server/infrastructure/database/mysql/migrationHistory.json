@@ -1,0 +1,8 @@
+{
+  "001_init_schema.sql": [
+    "082a7aa1f22e01f7f9358ff8e79123552775a8861ed0fb2ba2680b68e06799c7"
+  ],
+  "009_community_feed.sql": [
+    "c7cb9ad5dee5cb2eb4b4a2ad517a5b2f157c514cabdece8237a8436edc1576b0"
+  ]
+}

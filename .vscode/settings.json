@@ -1,0 +1,23 @@
+{
+  "liveServer.settings.root": "/frontend",
+  "liveServer.settings.mount": [["/frontend", "./frontend"], ["/shared", "./shared"]],
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts",
+    "storage/**",
+    "uploads/**",
+    "server/**",
+    ".data/**",
+    "models/**",
+    "data/**",
+    "scripts/scratch/**",
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.db*",
+    "**/*.wal",
+    "**/*.shm"
+  ],
+  "liveServer.settings.port": 5501
+}

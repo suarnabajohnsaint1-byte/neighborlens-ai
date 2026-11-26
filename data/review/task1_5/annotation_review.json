@@ -1,0 +1,111 @@
+{
+  "dataset": "data/datasets/neighborlens_paper_aligned_v3_clean",
+  "items": [
+    {
+      "id": "AR-001",
+      "files": [
+        "train/scene_0051_a.jpg",
+        "train/scene_0051_b.jpg"
+      ],
+      "sources": [
+        "train/38_jpg.rf.6c5aa07a18edafd88d7c4f524047fb20.jpg",
+        "test/54_jpg.rf.820b201dac71f0cc04011ca9c873af49.jpg"
+      ],
+      "issue": "CONTRADICTORY_LABEL",
+      "finding": "Same photograph of a concrete footpath. Copy a labels one box as road_crack, copy b labels the same region as pothole. The surface shows extensive interconnected cracking around a dark, debris-filled depression whose depth cannot be established; the location is a footpath rather than a carriageway.",
+      "decision": "QUARANTINE_PENDING_HUMAN_REVIEW",
+      "automatic_fix": false,
+      "blocking": true,
+      "human_action": "Decide road_crack, pothole, both as separate boxes, or out of scope (footpath). Both copies must then carry identical labels, or one copy is dropped as a duplicate."
+    },
+    {
+      "id": "AR-002",
+      "files": [
+        "valid/scene_0031_a.jpg"
+      ],
+      "sources": [
+        "train/27_jpg.rf.85feb2f5151db875f9c46ba9c965207b.jpg"
+      ],
+      "issue": "POSSIBLE_FRAGMENTATION",
+      "finding": "Seven pothole boxes on a gravel road. Each box covers a separate water-filled pothole; overlaps come from adjacent potholes, not from one defect split into pieces. Two small puddles at the far top edge are unlabelled.",
+      "decision": "NOT_FRAGMENTATION_KEEP",
+      "automatic_fix": false,
+      "blocking": false,
+      "human_action": "Optional: decide whether the two distant puddles at the top edge are potholes and add boxes if so."
+    },
+    {
+      "id": "AR-003",
+      "files": [
+        "train/scene_0034_a.jpg"
+      ],
+      "sources": [
+        "train/28_jpg.rf.a036f1cf078acdf3232dc0ecbc39b1d5.jpg"
+      ],
+      "issue": "POSSIBLE_FRAGMENTATION",
+      "finding": "Pothole lines 1-5 enclose five distinct potholes and are acceptable. road_crack lines 8 and 9 enclose visible cracks. road_crack lines 6, 7 and 10 enclose faint surface texture with no distinct crack, and the cracking that radiates from pothole line 1 is split across boxes.",
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "automatic_fix": false,
+      "blocking": true,
+      "human_action": "Remove or redraw road_crack lines 6, 7 and 10 following the crack box rules in the guideline."
+    },
+    {
+      "id": "AR-004",
+      "files": [
+        "train/scene_0101_a.jpg"
+      ],
+      "sources": [
+        "train/60_jpg.rf.c4a554024afe359f7acca5aedcfb9e8b.jpg"
+      ],
+      "issue": "MICRO_BOXES",
+      "finding": "Line 1 is a correct large pothole box. Lines 2 and 3 are micro boxes (area 0.0027 and 0.0017 of the image) on dark specks in the far distance that cannot be confirmed as potholes. Lines 4 and 6 are small but visible distant potholes.",
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "automatic_fix": false,
+      "blocking": true,
+      "human_action": "Confirm or delete pothole lines 2 and 3."
+    },
+    {
+      "id": "AR-005",
+      "files": [
+        "train/scene_0036_a.jpg",
+        "train/scene_0136_a.jpg",
+        "train/scene_0136_b.jpg",
+        "train/scene_0145_a.jpg",
+        "test/scene_0094_a.jpg"
+      ],
+      "sources": [
+        "train/29_jpg.rf.3ec43d12eb078500f69a138aa52651c6.jpg",
+        "valid/20_jpg.rf.10ee04a546440f3082e7b4f8548bceb1.jpg",
+        "valid/24_jpg.rf.b50ed67bf398524b0c67f7a0a4cf1910.jpg",
+        "valid/34_jpg.rf.a965c38e71fe5fe222e97dd73a55982e.jpg",
+        "train/58_jpg.rf.053b07a247463456ac2fb8c26dcb7415.jpg"
+      ],
+      "issue": "CLASS_DEFINITION_NOT_MET",
+      "finding": "broken_streetlight boxes on luminaires with no visible physical damage; scene_0036 and scene_0136 are illuminated at night, scene_0094 is an intact globe lamp, scene_0145 is a lantern whose glass appears intact.",
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "automatic_fix": false,
+      "blocking": true,
+      "human_action": "Confirm visible damage or non-function per the guideline. If not met, remove the box; the image then becomes a candidate negative and must stay in its current split or be excluded, never moved into test."
+    },
+    {
+      "id": "AR-006",
+      "files": [
+        "valid/scene_0083_a.jpg",
+        "valid/scene_0052_a.jpg",
+        "train/scene_0148_a.jpg"
+      ],
+      "sources": [
+        "train/52_jpg.rf.4db93eeac56f61501c4e39bd39211ad9.jpg",
+        "train/38_jpg.rf.a1cdee58aaf32c623e9ace342f1be160.jpg",
+        "valid/39_jpg.rf.0a38af69b28dd87469019dc4c25ff20b.jpg"
+      ],
+      "issue": "BOX_EXTENT_INCONSISTENT",
+      "finding": "For tilted or fallen lighting columns these images box only the luminaire, while scene_0114, scene_0143, scene_0153 and scene_0155 box the whole fallen column.",
+      "decision": "MANUAL_REVIEW_REQUIRED",
+      "automatic_fix": false,
+      "blocking": true,
+      "human_action": "Redraw broken_streetlight boxes to cover the visible column and luminaire as one object per the guideline."
+    }
+  ],
+  "reviewed_by": "AI-assisted visual review in Claude Code session; every MISSING_ANNOTATION, AMBIGUOUS and MANUAL_REVIEW_REQUIRED entry needs human confirmation",
+  "review_date": "2026-10-01"
+}

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NeighborLens Citizen Portal</title>
+    <link rel="icon" type="image/png" href="assets/logo/neighborlens-logo.png">
+    <script src="js/shared/themeManager.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/sidebar.css?v=brand-logo">
+    <link rel="stylesheet" href="styles/my-reports.css?v=3">
+    <link rel="stylesheet" href="styles/citizen-portal.css?v=assessment-summary">
+    <link rel="stylesheet" href="styles/report-camera.css?v=2">
+    <link rel="stylesheet" href="styles/components/landmark-field.css">
+    <link rel="stylesheet" href="styles/report-details.css">
+    <link rel="stylesheet" href="styles/report-gis.css">
+    <link rel="stylesheet" href="styles/community.css?v=10">
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="styles/portal-components.css">
+    <link rel="stylesheet" href="styles/theme-controls.css">
+    <link rel="stylesheet" href="styles/notifications.css">
+    <script src="js/auth/security.js" defer></script>
+    <script src="js/shared/appearanceControl.js" defer></script>
+    <script src="js/shared/portalSidebar.js?v=brand-logo" defer></script>
+    <script src="js/citizen/notificationCenter.js" defer></script>
+
+</head>
+
+<body class="citizen-portal" data-citizen-section="submitSection">
+    <div class="dashboard">
+        <aside class="sidebar" data-portal-sidebar="citizen" aria-label="Portal sidebar"></aside>
+
+        <main class="content">
+            <header class="citizen-header">
+                <div class="citizen-header-text">
+                    <span class="citizen-portal-tag">CITIZEN PORTAL</span>
+                    <h1 id="citizenPageTitle" class="citizen-header-title">Submit Report</h1>
+                    <p class="citizen-header-desc">
+                        Report a local issue with two photos.
+                    </p>
+                </div>
+                <div class="citizen-header-actions">
+                    <div class="notification-bell-container" data-notification-center>
+                        <button id="citizenNotificationBell" class="notification-bell-btn" type="button"
+                            aria-label="Notifications" aria-expanded="false" aria-controls="notificationPopover"
+                            title="Notifications">
+                            <i class="bx bx-bell" aria-hidden="true"></i>
+                            <span class="notification-badge" hidden aria-live="polite"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div id="notificationPopover" class="notification-popover" hidden role="region"
+                aria-label="Notifications popover">
+                <div class="notification-popover-header">
+                    <span class="notification-popover-title">Notifications</span>
+                    <button type="button" id="notificationMarkAllBtn" class="notification-mark-all-btn">Mark all as
+                        read</button>
+                </div>
+                <ul id="notificationList" class="notification-list" role="list"></ul>
+            </div>
+
+            <section id="submitSection">
+                <div class="citizen-report-form">
+                    <form id="reportForm">
+
+                        <!-- STEP 1: Location -->
+                        <div class="citizen-step-card" id="stepLocationCard" role="group"
+                            aria-labelledby="stepLocationTitle">
+                            <div class="citizen-step-header">
+                                <span class="citizen-step-badge">1</span>
+                                <div class="citizen-step-title-wrap">
+                                    <h2 class="citizen-step-title" id="stepLocationTitle">Location</h2>
+                                    <p class="citizen-step-subtitle">Your location is detected automatically.</p>
+                                </div>
+                                <button type="button" class="citizen-map-open" id="citizenMapOpen"
+                                    aria-label="Open location map" aria-haspopup="dialog"
+                                    aria-controls="citizenMapDialog">
+                                    <i class="bx bxs-map-alt" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <div class="citizen-step-body">
+                                <div id="gpsStatus" role="status"></div>
+                                <div class="citizen-inline-map" id="citizenInlineMap">
+                                    <div id="geoCanvas" class="live-map" aria-label="Live location map"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: Photos of the issue -->
+                        <div class="citizen-step-card" id="stepPhotosCard">
+                            <div class="citizen-step-header">
+                                <span class="citizen-step-badge">2</span>
+                                <div class="citizen-step-title-wrap">
+                                    <h2 class="citizen-step-title">Photos of the issue</h2>
+                                    <p class="citizen-step-subtitle">Take two clear photos of the same issue from
+                                        different angles.</p>
+                                </div>
+                            </div>
+
+                            <div class="citizen-step-body">
+                                <div id="reportUploadAreaWrapper">
+                                    <div class="citizen-upload-dropzone" id="uploadArea">
+                                        <input type="file" id="imgInput" accept="image/*" multiple disabled
+                                            style="display:none;">
+
+                                        <div id="dropzoneEmptyState" class="citizen-dropzone-empty">
+                                            <div class="citizen-upload-illustration" aria-hidden="true">
+                                                <img src="assets/icons/upload-two-photos.svg"
+                                                    alt="Two photos illustration" class="citizen-upload-two-svg"
+                                                    width="180" height="112">
+                                            </div>
+                                            <h3 class="citizen-dropzone-heading">Take two photos of the same
+                                                issue</h3>
+                                            <p class="citizen-dropzone-sub">Use different angles or sides. Both photos
+                                                must show the same damage type.</p>
+
+                                            <div class="citizen-dropzone-buttons">
+                                                <button type="button" class="citizen-btn-secondary"
+                                                    id="reportModeCameraBtn" data-report-camera aria-haspopup="dialog">
+                                                    <i class="bx bx-camera" aria-hidden="true"></i> Use camera
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="imgPreviewGrid" class="citizen-preview-grid" style="display:none;">
+                                            <div class="preview-frame citizen-preview-frame" id="previewFrame1"
+                                                role="button" tabindex="0"
+                                                title="Click to view full photo with AI detection bounding boxes"
+                                                onclick="openCitizenPhotoZoom(0)"
+                                                onkeydown="if(event.key==='Enter'||event.key===' ')openCitizenPhotoZoom(0)">
+                                                <span class="citizen-photo-badge">Photo 1</span>
+                                                <button type="button" class="citizen-photo-delete-btn"
+                                                    title="Remove photo 1"
+                                                    onclick="event.stopPropagation(); deleteCitizenPhoto(0)"
+                                                    aria-label="Remove photo 1">
+                                                    <i class="bx bx-trash" aria-hidden="true"></i>
+                                                </button>
+                                                <img id="imgPreview" class="citizen-preview-img" style="display:none;"
+                                                    alt="Issue photo 1">
+                                            </div>
+                                            <div class="preview-frame citizen-preview-frame" id="previewFrame2"
+                                                role="button" tabindex="0"
+                                                title="Click to view full photo with AI detection bounding boxes"
+                                                onclick="openCitizenPhotoZoom(1)"
+                                                onkeydown="if(event.key==='Enter'||event.key===' ')openCitizenPhotoZoom(1)">
+                                                <span class="citizen-photo-badge">Photo 2</span>
+                                                <button type="button" class="citizen-photo-delete-btn"
+                                                    title="Remove photo 2"
+                                                    onclick="event.stopPropagation(); deleteCitizenPhoto(1)"
+                                                    aria-label="Remove photo 2">
+                                                    <i class="bx bx-trash" aria-hidden="true"></i>
+                                                </button>
+                                                <img id="imgPreview2" class="citizen-preview-img" style="display:none;"
+                                                    alt="Issue photo 2">
+                                            </div>
+                                        </div>
+
+                                        <div id="previewActiveBar" class="citizen-preview-active-bar"
+                                            style="display:none;">
+                                            <div class="citizen-preview-meta">
+                                                <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                                                <span id="previewAttachedCount">2 of 2 photos attached</span>
+                                            </div>
+                                            <div class="citizen-preview-actions">
+                                                <button type="button" class="citizen-preview-action-btn"
+                                                    id="retakePhotosBtn" data-report-camera data-camera-retake-pair
+                                                    aria-haspopup="dialog">
+                                                    <i class="bx bx-camera" aria-hidden="true"></i> <span
+                                                        id="retakePhotosLabel">Retake photos</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="visionDetectBox" style="display:none; margin-top:16px;"></div>
+
+                                <div class="citizen-photo-tips" id="photoTipsBox">
+                                    <div class="citizen-photo-tips-header">
+                                        <i class="bx bx-info-circle" aria-hidden="true"></i>
+                                        <span>Photo tips</span>
+                                    </div>
+                                    <div class="citizen-photo-tips-grid">
+                                        <div class="citizen-tip-item">
+                                            <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                                            <span>Take photos of the same issue</span>
+                                        </div>
+                                        <div class="citizen-tip-item">
+                                            <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                                            <span>Show the problem clearly</span>
+                                        </div>
+                                        <div class="citizen-tip-item">
+                                            <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                                            <span>Use different angles or sides</span>
+                                        </div>
+                                        <div class="citizen-tip-item">
+                                            <i class="bx bxs-check-circle" aria-hidden="true"></i>
+                                            <span>Include surroundings for context</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Issue details -->
+                        <div class="citizen-step-card" id="stepDetailsCard">
+                            <div class="citizen-step-header">
+                                <span class="citizen-step-badge">3</span>
+                                <div class="citizen-step-title-wrap">
+                                    <h2 class="citizen-step-title">Issue details</h2>
+                                    <p class="citizen-step-subtitle">Provide more information about the issue to help
+                                        our team.</p>
+                                </div>
+                            </div>
+
+                            <div class="citizen-step-body citizen-details-grid">
+                                <div id="landmarkField" class="citizen-landmark-section"></div>
+                                <div class="citizen-category-col">
+                                    <label class="citizen-field-label">Issue category <span
+                                            class="citizen-req-mark">*</span></label>
+
+                                    <div class="citizen-category-cards-grid" role="radiogroup"
+                                        aria-label="Issue category" aria-required="true">
+                                        <button type="button" class="citizen-category-card" data-cat-id="pothole"
+                                            data-cat-value="Road Damage" role="radio" aria-checked="false">
+                                            <span class="citizen-cat-icon" aria-hidden="true"><span
+                                                    class="report-category-icon report-category-icon--pothole"></span></span>
+                                            <span class="citizen-cat-name">Pothole</span>
+                                        </button>
+
+                                        <button type="button" class="citizen-category-card" data-cat-id="road_crack"
+                                            data-cat-value="Road Damage" role="radio" aria-checked="false">
+                                            <span class="citizen-cat-icon" aria-hidden="true"><span
+                                                    class="report-category-icon report-category-icon--road-crack"></span></span>
+                                            <span class="citizen-cat-name">Road Crack</span>
+                                        </button>
+
+                                        <button type="button" class="citizen-category-card"
+                                            data-cat-id="broken_streetlight" data-cat-value="Street Light Damage"
+                                            role="radio" aria-checked="false">
+                                            <span class="citizen-cat-icon" aria-hidden="true"><span
+                                                    class="report-category-icon report-category-icon--streetlight"></span></span>
+                                            <span class="citizen-cat-name">Broken Streetlight</span>
+                                        </button>
+
+                                        <button type="button" class="citizen-category-card"
+                                            data-cat-id="clogged_drainage" data-cat-value="Flooding / Drainage"
+                                            role="radio" aria-checked="false">
+                                            <span class="citizen-cat-icon" aria-hidden="true"><span
+                                                    class="report-category-icon report-category-icon--drainage"></span></span>
+                                            <span class="citizen-cat-name">Clogged Drainage</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="input-group" id="citizenCategoryGroup" hidden style="margin-top:10px;">
+                                        <label for="citizenCategory"
+                                            style="font-size:12px; color:var(--text-dim);">Citizen Report
+                                            Category</label>
+                                        <select id="citizenCategory" disabled class="citizen-select-dropdown">
+                                            <option value="">Select category</option>
+                                        </select>
+                                        <p id="citizenCategoryExplanation" class="assessment-note" aria-live="polite">
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="citizen-desc-col">
+                                    <label for="description" class="citizen-field-label">
+                                        Description <span class="citizen-req-mark">*</span>
+                                    </label>
+                                    <div class="citizen-textarea-wrap">
+                                        <textarea id="description" name="description" rows="4" maxlength="500"
+                                            placeholder="Tell us more about the issue (e.g. what you see, when it happened, additional details)..."
+                                            required></textarea>
+                                        <div class="citizen-char-counter" id="charCounter">0/500</div>
+                                    </div>
+                                </div>
+
+                                <div class="citizen-submit-row">
+                                    <button type="submit" id="submitBtn" class="citizen-submit-btn" disabled>
+                                        <i class="bx bx-send citizen-submit-icon" aria-hidden="true"></i>
+                                        <span>Submit Report</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="aiResult" style="display:none;"></div>
+                </div>
+            </section>
+
+            <section id="myReportsSection" style="display:none;">
+                <div class="mr-toolbar">
+                    <label class="mr-search"><span class="mr-sr-only">Search reports</span><i class="bx bx-search"
+                            aria-hidden="true"></i><input id="myReportsSearch" type="search"
+                            placeholder="Search reports..." autocomplete="off"></label>
+                    <label class="mr-sr-only" for="myReportsStatus">Report status</label>
+                    <select id="myReportsStatus">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <label class="mr-sr-only" for="myReportsSort">Sort reports</label>
+                    <select id="myReportsSort">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+                <div id="myReports" role="list" aria-labelledby="citizenPageTitle"></div>
+                <div class="mr-footer">
+                    <p id="myReportsCount" class="mr-count" role="status" aria-live="polite"></p>
+                    <nav id="myReportsPagination" class="portal-pagination" aria-label="Report pages" hidden>
+                        <label class="portal-page-size">Per page<select id="myReportsPageSize"
+                                aria-label="Reports per page">
+                                <option>3</option>
+                                <option>5</option>
+                                <option selected>6</option>
+                                <option>10</option>
+                                <option>20</option>
+                            </select></label>
+                        <div class="portal-page-buttons"><button class="portal-icon-button" type="button" data-page="-1"
+                                aria-label="Previous page"><i class="bx bx-chevron-left"
+                                    aria-hidden="true"></i></button><span class="portal-page-number"
+                                aria-live="polite"></span><button class="portal-icon-button" type="button" data-page="1"
+                                aria-label="Next page"><i class="bx bx-chevron-right" aria-hidden="true"></i></button>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+            <section id="communitySection" class="community-feed" style="display:none;"></section>
+        </main>
+        <nav class="cf-mobile-bottom-nav" aria-label="Citizen mobile navigation">
+            <button type="button" class="cf-mobile-nav-item active" data-mobile-nav="communitySection"
+                onclick="showSection('communitySection')">
+                <i class="bx bx-group" aria-hidden="true"></i>
+                <span>Community</span>
+            </button>
+            <button type="button" class="cf-mobile-nav-item" data-mobile-nav="myReportsSection"
+                onclick="showSection('myReportsSection')">
+                <i class="bx bx-file-blank" aria-hidden="true"></i>
+                <span>My Reports</span>
+            </button>
+            <button type="button" class="cf-mobile-nav-item" data-mobile-nav="submitSection"
+                onclick="showSection('submitSection')">
+                <i class="bx bxs-edit" aria-hidden="true"></i>
+                <span>Submit report</span>
+            </button>
+        </nav>
+    </div>
+
+    <dialog id="reportCameraDialog" class="report-camera" aria-label="Capture issue photos">
+        <div class="report-camera-topbar">
+            <button type="button" class="report-camera-icon" data-camera-close aria-label="Close camera" autofocus>
+                <i class="bx bx-x" aria-hidden="true"></i>
+            </button>
+            <div class="report-camera-guide" role="status">
+                <p data-camera-step></p>
+            </div>
+        </div>
+        <div class="report-camera-viewfinder">
+            <video playsinline autoplay muted aria-label="Live camera preview"></video>
+            <div class="report-camera-focus" data-camera-focus aria-hidden="true" hidden></div>
+            <div class="report-camera-feedback">
+                <p data-camera-status role="status"></p>
+                <button type="button" data-camera-retry hidden>Try again</button>
+            </div>
+        </div>
+        <img class="report-camera-flight" data-camera-flight alt="" hidden>
+        <div class="report-camera-flash" data-camera-flash aria-hidden="true"></div>
+        <div class="report-camera-controls">
+            <div class="report-camera-zoom" data-camera-zoom-controls role="group" aria-label="Camera zoom" hidden>
+                <button type="button" data-camera-zoom></button>
+                <button type="button" data-camera-zoom></button>
+                <span data-camera-zoom-level hidden></span>
+            </div>
+            <div class="report-camera-photos" aria-label="Captured photos">
+                <button type="button" data-camera-photo="1" aria-label="Retake photo 1" disabled><img alt=""
+                        hidden><span>1</span></button>
+                <button type="button" data-camera-photo="2" aria-label="Retake photo 2" disabled><img alt=""
+                        hidden><span>2</span></button>
+            </div>
+            <button type="button" class="report-camera-shutter" data-camera-capture aria-label="Capture photo 1"
+                disabled></button>
+            <button type="button" class="report-camera-icon" data-camera-flip aria-label="Flip camera" hidden>
+                <i class="bx bx-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </dialog>
+    <dialog id="communityEditDialog" class="cf-dialog" aria-labelledby="communityEditTitle">
+        <form>
+            <h2 id="communityEditTitle">Edit community content</h2>
+            <p class="cf-dialog-desc" hidden>Are you sure you want to delete this content? This action cannot be undone.
+            </p>
+            <label><span class="cf-sr-only">Community content</span><textarea maxlength="2000" rows="5"
+                    required></textarea></label>
+            <p role="status" aria-live="polite" class="cf-dialog-status"></p>
+            <div class="cf-dialog-actions">
+                <button type="button" data-close>Cancel</button>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="communityReportPicker" class="cf-dialog cf-selector-dialog" aria-labelledby="communityPickerTitle">
+        <div class="cf-selector-dialog-inner">
+            <div class="cf-selector-header">
+                <h2 id="communityPickerTitle">Share a Report with Community</h2>
+                <button type="button" class="cf-icon-button" data-close aria-label="Close dialog"><i class="bx bx-x"
+                        aria-hidden="true"></i></button>
+            </div>
+            <p class="cf-selector-subtitle">Request Admin review to share your report description and submitted photos.
+                Pending and rejected requests are not visible in the Community Feed.</p>
+            <div id="communitySelectorList" class="cf-selector-list" role="list"></div>
+            <p id="communitySelectorStatus" class="cf-selector-status" role="status" aria-live="polite"></p>
+            <div class="cf-dialog-actions">
+                <button type="button" class="cf-button-secondary" data-close>Close</button>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="communityReportDialog" class="report-dialog" aria-labelledby="communityReportTitle">
+        <div class="report-dialog-header">
+            <h2 id="communityReportTitle" data-report-dialog-title>Published report</h2><button type="button"
+                class="portal-icon-button" data-report-dialog-close aria-label="Close published report"><i
+                    class="bx bx-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="report-dialog-body">
+            <p data-report-dialog-state role="status" hidden></p>
+            <div data-report-dialog-content></div>
+        </div>
+    </dialog>
+    <dialog id="citizenEvidenceDialog" class="rd-dialog" aria-labelledby="citizenEvidenceTitle">
+        <div class="rd-dialog-heading">
+            <div>
+                <h2 id="citizenEvidenceTitle">Photo 1</h2>
+                <p id="citizenEvidenceSubtitle" class="rd-dialog-subtitle">Report evidence</p>
+            </div>
+            <div class="rd-dialog-actions">
+                <div class="rd-zoom-toolbar" role="toolbar" aria-label="Zoom controls">
+                    <button type="button" class="rd-icon-button" id="citizenZoomOut" data-zoom="out"
+                        aria-label="Zoom out" title="Zoom out"><i class="bx bx-minus" aria-hidden="true"></i></button>
+                    <button type="button" class="rd-icon-button rd-zoom-reset" id="citizenResetZoom" data-zoom="reset"
+                        aria-label="Reset zoom" title="Reset zoom">100%</button>
+                    <button type="button" class="rd-icon-button" id="citizenZoomIn" data-zoom="in" aria-label="Zoom in"
+                        title="Zoom in"><i class="bx bx-plus" aria-hidden="true"></i></button>
+                </div>
+                <button type="button" class="rd-icon-button" id="citizenToggleFullscreen" data-zoom="fullscreen"
+                    aria-label="Toggle full screen" title="Full screen"><i class="bx bx-fullscreen"
+                        aria-hidden="true"></i></button>
+                <button type="button" class="rd-icon-button" id="citizenCloseEvidence" data-zoom="close"
+                    onclick="closeCitizenPhotoZoom()" aria-label="Close enlarged photo" title="Close enlarged photo"><i
+                        class="bx bx-x" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="rd-dialog-viewport">
+            <img id="citizenEnlargedEvidence" alt="Enlarged issue evidence">
+        </div>
+        <div class="rd-dialog-hints" aria-hidden="true">Use the zoom controls to enlarge the photo</div>
+    </dialog>
+
+    <script src="../shared/reportVocabulary.js"></script>
+    <script src="../shared/manilaDates.js"></script>
+    <script src="js/shared/api.js"></script>
+    <script src="js/shared/reportMutations.js"></script>
+    <script src="js/shared/reportEvidence.js"></script>
+    <script src="js/shared/reports.js"></script>
+    <script src="js/shared/portalComponents.js"></script>
+    <script src="js/shared/reportPresentation.js"></script>
+    <script src="js/shared/reportCard.js?v=2"></script>
+    <script src="js/shared/mediaCarousel.js"></script>
+    <script src="js/shared/communityPublication.js"></script>
+    <script src="js/shared/evidenceZoom.js?v=touch-hints"></script>
+    <script src="js/shared/evidenceViewer.js?v=touch-hints"></script>
+    <script src="js/reports/incidentReviewPanel.js"></script>
+    <script src="js/reports/reportDetailsView.js"></script>
+    <script src="js/shared/reportDialog.js"></script>
+    <script src="js/community/communityApi.js?v=7"></script>
+    <script src="js/community/communityState.js?v=6"></script>
+    <script src="js/community/communityCards.js?v=7"></script>
+    <script src="js/community/communityComments.js?v=7"></script>
+    <script src="js/community/communityView.js?v=9"></script>
+    <script src="js/community/communityFeed.js?v=6"></script>
+    <script src="js/citizen/myReports.js"></script>
+    <script src="js/citizen/yoloDamageDetector.js?v=confidence-bands"></script>
+    <script src="js/citizen/damagePairAssessment.js?v=assessment-summary"></script>
+    <script src="js/citizen/citizenSeverityPresentation.js"></script>
+    <script src="js/citizen/citizenAssessmentPresentation.js"></script>
+    <script src="js/citizen/citizenCorrection.js?v=review-reasons"></script>
+    <script src="js/citizen/submissionReadiness.js"></script>
+    <script src="js/citizen/detectionOverlay.js?v=confidence-bands"></script>
+    <script src="js/shared/vision.js"></script>
+    <script src="js/map/reverseGeocode.js"></script>
+    <script src="shared/geoContainment.js"></script>
+    <script src="js/map/mapConfig.js?v=osm-land-v3"></script>
+    <script src="assets/vendor/leaflet/leaflet-global.js"></script>
+    <script src="js/map/geofence.js"></script>
+    <script src="js/citizen/reportCameraControls.js"></script>
+    <script src="js/citizen/reportCamera.js?v=retake-pair"></script>
+    <script src="js/citizen/photoValidation.js"></script>
+    <script src="js/citizen/sceneComparison.js"></script>
+    <script src="js/citizen/photoPreview.js"></script>
+    <script src="js/citizen/assessmentRenderer.js"></script>
+    <script src="js/citizen/evidenceViewerController.js"></script>
+    <script src="js/citizen/reportLocation.js"></script>
+    <script src="js/citizen/reportFormController.js"></script>
+    <script src="js/citizen/submissionResultRenderer.js"></script>
+    <script src="js/citizen/reportSubmission.js"></script>
+    <script src="js/citizen/photoWorkflow.js"></script>
+    <script src="js/citizen/components/landmarkField.js"></script>
+    <script src="js/citizen/citizen.js?v=report-modules"></script>
+    <script>
+        function showSection(id) {
+            if (!['submitSection', 'myReportsSection', 'communitySection'].includes(id)) return;
+            const changed = document.body.dataset.citizenSection !== id;
+            document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            document.body.dataset.citizenSection = id;
+            const headings = { submitSection: ['Submit Report', 'Report a local issue with two photos.'], myReportsSection: ['My Reports'], communitySection: ['Community Feed', 'Browse approved community reports and join discussions.'] };
+            const [title, description = ''] = headings[id];
+            document.querySelector('.citizen-header-title').textContent = title;
+            const subtitle = document.querySelector('.citizen-header-desc');
+            subtitle.textContent = description;
+            subtitle.hidden = !description;
+            window.PortalSidebar?.get(document.querySelector('[data-portal-sidebar]'))?.activate(id);
+            document.querySelectorAll('.cf-mobile-nav-item').forEach(b => b.classList.toggle('active', b.dataset.mobileNav === id));
+            const hash = id === 'myReportsSection' ? '#my-reports' : id === 'communitySection' ? '#community' : '';
+            if (window.location.hash !== hash) history.replaceState(null, '', `${location.pathname}${location.search}${hash}`);
+            if (changed) {
+                window.scrollTo(0, 0);
+                document.querySelector('main').scrollTop = 0;
+            }
+            if (id === 'submitSection') window.dispatchEvent(new Event('resize'));
+            if (id === 'myReportsSection') loadMyReports();
+            window.dispatchEvent(new Event('citizen:section-changed'));
+        }
+    </script>
+</body>
+
+</html>

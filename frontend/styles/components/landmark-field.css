@@ -1,0 +1,264 @@
+#stepDetailsCard .citizen-landmark-section {
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#stepDetailsCard .citizen-landmark-section .citizen-field-label {
+    margin-bottom: 10px;
+}
+
+#stepDetailsCard .citizen-landmark-composer {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--border, #d2e0f2);
+    border-radius: 10px;
+    background: var(--bg-card, #fff);
+    cursor: text;
+}
+
+#stepDetailsCard .citizen-landmark-composer:has(#landmarkDescription:focus) {
+    border-color: var(--accent-blue, #2563eb);
+}
+
+#stepDetailsCard #landmarkDescription {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    padding: 14px 12px 4px;
+    margin: 0;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    color: var(--text-primary, #14294c);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+}
+
+#stepDetailsCard #landmarkDescription::placeholder {
+    color: var(--text-dim, #718198);
+    opacity: 1;
+}
+
+#stepDetailsCard .citizen-landmark-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+    padding: 8px;
+}
+
+#stepDetailsCard .citizen-landmark-actions {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    flex-wrap: nowrap;
+    min-width: 0;
+    gap: 8px;
+}
+
+#stepDetailsCard .citizen-landmark-camera {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: auto;
+    min-height: 44px;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #e8f1fd;
+    color: #0966ce;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#stepDetailsCard .citizen-landmark-camera i {
+    flex-shrink: 0;
+    font-size: 18px;
+    line-height: 1;
+}
+
+#stepDetailsCard .citizen-landmark-camera:hover {
+    background: #dbeafe;
+}
+
+#stepDetailsCard .citizen-landmark-preview {
+    display: block;
+    flex: 0 0 48px;
+    box-sizing: border-box;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: transparent;
+    cursor: pointer;
+}
+
+#stepDetailsCard .citizen-landmark-preview[hidden] {
+    display: none;
+}
+
+#stepDetailsCard .citizen-landmark-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+#stepDetailsCard .citizen-landmark-section[data-captured="true"] .citizen-landmark-camera {
+    background: transparent;
+}
+
+#stepDetailsCard .citizen-landmark-camera:focus-visible,
+#stepDetailsCard .citizen-landmark-preview:focus-visible {
+    outline: 2px solid var(--accent-blue, #2563eb);
+    outline-offset: 2px;
+}
+
+#stepDetailsCard .citizen-landmark-counter {
+    flex-shrink: 0;
+    color: var(--text-dim, #718198);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+#stepDetailsCard .citizen-landmark-hint {
+    margin: 8px 0 0;
+    color: var(--text-dim, #718198);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+:root[data-theme="dark"] #stepDetailsCard .citizen-landmark-composer {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+:root[data-theme="dark"] #stepDetailsCard .citizen-landmark-composer:has(#landmarkDescription:focus) {
+    border-color: #60a5fa;
+}
+
+:root[data-theme="dark"] #stepDetailsCard .citizen-landmark-camera {
+    background: rgba(59, 130, 246, 0.12);
+    color: #93c5fd;
+}
+
+:root[data-theme="dark"] #stepDetailsCard .citizen-landmark-section[data-captured="true"] .citizen-landmark-camera {
+    background: transparent;
+}
+
+@media (max-width: 900px) {
+    #stepDetailsCard #landmarkDescription {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    #stepDetailsCard .citizen-landmark-toolbar,
+    #stepDetailsCard .citizen-landmark-actions {
+        gap: 6px;
+    }
+
+    #stepDetailsCard .citizen-landmark-camera {
+        padding-inline: 8px;
+        font-size: 13px;
+    }
+}
+
+
+@media (width > 900px) {
+    #stepDetailsCard .citizen-details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "category description"
+            "landmark-label description"
+            "landmark-composer description"
+            "landmark-hint submit";
+        column-gap: 28px;
+        row-gap: 12px;
+        align-items: start;
+    }
+
+    #stepDetailsCard .citizen-category-col {
+        grid-area: category;
+        min-width: 0;
+    }
+
+    #stepDetailsCard .citizen-details-grid>.citizen-landmark-section {
+        display: contents;
+    }
+
+    #stepDetailsCard .citizen-landmark-section .citizen-field-label {
+        grid-area: landmark-label;
+        margin: 0;
+    }
+
+    #stepDetailsCard .citizen-landmark-composer {
+        grid-area: landmark-composer;
+        align-self: stretch;
+    }
+
+    #stepDetailsCard #landmarkDescription {
+        flex: 1;
+    }
+
+    #stepDetailsCard .citizen-landmark-hint {
+        grid-area: landmark-hint;
+        align-self: center;
+        margin: 0;
+    }
+
+    #stepDetailsCard .citizen-desc-col {
+        grid-area: description;
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        min-width: 0;
+    }
+
+    #stepDetailsCard .citizen-desc-col .citizen-textarea-wrap {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+    }
+
+    #stepDetailsCard .citizen-desc-col #description {
+        display: block;
+        flex: 1;
+        min-width: 0;
+        min-height: 240px;
+    }
+
+    #stepDetailsCard .citizen-submit-row {
+        grid-area: submit;
+        align-self: center;
+        margin: 0;
+    }
+}

@@ -1,0 +1,90 @@
+TAP version 13
+# (node:4932) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: report upload: valid JPEG with AI unavailable
+ok 1 - report upload: valid JPEG with AI unavailable
+  ---
+  duration_ms: 394.7916
+  type: 'test'
+  ...
+# Subtest: report upload: valid PNG with AI unavailable
+ok 2 - report upload: valid PNG with AI unavailable
+  ---
+  duration_ms: 111.5523
+  type: 'test'
+  ...
+# Subtest: report upload: valid WebP with AI unavailable
+ok 3 - report upload: valid WebP with AI unavailable
+  ---
+  duration_ms: 86.0599
+  type: 'test'
+  ...
+# Subtest: report upload: valid image with AI timeout
+ok 4 - report upload: valid image with AI timeout
+  ---
+  duration_ms: 79.1391
+  type: 'test'
+  ...
+# Subtest: report upload: invalid report image bytes while AI is unavailable
+ok 5 - report upload: invalid report image bytes while AI is unavailable
+  ---
+  duration_ms: 21.9876
+  type: 'test'
+  ...
+# Subtest: report upload: PNG bytes declared as JPEG
+ok 6 - report upload: PNG bytes declared as JPEG
+  ---
+  duration_ms: 21.0519
+  type: 'test'
+  ...
+# Subtest: report upload: unsupported bytes declared as JPEG
+ok 7 - report upload: unsupported bytes declared as JPEG
+  ---
+  duration_ms: 23.4283
+  type: 'test'
+  ...
+# Subtest: report upload: unsupported declared format
+ok 8 - report upload: unsupported declared format
+  ---
+  duration_ms: 10.1183
+  type: 'test'
+  ...
+# Subtest: report upload: oversized image
+ok 9 - report upload: oversized image
+  ---
+  duration_ms: 67.4404
+  type: 'test'
+  ...
+# Subtest: report upload: truncated JPEG
+ok 10 - report upload: truncated JPEG
+  ---
+  duration_ms: 20.9923
+  type: 'test'
+  ...
+# Subtest: report upload: truncated PNG
+ok 11 - report upload: truncated PNG
+  ---
+  duration_ms: 17.1794
+  type: 'test'
+  ...
+# Subtest: report upload: truncated WebP
+ok 12 - report upload: truncated WebP
+  ---
+  duration_ms: 17.3264
+  type: 'test'
+  ...
+# Subtest: report upload: corrupt PNG pixel data
+ok 13 - report upload: corrupt PNG pixel data
+  ---
+  duration_ms: 15.6482
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2200.5788

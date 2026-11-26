@@ -1,0 +1,26 @@
+
+> neighborlens-ai-capstone@1.0.0 test:e2e:publication
+> playwright test --config=playwright.publication.config.js
+
+[WebServer] (node:35172) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:35172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 10 tests using 1 worker
+
+(node:31212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.4s)
+  ok  2 [desktop] › tests\browser\community-publication.spec.js:55:1 › accurate in-city GPS can submit with unresolved incident barangay without copying account registration (1.2s)
+  ok  3 [desktop] › tests\browser\community-publication.spec.js:80:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (1.3s)
+  ok  4 [desktop] › tests\browser\community-publication.spec.js:99:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.4s)
+  ok  5 [desktop] › tests\browser\community-publication.spec.js:120:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.3s)
+(node:28696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [mobile] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.3s)
+  ok  7 [mobile] › tests\browser\community-publication.spec.js:55:1 › accurate in-city GPS can submit with unresolved incident barangay without copying account registration (950ms)
+  ok  8 [mobile] › tests\browser\community-publication.spec.js:80:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (1.2s)
+  ok  9 [mobile] › tests\browser\community-publication.spec.js:99:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.3s)
+  ok 10 [mobile] › tests\browser\community-publication.spec.js:120:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.4s)
+
+  10 passed (18.2s)

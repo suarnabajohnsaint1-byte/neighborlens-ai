@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" role="img" aria-label="Subtle animated scan frame">
+<style>@keyframes scan{0%,100%{transform:translateY(0);opacity:.3}50%{transform:translateY(119px);opacity:.65}}.line{animation:scan 3s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.line{animation:none}}</style>
+<rect x="1" y="1" width="338" height="198" rx="11" fill="#101722" stroke="#334456" stroke-width="2"/>
+<g fill="none" stroke="#00d2ff" stroke-width="4" stroke-linecap="round"><path d="M26 50V26H58M282 26h32v24M26 150v24h32M282 174h32v-24"/></g><path class="line" d="M35 38h270" stroke="#00d2ff" stroke-width="1.5" opacity=".4"/><text x="170" y="102" text-anchor="middle" fill="#9aaac0" font-family="Arial" font-size="12">Position ID inside frame</text>
+</svg>

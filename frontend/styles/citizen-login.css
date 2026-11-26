@@ -1,0 +1,502 @@
+.citizen-login-page {
+    background: var(--color-bg);
+    --rl-accent: var(--color-primary);
+    --rl-accent-hover: var(--color-primary-hover);
+    --rl-surface: var(--surface);
+    --rl-field: var(--surface);
+    --rl-ink: var(--text-primary);
+    --rl-muted: var(--color-text-secondary);
+    --rl-border: var(--color-input-border);
+    --cl-copy-scrim: rgba(255, 255, 255, .68);
+    --cl-scene-ink: #081c49;
+    --cl-scene-muted: #40598d;
+}
+
+.citizen-login-page .cl-scene {
+    background: #edf7ff;
+    filter: none;
+    opacity: 1;
+}
+
+.citizen-login-page .cl-scene::after {
+    background: transparent;
+}
+
+.cl-backdrop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+    filter: none;
+    opacity: 1;
+}
+
+.citizen-login-page .rl-layout {
+    width: min(1292px, calc(100% - 96px));
+    min-height: 100svh;
+    padding: 40px 0 36px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--rl-panel-width));
+    grid-template-rows: 77px 1fr;
+    gap: 0 80px;
+    align-content: start;
+}
+
+.citizen-login-page .login-logo {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0 0 0 42px;
+    padding: 0;
+    border: 0;
+    text-align: left;
+}
+
+.citizen-login-page .rl-brand-name {
+    color: var(--color-primary);
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0;
+}
+
+.citizen-login-page .rl-brand-name span,
+.citizen-login-page .rl-brand-tagline {
+    color: var(--cl-scene-muted);
+}
+
+.citizen-login-page .rl-brand-tagline {
+    margin-top: 2px;
+    font-size: 20px;
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+.citizen-login-page .rl-features {
+    color: var(--cl-scene-ink);
+    position: relative;
+    isolation: isolate;
+    grid-column: 1;
+    grid-row: 2;
+    margin: 65px 0 0;
+    max-width: 547px;
+    gap: 28px;
+}
+
+.citizen-login-page .rl-features::before {
+    content: '';
+    position: absolute;
+    inset: -12px -14px;
+    z-index: -1;
+    background: var(--cl-copy-scrim);
+    filter: blur(20px);
+    pointer-events: none;
+}
+
+.citizen-login-page .rl-feature {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 26px;
+    min-height: 100px;
+}
+
+.citizen-login-page .rl-feature h2 {
+    margin: 10px 0 6px;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.citizen-login-page .rl-feature p {
+    margin: 0;
+    color: var(--rl-muted);
+    font-size: 0.97rem;
+    line-height: 1.45;
+    max-width: 300px;
+}
+
+.cl-feature-icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    margin: 12px;
+    color: #ffffff;
+    background: var(--color-primary);
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(8, 122, 248, .2);
+}
+
+.cl-feature-icon i {
+    font-size: 44px;
+}
+
+.cl-feature-icon--community {
+    color: var(--color-primary);
+    background: #ffffff;
+}
+
+.citizen-login-page .rl-panel {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: start;
+    width: 100%;
+    max-width: var(--rl-panel-width);
+    margin: 0;
+    padding: var(--rl-panel-padding);
+    border-radius: var(--rl-panel-radius);
+    border: 0;
+    background: var(--rl-surface);
+    box-shadow: var(--rl-shadow);
+}
+
+.citizen-login-page #loginSection {
+    line-height: normal;
+}
+
+.cl-login-heading {
+    text-align: center;
+}
+
+.cl-community-badge {
+    display: grid;
+    place-items: center;
+    width: var(--rl-badge-size);
+    height: var(--rl-badge-size);
+    margin: 0 auto 8px;
+    border: 12px solid var(--color-accent-subtle);
+    box-shadow: inset 0 0 0 12px var(--color-accent-border);
+    border-radius: 50%;
+    background: var(--color-primary);
+}
+
+.cl-community-badge img {
+    width: 48px;
+    height: 48px;
+    filter: brightness(0) invert(1);
+}
+
+.citizen-login-page .rl-field {
+    color: var(--text-primary);
+}
+
+.citizen-login-page .rl-frame input {
+    width: auto;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.citizen-login-page .rl-frame input:focus {
+    outline: none;
+    border: 0;
+    box-shadow: none;
+}
+
+.citizen-login-page .rl-frame input:is(:autofill, :-webkit-autofill) {
+    box-shadow: inset 0 0 0 1000px var(--rl-field);
+    -webkit-text-fill-color: var(--rl-ink);
+    caret-color: var(--rl-ink);
+}
+
+.citizen-login-page .rl-remember input {
+    padding: 0;
+}
+
+.citizen-login-page .rl-eye {
+    color: var(--text-dim);
+    font-size: 22px;
+}
+
+.citizen-login-page .rl-submit i {
+    font-size: 24px;
+}
+
+.citizen-login-page .rl-signup {
+    margin: 18px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: .95rem;
+}
+
+.citizen-login-page #loginMsg:empty {
+    display: none;
+}
+
+.citizen-login-page #signupSection .input-group label {
+    letter-spacing: 0;
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    .citizen-login-page .rl-layout {
+        width: calc(100% - 64px);
+        gap: 0 40px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    }
+
+    .citizen-login-page .login-logo {
+        margin-left: 12px;
+    }
+
+    .citizen-login-page .rl-brand-name {
+        font-size: 28px;
+    }
+
+    .citizen-login-page .rl-brand-tagline {
+        font-size: 16px;
+    }
+
+    .citizen-login-page .rl-feature {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .cl-feature-icon {
+        width: 56px;
+        height: 56px;
+        margin: 8px;
+        border-radius: 12px;
+    }
+
+    .cl-feature-icon i {
+        font-size: 34px;
+    }
+
+    .citizen-login-page .rl-feature h2 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    .citizen-login-page .rl-feature p {
+        font-size: 17px;
+        line-height: 23px;
+    }
+}
+
+@media (max-width: 900px) {
+    .citizen-login-page .rl-layout {
+        width: min(600px, 100%);
+        padding: 24px 16px max(36px, env(safe-area-inset-bottom));
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto auto;
+        gap: 24px;
+    }
+
+    .citizen-login-page .login-logo {
+        grid-column: 1;
+        grid-row: 1;
+        margin: 0;
+        text-align: center;
+    }
+
+    .citizen-login-page .rl-brand-name {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .citizen-login-page .rl-brand-tagline {
+        font-size: 14px;
+        line-height: 20px;
+        white-space: normal;
+    }
+
+    .citizen-login-page .rl-panel {
+        grid-column: 1;
+        grid-row: 2;
+        max-width: none;
+    }
+
+    .cl-community-badge {
+        border-width: 10px;
+        box-shadow: inset 0 0 0 10px var(--color-accent-border);
+    }
+
+    .cl-community-badge img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .citizen-login-page .rl-options {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .citizen-login-page .rl-features {
+        grid-column: 1;
+        grid-row: 3;
+        margin: 0;
+        padding: 12px 0 0;
+        gap: 20px;
+        max-width: none;
+    }
+
+    .citizen-login-page .rl-features::before {
+        inset: -12px 0;
+    }
+
+    .citizen-login-page .rl-feature {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 14px;
+        min-height: 0;
+    }
+
+    .cl-feature-icon {
+        width: 40px;
+        height: 40px;
+        margin: 6px;
+        border-radius: 10px;
+    }
+
+    .cl-feature-icon i {
+        font-size: 32px;
+    }
+
+    .citizen-login-page .rl-feature h2 {
+        margin-top: 4px;
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .citizen-login-page .rl-feature p {
+        font-size: 15px;
+        line-height: 22px;
+    }
+
+    .citizen-login-page .cl-scene::after {
+        background: rgba(237, 247, 255, .85);
+    }
+}
+
+.citizen-login-page .cl-system-logo { width: min(220px, 85%); height: auto; padding: 0; background: none; border: 0; box-shadow: none; }
+.citizen-login-page .cl-system-logo img { display: block; width: 100%; height: auto; }
+.citizen-login-page #signupSection .input-group :is(input:not([type="checkbox"]), select, textarea) { border: 1px solid var(--color-border-strong); }
+
+.id-scan-preview {
+    position: relative;
+}
+
+.id-verified-status {
+    color: var(--accent-green);
+    font-weight: 700;
+    margin: 0 0 12px;
+}
+
+.citizen-login-page #idCameraContainer .camera-video-wrapper {
+    container-type: size;
+}
+
+.citizen-login-page #idCardGuide {
+    width: min(82cqw, 118cqh);
+    height: auto;
+    aspect-ratio: 1.586;
+}
+
+.citizen-login-page #idCardGuide:not(.is-aligned),
+.citizen-login-page #idCardGuide:not(.is-aligned) .guide-corner {
+    border-color: #ff747c;
+}
+
+.citizen-login-page #idCardGuide::before {
+    content: none;
+}
+
+.citizen-login-page .camera-id-guide.is-aligned {
+    border-color: #42e68d;
+    border-style: solid;
+}
+
+.citizen-login-page .camera-id-guide.is-aligned .guide-corner {
+    border-color: #42e68d;
+}
+
+.citizen-login-page #idCardGuide.is-aligned #idAlignmentStatus {
+    color: #90f7bc;
+}
+
+.id-scan-preview img {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+#idUploadTestResult {
+    margin-bottom: 14px;
+}
+
+#idUploadTestFields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 6px 12px;
+    margin: 10px 0;
+}
+
+#idUploadTestFields dt {
+    font-weight: 600;
+}
+
+#idUploadTestFields dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+#idAlignmentStatus {
+    position: absolute;
+    z-index: 1;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% - 16px);
+    border-radius: 4px;
+    padding: 3px 8px;
+    background: rgb(0 0 0 / 75%);
+    color: #ffb8bd;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-align: center;
+    pointer-events: none;
+}
+
+.id-scan-preview #idAlignmentStatus {
+    color: white;
+}
+
+.id-capture-progress {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    display: grid;
+    place-items: end center;
+    padding: 12px;
+    background: rgb(8 26 47 / 28%);
+    pointer-events: none;
+}
+
+.id-capture-progress[hidden] {
+    display: none;
+}
+
+.id-capture-progress span {
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: white;
+    background: #102b48;
+    text-align: center;
+}
+
+.id-capture-progress::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2px;
+    background: #42d0ff;
+    box-shadow: 0 0 16px #42d0ff;
+    animation: id-scan-sweep 1.7s ease-in-out infinite alternate;
+}
+
+@keyframes id-scan-sweep {
+    from { top: 8%; }
+    to { top: 78%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .id-capture-progress::before { animation: none; }
+}

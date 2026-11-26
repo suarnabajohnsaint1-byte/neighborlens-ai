@@ -1,0 +1,21 @@
+root = true
+
+[*.{js,py,html,css}]
+charset = utf-8
+indent_style = space
+insert_final_newline = true
+
+[*.py]
+indent_size = 4
+
+[*.{html,css}]
+indent_size = 4
+
+[server/**.js]
+indent_size = 2
+
+[api/**.js]
+indent_size = 2
+
+[tests/**.js]
+indent_size = 2

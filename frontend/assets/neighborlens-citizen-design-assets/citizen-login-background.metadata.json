@@ -1,0 +1,8 @@
+{
+  "asset": "citizen-login-background.png",
+  "source": "01-original/citizen-login-original.png",
+  "tool": "built-in image_gen",
+  "width": 1672,
+  "height": 941,
+  "prompt": "Use case: precise-object-edit. Asset type: continuous illustrated background for an implemented login webpage. Edit target is the attached 1672x941 original Citizen login mockup. Remove ALL user-interface overlays: the NeighborLens brand and tagline top left, all three feature icon tiles and feature text left, and the entire large white Citizen Login form card including badge, title, labels, fields, buttons and links right. Inpaint these areas into the same seamless light blue sky, clouds and softly illustrated Bacolod city scene. Keep the visible original illustration unchanged as closely as possible: young citizen with backpack holding a smartphone lower left, pothole and street bottom, Bacolod city hall center left with Philippine flag, blue city skyline, trees, cathedral far right. Preserve their exact positions and scale. Upper left should remain mostly pale open sky for live HTML text; right half pale city backdrop for a live HTML form card. The result must be ONE full-bleed continuous 16:9 illustrated background with no rectangular seams, no white card, no UI, no feature icons, no login text, no branding, no watermark. Keep BACOLOD lettering on the real city hall if present. Do not add new foreground people or objects. Reconstruct only areas hidden by UI, not a redesign."
+}

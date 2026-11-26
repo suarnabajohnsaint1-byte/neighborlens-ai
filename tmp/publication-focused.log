@@ -1,0 +1,200 @@
+TAP version 13
+# Subtest: community rules reject forged membership, malformed IDs, filters and excessive input
+ok 1 - community rules reject forged membership, malformed IDs, filters and excessive input
+  ---
+  duration_ms: 4.7762
+  type: 'test'
+  ...
+# Subtest: optimistic switching and removal never count a user twice
+ok 2 - optimistic switching and removal never count a user twice
+  ---
+  duration_ms: 0.213
+  type: 'test'
+  ...
+# Subtest: outdated search responses cannot replace the newest feed
+ok 3 - outdated search responses cannot replace the newest feed
+  ---
+  duration_ms: 0.7146
+  type: 'test'
+  ...
+# Subtest: failed refresh retains successful content but revocation clears it
+ok 4 - failed refresh retains successful content but revocation clears it
+  ---
+  duration_ms: 0.5113
+  type: 'test'
+  ...
+# Subtest: rapid reaction switching serializes desired states and keeps the latest intent
+ok 5 - rapid reaction switching serializes desired states and keeps the latest intent
+  ---
+  duration_ms: 0.5949
+  type: 'test'
+  ...
+# Subtest: ambiguous failure still sends a queued removal matching the old baseline
+ok 6 - ambiguous failure still sends a queued removal matching the old baseline
+  ---
+  duration_ms: 0.4862
+  type: 'test'
+  ...
+# Subtest: failed reaction rolls back and a stale refresh cannot double-count the confirmed reaction
+ok 7 - failed reaction rolls back and a stale refresh cannot double-count the confirmed reaction
+  ---
+  duration_ms: 0.8454
+  type: 'test'
+  ...
+# Subtest: confirmed comment totals survive reaction renders and outdated feed responses
+ok 8 - confirmed comment totals survive reaction renders and outdated feed responses
+  ---
+  duration_ms: 0.5579
+  type: 'test'
+  ...
+# Subtest: destroyed state ignores in-flight responses without notifying or retaining data
+ok 9 - destroyed state ignores in-flight responses without notifying or retaining data
+  ---
+  duration_ms: 0.6257
+  type: 'test'
+  ...
+# Subtest: shared carousel navigation does not subtract an unrelated parent offset
+ok 10 - shared carousel navigation does not subtract an unrelated parent offset
+  ---
+  duration_ms: 2.391
+  type: 'test'
+  ...
+# Subtest: Supabase community publishing requires a confirmed private bucket
+ok 11 - Supabase community publishing requires a confirmed private bucket
+  ---
+  duration_ms: 69.6843
+  type: 'test'
+  ...
+# Subtest: failed transaction cleans only newly published derivatives with bounded retries
+ok 12 - failed transaction cleans only newly published derivatives with bounded retries
+  ---
+  duration_ms: 3.0964
+  type: 'test'
+  ...
+# (node:11508) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: persistent anonymous identity: citizen A has same persona across multiple comments and replies
+ok 13 - persistent anonymous identity: citizen A has same persona across multiple comments and replies
+  ---
+  duration_ms: 964.4478
+  type: 'test'
+  ...
+# Subtest: isolated persona per report discussion: citizen persona on post 2 is independent from post 1
+ok 14 - isolated persona per report discussion: citizen persona on post 2 is independent from post 1
+  ---
+  duration_ms: 17.876
+  type: 'test'
+  ...
+# Subtest: comment threading: validates parent comment belongs to the same post and rejects cross-report reply
+ok 15 - comment threading: validates parent comment belongs to the same post and rejects cross-report reply
+  ---
+  duration_ms: 10.8076
+  type: 'test'
+  ...
+# Subtest: comment deletion preserves placeholder for active conversation threads
+ok 16 - comment deletion preserves placeholder for active conversation threads
+  ---
+  duration_ms: 14.6952
+  type: 'test'
+  ...
+# Subtest: comment reactions: like toggle, distinct reactor tracking, and optimistic state persistence
+ok 17 - comment reactions: like toggle, distinct reactor tracking, and optimistic state persistence
+  ---
+  duration_ms: 33.265
+  type: 'test'
+  ...
+# Subtest: accurate ISO 8601 UTC date serialization on posts and comments
+ok 18 - accurate ISO 8601 UTC date serialization on posts and comments
+  ---
+  duration_ms: 6.4044
+  type: 'test'
+  ...
+# (node:37344) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: private reports are not posts and barangay filters cannot widen visibility
+ok 19 - private reports are not posts and barangay filters cannot widen visibility
+  ---
+  duration_ms: 1632.6633
+  type: 'test'
+  ...
+# Subtest: explicit publication keeps anonymous DTOs, strips photo metadata and preserves the private report
+ok 20 - explicit publication keeps anonymous DTOs, strips photo metadata and preserves the private report
+  ---
+  duration_ms: 68.0222
+  type: 'test'
+  ...
+# Subtest: publication is idempotent and rejects nonowned report linking and forged official attribution
+ok 21 - publication is idempotent and rejects nonowned report linking and forged official attribution
+  ---
+  duration_ms: 53.5088
+  type: 'test'
+  ...
+# Subtest: reactions use desired-state idempotency with one reaction per user and no public reactor identities
+ok 22 - reactions use desired-state idempotency with one reaction per user and no public reactor identities
+  ---
+  duration_ms: 40.8911
+  type: 'test'
+  ...
+# Subtest: comments stay anonymous, paginate, preserve ownership and reject duplicate request changes
+ok 23 - comments stay anonymous, paginate, preserve ownership and reject duplicate request changes
+  ---
+  duration_ms: 34.4756
+  type: 'test'
+  ...
+# Subtest: identity lookup is a separate audited Admin-only workflow
+ok 24 - identity lookup is a separate audited Admin-only workflow
+  ---
+  duration_ms: 15.1614
+  type: 'test'
+  ...
+# Subtest: image ingress rejects spoofing, oversized data and too many photos without retaining files
+ok 25 - image ingress rejects spoofing, oversized data and too many photos without retaining files
+  ---
+  duration_ms: 48.1035
+  type: 'test'
+  ...
+# Subtest: real source EXIF is removed and deletion never removes original report attachments
+ok 26 - real source EXIF is removed and deletion never removes original report attachments
+  ---
+  duration_ms: 58.2581
+  type: 'test'
+  ...
+# Subtest: feed search uses only public category rather than original corrected AI subtype
+ok 27 - feed search uses only public category rather than original corrected AI subtype
+  ---
+  duration_ms: 33.3891
+  type: 'test'
+  ...
+# Subtest: community realtime is barangay-scoped, identity-free and unsubscribed on cleanup
+ok 28 - community realtime is barangay-scoped, identity-free and unsubscribed on cleanup
+  ---
+  duration_ms: 1.1042
+  type: 'test'
+  ...
+# Subtest: ownership, malformed IDs, revocation and deletion protect all related reads
+ok 29 - ownership, malformed IDs, revocation and deletion protect all related reads
+  ---
+  duration_ms: 26.0392
+  type: 'test'
+  ...
+# Subtest: post, comment and reaction limits reject abuse before another mutation
+ok 30 - post, comment and reaction limits reject abuse before another mutation
+  ---
+  duration_ms: 407.9456
+  type: 'test'
+  ...
+# Subtest: deleted accounts and cookie-only requests cannot access protected community paths
+ok 31 - deleted accounts and cookie-only requests cannot access protected community paths
+  ---
+  duration_ms: 29.9016
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 31
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7728.6249

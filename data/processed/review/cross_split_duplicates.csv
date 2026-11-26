@@ -1,0 +1,8 @@
+group,members(dataset_index:split:image),splits,method,note
+G1,134:train:9f07b959-69cf-418c-b25f-4d0ad96f50ce_jpg.rf.27b154bcabc560a68817ec39179fda2d.jpg | 177:test:41_jpg.rf.6e2c6dd6ffd180b7204ceb069cdca0e6.jpg,test+train,phash 0 + SIFT 432 inliers,
+G2,31:train:27_jpg.rf.229c2ee3aca8f46b73c1591652e4c644.jpg | 164:test:11_jpg.rf.fcd4b2870980f751c31e9ca9f0913a2b.jpg,test+train,phash 2 + SIFT 292,
+G3,25:train:24_jpg.rf.a8a5e1d530ac25501826acab64cda21d.jpg | 142:valid:20_jpg.rf.6c52e16e2a576709d97d8097e2b84d36.jpg,train+valid,phash 8 + SIFT 216,
+G4,56:train:38_jpg.rf.90e40cb2a31997de37e98a20279e8e16.jpg | 182:test:54_jpg.rf.db699a3da6d066d2e859df8043445f9d.jpg,test+train,"SIFT 318 inliers (same photo, re-encoded)",
+G5,116:train:68_jpg.rf.b6d6215c12f1205f1eaf1fd23b4c3385.jpg | 166:test:19_jpg.rf.16aa94a73f2999b6056feccf6494c8bf.jpg,test+train,"SIFT 154 (same ditch, different crop/zoom)",
+G6,27:train:25_jpg.rf.370f61038d816480aae3398d82fed9c9.jpg | 29:train:26_webp.rf.149ea05c4e5c285807519724b1067e10.jpg | 146:valid:2_jpg.rf.db3e717b08dd9068ba2db65551e9b8fa.jpg,train+valid,SIFT 115/80 (same road-collapse scene; 29 is a 3-shot composite),
+G7,21:train:22_jpg.rf.f5ba9f205282742500356918904bda40.jpg | 109:train:62_jpg.rf.580c8b7e5d67c467c361b7bd176a94a3.jpg,train,phash 6 + SIFT 429,

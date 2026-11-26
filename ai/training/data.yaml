@@ -1,0 +1,6 @@
+train: ../../data/datasets/neighborlens_paper_aligned_v2/train/images
+val: ../../data/datasets/neighborlens_paper_aligned_v2/valid/images
+test: ../../data/datasets/neighborlens_paper_aligned_v2/test/images
+
+nc: 4
+names: ['broken_streetlight', 'clogged_drainage', 'pothole', 'road_crack']

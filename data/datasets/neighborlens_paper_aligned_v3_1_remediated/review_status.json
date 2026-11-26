@@ -1,0 +1,58 @@
+{
+  "base": "neighborlens_paper_aligned_v3_clean",
+  "excluded_scenes": [
+    "scene_0036",
+    "scene_0051",
+    "scene_0094",
+    "scene_0136"
+  ],
+  "excluded_images": [
+    {
+      "split": "train",
+      "file": "scene_0036_a.jpg",
+      "scene_id": "scene_0036",
+      "reason": "annotation_review_quarantine"
+    },
+    {
+      "split": "train",
+      "file": "scene_0051_a.jpg",
+      "scene_id": "scene_0051",
+      "reason": "annotation_review_quarantine"
+    },
+    {
+      "split": "train",
+      "file": "scene_0051_b.jpg",
+      "scene_id": "scene_0051",
+      "reason": "annotation_review_quarantine"
+    },
+    {
+      "split": "test",
+      "file": "scene_0094_a.jpg",
+      "scene_id": "scene_0094",
+      "reason": "annotation_review_quarantine"
+    },
+    {
+      "split": "train",
+      "file": "scene_0136_a.jpg",
+      "scene_id": "scene_0136",
+      "reason": "annotation_review_quarantine"
+    },
+    {
+      "split": "train",
+      "file": "scene_0136_b.jpg",
+      "scene_id": "scene_0136",
+      "reason": "annotation_review_quarantine"
+    }
+  ],
+  "corrected_labels": [
+    "train/scene_0034_a.jpg",
+    "valid/scene_0052_a.jpg",
+    "valid/scene_0083_a.jpg",
+    "train/scene_0101_a.jpg",
+    "train/scene_0148_a.jpg"
+  ],
+  "backgrounds_added": 8,
+  "backgrounds_approved": 8,
+  "max_background_fraction": 0.1,
+  "unresolved_items": []
+}

@@ -1,0 +1,14 @@
+/* Estimated from the supplied screenshot; original token definitions are unavailable. */
+:root {
+  --nl-primary: #0080ff;
+  --nl-heading: #100947;
+  --nl-muted: #7780bb;
+  --nl-icon: #565ca6;
+  --nl-border: #c5e1ff;
+  --nl-surface: #ffffff;
+  --nl-sky: #edf8ff;
+  --nl-font: Arial, Helvetica, sans-serif;
+  --nl-card-radius: 22px;
+  --nl-input-radius: 11px;
+  --nl-button-radius: 11px;
+}

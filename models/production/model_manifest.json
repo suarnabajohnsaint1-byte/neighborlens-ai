@@ -1,0 +1,46 @@
+{
+  "version": "neighborlens_yolov8m_v9",
+  "release_label": "v9",
+  "architecture": "YOLOv8m",
+  "target_eligible": false,
+  "research_target_achieved": false,
+  "held_out_test_evaluated": false,
+  "classes": {
+    "0": "broken_streetlight",
+    "1": "clogged_drainage",
+    "2": "pothole",
+    "3": "road_crack"
+  },
+  "source_checkpoint": "runs/neighborlens-v9/yolov8m_v9_qa_filtered_exp01/weights/best.pt",
+  "source_sha256": "6e55d6fec65531180e1655e1b3c5931101fbf96e23346dff272b29c5422cd3d2",
+  "production_checkpoint": "models/production/best.pt",
+  "production_sha256": "6e55d6fec65531180e1655e1b3c5931101fbf96e23346dff272b29c5422cd3d2",
+  "production_size_bytes": 52017042,
+  "training_run": "yolov8m_v9_qa_filtered_exp01",
+  "recorded_validation": {
+    "scope": "recorded_validation_only",
+    "independently_reproduced": false,
+    "images": 1259,
+    "best_epoch": 39,
+    "last_epoch": 69,
+    "selected_epoch_metrics": {
+      "precision": 0.70279,
+      "recall": 0.63449,
+      "map50": 0.66815,
+      "map50_95": 0.38422
+    },
+    "supplied_summary_metrics": {
+      "precision": 0.703,
+      "recall": 0.635,
+      "map50": 0.669,
+      "map50_95": 0.384
+    },
+    "results_csv": "runs/neighborlens-v9/yolov8m_v9_qa_filtered_exp01/results.csv",
+    "experiment_metadata": "runs/neighborlens-v9/yolov8m_v9_qa_filtered_exp01/experiment.json",
+    "training_git_commit": "14f742c6a0524dd2390634dee185343343be4907",
+    "dataset_yaml_sha256": "543d241fb02f36a9c0fca5d25477c5c4bf3b0e9c86a5daddabf1efb1cf76eb6d",
+    "test_freeze_sha256": null
+  },
+  "rollback_archive": "models/production/archive/yolo11s-beta_testing_v3-20261116T062023411825Z",
+  "promoted_utc": "2026-11-16T06:20:41.865098+00:00"
+}

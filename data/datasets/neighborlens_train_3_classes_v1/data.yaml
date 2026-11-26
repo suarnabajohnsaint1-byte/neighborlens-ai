@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['clogged_drainage', 'damaged_road', 'damaged_traffic_light']
+
+roboflow:
+  workspace: kenjan
+  project: neighborlens
+  version: 1
+  license: Private
+  url: https://app.roboflow.com/kenjan/neighborlens/1

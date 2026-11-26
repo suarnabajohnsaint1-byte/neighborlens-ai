@@ -1,0 +1,88 @@
+{
+  "appliedAt": "2026-10-18T20:20:44.295Z",
+  "database": "neighborlens_ai",
+  "host": "127.0.0.1",
+  "migration": "012_pending_publication_jurisdiction.sql",
+  "checksum": "207922b19471004029ac6e97a3c03f0f2a73de11c8c7dd4068330705d08cbfd6",
+  "backup": "C:\\Users\\cleme\\.codex\\backups\\neighborlens-012-2oJI4j\\before-publication-012.sql",
+  "bytes": 1059976,
+  "backupSha256": "7bdf5ed4c4a1439c1e95c59b0927e37887e318a0291e4a16d558ccc20d060946",
+  "before": {
+    "reports": {
+      "count": 30,
+      "sha256": "300273db36f8fcf27dcb64705d6133017eaa8e37028906ac2df78ad2babcdb07"
+    },
+    "report_images": {
+      "count": 60,
+      "sha256": "1afb5bef61e2082921177e8e5dba317e03c2d144c59306fc7339cfc0548b8f07"
+    },
+    "community_posts": {
+      "count": 1,
+      "sha256": "53b288c2434ef835f82c17fac274788b686529993d05a6be25ab8b0b7efa9e4a"
+    },
+    "community_publication_requests": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_media": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_reviews": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_legacy": {
+      "count": 1,
+      "sha256": "1ac5409931d9627d65449417e554789134d7ef1e77d63403a1960171e0e822f6"
+    },
+    "notifications": {
+      "count": 9,
+      "sha256": "dd79a989c010a4fc1eddecb8f77360bcab72988de1826525660ae60daaafc485"
+    },
+    "users": {
+      "count": 41,
+      "sha256": "b7a225af0a68534131313e315db3ffddc02f6f1bbfb58af3685cad30d7761902"
+    }
+  },
+  "after": {
+    "reports": {
+      "count": 30,
+      "sha256": "300273db36f8fcf27dcb64705d6133017eaa8e37028906ac2df78ad2babcdb07"
+    },
+    "report_images": {
+      "count": 60,
+      "sha256": "1afb5bef61e2082921177e8e5dba317e03c2d144c59306fc7339cfc0548b8f07"
+    },
+    "community_posts": {
+      "count": 1,
+      "sha256": "53b288c2434ef835f82c17fac274788b686529993d05a6be25ab8b0b7efa9e4a"
+    },
+    "community_publication_requests": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_media": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_reviews": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "community_publication_legacy": {
+      "count": 1,
+      "sha256": "1ac5409931d9627d65449417e554789134d7ef1e77d63403a1960171e0e822f6"
+    },
+    "notifications": {
+      "count": 9,
+      "sha256": "dd79a989c010a4fc1eddecb8f77360bcab72988de1826525660ae60daaafc485"
+    },
+    "users": {
+      "count": 41,
+      "sha256": "b7a225af0a68534131313e315db3ffddc02f6f1bbfb58af3685cad30d7761902"
+    }
+  },
+  "nullablePendingBarangay": true,
+  "adminAssignedJurisdiction": true
+}

@@ -1,0 +1,444 @@
+.admin-portal {
+    --text-dim: var(--color-text-secondary);
+}
+
+.admin-portal .admin-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.admin-portal .admin-header h1 {
+    min-width: 0;
+    margin: 0;
+    font-size: var(--font-size-2xl);
+}
+
+.admin-page-heading { grid-area: title; min-width: 0; }
+.admin-page-heading p { margin: 4px 0 0; color: var(--color-text-secondary); }
+.admin-header-search[hidden] { display: none; }
+.admin-header-search {
+    flex: 1 1 260px;
+    max-width: 460px;
+}
+
+.admin-portal .admin-header-actions {
+    order: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-left: auto;
+}
+
+.admin-portal .barangay-counts .pending-count { color: var(--report-indicator-orange); }
+.admin-portal .barangay-counts .resolved-count { color: var(--report-indicator-green); }
+
+.admin-overview {
+    padding: var(--space-2) 0;
+}
+
+.overview-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.overview-heading>div:first-child {
+    min-width: 0;
+}
+
+.overview-heading h2 {
+    margin: 0;
+    font-size: var(--font-size-lg);
+}
+
+.overview-caption {
+    margin-top: var(--space-1);
+    color: var(--text-dim);
+    font-size: var(--font-size-sm);
+}
+
+.overview-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: var(--control-height);
+    padding: 0;
+    background: transparent;
+    color: var(--accent-blue);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    border: 0px;
+}
+
+.overview-back[hidden] {
+    display: none;
+}
+
+.admin-portal #hierarchyGrid {
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: var(--space-4);
+}
+
+.admin-portal #hierarchyGrid .report-card-title {
+    font-size: 15px;
+}
+
+.barangay-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: var(--space-5);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.barangay-card-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+}
+
+.barangay-card-heading>i {
+    color: var(--accent-blue);
+    font-size: 24px;
+}
+
+.barangay-card-heading>div {
+    flex: 1;
+    min-width: 0;
+}
+
+.barangay-card h3 {
+    margin: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.barangay-card-location {
+    margin-top: 2px;
+    color: var(--text-dim);
+    font-size: var(--font-size-xs);
+    line-height: 1.5;
+}
+
+.barangay-account {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--text-dim);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+}
+
+.barangay-account[data-account="active"] {
+    color: var(--accent-blue);
+}
+
+.barangay-counts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin: var(--space-5) 0 var(--space-4);
+}
+
+.barangay-counts dt {
+    margin-bottom: var(--space-1);
+    color: var(--text-dim);
+    font-size: var(--font-size-xs);
+}
+
+.barangay-counts dd {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.barangay-card .resolution-progress-caption {
+    margin-top: auto;
+}
+
+.barangay-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: 100%;
+    min-height: var(--control-height);
+    margin-top: var(--space-2);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--accent-blue);
+    font: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.barangay-open i {
+    font-size: 20px;
+}
+
+.overview-empty {
+    grid-column: 1 / -1;
+    padding: 48px var(--space-4);
+    color: var(--text-dim);
+    font-size: var(--font-size-md);
+    text-align: center;
+}
+
+.admin-portal .notification-popover {
+    border: 0;
+    border-radius: var(--radius-md);
+}
+
+.admin-portal .notification-popover-header {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+.admin-portal .notification-item a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.admin-portal .notification-badge {
+    background: var(--accent-blue);
+}
+
+.admin-portal .appearance-info i {
+    color: var(--accent-blue) !important;
+}
+
+.admin-report-thumbnail {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 72px;
+    width: 72px;
+    min-width: 72px;
+    height: 54px;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-hover);
+    color: var(--text-dim);
+    vertical-align: middle;
+}
+
+.admin-report-thumbnail>i {
+    font-size: 24px;
+}
+
+.admin-report-thumbnail img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-report-thumbnail img[hidden] {
+    display: none;
+}
+
+
+
+.admin-gis-map {
+    width: 100%;
+    height: clamp(320px, 62vh, 560px);
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-map-bg);
+}
+
+.admin-gis-map .leaflet-popup-content {
+    max-width: calc(100vw - 96px);
+    overflow-wrap: anywhere;
+}
+
+.admin-portal .log-container {
+    height: auto;
+    padding: var(--space-3) var(--space-4);
+    overflow: auto;
+    overscroll-behavior: contain;
+    border-radius: var(--radius-md);
+}
+
+.admin-portal .log-entry {
+    margin: 0;
+    padding: 6px 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    .admin-portal .content {
+        overflow: visible;
+        padding: 0 var(--page-gutter) calc(32px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .admin-portal .admin-header {
+        position: relative;
+        z-index: 1500;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-areas:
+            "menu title actions"
+            "description description description"
+            "search search search";
+        align-items: center;
+        gap: var(--space-2) var(--space-3);
+        margin: 0 calc(-1 * var(--page-gutter)) var(--space-4);
+        padding: max(var(--space-2), env(safe-area-inset-top)) var(--page-gutter) var(--space-3);
+        background: var(--bg-dark);
+    }
+
+    .admin-portal .portal-sidebar--drawer {
+        border-right: 0;
+    }
+
+    .admin-portal .admin-header>#adminMenuButton {
+        grid-area: menu;
+        width: var(--touch-target);
+        height: var(--touch-target);
+        flex-basis: auto;
+    }
+
+    .admin-portal .admin-header h1 {
+        grid-area: title;
+        font-size: var(--font-size-xl);
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    .admin-page-heading { display: contents; }
+    .admin-page-heading p { grid-area: description; margin: 0; font-size: var(--font-size-md); line-height: 1.45; }
+
+    .admin-portal .admin-header>.admin-header-actions {
+        grid-area: actions;
+        order: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: var(--space-2);
+        width: auto;
+        margin: 0;
+    }
+
+    .admin-portal .admin-header-search {
+        grid-area: search;
+        max-width: none;
+        width: 100%;
+    }
+
+    .admin-portal .notification-bell-btn {
+        width: var(--touch-target);
+        height: var(--touch-target);
+    }
+
+    .admin-portal .admin-header .notification-bell-container { position: static; }
+
+    .admin-portal .admin-header .notification-popover {
+        top: calc(max(var(--space-2), env(safe-area-inset-top)) + var(--touch-target) + var(--space-1));
+        left: var(--page-gutter);
+        right: var(--page-gutter);
+        width: auto;
+        max-width: none;
+        max-height: min(70dvh, 520px);
+        overflow-y: auto;
+    }
+
+    html[data-admin-section]:not([data-admin-section="analyticsSection"]) .admin-portal .admin-stats {
+        display: none;
+    }
+
+    .admin-portal .section-card {
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: transparent;
+        overflow: visible;
+    }
+
+    .overview-heading {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .report-issue-description {
+        max-width: none;
+        -webkit-line-clamp: 2;
+    }
+
+    .staff-portal .account-table td[data-label="Account"] {
+        display: block !important;
+        padding-bottom: var(--space-2) !important;
+    }
+
+    .staff-portal .account-table td[data-label="Actions"] {
+        display: block !important;
+        padding-top: var(--space-3) !important;
+    }
+
+    .staff-portal .account-table :is(td[data-label="Account"], td[data-label="Actions"])::before {
+        content: none;
+    }
+
+    .staff-portal .account-table td[data-label="Actions"]>div {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+    }
+
+    .staff-portal .account-table td[data-label="Actions"] .action-btn {
+        padding-inline: var(--space-2);
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .admin-gis-map {
+        height: clamp(280px, 60dvh, 480px);
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-portal .admin-header { gap: var(--space-1) var(--space-2); margin-bottom: var(--space-2); padding-bottom: var(--space-2); }
+    .admin-page-heading p { font-size: var(--font-size-sm); }
+
+    .admin-portal .admin-header .header-badge {
+        display: none;
+    }
+
+    .barangay-card {
+        padding: var(--space-4);
+    }
+
+    .overview-heading .section-actions {
+        width: auto;
+    }
+
+    #accountsSection .portal-chip-row .filter-btn {
+        flex: 1 1 0;
+        padding-inline: var(--space-2);
+        white-space: normal;
+    }
+
+    #gisMapSection .section-heading {
+        display: grid;
+        gap: var(--space-1);
+        margin-bottom: var(--space-2);
+    }
+
+    #gisMapReportCount { margin: 0; }
+}

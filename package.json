@@ -1,0 +1,52 @@
+{
+  "name": "neighborlens-ai-capstone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NeighborLens AI civic infrastructure reporting capstone",
+  "main": "server/app.js",
+  "scripts": {
+    "server": "node --env-file=.env server/app.js",
+    "server:dev": "node --env-file=.env --watch server/app.js",
+    "ai": "concurrently --kill-others-on-fail \"npm run ai:damage\" \"npm run ai:identity\"",
+    "ai:damage": "node --env-file=.env scripts/start-ai.js",
+    "ai:identity": ".venv\\Scripts\\python.exe -m uvicorn ai.identity.forensics_api:app --host 127.0.0.1 --port 8001 --env-file .env --no-access-log",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run ai\"",
+    "dev": "concurrently \"npm run server:dev\" \"npm run ai\"",
+    "test": "node --test --test-concurrency=1 server/tests/*.test.js tests/integration/*.test.js",
+    "migrate:mysql": "node --env-file=.env server/infrastructure/database/mysql/migrate.js",
+    "db:bootstrap-admin": "node --env-file=.env server/infrastructure/database/mysql/bootstrapAdmin.js",
+    "admin:recovery": "node --env-file=.env server/infrastructure/database/mysql/adminRecovery.js",
+    "test:unit": "node --test --test-concurrency=1 server/tests/*.test.js",
+    "test:admin-security": "node --test --test-concurrency=1 server/tests/admin-bootstrap.test.js tests/migrations/admin-provisioning-mysql.test.js",
+    "test:integration": "node --test --test-concurrency=1 tests/integration/*.test.js",
+    "test:e2e": "node --test --test-concurrency=1 tests/e2e/*.test.js",
+    "test:e2e:browser": "playwright test --config=playwright.phase1b.config.js",
+    "test:e2e:phase2": "playwright test --config=playwright.phase2.config.js",
+    "test:e2e:details": "playwright test --config=playwright.report-details.config.js",
+    "test:publication": "node --test --test-concurrency=1 server/tests/community-publication.test.js tests/migrations/community-publication-mysql.test.js tests/migrations/community-mysql.test.js",
+    "test:e2e:publication": "playwright test --config=playwright.publication.config.js",
+    "test:migration:phase2": "node --test tests/migrations/phase-2-mysql.test.js",
+    "test:mysql": "node --env-file=.env --test --test-concurrency=1 tests/mysql/*.test.js"
+  },
+  "overrides": {
+    "exceljs": { "uuid": "^11.1.1" }
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.117.3",
+    "bcryptjs": "^2.4.3",
+    "crc-32": "^1.2.2",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.24.4",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "concurrently": "^9.2.4"
+  }
+}

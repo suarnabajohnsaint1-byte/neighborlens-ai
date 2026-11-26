@@ -1,0 +1,1143 @@
+
+> neighborlens-ai-capstone@1.0.0 test:e2e:publication
+> playwright test --config=playwright.publication.config.js
+
+[WebServer] (node:1828) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+
+Running 8 tests using 1 worker
+
+(node:9896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.1s)
+  x  2 [desktop] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (5.9s)
+(node:31644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 [desktop] › tests\browser\community-publication.spec.js:67:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.5s)
+  ok 4 [desktop] › tests\browser\community-publication.spec.js:88:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.2s)
+(node:37440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [mobile] › tests\browser\community-publication.spec.js:32:1 › submission automatically queues review without a checkbox or a separate publication request (1.0s)
+  x  6 [mobile] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report (5.9s)
+(node:31808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 [mobile] › tests\browser\community-publication.spec.js:67:1 › a delayed report acknowledgement cannot reset replacement photos or a new manual description (1.4s)
+  ok 8 [mobile] › tests\browser\community-publication.spec.js:88:1 › refresh shows pending review in Report Details without asking the citizen to share again (1.2s)
+
+
+  1) [desktop] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#reportForm')
+    Timeout: 5000ms
+    - Expected substring  -   1
+    + Received string     + 148
+
+    - Isolated transaction unavailable
+    +
+    +
+    +                         
+    +                             Live location
+    +                             
+    +                 
+    +                     📍 10.67800, 122.94600
+    +                     ±15m accuracy
+    +                     Barangay: Villamonte
+    +                     Purok: Not available
+    +                     Bacolod City
+    +                     
+    +                     
+    +                          Location detected in Villamonte
+    +                     
+    +                 
+    +                             
+    +                         
+    +
+    +                         
+    +                             
+    +                                 Photos of the issue
+    +                                 Exactly 2 photos
+    +                             
+    +
+    +                             
+    +                                 
+    +                                      Upload photos
+    +                                 
+    +                                 
+    +                                      Use camera
+    +                                 
+    +                             
+    +
+    +                             
+    +                                 
+    +                                     
+    +                                     
+    +                                         
+    +                                             
+    +                                         
+    +                                         
+    +                                             
+    +                                         
+    +                                     
+    +                                     
+    +                                     2 photos scanned click to replace both photos
+    +                                     
+    +                                         Use different angles or sides. Both photos must show the same damage type.
+    +                                     
+    +                                 
+    +                             
+    +
+    +                             
+    +                                 
+    +                                     1 · Photo 1 (Main Angle)
+    +                                     
+    +                                     2 · Photo 2 (Alternate Angle)
+    +                                 
+    +
+    +                                 
+    +                                     
+    +                                         
+    +                                     
+    +                                     
+    +                                         
+    +                                             📸 Point at damage (Main View)
+    +                                         
+    +                                         
+    +                                             
+    +                                                 🔄 Flip
+    +                                             
+    +                                             
+    +                                                 📸 Capture Photo 1
+    +                                             
+    +                                         
+    +                                     
+    +                                 
+    +
+    +                                 
+    +                                     
+    +                                         
+    +                                         
+    +                                             Photo 1 (Main Angle)
+    +                                             Not captured yet
+    +                                         
+    +                                         🔄 Retake
+    +                                     
+    +                                     
+    +                                         
+    +                                         
+    +                                             Photo 2 (Alternate)
+    +                                             Not captured yet
+    +                                         
+    +                                         🔄 Retake
+    +                                     
+    +                                 
+    +                             
+    +                         
+    +
+    +                         
+    +         
+    +             
+    +                  AI Damage Assessment
+    +             
+    +             
+    +                 AI Detection: DETECTED
+    +                 Category: Road Damage
+    +                 
+    +                 Class: Pothole
+    +                 Canonical Class: pothole
+    +                 AI Confidence: 90%
+    +                 
+    +             
+    +             Pothole detected in both photos.
+    +             
+    +                 
+    +                     Photo 1: Damage Detected: Pothole · 90%
+    +                     Photo 2: Damage Detected: Pothole · 90%
+    +                 Damage Agreement: Yes
+    +                 Scene Match: 0% (different scenes)
+    +                 The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+    +                 Model: NeighborLens test fixture
+    +             
+    +             
+    +                 
+    +                 
+    +             
+    +         
+    +                         
+    +                             Citizen Report Category
+    +                             Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+    +                             
+    +                         
+    +
+    +                         
+    +                             
+    +                                 Describe the Issue
+    +                                 *
+    +                                 
+    +                                     auto-filled if photo provided
+    +                                 
+    +                             
+    +                             
+    +                         
+    +
+    +                         Submit to AI Analysis
+    +                     
+
+    Call log:
+      - Expect "toContainText" locator('#reportForm') with timeout 5000ms
+      - waiting for locator('#reportForm')
+        10 × locator resolved to <form id="reportForm">…</form>
+           - unexpected value "
+    
+                            
+                                Live location
+                                
+                    
+                        📍 10.67800, 122.94600
+                        ±15m accuracy
+                        Barangay: Villamonte
+                        Purok: Not available
+                        Bacolod City
+                        
+                        
+                             Location detected in Villamonte
+                        
+                    
+                                
+                            
+    
+                            
+                                
+                                    Photos of the issue
+                                    Exactly 2 photos
+                                
+    
+                                
+                                    
+                                         Upload photos
+                                    
+                                    
+                                         Use camera
+                                    
+                                
+    
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                            
+                                            
+                                                
+                                            
+                                        
+                                        
+                                        2 photos scanned click to replace both photos
+                                        
+                                            Use different angles or sides. Both photos must show the same damage type.
+                                        
+                                    
+                                
+    
+                                
+                                    
+                                        1 · Photo 1 (Main Angle)
+                                        
+                                        2 · Photo 2 (Alternate Angle)
+                                    
+    
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                                📸 Point at damage (Main View)
+                                            
+                                            
+                                                
+                                                    🔄 Flip
+                                                
+                                                
+                                                    📸 Capture Photo 1
+                                                
+                                            
+                                        
+                                    
+    
+                                    
+                                        
+                                            
+                                            
+                                                Photo 1 (Main Angle)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                        
+                                            
+                                            
+                                                Photo 2 (Alternate)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                    
+                                
+                            
+    
+                            
+            
+                
+                     AI Damage Assessment
+                
+                
+                    AI Detection: DETECTED
+                    Category: Road Damage
+                    
+                    Class: Pothole
+                    Canonical Class: pothole
+                    AI Confidence: 90%
+                    
+                
+                Pothole detected in both photos.
+                
+                    
+                        Photo 1: Damage Detected: Pothole · 90%
+                        Photo 2: Damage Detected: Pothole · 90%
+                    Damage Agreement: Yes
+                    Scene Match: 0% (different scenes)
+                    The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+                    Model: NeighborLens test fixture
+                
+                
+                    
+                    
+                
+            
+                            
+                                Citizen Report Category
+                                Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+                                
+                            
+    
+                            
+                                
+                                    Describe the Issue
+                                    *
+                                    
+                                        auto-filled if photo provided
+                                    
+                                
+                                
+                            
+    
+                            Service UnavailableSubmit to AI Analysis
+                        "
+        4 × locator resolved to <form id="reportForm">…</form>
+          - unexpected value "
+    
+                            
+                                Live location
+                                
+                    
+                        📍 10.67800, 122.94600
+                        ±15m accuracy
+                        Barangay: Villamonte
+                        Purok: Not available
+                        Bacolod City
+                        
+                        
+                             Location detected in Villamonte
+                        
+                    
+                                
+                            
+    
+                            
+                                
+                                    Photos of the issue
+                                    Exactly 2 photos
+                                
+    
+                                
+                                    
+                                         Upload photos
+                                    
+                                    
+                                         Use camera
+                                    
+                                
+    
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                            
+                                            
+                                                
+                                            
+                                        
+                                        
+                                        2 photos scanned click to replace both photos
+                                        
+                                            Use different angles or sides. Both photos must show the same damage type.
+                                        
+                                    
+                                
+    
+                                
+                                    
+                                        1 · Photo 1 (Main Angle)
+                                        
+                                        2 · Photo 2 (Alternate Angle)
+                                    
+    
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                                📸 Point at damage (Main View)
+                                            
+                                            
+                                                
+                                                    🔄 Flip
+                                                
+                                                
+                                                    📸 Capture Photo 1
+                                                
+                                            
+                                        
+                                    
+    
+                                    
+                                        
+                                            
+                                            
+                                                Photo 1 (Main Angle)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                        
+                                            
+                                            
+                                                Photo 2 (Alternate)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                    
+                                
+                            
+    
+                            
+            
+                
+                     AI Damage Assessment
+                
+                
+                    AI Detection: DETECTED
+                    Category: Road Damage
+                    
+                    Class: Pothole
+                    Canonical Class: pothole
+                    AI Confidence: 90%
+                    
+                
+                Pothole detected in both photos.
+                
+                    
+                        Photo 1: Damage Detected: Pothole · 90%
+                        Photo 2: Damage Detected: Pothole · 90%
+                    Damage Agreement: Yes
+                    Scene Match: 0% (different scenes)
+                    The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+                    Model: NeighborLens test fixture
+                
+                
+                    
+                    
+                
+            
+                            
+                                Citizen Report Category
+                                Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+                                
+                            
+    
+                            
+                                
+                                    Describe the Issue
+                                    *
+                                    
+                                        auto-filled if photo provided
+                                    
+                                
+                                
+                            
+    
+                            Submit to AI Analysis
+                        "
+
+
+      54 |   await page.route('**/api/reports', route => route.fulfill({ status: 503, json: { error: 'Isolated transaction unavailable' } }), { times: 1 });
+      55 |   await page.locator('#submitBtn').click();
+    > 56 |   await expect(page.locator('#reportForm')).toContainText('Isolated transaction unavailable');
+         |                                             ^
+      57 |   await expect(page.locator('#submitBtn')).toBeEnabled();
+      58 |   const headers = { Authorization: `Bearer ${sessions.get(page).apiToken}` };
+      59 |   expect((await (await request.get('/api/reports', { headers })).json()).reports).toHaveLength(0);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\community-publication.spec.js:56:45
+
+    Error Context: .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#reportForm')
+    Timeout: 5000ms
+    - Expected substring  -   1
+    + Received string     + 148
+
+    - Isolated transaction unavailable
+    +
+    +
+    +                         
+    +                             Live location
+    +                             
+    +                 
+    +                     📍 10.67800, 122.94600
+    +                     ±15m accuracy
+    +                     Barangay: Villamonte
+    +                     Purok: Not available
+    +                     Bacolod City
+    +                     
+    +                     
+    +                          Location detected in Villamonte
+    +                     
+    +                 
+    +                             
+    +                         
+    +
+    +                         
+    +                             
+    +                                 Photos of the issue
+    +                                 Exactly 2 photos
+    +                             
+    +
+    +                             
+    +                                 
+    +                                      Upload photos
+    +                                 
+    +                                 
+    +                                      Use camera
+    +                                 
+    +                             
+    +
+    +                             
+    +                                 
+    +                                     
+    +                                     
+    +                                         
+    +                                             
+    +                                         
+    +                                         
+    +                                             
+    +                                         
+    +                                     
+    +                                     
+    +                                     2 photos scanned click to replace both photos
+    +                                     
+    +                                         Use different angles or sides. Both photos must show the same damage type.
+    +                                     
+    +                                 
+    +                             
+    +
+    +                             
+    +                                 
+    +                                     1 · Photo 1 (Main Angle)
+    +                                     
+    +                                     2 · Photo 2 (Alternate Angle)
+    +                                 
+    +
+    +                                 
+    +                                     
+    +                                         
+    +                                     
+    +                                     
+    +                                         
+    +                                             📸 Point at damage (Main View)
+    +                                         
+    +                                         
+    +                                             
+    +                                                 🔄 Flip
+    +                                             
+    +                                             
+    +                                                 📸 Capture Photo 1
+    +                                             
+    +                                         
+    +                                     
+    +                                 
+    +
+    +                                 
+    +                                     
+    +                                         
+    +                                         
+    +                                             Photo 1 (Main Angle)
+    +                                             Not captured yet
+    +                                         
+    +                                         🔄 Retake
+    +                                     
+    +                                     
+    +                                         
+    +                                         
+    +                                             Photo 2 (Alternate)
+    +                                             Not captured yet
+    +                                         
+    +                                         🔄 Retake
+    +                                     
+    +                                 
+    +                             
+    +                         
+    +
+    +                         
+    +         
+    +             
+    +                  AI Damage Assessment
+    +             
+    +             
+    +                 AI Detection: DETECTED
+    +                 Category: Road Damage
+    +                 
+    +                 Class: Pothole
+    +                 Canonical Class: pothole
+    +                 AI Confidence: 90%
+    +                 
+    +             
+    +             Pothole detected in both photos.
+    +             
+    +                 
+    +                     Photo 1: Damage Detected: Pothole · 90%
+    +                     Photo 2: Damage Detected: Pothole · 90%
+    +                 Damage Agreement: Yes
+    +                 Scene Match: 0% (different scenes)
+    +                 The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+    +                 Model: NeighborLens test fixture
+    +             
+    +             
+    +                 
+    +                 
+    +             
+    +         
+    +                         
+    +                             Citizen Report Category
+    +                             Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+    +                             
+    +                         
+    +
+    +                         
+    +                             
+    +                                 Describe the Issue
+    +                                 *
+    +                                 
+    +                                     auto-filled if photo provided
+    +                                 
+    +                             
+    +                             
+    +                         
+    +
+    +                         Submit to AI Analysis
+    +                     
+
+    Call log:
+      - Expect "toContainText" locator('#reportForm') with timeout 5000ms
+      - waiting for locator('#reportForm')
+        - locator resolved to <form id="reportForm">…</form>
+        - unexpected value "
+    
+                            
+                                Live location
+                                
+                    
+                        📍 10.67800, 122.94600
+                        ±15m accuracy
+                        Barangay: Villamonte
+                        Purok: Not available
+                        Bacolod City
+                        
+                        
+                             Location detected in Villamonte
+                        
+                    
+                                
+                            
+    
+                            
+                                
+                                    Photos of the issue
+                                    Exactly 2 photos
+                                
+    
+                                
+                                    
+                                         Upload photos
+                                    
+                                    
+                                         Use camera
+                                    
+                                
+    
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                            
+                                            
+                                                
+                                            
+                                        
+                                        
+                                        2 photos scanned click to replace both photos
+                                        
+                                            Use different angles or sides. Both photos must show the same damage type.
+                                        
+                                    
+                                
+    
+                                
+                                    
+                                        1 · Photo 1 (Main Angle)
+                                        
+                                        2 · Photo 2 (Alternate Angle)
+                                    
+    
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                                📸 Point at damage (Main View)
+                                            
+                                            
+                                                
+                                                    🔄 Flip
+                                                
+                                                
+                                                    📸 Capture Photo 1
+                                                
+                                            
+                                        
+                                    
+    
+                                    
+                                        
+                                            
+                                            
+                                                Photo 1 (Main Angle)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                        
+                                            
+                                            
+                                                Photo 2 (Alternate)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                    
+                                
+                            
+    
+                            
+            
+                
+                     AI Damage Assessment
+                
+                
+                    AI Detection: DETECTED
+                    Category: Road Damage
+                    
+                    Class: Pothole
+                    Canonical Class: pothole
+                    AI Confidence: 90%
+                    
+                
+                Pothole detected in both photos.
+                
+                    
+                        Photo 1: Damage Detected: Pothole · 90%
+                        Photo 2: Damage Detected: Pothole · 90%
+                    Damage Agreement: Yes
+                    Scene Match: 0% (different scenes)
+                    The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+                    Model: NeighborLens test fixture
+                
+                
+                    
+                    
+                
+            
+                            
+                                Citizen Report Category
+                                Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+                                
+                            
+    
+                            
+                                
+                                    Describe the Issue
+                                    *
+                                    
+                                        auto-filled if photo provided
+                                    
+                                
+                                
+                            
+    
+                            ⏳ Processing…
+                        "
+        9 × locator resolved to <form id="reportForm">…</form>
+          - unexpected value "
+    
+                            
+                                Live location
+                                
+                    
+                        📍 10.67800, 122.94600
+                        ±15m accuracy
+                        Barangay: Villamonte
+                        Purok: Not available
+                        Bacolod City
+                        
+                        
+                             Location detected in Villamonte
+                        
+                    
+                                
+                            
+    
+                            
+                                
+                                    Photos of the issue
+                                    Exactly 2 photos
+                                
+    
+                                
+                                    
+                                         Upload photos
+                                    
+                                    
+                                         Use camera
+                                    
+                                
+    
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                            
+                                            
+                                                
+                                            
+                                        
+                                        
+                                        2 photos scanned click to replace both photos
+                                        
+                                            Use different angles or sides. Both photos must show the same damage type.
+                                        
+                                    
+                                
+    
+                                
+                                    
+                                        1 · Photo 1 (Main Angle)
+                                        
+                                        2 · Photo 2 (Alternate Angle)
+                                    
+    
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                                📸 Point at damage (Main View)
+                                            
+                                            
+                                                
+                                                    🔄 Flip
+                                                
+                                                
+                                                    📸 Capture Photo 1
+                                                
+                                            
+                                        
+                                    
+    
+                                    
+                                        
+                                            
+                                            
+                                                Photo 1 (Main Angle)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                        
+                                            
+                                            
+                                                Photo 2 (Alternate)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                    
+                                
+                            
+    
+                            
+            
+                
+                     AI Damage Assessment
+                
+                
+                    AI Detection: DETECTED
+                    Category: Road Damage
+                    
+                    Class: Pothole
+                    Canonical Class: pothole
+                    AI Confidence: 90%
+                    
+                
+                Pothole detected in both photos.
+                
+                    
+                        Photo 1: Damage Detected: Pothole · 90%
+                        Photo 2: Damage Detected: Pothole · 90%
+                    Damage Agreement: Yes
+                    Scene Match: 0% (different scenes)
+                    The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+                    Model: NeighborLens test fixture
+                
+                
+                    
+                    
+                
+            
+                            
+                                Citizen Report Category
+                                Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+                                
+                            
+    
+                            
+                                
+                                    Describe the Issue
+                                    *
+                                    
+                                        auto-filled if photo provided
+                                    
+                                
+                                
+                            
+    
+                            Service UnavailableSubmit to AI Analysis
+                        "
+        4 × locator resolved to <form id="reportForm">…</form>
+          - unexpected value "
+    
+                            
+                                Live location
+                                
+                    
+                        📍 10.67800, 122.94600
+                        ±15m accuracy
+                        Barangay: Villamonte
+                        Purok: Not available
+                        Bacolod City
+                        
+                        
+                             Location detected in Villamonte
+                        
+                    
+                                
+                            
+    
+                            
+                                
+                                    Photos of the issue
+                                    Exactly 2 photos
+                                
+    
+                                
+                                    
+                                         Upload photos
+                                    
+                                    
+                                         Use camera
+                                    
+                                
+    
+                                
+                                    
+                                        
+                                        
+                                            
+                                                
+                                            
+                                            
+                                                
+                                            
+                                        
+                                        
+                                        2 photos scanned click to replace both photos
+                                        
+                                            Use different angles or sides. Both photos must show the same damage type.
+                                        
+                                    
+                                
+    
+                                
+                                    
+                                        1 · Photo 1 (Main Angle)
+                                        
+                                        2 · Photo 2 (Alternate Angle)
+                                    
+    
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                                📸 Point at damage (Main View)
+                                            
+                                            
+                                                
+                                                    🔄 Flip
+                                                
+                                                
+                                                    📸 Capture Photo 1
+                                                
+                                            
+                                        
+                                    
+    
+                                    
+                                        
+                                            
+                                            
+                                                Photo 1 (Main Angle)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                        
+                                            
+                                            
+                                                Photo 2 (Alternate)
+                                                Not captured yet
+                                            
+                                            🔄 Retake
+                                        
+                                    
+                                
+                            
+    
+                            
+            
+                
+                     AI Damage Assessment
+                
+                
+                    AI Detection: DETECTED
+                    Category: Road Damage
+                    
+                    Class: Pothole
+                    Canonical Class: pothole
+                    AI Confidence: 90%
+                    
+                
+                Pothole detected in both photos.
+                
+                    
+                        Photo 1: Damage Detected: Pothole · 90%
+                        Photo 2: Damage Detected: Pothole · 90%
+                    Damage Agreement: Yes
+                    Scene Match: 0% (different scenes)
+                    The photos may show different scenes. This advisory does not block submission or verify the damage or location.
+                    Model: NeighborLens test fixture
+                
+                
+                    
+                    
+                
+            
+                            
+                                Citizen Report Category
+                                Select categoryStreet Light DamageFlooding / DrainageRoad Damage
+                                
+                            
+    
+                            
+                                
+                                    Describe the Issue
+                                    *
+                                    
+                                        auto-filled if photo provided
+                                    
+                                
+                                
+                            
+    
+                            Submit to AI Analysis
+                        "
+
+
+      54 |   await page.route('**/api/reports', route => route.fulfill({ status: 503, json: { error: 'Isolated transaction unavailable' } }), { times: 1 });
+      55 |   await page.locator('#submitBtn').click();
+    > 56 |   await expect(page.locator('#reportForm')).toContainText('Isolated transaction unavailable');
+         |                                             ^
+      57 |   await expect(page.locator('#submitBtn')).toBeEnabled();
+      58 |   const headers = { Authorization: `Bearer ${sessions.get(page).apiToken}` };
+      59 |   expect((await (await request.get('/api/reports', { headers })).json()).reports).toHaveLength(0);
+        at C:\Users\cleme\Documents\GitHub\Neighborlens-AI\tests\browser\community-publication.spec.js:56:45
+
+    Error Context: .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace .data\publication-browser-results\community-publication-a-fa-d1a5e--exactly-one-pending-report-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report 
+    [mobile] › tests\browser\community-publication.spec.js:53:1 › a failed submission keeps the form recoverable and retry creates exactly one pending report 
+  6 passed (26.0s)

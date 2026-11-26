@@ -1,0 +1,3224 @@
+{
+  "source": "neighborlens_paper_aligned_v3_clean",
+  "seed": 42,
+  "images": [
+    {
+      "split": "train",
+      "file": "scene_0002_a.jpg",
+      "scene_id": "scene_0002",
+      "source_lineage_group": "scene_0002",
+      "source_file": "10_jpg.rf.7dc8e560122e54ef1e37da104c7f2e58.jpg",
+      "source_split": "train",
+      "source_stem": "10_jpg",
+      "sha256": "92d25f5ceb6899b7f1a3c7b88e7c8bfb9f8c5f431c81a7d316c4419ac106eeae",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0003_a.jpg",
+      "scene_id": "scene_0003",
+      "source_lineage_group": "scene_0003",
+      "source_file": "10_jpg.rf.a760f62ab353e3239c05a98dbbdc37b2.jpg",
+      "source_split": "train",
+      "source_stem": "10_jpg",
+      "sha256": "ecd3da8babe3cdcab6710e09badf49bf6a633e5c170cb43aa7b535b5d9be9cb5",
+      "classes": [
+        3
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0005_a.jpg",
+      "scene_id": "scene_0005",
+      "source_lineage_group": "scene_0005",
+      "source_file": "12_jpg.rf.d51163107dcf268809c74e886a29cf23.jpg",
+      "source_split": "train",
+      "source_stem": "12_jpg",
+      "sha256": "2ce09e3155823963ad23e24964d569b45e607001c13d8ee869747bc3eaf77ceb",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0006_a.jpg",
+      "scene_id": "scene_0006",
+      "source_lineage_group": "scene_0006",
+      "source_file": "12_jpg.rf.ef5efe49d100041ac92f329388304229.jpg",
+      "source_split": "train",
+      "source_stem": "12_jpg",
+      "sha256": "5f9af59973ba61f2ea8b47548bf6c7b95e7c43b51ac2507705a3ff3c2bc3430e",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0007_a.jpg",
+      "scene_id": "scene_0007",
+      "source_lineage_group": "scene_0007",
+      "source_file": "13_jpg.rf.529f5fb649cb3638a1e037edc89204ad.jpg",
+      "source_split": "train",
+      "source_stem": "13_jpg",
+      "sha256": "5bf54c0172751bd9e4204a947108b4afd57e3e8e0072d5b35495c3c74069f0ac",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0008_a.jpg",
+      "scene_id": "scene_0008",
+      "source_lineage_group": "scene_0008",
+      "source_file": "13_jpg.rf.b155806d51460b1f014981c8671dce20.jpg",
+      "source_split": "train",
+      "source_stem": "13_jpg",
+      "sha256": "e5fa61cdf20daebefde7243db4a4fbe9789b4e2ba4de921d68796bb58b7f965f",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 4,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0009_a.jpg",
+      "scene_id": "scene_0009",
+      "source_lineage_group": "scene_0009",
+      "source_file": "14_jpg.rf.df0a94e0c560e874d7c1cf5dbdc8d4d3.jpg",
+      "source_split": "train",
+      "source_stem": "14_jpg",
+      "sha256": "bf85a788b0e5ffbbe25563fe557986c1bfaae5c935cad24456da0e60252988b0",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0011_a.jpg",
+      "scene_id": "scene_0011",
+      "source_lineage_group": "scene_0011",
+      "source_file": "15_jpg.rf.9ed36b172dde0299f9d2c5b9137fef0e.jpg",
+      "source_split": "train",
+      "source_stem": "15_jpg",
+      "sha256": "c7beedc532b2af1bfd2ce644b38127a7de0d331754fdc8906965aff7a5f736a3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0012_a.jpg",
+      "scene_id": "scene_0012",
+      "source_lineage_group": "scene_0012",
+      "source_file": "15_jpg.rf.c7f6049fbf3b29d2ecd126a0655ff393.jpg",
+      "source_split": "train",
+      "source_stem": "15_jpg",
+      "sha256": "73bf2f8156f61f2f7509f45a56ac9e7223d6334d815be20ce74ebb9b6ae9300d",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0013_a.jpg",
+      "scene_id": "scene_0013",
+      "source_lineage_group": "scene_0013",
+      "source_file": "16_jpg.rf.3afa356e68f8663cf74282289c3f164e.jpg",
+      "source_split": "train",
+      "source_stem": "16_jpg",
+      "sha256": "53a433ddd86a5ee9dc9916e4dd2d0b696ccb12125b215e37d518f5feda70db64",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0015_a.jpg",
+      "scene_id": "scene_0015",
+      "source_lineage_group": "scene_0015",
+      "source_file": "16_jpg.rf.bd042880b4da7c521b8d9869b1d91e71.jpg",
+      "source_split": "train",
+      "source_stem": "16_jpg",
+      "sha256": "2903dd372fa5eeda8ae558e0a955dda1dcf72e1420d0f48c0ffa3b07f91ddab8",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0017_a.jpg",
+      "scene_id": "scene_0017",
+      "source_lineage_group": "scene_0017",
+      "source_file": "19_jpg.rf.c2e8ea6585a9dd4edb1daae6058b37f6.jpg",
+      "source_split": "train",
+      "source_stem": "19_jpg",
+      "sha256": "6e69b0ddd0bd86e47266d9a0ac5841c77e8ef5020f05b8e82dfc8050d84d64c8",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0018_a.jpg",
+      "scene_id": "scene_0018",
+      "source_lineage_group": "scene_0018",
+      "source_file": "1_jpg.rf.d06c557f680603180837dc921f17de0d.jpg",
+      "source_split": "train",
+      "source_stem": "1_jpg",
+      "sha256": "56980768d292e99e65182cb0f8f828930a6c322ed9549bab1a622a7876eaf2ae",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0019_a.jpg",
+      "scene_id": "scene_0019",
+      "source_lineage_group": "scene_0019",
+      "source_file": "20_jpg.rf.4528026f5459b7527cf7cfd87bbfb6b5.jpg",
+      "source_split": "train",
+      "source_stem": "20_jpg",
+      "sha256": "3417290376ba56f7da64551818dab9fdd219ec5ab03d1985c04034986eaea19f",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0020_a.jpg",
+      "scene_id": "scene_0020",
+      "source_lineage_group": "scene_0020",
+      "source_file": "21_jpg.rf.27830fa60b493f4c7ad1b9dbed959b84.jpg",
+      "source_split": "train",
+      "source_stem": "21_jpg",
+      "sha256": "f324b44e1c172ae5ac4cc0db9d1a0ee4be513617840d96e0fec31e6cc5ecdacd",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0022_a.jpg",
+      "scene_id": "scene_0022",
+      "source_lineage_group": "scene_0022",
+      "source_file": "22_jpg.rf.f5ba9f205282742500356918904bda40.jpg",
+      "source_split": "train",
+      "source_stem": "22_jpg",
+      "sha256": "40c7d18a757c8e1d5441c8611c7eb5b05a7ce659f578c093fea3d4249f4141a3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0022_b.jpg",
+      "scene_id": "scene_0022",
+      "source_lineage_group": "scene_0022",
+      "source_file": "62_jpg.rf.580c8b7e5d67c467c361b7bd176a94a3.jpg",
+      "source_split": "train",
+      "source_stem": "62_jpg",
+      "sha256": "49d2b76d8d8553da588099859228fedc276f908b6eb79188293a1d0d0afd747c",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0023_a.jpg",
+      "scene_id": "scene_0023",
+      "source_lineage_group": "scene_0023",
+      "source_file": "23_jpg.rf.caf976854f24fbf9126770e62172fc82.jpg",
+      "source_split": "train",
+      "source_stem": "23_jpg",
+      "sha256": "4acb3627759531477f0d15ff3bdcc9487d84f27602faf5947875ade8997b73f7",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0024_a.jpg",
+      "scene_id": "scene_0024",
+      "source_lineage_group": "scene_0024",
+      "source_file": "23_jpg.rf.fe157bd5f95d166921b7b7a9263f8be2.jpg",
+      "source_split": "train",
+      "source_stem": "23_jpg",
+      "sha256": "c1a57e7ffc736660cdd8510c4fbb1445b70727951723474911395cbe4452f837",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0025_a.jpg",
+      "scene_id": "scene_0025",
+      "source_lineage_group": "scene_0025",
+      "source_file": "24_jpg.rf.53f6ad9f4db5e6c25509c5539217e9f5.jpg",
+      "source_split": "train",
+      "source_stem": "24_jpg",
+      "sha256": "616b437adbe18a0e298836deefc2150bf20aacafa494d4406460e9c5af561730",
+      "classes": [
+        1,
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0026_a.jpg",
+      "scene_id": "scene_0026",
+      "source_lineage_group": "scene_0026",
+      "source_file": "24_jpg.rf.c6deb21b74a5572feb41e4e017fb5a99.jpg",
+      "source_split": "train",
+      "source_stem": "24_jpg",
+      "sha256": "f0212b617312b54f723368f294bcc589854ade4036784a25a54d92a417374ce3",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0027_a.jpg",
+      "scene_id": "scene_0027",
+      "source_lineage_group": "scene_0027",
+      "source_file": "25_jpg.rf.c4a33236d60f9101d4af8644e5452fa2.jpg",
+      "source_split": "train",
+      "source_stem": "25_jpg",
+      "sha256": "8a2cf69f087347b9ffd9415afd174838bf609409c7210f01190cd5d7d74f107e",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0028_a.jpg",
+      "scene_id": "scene_0028",
+      "source_lineage_group": "scene_0028",
+      "source_file": "26_jpg.rf.eaab16ef827d7108aae047ac05044294.jpg",
+      "source_split": "train",
+      "source_stem": "26_jpg",
+      "sha256": "2a5fb9dce73c2dbf446cf68dad2ea7470ff322cb771979b184400477595c5fd0",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0029_a.jpg",
+      "scene_id": "scene_0029",
+      "source_lineage_group": "scene_0029",
+      "source_file": "26_webp.rf.f636106b5a485bbe100e7cb4ae33fea7.jpg",
+      "source_split": "train",
+      "source_stem": "26_webp",
+      "sha256": "0a282cb198f8e47eeacfa9c330b5c43615ee34b120b53900019d69f852374234",
+      "classes": [
+        2
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0031_a.jpg",
+      "scene_id": "scene_0031",
+      "source_lineage_group": "scene_0031",
+      "source_file": "27_jpg.rf.85feb2f5151db875f9c46ba9c965207b.jpg",
+      "source_split": "train",
+      "source_stem": "27_jpg",
+      "sha256": "e98e0f0525e30f6b89a2366f4512e8392db76f5323257ccba081c5ef35d15d69",
+      "classes": [
+        2
+      ],
+      "boxes": 7,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0032_a.jpg",
+      "scene_id": "scene_0032",
+      "source_lineage_group": "scene_0032",
+      "source_file": "27_jpg.rf.d0ca3776283d7da016c1ef9f09f03a45.jpg",
+      "source_split": "train",
+      "source_stem": "27_jpg",
+      "sha256": "edc8d7757d25b94d5700017de34d368f0c7c333e796bf25735ca3cd26bea1945",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0033_a.jpg",
+      "scene_id": "scene_0033",
+      "source_lineage_group": "scene_0033",
+      "source_file": "28_jpg.rf.7c3aa27a38b0e220dbd593ac87e8718f.jpg",
+      "source_split": "train",
+      "source_stem": "28_jpg",
+      "sha256": "22eec9b6fc9c0f1b9315704883d9bc692345537fe4b9fe28720b082af4e3eee7",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0034_a.jpg",
+      "scene_id": "scene_0034",
+      "source_lineage_group": "scene_0034",
+      "source_file": "28_jpg.rf.a036f1cf078acdf3232dc0ecbc39b1d5.jpg",
+      "source_split": "train",
+      "source_stem": "28_jpg",
+      "sha256": "1877c6f27819c91a3914f3c39e0c2c9bd103783fcdf3852e95e96c4af57d17fd",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 8,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0035_a.jpg",
+      "scene_id": "scene_0035",
+      "source_lineage_group": "scene_0035",
+      "source_file": "29_jpg.rf.0a3648672b783a087c8e0879f6cfbef4.jpg",
+      "source_split": "train",
+      "source_stem": "29_jpg",
+      "sha256": "bd127a5338f190d07a9c1c8f890663f4689c0c13fa4eab2896a9e416bb790d9b",
+      "classes": [
+        2
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0037_a.jpg",
+      "scene_id": "scene_0037",
+      "source_lineage_group": "scene_0037",
+      "source_file": "2_jpg.rf.1773a38d09334d47e06269488b9508f5.jpg",
+      "source_split": "train",
+      "source_stem": "2_jpg",
+      "sha256": "abc13a024619515e1b155873c6e0a49abe0b3b5ac21498802df29f14da86c98d",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0038_a.jpg",
+      "scene_id": "scene_0038",
+      "source_lineage_group": "scene_0038",
+      "source_file": "30_jpg.rf.59231e177451eecc98ce420e2bc117b7.jpg",
+      "source_split": "train",
+      "source_stem": "30_jpg",
+      "sha256": "993e09cb466f004fb7bd0d516871f85e55cbf62333cd4353695dae17bdf2f1c1",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0039_a.jpg",
+      "scene_id": "scene_0039",
+      "source_lineage_group": "scene_0039",
+      "source_file": "31_jpg.rf.21e7a18854dcbfe005183da10bb1dcfd.jpg",
+      "source_split": "train",
+      "source_stem": "31_jpg",
+      "sha256": "000c4b6b32017bf081af9a1ff812a7be7361525cb592adb0cd86b8a53314ecc5",
+      "classes": [
+        2
+      ],
+      "boxes": 7,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0041_a.jpg",
+      "scene_id": "scene_0041",
+      "source_lineage_group": "scene_0041",
+      "source_file": "32_jpg.rf.d91d7afc6d1b978d0a286088401239c2.jpg",
+      "source_split": "train",
+      "source_stem": "32_jpg",
+      "sha256": "e6dfb923d2ff2b6bb38b6f1c6d069828c41636d6b921212fee690f0d1e3eca9b",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0042_a.jpg",
+      "scene_id": "scene_0042",
+      "source_lineage_group": "scene_0042",
+      "source_file": "33_jpg.rf.10ce078cdd78d170aaa6adb398e4a9df.jpg",
+      "source_split": "train",
+      "source_stem": "33_jpg",
+      "sha256": "133b60ca26ddbb738f2d6b34d43f49134f7f11205517cea4ab5e521c5f077771",
+      "classes": [
+        2
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0044_a.jpg",
+      "scene_id": "scene_0044",
+      "source_lineage_group": "scene_0044",
+      "source_file": "34_jpg.rf.8ca88c2d87e843e29d1d0c6331f593a5.jpg",
+      "source_split": "train",
+      "source_stem": "34_jpg",
+      "sha256": "097a8783b68311c9ace3a630f492043623fc91a564e892b787c223f9dad5b68f",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0045_a.jpg",
+      "scene_id": "scene_0045",
+      "source_lineage_group": "scene_0045",
+      "source_file": "35_jpg.rf.059ec1b373a752e39efc5273d81cd037.jpg",
+      "source_split": "train",
+      "source_stem": "35_jpg",
+      "sha256": "12f6154e632c5b8848f07e37158f10dcbad3304a240f0d7474d506e95b67ffc4",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0046_a.jpg",
+      "scene_id": "scene_0046",
+      "source_lineage_group": "scene_0046",
+      "source_file": "35_jpg.rf.0670983ba8f98e3405cf4530a0272604.jpg",
+      "source_split": "train",
+      "source_stem": "35_jpg",
+      "sha256": "ee52be35f8323c9f066c7961590210405fd0c941cbfa650bb70683f08d0c7e4c",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 8,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0048_a.jpg",
+      "scene_id": "scene_0048",
+      "source_lineage_group": "scene_0048",
+      "source_file": "36_jpg.rf.185d8ce7670fcbe499719d1b4f4e8d46.jpg",
+      "source_split": "train",
+      "source_stem": "36_jpg",
+      "sha256": "f939bac272d0245464f4d10c794d55576c198113ccd3f9bd9f6ebfc35a469993",
+      "classes": [
+        2
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0050_a.jpg",
+      "scene_id": "scene_0050",
+      "source_lineage_group": "scene_0050",
+      "source_file": "38_jpg.rf.287f3a77243eb93ba00cf6c46e223315.jpg",
+      "source_split": "train",
+      "source_stem": "38_jpg",
+      "sha256": "aad97c7530833ac1817932169b7e9e9d3d1f78aa23b80f7ec47141ef699ce70e",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0052_a.jpg",
+      "scene_id": "scene_0052",
+      "source_lineage_group": "scene_0052",
+      "source_file": "38_jpg.rf.a1cdee58aaf32c623e9ace342f1be160.jpg",
+      "source_split": "train",
+      "source_stem": "38_jpg",
+      "sha256": "0a17cbb360cf90e816c4fda8c664e3b3a8d1d607d779b5ae38baaf1df06b18ed",
+      "classes": [
+        0,
+        3
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0053_a.jpg",
+      "scene_id": "scene_0053",
+      "source_lineage_group": "scene_0053",
+      "source_file": "39_jpg.rf.2196f16062375354e9c5d1b1dfa84f9d.jpg",
+      "source_split": "train",
+      "source_stem": "39_jpg",
+      "sha256": "c5ec156fa3433d47e1104ac1137a32f287c1a335243a0e37c4806510cf3aab1b",
+      "classes": [
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0054_a.jpg",
+      "scene_id": "scene_0054",
+      "source_lineage_group": "scene_0054",
+      "source_file": "40_jpg.rf.074303d2531643c90e69845ee1c206ed.jpg",
+      "source_split": "train",
+      "source_stem": "40_jpg",
+      "sha256": "df06476905196026a2e40ba474f854c2637dbd0f4e476d264ae0702ae423788c",
+      "classes": [
+        0
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0055_a.jpg",
+      "scene_id": "scene_0055",
+      "source_lineage_group": "scene_0055",
+      "source_file": "40_jpg.rf.8d9dbd0d44b49497ce73f0beb70938c9.jpg",
+      "source_split": "train",
+      "source_stem": "40_jpg",
+      "sha256": "63e5bb2b2b32456ff1a7590dfe5c573af1102751f14b080e46468d0f26fc2200",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0056_a.jpg",
+      "scene_id": "scene_0056",
+      "source_lineage_group": "scene_0056",
+      "source_file": "41_jpg.rf.03a670350b288d063da12ece654b86ad.jpg",
+      "source_split": "train",
+      "source_stem": "41_jpg",
+      "sha256": "ace0753bbd418876fd9b00f3febe3126eb23685eb57f170c92b6982d39af759d",
+      "classes": [
+        3
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0057_a.jpg",
+      "scene_id": "scene_0057",
+      "source_lineage_group": "scene_0057",
+      "source_file": "42_jpg.rf.34d9321a5a52cfe39efcf6ff2389bf7d.jpg",
+      "source_split": "train",
+      "source_stem": "42_jpg",
+      "sha256": "08a773d85ce919f13ec189d84b1994a7ae05e37a585c80e84b9e73232596731f",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0058_a.jpg",
+      "scene_id": "scene_0058",
+      "source_lineage_group": "scene_0058",
+      "source_file": "42_jpg.rf.942a9ff8bc38bfa11dbc45c98cb3c52e.jpg",
+      "source_split": "train",
+      "source_stem": "42_jpg",
+      "sha256": "b4ce8a0d2ede163f1491a3e47b33f943bbbe6f6fbcf80ff6cabe948a153ea854",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0059_a.jpg",
+      "scene_id": "scene_0059",
+      "source_lineage_group": "scene_0059",
+      "source_file": "43_jpg.rf.11f660062e58d8f783b3603a09658449.jpg",
+      "source_split": "train",
+      "source_stem": "43_jpg",
+      "sha256": "1fbfd3542a52b37016d0853b058277a60ea95c360b5fd2798599c59911e232c3",
+      "classes": [
+        2
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0061_a.jpg",
+      "scene_id": "scene_0061",
+      "source_lineage_group": "scene_0061",
+      "source_file": "44_jpg.rf.25978c2b122ee12376a1ddabbb36e213.jpg",
+      "source_split": "train",
+      "source_stem": "44_jpg",
+      "sha256": "eb379b3c2fc95ae90230746d8d23243b75688887164c40d180c64121cc9d3cf2",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 5,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0062_a.jpg",
+      "scene_id": "scene_0062",
+      "source_lineage_group": "scene_0062",
+      "source_file": "45_jpg.rf.836152fc50f7792cfc91d772d54af392.jpg",
+      "source_split": "train",
+      "source_stem": "45_jpg",
+      "sha256": "292d2a380f6a0273684518c14e36425456849ce9adb05b1e75e6fc3b8af0de94",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0064_a.jpg",
+      "scene_id": "scene_0064",
+      "source_lineage_group": "scene_0064",
+      "source_file": "46_jpg.rf.93804d961fe12a1123a05fea3cbd2bb3.jpg",
+      "source_split": "train",
+      "source_stem": "46_jpg",
+      "sha256": "a3501f9434b683e83886cf20bed7e53a3f87acbfe7bdc5e47ed0f88b920fc44e",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0065_a.jpg",
+      "scene_id": "scene_0065",
+      "source_lineage_group": "scene_0065",
+      "source_file": "46_jpg.rf.c80c72295f662c1ef723c93c011d116e.jpg",
+      "source_split": "train",
+      "source_stem": "46_jpg",
+      "sha256": "0c50b8e406c778834c022e071a4c2e2c160c843ffed342126a97273245e33f5f",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0066_a.jpg",
+      "scene_id": "scene_0066",
+      "source_lineage_group": "scene_0066",
+      "source_file": "47_jpg.rf.343fb3c7832e9559dbd5c5aae4afa86c.jpg",
+      "source_split": "train",
+      "source_stem": "47_jpg",
+      "sha256": "3d92716528d91afb5d7de80e00c6633871f80d268eb586ee917756a90ddefba1",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0067_a.jpg",
+      "scene_id": "scene_0067",
+      "source_lineage_group": "scene_0067",
+      "source_file": "47_jpg.rf.d51e5621a4b859590a0a5c42a6e18d21.jpg",
+      "source_split": "train",
+      "source_stem": "47_jpg",
+      "sha256": "98cd46bf0e37dc36be9484cad83d4e15da96ba1eb4deaf41e2bddc25afa0d9ff",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0068_a.jpg",
+      "scene_id": "scene_0068",
+      "source_lineage_group": "scene_0068",
+      "source_file": "48_jpg.rf.3577e2090a46c8c62c61eec91e489357.jpg",
+      "source_split": "train",
+      "source_stem": "48_jpg",
+      "sha256": "da66dbb09af77374524c7249ade62e2be9a939749216235ef9baa275f6d856ef",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0069_a.jpg",
+      "scene_id": "scene_0069",
+      "source_lineage_group": "scene_0069",
+      "source_file": "48_jpg.rf.c97fbe9927a18be12aaed8f6c1dc81d3.jpg",
+      "source_split": "train",
+      "source_stem": "48_jpg",
+      "sha256": "63f7f21bcd8ea80c7ae6e89179cd78170477c584b2dd7d43906eb5cb223e3829",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0070_a.jpg",
+      "scene_id": "scene_0070",
+      "source_lineage_group": "scene_0070",
+      "source_file": "49_jpg.rf.11f849f9a418ad2e1f27bd2d72987954.jpg",
+      "source_split": "train",
+      "source_stem": "49_jpg",
+      "sha256": "5b704160162361ad108929f7c6529b97bd08632b55816e7a1deba4775f21a36e",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0071_a.jpg",
+      "scene_id": "scene_0071",
+      "source_lineage_group": "scene_0071",
+      "source_file": "49_jpg.rf.225d7b2d5753681abcad5948378fd4ad.jpg",
+      "source_split": "train",
+      "source_stem": "49_jpg",
+      "sha256": "40b14011d6ae2e09aa2d1fcd948be0339898c283e4249a98ce12e37188b16ca4",
+      "classes": [
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0072_a.jpg",
+      "scene_id": "scene_0072",
+      "source_lineage_group": "scene_0072",
+      "source_file": "49_jpg.rf.5d88cefbb73531faae027c9ed8b9d894.jpg",
+      "source_split": "train",
+      "source_stem": "49_jpg",
+      "sha256": "46ac19a1c8dbaa54fe40bbc18e5baf4bd2812e292d5fc4d88650320d38f8cb5a",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0074_a.jpg",
+      "scene_id": "scene_0074",
+      "source_lineage_group": "scene_0074",
+      "source_file": "4_jpg.rf.3a2c522abf560ecf335696a065026e38.jpg",
+      "source_split": "train",
+      "source_stem": "4_jpg",
+      "sha256": "fec10ddff30fbafba353e76793bc6d8aa07fff0a21ce7a5cfce2c76059fa24b3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0075_a.jpg",
+      "scene_id": "scene_0075",
+      "source_lineage_group": "scene_0075",
+      "source_file": "4_jpg.rf.f0f54a3c149ce26ecfb34e35c3e50cef.jpg",
+      "source_split": "train",
+      "source_stem": "4_jpg",
+      "sha256": "0624cb61b42d7d8d3c07c136250a1efa0fb6550f701c76a0372a04fc68a40800",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0076_a.jpg",
+      "scene_id": "scene_0076",
+      "source_lineage_group": "scene_0076",
+      "source_file": "50_jpg.rf.42faf04a42f5dd5738ae3440eace275f.jpg",
+      "source_split": "train",
+      "source_stem": "50_jpg",
+      "sha256": "5e95043314a538403422bc7e884d45f9367f7031118aeaad3d9f205d9a0c3c80",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0078_a.jpg",
+      "scene_id": "scene_0078",
+      "source_lineage_group": "scene_0078",
+      "source_file": "50_jpg.rf.dfcd2dc912601ee6e504778a6d3431b5.jpg",
+      "source_split": "train",
+      "source_stem": "50_jpg",
+      "sha256": "c5c5988afc40c3640847d3dfcfbe7e4b3ddd8e171c0f895da71ddc0c4619a0ab",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0079_a.jpg",
+      "scene_id": "scene_0079",
+      "source_lineage_group": "scene_0079",
+      "source_file": "51_jpg.rf.9ad76c3b4b6962a71b9a83426b37c030.jpg",
+      "source_split": "train",
+      "source_stem": "51_jpg",
+      "sha256": "611971d09862a2342e7f2588e83d06697d22bc8e4e6d993b06edd2070bf000fa",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0080_a.jpg",
+      "scene_id": "scene_0080",
+      "source_lineage_group": "scene_0080",
+      "source_file": "51_jpg.rf.9e4c7b54fe952be29ecf0ff3e992edad.jpg",
+      "source_split": "train",
+      "source_stem": "51_jpg",
+      "sha256": "87c05adc827ee784cf2b4d22f4e4ad7b1cbe59e45d2a820cd2528c65738f4527",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0081_a.jpg",
+      "scene_id": "scene_0081",
+      "source_lineage_group": "scene_0081",
+      "source_file": "51_jpg.rf.a402741c101b890538f902a9d1d7c5e2.jpg",
+      "source_split": "train",
+      "source_stem": "51_jpg",
+      "sha256": "2297aaf9dddc2a4bb7c8a3cbb4a79d6b20fc093f75592705c6ba680eb7c40123",
+      "classes": [
+        1
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0082_a.jpg",
+      "scene_id": "scene_0082",
+      "source_lineage_group": "scene_0082",
+      "source_file": "52_jpg.rf.3984c7a2aa61f229aa58b78c0e01daa8.jpg",
+      "source_split": "train",
+      "source_stem": "52_jpg",
+      "sha256": "6565074584a2cc2e14da72ebae6dd0789828608eb65aaf4f0532a13c1580bc92",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0083_a.jpg",
+      "scene_id": "scene_0083",
+      "source_lineage_group": "scene_0083",
+      "source_file": "52_jpg.rf.4db93eeac56f61501c4e39bd39211ad9.jpg",
+      "source_split": "train",
+      "source_stem": "52_jpg",
+      "sha256": "6b86a200dc3598baeef3ce59ef2de7756910cee0b530f4ff84afe96c67fa1e5e",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0084_a.jpg",
+      "scene_id": "scene_0084",
+      "source_lineage_group": "scene_0084",
+      "source_file": "52_jpg.rf.9a9fafcb2a3f3d2d6191579b30a05ad9.jpg",
+      "source_split": "train",
+      "source_stem": "52_jpg",
+      "sha256": "d287d414dc1a2ed77ea454e7e515c3d73c323144787066174f892acf29295d08",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0085_a.jpg",
+      "scene_id": "scene_0085",
+      "source_lineage_group": "scene_0085",
+      "source_file": "53_jpg.rf.8b3c315090ff028da768545833d1f76e.jpg",
+      "source_split": "train",
+      "source_stem": "53_jpg",
+      "sha256": "2f75a40e2eb959ffaa877b33cc4690dffdc301f0dd0a7f4b85372d00342096d4",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0086_a.jpg",
+      "scene_id": "scene_0086",
+      "source_lineage_group": "scene_0086",
+      "source_file": "54_jpg.rf.62ba46ef8442150d2514c8706390c44c.jpg",
+      "source_split": "train",
+      "source_stem": "54_jpg",
+      "sha256": "8477a14e2d6402fff5970fed2ff1c653063f5f4760975d9896e91ed50fa8a357",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0087_a.jpg",
+      "scene_id": "scene_0087",
+      "source_lineage_group": "scene_0087",
+      "source_file": "55_jpg.rf.3c9d85ee39f7e339e794ef07a08ec909.jpg",
+      "source_split": "train",
+      "source_stem": "55_jpg",
+      "sha256": "34d2e7f7b2ff3f7dc4f7e3d03c25c2068793ad4a59f8594bcb11a8ce05b0ad9b",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0088_a.jpg",
+      "scene_id": "scene_0088",
+      "source_lineage_group": "scene_0088",
+      "source_file": "55_jpg.rf.6527518778aedfa378ea3e22d5be698b.jpg",
+      "source_split": "train",
+      "source_stem": "55_jpg",
+      "sha256": "d2a17fac24fbf9d6eee8383bb1676ad61b3e4c5c91fe3df1c8b0f89f74fa50fb",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0089_a.jpg",
+      "scene_id": "scene_0089",
+      "source_lineage_group": "scene_0089",
+      "source_file": "56_jpg.rf.299e81da932f648f2ff978d3152dec74.jpg",
+      "source_split": "train",
+      "source_stem": "56_jpg",
+      "sha256": "17d325db8c72cc254ce6ded3ff9c926fbdf497c73bc977874698eafef2b9b419",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0091_a.jpg",
+      "scene_id": "scene_0091",
+      "source_lineage_group": "scene_0091",
+      "source_file": "57_jpg.rf.00f4ca5dcfb964a6f543f0573741fc27.jpg",
+      "source_split": "train",
+      "source_stem": "57_jpg",
+      "sha256": "e34e405adf1ff6248954ad8c0e99d42bddde43576fc9f6a506a8069dd9a21233",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0092_a.jpg",
+      "scene_id": "scene_0092",
+      "source_lineage_group": "scene_0092",
+      "source_file": "57_jpg.rf.bc2ca7216a8af748cc0525bee117f04a.jpg",
+      "source_split": "train",
+      "source_stem": "57_jpg",
+      "sha256": "3a8d89432dbebb45eee225a1bc91359ecd33319e62ad6540509a4f605c28de61",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0093_a.jpg",
+      "scene_id": "scene_0093",
+      "source_lineage_group": "scene_0093",
+      "source_file": "57_jpg.rf.f42df1d51dbcec7b4a8199e9473be677.jpg",
+      "source_split": "train",
+      "source_stem": "57_jpg",
+      "sha256": "cbf41ef5a0cbef3dab5615bc841a3ca2866be407ba055daaa72b7b631c81b437",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0095_a.jpg",
+      "scene_id": "scene_0095",
+      "source_lineage_group": "scene_0095",
+      "source_file": "58_jpg.rf.1961e2aace24eaf5a41d0390f1e4c904.jpg",
+      "source_split": "train",
+      "source_stem": "58_jpg",
+      "sha256": "90303f22ca542dc6ce6d95539d4b29076cb7303774e7529736c8324aa4524f0c",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0096_a.jpg",
+      "scene_id": "scene_0096",
+      "source_lineage_group": "scene_0096",
+      "source_file": "58_jpg.rf.828ec6929f2da65884da24d771f76644.jpg",
+      "source_split": "train",
+      "source_stem": "58_jpg",
+      "sha256": "cdc508fae4a9e97f92a8875141e6bb437fca98b262581279b46af2f1d80fc349",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0097_a.jpg",
+      "scene_id": "scene_0097",
+      "source_lineage_group": "scene_0097",
+      "source_file": "59_jpg.rf.614a0c4ac07ab01074c1773546307df3.jpg",
+      "source_split": "train",
+      "source_stem": "59_jpg",
+      "sha256": "302677971153313d962d9d80a13891d23fd11efbb7865d963886b8a4a6e9fac8",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0098_a.jpg",
+      "scene_id": "scene_0098",
+      "source_lineage_group": "scene_0098",
+      "source_file": "59_jpg.rf.65e9617264cda2a2f103fbb3725bfbd1.jpg",
+      "source_split": "train",
+      "source_stem": "59_jpg",
+      "sha256": "77e110b817bfd57e77b4e1d2b1fb2f1c97ba6e9917ea1a78c5af1d16b4f4ee82",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0099_a.jpg",
+      "scene_id": "scene_0099",
+      "source_lineage_group": "scene_0099",
+      "source_file": "5_jpg.rf.410c318b39e5c81b62c9601647529379.jpg",
+      "source_split": "train",
+      "source_stem": "5_jpg",
+      "sha256": "7a913e9aef04c0ac2e4c9433a8f46c12319af2fd8321fd90b9bbfe99aa70298e",
+      "classes": [
+        3
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0100_a.jpg",
+      "scene_id": "scene_0100",
+      "source_lineage_group": "scene_0100",
+      "source_file": "60_jpg.rf.25cad2ef6a15e1b7e536c98b04d4c89e.jpg",
+      "source_split": "train",
+      "source_stem": "60_jpg",
+      "sha256": "1e3639ba2227f92794e2c20a68286e5abf0ece43b63b3a21ce978bb33f9ee8b5",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0101_a.jpg",
+      "scene_id": "scene_0101",
+      "source_lineage_group": "scene_0101",
+      "source_file": "60_jpg.rf.c4a554024afe359f7acca5aedcfb9e8b.jpg",
+      "source_split": "train",
+      "source_stem": "60_jpg",
+      "sha256": "3745e66d7fe981a96961a52ae7e7fecc42b434a8d6bdf1dafb939912e2817d0c",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 4,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0102_a.jpg",
+      "scene_id": "scene_0102",
+      "source_lineage_group": "scene_0102",
+      "source_file": "60_jpg.rf.f282f67e92757b4104ab18a331331551.jpg",
+      "source_split": "train",
+      "source_stem": "60_jpg",
+      "sha256": "e733aea102d15188050056bd34e18ee7d35bd8ef0606ab3d864df97d28581ce3",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0103_a.jpg",
+      "scene_id": "scene_0103",
+      "source_lineage_group": "scene_0103",
+      "source_file": "61_jpg.rf.6157b09a0f02d9e9770e8f8926913c77.jpg",
+      "source_split": "train",
+      "source_stem": "61_jpg",
+      "sha256": "3551f147d8bcf3971ba7f61688b80fceb703b9e17838273fb6c1dd5007d50b22",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0104_a.jpg",
+      "scene_id": "scene_0104",
+      "source_lineage_group": "scene_0104",
+      "source_file": "63_jpg.rf.937a5ca0ec4f9b2cd8a861e62af31058.jpg",
+      "source_split": "train",
+      "source_stem": "63_jpg",
+      "sha256": "218e9bc930d3181b2e03473d1fadce7a8149b4889deef63074b22a5d28b6a3b8",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0105_a.jpg",
+      "scene_id": "scene_0105",
+      "source_lineage_group": "scene_0105",
+      "source_file": "65_jpg.rf.8608b7f5441c5a7b53cee96262453349.jpg",
+      "source_split": "train",
+      "source_stem": "65_jpg",
+      "sha256": "d7c0afed79c56f35523fba52ba04bab390ef402197f54e3caf8e7d6c5c710e3b",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0108_a.jpg",
+      "scene_id": "scene_0108",
+      "source_lineage_group": "scene_0108",
+      "source_file": "66_jpg.rf.e9ebd55c685c1fa6ebd82999f4858425.jpg",
+      "source_split": "train",
+      "source_stem": "66_jpg",
+      "sha256": "544b21a2b71a4aafc418f8c6a141a2f2f43ca70473b36ea419a033de2ee2296d",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0110_a.jpg",
+      "scene_id": "scene_0110",
+      "source_lineage_group": "scene_0110",
+      "source_file": "19_jpg.rf.16aa94a73f2999b6056feccf6494c8bf.jpg",
+      "source_split": "test",
+      "source_stem": "19_jpg",
+      "sha256": "56dbf582009c25d6ff5ac1cac7ac4c9577d8706bb42d62ea25975d33831e6e4d",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0110_b.jpg",
+      "scene_id": "scene_0110",
+      "source_lineage_group": "scene_0110",
+      "source_file": "68_jpg.rf.b6d6215c12f1205f1eaf1fd23b4c3385.jpg",
+      "source_split": "train",
+      "source_stem": "68_jpg",
+      "sha256": "1c498f0df80d0bbcf82fc999a272cc96f7f2dd38cd07459fda236c63367ffa31",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0111_a.jpg",
+      "scene_id": "scene_0111",
+      "source_lineage_group": "scene_0111",
+      "source_file": "6_jpg.rf.339df7d658de1c38a95e4e841a9fe699.jpg",
+      "source_split": "train",
+      "source_stem": "6_jpg",
+      "sha256": "656cecb5e7c46ea632065b16273e0f243dc0d1cc961e8be841c3a4919bce0765",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0112_a.jpg",
+      "scene_id": "scene_0112",
+      "source_lineage_group": "scene_0112",
+      "source_file": "6_webp.rf.57b815418b71f017d76c8729807d475f.jpg",
+      "source_split": "train",
+      "source_stem": "6_webp",
+      "sha256": "af931662095a3fb3d0927c7c8688734912cde69f902c19f72a2ae0954b13c4a3",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0113_a.jpg",
+      "scene_id": "scene_0113",
+      "source_lineage_group": "scene_0113",
+      "source_file": "70_jpg.rf.51447801efc113ebba4498a2d037fe90.jpg",
+      "source_split": "train",
+      "source_stem": "70_jpg",
+      "sha256": "fc01bd4faad049e9015448fb79432acdc3772300da616e1947b4ec7d5d381c53",
+      "classes": [
+        1
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0114_a.jpg",
+      "scene_id": "scene_0114",
+      "source_lineage_group": "scene_0114",
+      "source_file": "70_jpg.rf.560045dda4a8d7d97eaa3aa82eeafa75.jpg",
+      "source_split": "train",
+      "source_stem": "70_jpg",
+      "sha256": "ef54055c31b950f06f4548034671fd5af88a4be800a74b960251324417091584",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0116_a.jpg",
+      "scene_id": "scene_0116",
+      "source_lineage_group": "scene_0116",
+      "source_file": "71_jpg.rf.b4a180283796f8c8a1a7a95b58762944.jpg",
+      "source_split": "train",
+      "source_stem": "71_jpg",
+      "sha256": "c0ebb10feb5191cc49a6c321ae460e6419a22e9650ae28d2827a936d169733e4",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0117_a.jpg",
+      "scene_id": "scene_0117",
+      "source_lineage_group": "scene_0117",
+      "source_file": "72_jpg.rf.6043b3766bc7bdfe4f7797cec71ce39a.jpg",
+      "source_split": "train",
+      "source_stem": "72_jpg",
+      "sha256": "3c1485c44b6291f6aadccab8d256d71c9bd32fffb8a3ad121d77bd3f298b3c01",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0118_a.jpg",
+      "scene_id": "scene_0118",
+      "source_lineage_group": "scene_0118",
+      "source_file": "72_jpg.rf.fa5413ebd55adb20cd668b6ebc586f00.jpg",
+      "source_split": "train",
+      "source_stem": "72_jpg",
+      "sha256": "4f1b54970c983ba8dcdd920f932b42bb32f191f808184e99a6f0c17817f10a62",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0120_a.jpg",
+      "scene_id": "scene_0120",
+      "source_lineage_group": "scene_0120",
+      "source_file": "74_jpg.rf.33f79b391ba4b89ce51f81377303e5ec.jpg",
+      "source_split": "train",
+      "source_stem": "74_jpg",
+      "sha256": "9cbfb00443f68f2b5e0b893f996c32fed3aed9280eff7632e2f9172e926fc3ea",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0122_a.jpg",
+      "scene_id": "scene_0122",
+      "source_lineage_group": "scene_0122",
+      "source_file": "7_jpg.rf.7b006571ed8b76e2f941c04d6c6f59da.jpg",
+      "source_split": "train",
+      "source_stem": "7_jpg",
+      "sha256": "e155fec3554cd1a2c96bc69ccf9b213341d2136560d53e74d2f0eee6f1d3fb5f",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0123_a.jpg",
+      "scene_id": "scene_0123",
+      "source_lineage_group": "scene_0123",
+      "source_file": "7_jpg.rf.950126b60426aaee49c16faf862c6c10.jpg",
+      "source_split": "train",
+      "source_stem": "7_jpg",
+      "sha256": "02a0f8a912bdd3ddd30d31d2f0526473b90c9e3b74a408e6999c6da9defd7423",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0124_a.jpg",
+      "scene_id": "scene_0124",
+      "source_lineage_group": "scene_0124",
+      "source_file": "7_jpg.rf.e5d53134d44bec50e5260c19e188917f.jpg",
+      "source_split": "train",
+      "source_stem": "7_jpg",
+      "sha256": "0c9786d665fcdc58d60ae59aa2d6f8896c4331a0f762639166eb2e7ce27e1ba0",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0125_a.jpg",
+      "scene_id": "scene_0125",
+      "source_lineage_group": "scene_0125",
+      "source_file": "8_jpg.rf.6815b8b1b3c2ff859ee954465eb82847.jpg",
+      "source_split": "train",
+      "source_stem": "8_jpg",
+      "sha256": "760b84ea75524c583669161f8082ee518790189788f5e96be6256a09177fe70a",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0126_a.jpg",
+      "scene_id": "scene_0126",
+      "source_lineage_group": "scene_0126",
+      "source_file": "8_jpg.rf.996dc570a2ced8c40bf557c6520ff6ac.jpg",
+      "source_split": "train",
+      "source_stem": "8_jpg",
+      "sha256": "5aad4ef225e51ec1fc4a52f0f6a5c49a9dfc709b3cbf98d75b7ae6e4d15b09c4",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 5,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0127_a.jpg",
+      "scene_id": "scene_0127",
+      "source_lineage_group": "scene_0127",
+      "source_file": "8_jpg.rf.d133dffd86177c9d05a1e49cad1981d2.jpg",
+      "source_split": "train",
+      "source_stem": "8_jpg",
+      "sha256": "276a27854dc09a3f6873f32edd7c2e0ee7c8ed5244ae8e22b3f9bfb4149cc3a6",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0128_a.jpg",
+      "scene_id": "scene_0128",
+      "source_lineage_group": "scene_0128",
+      "source_file": "41_jpg.rf.6e2c6dd6ffd180b7204ceb069cdca0e6.jpg",
+      "source_split": "test",
+      "source_stem": "41_jpg",
+      "sha256": "8a38aa8abe40568b0d9a614f13717a0fed293a722287da3d2daf04f7fe27fbf3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0128_b.jpg",
+      "scene_id": "scene_0128",
+      "source_lineage_group": "scene_0128",
+      "source_file": "9f07b959-69cf-418c-b25f-4d0ad96f50ce_jpg.rf.27b154bcabc560a68817ec39179fda2d.jpg",
+      "source_split": "train",
+      "source_stem": "9f07b959-69cf-418c-b25f-4d0ad96f50ce_jpg",
+      "sha256": "e9c2d09932cbcd366ed6d25b74482936b192bc4af766a717cbf580906d6677ef",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0129_a.jpg",
+      "scene_id": "scene_0129",
+      "source_lineage_group": "scene_0129",
+      "source_file": "11_jpg.rf.cf24aaaa84d46d5d1b6ad2b6168b1e13.jpg",
+      "source_split": "valid",
+      "source_stem": "11_jpg",
+      "sha256": "c49172236f0d7e241d189f06e79857d62875666a8d1250e2e13d46a182cc11c2",
+      "classes": [
+        2
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0131_a.jpg",
+      "scene_id": "scene_0131",
+      "source_lineage_group": "scene_0131",
+      "source_file": "14_jpg.rf.302fb0f2258f8ce2601212251ee3f116.jpg",
+      "source_split": "valid",
+      "source_stem": "14_jpg",
+      "sha256": "7aea105d8c3d0a216bcf6d816a8b773573aec77b010d5367e853f7bc879d1ab1",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0133_a.jpg",
+      "scene_id": "scene_0133",
+      "source_lineage_group": "scene_0133",
+      "source_file": "17_jpg.rf.70ebc9c74aead669792bc2057c5dbec2.jpg",
+      "source_split": "valid",
+      "source_stem": "17_jpg",
+      "sha256": "21ff7cf52506ef39e87c7c37aab93b3b2d394c578f5ae5bad959d6feaa64fee3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0135_a.jpg",
+      "scene_id": "scene_0135",
+      "source_lineage_group": "scene_0135",
+      "source_file": "18_jpg.rf.58cc92d8bdcb2b196950f88518417e8d.jpg",
+      "source_split": "valid",
+      "source_stem": "18_jpg",
+      "sha256": "2eeda76a10efe95559400c5a52c1b3172bbf0c52be3c6897877a8314d4249e81",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0138_a.jpg",
+      "scene_id": "scene_0138",
+      "source_lineage_group": "scene_0138",
+      "source_file": "25_jpg.rf.c484bcf9ed26b0a0553fed2e2b3c6341.jpg",
+      "source_split": "valid",
+      "source_stem": "25_jpg",
+      "sha256": "de553d9fefe2f57dbf64b00de6ad0732f9a9ab79f449f4a4a90934d82651aec0",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0140_a.jpg",
+      "scene_id": "scene_0140",
+      "source_lineage_group": "scene_0140",
+      "source_file": "2_jpg.rf.d442766e3b5c9c27aa8ecf1f64795b41.jpg",
+      "source_split": "valid",
+      "source_stem": "2_jpg",
+      "sha256": "4358540a2c90900982dee893ccc0249d085aef1c4be6769f3e73ce8a74bd1098",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0141_a.jpg",
+      "scene_id": "scene_0141",
+      "source_lineage_group": "scene_0141",
+      "source_file": "3-Copy_jpg.rf.6fdda5f280977ad40e37aa27fc8f7e5b.jpg",
+      "source_split": "valid",
+      "source_stem": "3-Copy_jpg",
+      "sha256": "ad3aa528ed1ab3e5a737c098ffd170f97e2ccb48062fb249da74de4d8c0d6cad",
+      "classes": [
+        1,
+        2
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0142_a.jpg",
+      "scene_id": "scene_0142",
+      "source_lineage_group": "scene_0142",
+      "source_file": "31_jpg.rf.d1f52e6485e025cf3a50d8407b18778b.jpg",
+      "source_split": "valid",
+      "source_stem": "31_jpg",
+      "sha256": "64415c3e8b9c8908e51814b7aeb18d6ef134ff9e9317514bd43372ba3ece2772",
+      "classes": [
+        1
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0143_a.jpg",
+      "scene_id": "scene_0143",
+      "source_lineage_group": "scene_0143",
+      "source_file": "32_jpg.rf.bbf1b9b541e8534ede17b4a4ccd9e35a.jpg",
+      "source_split": "valid",
+      "source_stem": "32_jpg",
+      "sha256": "967aa77f93ea7235802957e3f2d4fca35b8d8e9b7eba6b0c8d42aede7bb0bcdd",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0144_a.jpg",
+      "scene_id": "scene_0144",
+      "source_lineage_group": "scene_0144",
+      "source_file": "32_jpg.rf.e3a695d83c637c4e7b89c53d33327c9b.jpg",
+      "source_split": "valid",
+      "source_stem": "32_jpg",
+      "sha256": "1e6f76799276868e986c4bcd710979864dba80f6feec27394c68f6fb81661abb",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0145_a.jpg",
+      "scene_id": "scene_0145",
+      "source_lineage_group": "scene_0145",
+      "source_file": "34_jpg.rf.a965c38e71fe5fe222e97dd73a55982e.jpg",
+      "source_split": "valid",
+      "source_stem": "34_jpg",
+      "sha256": "cb552edeaae2f1055e8483af80227735a69633a6add8904ad2b5004918ec1357",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0146_a.jpg",
+      "scene_id": "scene_0146",
+      "source_lineage_group": "scene_0146",
+      "source_file": "36_jpg.rf.286f970af636e88fc74187888d44d8d9.jpg",
+      "source_split": "valid",
+      "source_stem": "36_jpg",
+      "sha256": "da52060768280aa403bea527b3305385572565b86dcf0139192c467bdf0ea919",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0147_a.jpg",
+      "scene_id": "scene_0147",
+      "source_lineage_group": "scene_0147",
+      "source_file": "37_jpg.rf.1c39d526bd56469c7a7d9a75bf97e9db.jpg",
+      "source_split": "valid",
+      "source_stem": "37_jpg",
+      "sha256": "c7900421e174eb41ff90462356f7e30ce0cf8e9963c7a96cae4e5468593d5c2d",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0148_a.jpg",
+      "scene_id": "scene_0148",
+      "source_lineage_group": "scene_0148",
+      "source_file": "39_jpg.rf.0a38af69b28dd87469019dc4c25ff20b.jpg",
+      "source_split": "valid",
+      "source_stem": "39_jpg",
+      "sha256": "bce96450cd2add0b96b06681301b2870905aaf24df4c57833e4830bd1aed15f8",
+      "classes": [
+        0,
+        2,
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0150_a.jpg",
+      "scene_id": "scene_0150",
+      "source_lineage_group": "scene_0150",
+      "source_file": "43_jpg.rf.71e9b2b48a33ab1800f12766b3dfdd92.jpg",
+      "source_split": "valid",
+      "source_stem": "43_jpg",
+      "sha256": "5f996d2d1ba8bab380e2b65f482fec7ed902c24187ad0907a7b2b9b95d0971aa",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0151_a.jpg",
+      "scene_id": "scene_0151",
+      "source_lineage_group": "scene_0151",
+      "source_file": "44_jpg.rf.f93b094d0ffaa0292ce277db74938035.jpg",
+      "source_split": "valid",
+      "source_stem": "44_jpg",
+      "sha256": "d478fcf2d9dbfe8a8a48e8cf31ce191430393b745f73133b44ca80a1dc2616e6",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0153_a.jpg",
+      "scene_id": "scene_0153",
+      "source_lineage_group": "scene_0153",
+      "source_file": "53_jpg.rf.071e701b0617abd160771f38f59d8d90.jpg",
+      "source_split": "valid",
+      "source_stem": "53_jpg",
+      "sha256": "cae4e55913f7550cf220cc6695c8daf7d72203033594b1c2e2493f6a9877444e",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0154_a.jpg",
+      "scene_id": "scene_0154",
+      "source_lineage_group": "scene_0154",
+      "source_file": "53_jpg.rf.a1e2a18eecda30e700dd4e1f8be1a6c3.jpg",
+      "source_split": "valid",
+      "source_stem": "53_jpg",
+      "sha256": "3412373df0213a324fa216c7e8194e9e0b3d916b46fc2245743a0d02d0361d08",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0155_a.jpg",
+      "scene_id": "scene_0155",
+      "source_lineage_group": "scene_0155",
+      "source_file": "54_jpg.rf.596237638ba930a6f7497d4358293fcb.jpg",
+      "source_split": "valid",
+      "source_stem": "54_jpg",
+      "sha256": "855ad931ca9fd6e4b74ec69c131cbd149e3674ceea607085e4e1a700dbf1b574",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0156_a.jpg",
+      "scene_id": "scene_0156",
+      "source_lineage_group": "scene_0156",
+      "source_file": "55_jpg.rf.ae485afed21f092a3306e78d7be83689.jpg",
+      "source_split": "valid",
+      "source_stem": "55_jpg",
+      "sha256": "5600f1c466e593036962b33f4a7a03eae0a019bb82b52e2694e2611dc2804cb7",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0157_a.jpg",
+      "scene_id": "scene_0157",
+      "source_lineage_group": "scene_0157",
+      "source_file": "5_jpg.rf.616f6860e5df9040a807ab2c127546d9.jpg",
+      "source_split": "valid",
+      "source_stem": "5_jpg",
+      "sha256": "529384e96561f75ac2c25f33df2ce98804e8fe76c1f1409b19209f33861fde47",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0161_a.jpg",
+      "scene_id": "scene_0161",
+      "source_lineage_group": "scene_0161",
+      "source_file": "6_jpg.rf.93d78b131de2a5d1ff7116aecc19c92c.jpg",
+      "source_split": "valid",
+      "source_stem": "6_jpg",
+      "sha256": "131f95e407c19591a96d48ec9c481d58ee6c5efad852cee2001dc32ad2e6b267",
+      "classes": [
+        0
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0162_a.jpg",
+      "scene_id": "scene_0162",
+      "source_lineage_group": "scene_0162",
+      "source_file": "73_jpg.rf.03a8cb3c8950a44da1f47ada73189fbc.jpg",
+      "source_split": "valid",
+      "source_stem": "73_jpg",
+      "sha256": "07f63459cdb5d9eb149663e3ed964523b451f3bd26cea17debd2f1c5c479f4f4",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0163_a.jpg",
+      "scene_id": "scene_0163",
+      "source_lineage_group": "scene_0163",
+      "source_file": "11_jpg.rf.58143731252d492cebef3ee3aae6ab0d.jpg",
+      "source_split": "test",
+      "source_stem": "11_jpg",
+      "sha256": "63eee3056a69f3f02861e405d3250d150baf9792f24f717d4abc593dbcfb50ec",
+      "classes": [
+        1
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0164_a.jpg",
+      "scene_id": "scene_0164",
+      "source_lineage_group": "scene_0164",
+      "source_file": "17_jpg.rf.44fabe7fbb9ee8dbad883517eda7d4e3.jpg",
+      "source_split": "test",
+      "source_stem": "17_jpg",
+      "sha256": "527926226ad72d8b64adb42c49dc3f563a777bc20eca9172d41d4e44eb4aa103",
+      "classes": [
+        2
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0165_a.jpg",
+      "scene_id": "scene_0165",
+      "source_lineage_group": "scene_0165",
+      "source_file": "1_jpg.rf.f2e5b88a4a9884119fb51bd5074c250a.jpg",
+      "source_split": "test",
+      "source_stem": "1_jpg",
+      "sha256": "d731cf3258afa936f8524367239e55ac869673d81dea7b78227d9ee804ce2c3d",
+      "classes": [
+        0
+      ],
+      "boxes": 2,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0167_a.jpg",
+      "scene_id": "scene_0167",
+      "source_lineage_group": "scene_0167",
+      "source_file": "29_jpg.rf.93722128f3f1bf2d37f239d84d662d18.jpg",
+      "source_split": "test",
+      "source_stem": "29_jpg",
+      "sha256": "15c68ea595dbf0e2aa47be4c96fbcf14f38fd9fbf9c1ab8f1bf3e9062cd5a1b2",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0168_a.jpg",
+      "scene_id": "scene_0168",
+      "source_lineage_group": "scene_0168",
+      "source_file": "30_jpg.rf.4a8c3e42991b2b5648efb4d1bdde40f5.jpg",
+      "source_split": "test",
+      "source_stem": "30_jpg",
+      "sha256": "6aac8b3b5fbb4a726f5e7fd5b670721d701b0458bdf46d02e1077265fbc5fd2e",
+      "classes": [
+        2,
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0170_a.jpg",
+      "scene_id": "scene_0170",
+      "source_lineage_group": "scene_0170",
+      "source_file": "33_jpg.rf.d6866f6b32dedcf93df606611c63e856.jpg",
+      "source_split": "test",
+      "source_stem": "33_jpg",
+      "sha256": "e4e36f0d299f4b3e352bef6592e1be2456e3461f09713a85cd04b2f744ebafe2",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0171_a.jpg",
+      "scene_id": "scene_0171",
+      "source_lineage_group": "scene_0171",
+      "source_file": "34_jpg.rf.e89c9b90dec3c9b51c45887b6e813487.jpg",
+      "source_split": "test",
+      "source_stem": "34_jpg",
+      "sha256": "b6a96d74f0b1422c34d4efe111d504409a45b17b08aca614dba0b268527caf5c",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0172_a.jpg",
+      "scene_id": "scene_0172",
+      "source_lineage_group": "scene_0172",
+      "source_file": "39_jpg.rf.7cc2106792d3532ce377cb3077844055.jpg",
+      "source_split": "test",
+      "source_stem": "39_jpg",
+      "sha256": "dd2a49401c229572236c90195c0f850f3fce6acdc85fbb071f4b7105e5a5fed2",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "valid",
+      "file": "scene_0175_a.jpg",
+      "scene_id": "scene_0175",
+      "source_lineage_group": "scene_0175",
+      "source_file": "44_jpg.rf.7f44df46bf2f9066342bb4eac534f016.jpg",
+      "source_split": "test",
+      "source_stem": "44_jpg",
+      "sha256": "326128bb8b1c6d2a6346c0eeea2baa952c27e1a049f8fac53cc0190c66aeb82c",
+      "classes": [
+        3
+      ],
+      "boxes": 3,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0178_a.jpg",
+      "scene_id": "scene_0178",
+      "source_lineage_group": "scene_0178",
+      "source_file": "56_jpg.rf.ce616edf2298ba2ce92bee961c9800b1.jpg",
+      "source_split": "test",
+      "source_stem": "56_jpg",
+      "sha256": "bf1aa1f54b37a3af6d3ec62b010fb3a978fc179cffed056c7481826ba1c5a59b",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0179_a.jpg",
+      "scene_id": "scene_0179",
+      "source_lineage_group": "scene_0179",
+      "source_file": "59_jpg.rf.2dda8db6896bcb8b0ac2ae77b3634aea.jpg",
+      "source_split": "test",
+      "source_stem": "59_jpg",
+      "sha256": "25a0a0facf31f8245ee370e2681f166f20329f9bfb7dd36bba4f3514bbd927f9",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0180_a.jpg",
+      "scene_id": "scene_0180",
+      "source_lineage_group": "scene_0180",
+      "source_file": "5_jpg.rf.21a3c2ce7f27f7c80f5601f936881ea7.jpg",
+      "source_split": "test",
+      "source_stem": "5_jpg",
+      "sha256": "d5aa9bf4fce8af488e443e015c5a098fe1304a8e745f334c68ef600af1f0eda8",
+      "classes": [
+        1,
+        2,
+        3
+      ],
+      "boxes": 4,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "test",
+      "file": "scene_0181_a.jpg",
+      "scene_id": "scene_0181",
+      "source_lineage_group": "scene_0181",
+      "source_file": "64_jpg.rf.e53d924cc13941689568b00cabca22e7.jpg",
+      "source_split": "test",
+      "source_stem": "64_jpg",
+      "sha256": "4bf16ea2e45f86379b4c8ea11b90cef6908e7eac9ca916f7fc88fec81f672535",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0182_a.jpg",
+      "scene_id": "scene_0182",
+      "source_lineage_group": "scene_0182",
+      "source_file": "67_jpg.rf.9b3c385f154c22f09eba0df0ffc33745.jpg",
+      "source_split": "test",
+      "source_stem": "67_jpg",
+      "sha256": "7832de1f3236f4b82abc300f797aba0a24834d06d370919b07368f9774b29d93",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0183_a.jpg",
+      "scene_id": "scene_0183",
+      "source_lineage_group": "scene_0183",
+      "source_file": "69_jpg.rf.23633d8adaf23983caef64c798461470.jpg",
+      "source_split": "test",
+      "source_stem": "69_jpg",
+      "sha256": "a4cca2ce36889cd61ae8d1155e1c012d03f7f82a215c6818f5ade9166e2a0fe3",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0184_a.jpg",
+      "scene_id": "scene_0184",
+      "source_lineage_group": "scene_0184",
+      "source_file": "9_jpg.rf.b363eb3cfdf7ac0ecbda137daaac61b8.jpg",
+      "source_split": "test",
+      "source_stem": "9_jpg",
+      "sha256": "75c563e1b3433643a2483a5d1763f427cb5a9aa38fab5b1c51b3ccbffa9eb761",
+      "classes": [
+        1
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0185_a.jpg",
+      "scene_id": "scene_0185",
+      "source_lineage_group": "scene_0185",
+      "source_file": "9_jpg.rf.b77e24d5fff6fa8d05e2f740cd38d5f3.jpg",
+      "source_split": "test",
+      "source_stem": "9_jpg",
+      "sha256": "26e85184a7efe015ddfce58316bce2045b20ae4b882ac846078251e6c6bb99e6",
+      "classes": [
+        3
+      ],
+      "boxes": 1,
+      "origin": "original",
+      "role": "positive",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0173_bg.jpg",
+      "scene_id": "scene_0173",
+      "source_lineage_group": "scene_0173",
+      "source_file": "3_jpg.rf.acd450e5bdae0dce4b0fd788cb54ca47.jpg",
+      "source_split": "test",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0004_bg.jpg",
+      "scene_id": "scene_0004",
+      "source_lineage_group": "scene_0004",
+      "source_file": "12_jpg.rf.5480e38ad01c50ee2612244ffe1fb801.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0030_bg.jpg",
+      "scene_id": "scene_0030",
+      "source_lineage_group": "scene_0030",
+      "source_file": "27_jpg.rf.6d9992019b015f47cdb44010b07f032b.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0047_bg.jpg",
+      "scene_id": "scene_0047",
+      "source_lineage_group": "scene_0047",
+      "source_file": "35_jpg.rf.243104cbcc4b43a1ebb040a2dfb786c0.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0073_bg.jpg",
+      "scene_id": "scene_0073",
+      "source_lineage_group": "scene_0073",
+      "source_file": "4_jpg.rf.189d29e2884e0eb03359dad6074c3d3b.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0106_bg.jpg",
+      "scene_id": "scene_0106",
+      "source_lineage_group": "scene_0106",
+      "source_file": "65_jpg.rf.fc30ad9c984eb389dbc6397cb59a91de.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0107_bg.jpg",
+      "scene_id": "scene_0107",
+      "source_lineage_group": "scene_0107",
+      "source_file": "66_jpg.rf.1fa6dc457c6a7409670fd2a0460c09ec.jpg",
+      "source_split": "train",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    },
+    {
+      "split": "train",
+      "file": "scene_0158_bg.jpg",
+      "scene_id": "scene_0158",
+      "source_lineage_group": "scene_0158",
+      "source_file": "62_jpg.rf.1e89dbbece110efe7d0b59a546c0af92.jpg",
+      "source_split": "valid",
+      "classes": [],
+      "boxes": 0,
+      "origin": "original",
+      "role": "background",
+      "provenance": {
+        "source_type": "roboflow_export",
+        "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+      }
+    }
+  ]
+}

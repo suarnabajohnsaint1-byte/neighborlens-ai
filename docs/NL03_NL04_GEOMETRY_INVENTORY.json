@@ -1,0 +1,6600 @@
+{
+  "area_crs": "EPSG:32651",
+  "display_version": "bacolod-barangay-display-v4",
+  "valid_features": {
+    "before": 61,
+    "after": 61
+  },
+  "outside_union_m2": {
+    "before": 519951.15695086046,
+    "after": 0.0
+  },
+  "outside_by_barangay": [
+    {
+      "barangay": "Alangilan",
+      "before_m2": 52361.86359219425,
+      "after_m2": 1.6228459724450966e-07,
+      "sample": {
+        "latitude": 10.658356000000001,
+        "longitude": 123.13803231118325
+      }
+    },
+    {
+      "barangay": "Banago",
+      "before_m2": 10607.679957175533,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.71014155,
+        "longitude": 122.94852578973354
+      }
+    },
+    {
+      "barangay": "Barangay 1",
+      "before_m2": 904.6285321978547,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.689806,
+        "longitude": 122.95128051234934
+      }
+    },
+    {
+      "barangay": "Barangay 10",
+      "before_m2": 3782.587187424295,
+      "after_m2": 3.6310110782685986e-09,
+      "sample": {
+        "latitude": 10.6756582,
+        "longitude": 122.94048884074562
+      }
+    },
+    {
+      "barangay": "Barangay 12",
+      "before_m2": 36.55108652257192,
+      "after_m2": 2.651221020499861e-09,
+      "sample": {
+        "latitude": 10.670569402942363,
+        "longitude": 122.9397575937038
+      }
+    },
+    {
+      "barangay": "Barangay 13",
+      "before_m2": 21.986556565145126,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.670232539748557,
+        "longitude": 122.93960632085188
+      }
+    },
+    {
+      "barangay": "Barangay 16",
+      "before_m2": 824.5416030672147,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.6689325,
+        "longitude": 122.93676888306454
+      }
+    },
+    {
+      "barangay": "Barangay 2",
+      "before_m2": 11820.457506183637,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.687137,
+        "longitude": 122.94801853123514
+      }
+    },
+    {
+      "barangay": "Barangay 35",
+      "before_m2": 2369.6625552440314,
+      "after_m2": 4.535985187605713e-08,
+      "sample": {
+        "latitude": 10.66832815,
+        "longitude": 122.93247157745517
+      }
+    },
+    {
+      "barangay": "Barangay 8",
+      "before_m2": 7775.14265711661,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.6832232,
+        "longitude": 122.93835281747016
+      }
+    },
+    {
+      "barangay": "Bata",
+      "before_m2": 5738.826899298929,
+      "after_m2": 1.441517958357928e-07,
+      "sample": {
+        "latitude": 10.711406124432582,
+        "longitude": 122.96545778881818
+      }
+    },
+    {
+      "barangay": "Cabug",
+      "before_m2": 2431.1962782671135,
+      "after_m2": 5.6067239739832075e-09,
+      "sample": {
+        "latitude": 10.5897655,
+        "longitude": 122.9405293389959
+      }
+    },
+    {
+      "barangay": "Estefania",
+      "before_m2": 6384.022668174487,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.702910243189065,
+        "longitude": 122.99053904611944
+      }
+    },
+    {
+      "barangay": "Felisa",
+      "before_m2": 101780.31250745305,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.585362,
+        "longitude": 122.97455179505795
+      }
+    },
+    {
+      "barangay": "Granada",
+      "before_m2": 75718.9634310685,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.632319693101408,
+        "longitude": 123.03673841984605
+      }
+    },
+    {
+      "barangay": "Mansilingan",
+      "before_m2": 16067.046944235251,
+      "after_m2": 7.42556674880753e-10,
+      "sample": {
+        "latitude": 10.60801,
+        "longitude": 123.00767948990814
+      }
+    },
+    {
+      "barangay": "Pahanocoy",
+      "before_m2": 19220.569749531543,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.6205475,
+        "longitude": 122.92060569072525
+      }
+    },
+    {
+      "barangay": "Punta Taytay",
+      "before_m2": 24346.08191152202,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.603654,
+        "longitude": 122.91144580699476
+      }
+    },
+    {
+      "barangay": "Singcang-Airport",
+      "before_m2": 9794.818446471121,
+      "after_m2": 7.042168229538228e-08,
+      "sample": {
+        "latitude": 10.651847,
+        "longitude": 122.926295480244
+      }
+    },
+    {
+      "barangay": "Sum-ag",
+      "before_m2": 82163.06005546195,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.59359125,
+        "longitude": 122.92015181479357
+      }
+    },
+    {
+      "barangay": "Tangub",
+      "before_m2": 13689.725213991078,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.63704495,
+        "longitude": 122.92422968220603
+      }
+    },
+    {
+      "barangay": "Vista Alegre",
+      "before_m2": 72111.43161054939,
+      "after_m2": 0.0,
+      "sample": {
+        "latitude": 10.6273779,
+        "longitude": 123.01947488369984
+      }
+    }
+  ],
+  "overlap_pairs_over_one_m2": {
+    "before": 77,
+    "after": 77
+  },
+  "overlaps": [
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "before_m2": 411.27325336816756,
+      "after_m2": 411.27325336816756
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Tangub"
+      ],
+      "before_m2": 28.0029420950382,
+      "after_m2": 28.0029420950382
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Barangay 1"
+      ],
+      "before_m2": 46.26432034079105,
+      "after_m2": 46.26432034079105
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Mandalagan"
+      ],
+      "before_m2": 67.84099575462085,
+      "after_m2": 67.84099575462085
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 2"
+      ],
+      "before_m2": 3.6837804445451945,
+      "after_m2": 3.6837804445451945
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Mandalagan"
+      ],
+      "before_m2": 91.07123951036374,
+      "after_m2": 91.07123951036374
+    },
+    {
+      "barangays": [
+        "Barangay 13",
+        "Barangay 14"
+      ],
+      "before_m2": 483.98034971568114,
+      "after_m2": 483.98034971568114
+    },
+    {
+      "barangays": [
+        "Barangay 13",
+        "Barangay 15"
+      ],
+      "before_m2": 363.9603498682009,
+      "after_m2": 363.9603498682009
+    },
+    {
+      "barangays": [
+        "Barangay 13",
+        "Barangay 37"
+      ],
+      "before_m2": 160.59167930041465,
+      "after_m2": 160.59167930041465
+    },
+    {
+      "barangays": [
+        "Barangay 14",
+        "Barangay 16"
+      ],
+      "before_m2": 39.41434272416748,
+      "after_m2": 39.41434272416748
+    },
+    {
+      "barangays": [
+        "Barangay 15",
+        "Barangay 37"
+      ],
+      "before_m2": 140.7685635158515,
+      "after_m2": 140.7685635158515
+    },
+    {
+      "barangays": [
+        "Barangay 15",
+        "Barangay 38"
+      ],
+      "before_m2": 113.89068132151989,
+      "after_m2": 113.89068132151989
+    },
+    {
+      "barangays": [
+        "Barangay 16",
+        "Barangay 34"
+      ],
+      "before_m2": 63.90961123861377,
+      "after_m2": 63.90961123861377
+    },
+    {
+      "barangays": [
+        "Barangay 16",
+        "Barangay 35"
+      ],
+      "before_m2": 20.13822934595092,
+      "after_m2": 20.13822934595092
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 18"
+      ],
+      "before_m2": 28.917726215711667,
+      "after_m2": 28.917726215711667
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 19"
+      ],
+      "before_m2": 11.418680471111841,
+      "after_m2": 11.418680471111841
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 9"
+      ],
+      "before_m2": 94.28929338072587,
+      "after_m2": 94.28929338072587
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Villamonte"
+      ],
+      "before_m2": 320.6327020741157,
+      "after_m2": 320.6327020741157
+    },
+    {
+      "barangays": [
+        "Barangay 18",
+        "Barangay 19"
+      ],
+      "before_m2": 61.04941318112597,
+      "after_m2": 61.04941318112597
+    },
+    {
+      "barangays": [
+        "Barangay 18",
+        "Barangay 9"
+      ],
+      "before_m2": 41.97619942024462,
+      "after_m2": 41.97619942024462
+    },
+    {
+      "barangays": [
+        "Barangay 19",
+        "Barangay 22"
+      ],
+      "before_m2": 1083.0531825508863,
+      "after_m2": 1083.0531825508863
+    },
+    {
+      "barangays": [
+        "Barangay 19",
+        "Barangay 9"
+      ],
+      "before_m2": 20.614942570640707,
+      "after_m2": 20.614942570640707
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 3"
+      ],
+      "before_m2": 125.67210701332954,
+      "after_m2": 125.67210701332954
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 6"
+      ],
+      "before_m2": 775.68020884848,
+      "after_m2": 775.68020884848
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 8"
+      ],
+      "before_m2": 187.14831690007395,
+      "after_m2": 187.14831690007395
+    },
+    {
+      "barangays": [
+        "Barangay 20",
+        "Villamonte"
+      ],
+      "before_m2": 3.8152206377568447,
+      "after_m2": 3.8152206377568447
+    },
+    {
+      "barangays": [
+        "Barangay 21",
+        "Barangay 22"
+      ],
+      "before_m2": 3.102809750336135,
+      "after_m2": 3.102809750336135
+    },
+    {
+      "barangays": [
+        "Barangay 21",
+        "Barangay 24"
+      ],
+      "before_m2": 1.0750373300556717,
+      "after_m2": 1.0750373300556717
+    },
+    {
+      "barangays": [
+        "Barangay 23",
+        "Barangay 27"
+      ],
+      "before_m2": 189.02608493205437,
+      "after_m2": 189.02608493205437
+    },
+    {
+      "barangays": [
+        "Barangay 24",
+        "Barangay 25"
+      ],
+      "before_m2": 15.145800319833782,
+      "after_m2": 15.145800319833782
+    },
+    {
+      "barangays": [
+        "Barangay 24",
+        "Barangay 37"
+      ],
+      "before_m2": 7.34576235412095,
+      "after_m2": 7.34576235412095
+    },
+    {
+      "barangays": [
+        "Barangay 26",
+        "Barangay 27"
+      ],
+      "before_m2": 101.06776467380138,
+      "after_m2": 101.06776467380138
+    },
+    {
+      "barangays": [
+        "Barangay 27",
+        "Taculing"
+      ],
+      "before_m2": 10.234362387578749,
+      "after_m2": 10.234362387578749
+    },
+    {
+      "barangays": [
+        "Barangay 28",
+        "Taculing"
+      ],
+      "before_m2": 60.99340139079262,
+      "after_m2": 60.99340139079262
+    },
+    {
+      "barangays": [
+        "Barangay 29",
+        "Barangay 30"
+      ],
+      "before_m2": 48.45166054199904,
+      "after_m2": 48.45166054199904
+    },
+    {
+      "barangays": [
+        "Barangay 3",
+        "Barangay 4"
+      ],
+      "before_m2": 17.98863054996437,
+      "after_m2": 17.98863054996437
+    },
+    {
+      "barangays": [
+        "Barangay 30",
+        "Barangay 32"
+      ],
+      "before_m2": 31.84914775659506,
+      "after_m2": 31.84914775659506
+    },
+    {
+      "barangays": [
+        "Barangay 31",
+        "Barangay 40"
+      ],
+      "before_m2": 217.7966687569874,
+      "after_m2": 217.7966687569874
+    },
+    {
+      "barangays": [
+        "Barangay 31",
+        "Taculing"
+      ],
+      "before_m2": 14.141322562337393,
+      "after_m2": 14.141322562337393
+    },
+    {
+      "barangays": [
+        "Barangay 32",
+        "Barangay 33"
+      ],
+      "before_m2": 111.10986906009428,
+      "after_m2": 111.10986906009428
+    },
+    {
+      "barangays": [
+        "Barangay 33",
+        "Barangay 38"
+      ],
+      "before_m2": 124.03995227040433,
+      "after_m2": 124.03995227040433
+    },
+    {
+      "barangays": [
+        "Barangay 33",
+        "Barangay 40"
+      ],
+      "before_m2": 13.00771406315426,
+      "after_m2": 13.00771406315426
+    },
+    {
+      "barangays": [
+        "Barangay 34",
+        "Barangay 35"
+      ],
+      "before_m2": 18.540062366699626,
+      "after_m2": 18.540062366699626
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Barangay 36"
+      ],
+      "before_m2": 13.238826856649432,
+      "after_m2": 13.238826856649432
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "before_m2": 687.5168148891416,
+      "after_m2": 687.5168148891416
+    },
+    {
+      "barangays": [
+        "Barangay 36",
+        "Singcang-Airport"
+      ],
+      "before_m2": 42.47379176708725,
+      "after_m2": 42.47379176708725
+    },
+    {
+      "barangays": [
+        "Barangay 37",
+        "Barangay 38"
+      ],
+      "before_m2": 55.47845487761351,
+      "after_m2": 55.47845487761351
+    },
+    {
+      "barangays": [
+        "Barangay 38",
+        "Barangay 40"
+      ],
+      "before_m2": 23.650820769584673,
+      "after_m2": 23.650820769584673
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40"
+      ],
+      "before_m2": 26.02289780749873,
+      "after_m2": 26.02289780749873
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "before_m2": 425.53127831790556,
+      "after_m2": 425.53127831790556
+    },
+    {
+      "barangays": [
+        "Barangay 4",
+        "Barangay 6"
+      ],
+      "before_m2": 148.57788928288485,
+      "after_m2": 148.57788928288485
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Singcang-Airport"
+      ],
+      "before_m2": 25.617422794202188,
+      "after_m2": 25.617422794202188
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "before_m2": 417.360985272546,
+      "after_m2": 417.360985272546
+    },
+    {
+      "barangays": [
+        "Barangay 41",
+        "Taculing"
+      ],
+      "before_m2": 7.063885450003124,
+      "after_m2": 7.063885450003124
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "before_m2": 31.921302351689185,
+      "after_m2": 31.921302351689185
+    },
+    {
+      "barangays": [
+        "Barangay 7",
+        "Barangay 9"
+      ],
+      "before_m2": 6.0982181600459535,
+      "after_m2": 6.0982181600459535
+    },
+    {
+      "barangays": [
+        "Barangay 7",
+        "Villamonte"
+      ],
+      "before_m2": 171.19128967973091,
+      "after_m2": 171.19128967973091
+    },
+    {
+      "barangays": [
+        "Barangay 8",
+        "Barangay 9"
+      ],
+      "before_m2": 16.941420293600082,
+      "after_m2": 16.941420293600082
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "before_m2": 162.38158275791744,
+      "after_m2": 162.38158275791744
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "before_m2": 118.5995293646375,
+      "after_m2": 118.5995293646375
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan"
+      ],
+      "before_m2": 70.22349506154191,
+      "after_m2": 70.22349506154191
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Pahanocoy"
+      ],
+      "before_m2": 29.663444250614027,
+      "after_m2": 29.663444250614027
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Sum-ag"
+      ],
+      "before_m2": 84.64953638624155,
+      "after_m2": 84.64953638624155
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Tangub"
+      ],
+      "before_m2": 273.4311849914012,
+      "after_m2": 273.43118499140127
+    },
+    {
+      "barangays": [
+        "Estefania",
+        "Vista Alegre"
+      ],
+      "before_m2": 201.55814431825712,
+      "after_m2": 201.55814431825712
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "before_m2": 186.9553892375432,
+      "after_m2": 186.9553892375432
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Handumanan"
+      ],
+      "before_m2": 6.178198256086871,
+      "after_m2": 6.178198256086871
+    },
+    {
+      "barangays": [
+        "Granada",
+        "Vista Alegre"
+      ],
+      "before_m2": 152.48633785537754,
+      "after_m2": 152.48633785537754
+    },
+    {
+      "barangays": [
+        "Mandalagan",
+        "Villamonte"
+      ],
+      "before_m2": 412.02227163430246,
+      "after_m2": 412.02227163430246
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Tangub"
+      ],
+      "before_m2": 168.3385597424866,
+      "after_m2": 168.3385597424866
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "before_m2": 1186.559190126644,
+      "after_m2": 1186.559190126644
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "before_m2": 218.4492218962855,
+      "after_m2": 218.4492218962855
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "before_m2": 406.72016566485195,
+      "after_m2": 406.72016566485195
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "before_m2": 281.61577368138654,
+      "after_m2": 281.61577368138654
+    },
+    {
+      "barangays": [
+        "Singcang-Airport",
+        "Taculing"
+      ],
+      "before_m2": 93.29825908649354,
+      "after_m2": 93.29825908649354
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "before_m2": 195.26994507038324,
+      "after_m2": 195.26994507038324
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "before_m2": 254.49114919296474,
+      "after_m2": 254.49114919296474
+    }
+  ],
+  "uncovered_city_m2": {
+    "before": 1012689.9250798114,
+    "after": 1012689.922325282
+  },
+  "added_gap_m2": 0.0,
+  "gaps_over_one_m2": [
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 8"
+      ],
+      "city_edge": true,
+      "before_m2": 226098.61585308096,
+      "after_m2": 226098.61585308117,
+      "sample": {
+        "latitude": 10.685855499999999,
+        "longitude": 122.94782912664854
+      }
+    },
+    {
+      "barangays": [
+        "Felisa"
+      ],
+      "city_edge": true,
+      "before_m2": 127840.60851990717,
+      "after_m2": 127840.6085199072,
+      "sample": {
+        "latitude": 10.596484,
+        "longitude": 122.99662736788578
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan"
+      ],
+      "city_edge": true,
+      "before_m2": 103561.1627013019,
+      "after_m2": 103561.16270130186,
+      "sample": {
+        "latitude": 10.6119975,
+        "longitude": 123.00999555739375
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 78671.83016758553,
+      "after_m2": 78671.83016758572,
+      "sample": {
+        "latitude": 10.636984542953844,
+        "longitude": 123.05486471695194
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 10"
+      ],
+      "city_edge": true,
+      "before_m2": 66934.45451073088,
+      "after_m2": 66934.45451073084,
+      "sample": {
+        "latitude": 10.6762225,
+        "longitude": 122.93657365493553
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 56168.26635633909,
+      "after_m2": 56168.26635633922,
+      "sample": {
+        "latitude": 10.6726377,
+        "longitude": 123.07082849310136
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 10"
+      ],
+      "city_edge": true,
+      "before_m2": 37337.1877966122,
+      "after_m2": 37337.18779661225,
+      "sample": {
+        "latitude": 10.677940849999999,
+        "longitude": 122.93608874623365
+      }
+    },
+    {
+      "barangays": [
+        "Felisa"
+      ],
+      "city_edge": true,
+      "before_m2": 25485.080749427936,
+      "after_m2": 25485.08074942793,
+      "sample": {
+        "latitude": 10.58953,
+        "longitude": 122.99154957053494
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 25460.556385609303,
+      "after_m2": 25460.556385609656,
+      "sample": {
+        "latitude": 10.66729925,
+        "longitude": 123.10809602208522
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 20600.667658721413,
+      "after_m2": 20600.667658721402,
+      "sample": {
+        "latitude": 10.59225825,
+        "longitude": 122.9318370327976
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 14658.781902048479,
+      "after_m2": 14658.781902048479,
+      "sample": {
+        "latitude": 10.65710425,
+        "longitude": 123.13641841220672
+      }
+    },
+    {
+      "barangays": [
+        "Felisa"
+      ],
+      "city_edge": true,
+      "before_m2": 12950.654451092792,
+      "after_m2": 12950.654451092794,
+      "sample": {
+        "latitude": 10.5997945,
+        "longitude": 123.00031960909661
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 11958.501389495266,
+      "after_m2": 11958.501389495388,
+      "sample": {
+        "latitude": 10.71522127839129,
+        "longitude": 122.95179963937011
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 11566.804715358354,
+      "after_m2": 11566.804715358356,
+      "sample": {
+        "latitude": 10.654741,
+        "longitude": 123.12391605522063
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay",
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 10454.298717206168,
+      "after_m2": 10454.29871720617,
+      "sample": {
+        "latitude": 10.605892149999999,
+        "longitude": 122.91390896992272
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 10440.869651582147,
+      "after_m2": 10440.869651582108,
+      "sample": {
+        "latitude": 10.6842226,
+        "longitude": 123.05114028211074
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 8277.56683628949,
+      "after_m2": 8277.566836289492,
+      "sample": {
+        "latitude": 10.67006595,
+        "longitude": 123.07658425815026
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 7526.357596384421,
+      "after_m2": 7526.357596384421,
+      "sample": {
+        "latitude": 10.6088471,
+        "longitude": 122.91311056564986
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 6693.945442808882,
+      "after_m2": 6693.945442808884,
+      "sample": {
+        "latitude": 10.612596761542925,
+        "longitude": 122.91828305506914
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 6506.140704835238,
+      "after_m2": 6506.140704835205,
+      "sample": {
+        "latitude": 10.65057174379899,
+        "longitude": 123.1030968935276
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport",
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 6245.424843643508,
+      "after_m2": 6245.424843643515,
+      "sample": {
+        "latitude": 10.6455126,
+        "longitude": 122.92391803610272
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan",
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 6002.054653771377,
+      "after_m2": 6002.054653771377,
+      "sample": {
+        "latitude": 10.6793905,
+        "longitude": 123.05752660386291
+      }
+    },
+    {
+      "barangays": [
+        "Cabug"
+      ],
+      "city_edge": true,
+      "before_m2": 5778.150202631147,
+      "after_m2": 5778.150202631139,
+      "sample": {
+        "latitude": 10.587230049999999,
+        "longitude": 122.94803402440832
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Felisa"
+      ],
+      "city_edge": true,
+      "before_m2": 4901.073867965409,
+      "after_m2": 4901.073867965397,
+      "sample": {
+        "latitude": 10.585716900000001,
+        "longitude": 122.96510607773848
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 4839.601834892363,
+      "after_m2": 4839.601834892364,
+      "sample": {
+        "latitude": 10.655093,
+        "longitude": 123.12773034469947
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 4395.001494870736,
+      "after_m2": 4395.00149487073,
+      "sample": {
+        "latitude": 10.68599995,
+        "longitude": 123.00721533169643
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 3391.1133386818046,
+      "after_m2": 3391.113338681807,
+      "sample": {
+        "latitude": 10.617892999999999,
+        "longitude": 122.92002247775423
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 3215.033807220832,
+      "after_m2": 3215.033807220832,
+      "sample": {
+        "latitude": 10.682717,
+        "longitude": 123.0531524240964
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan"
+      ],
+      "city_edge": true,
+      "before_m2": 2854.1378963462253,
+      "after_m2": 2854.137896346227,
+      "sample": {
+        "latitude": 10.617404,
+        "longitude": 123.01521606579149
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 2818.0568611785293,
+      "after_m2": 2818.0568611785293,
+      "sample": {
+        "latitude": 10.6075585,
+        "longitude": 122.91449248213445
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 2513.3836852973,
+      "after_m2": 2513.383685297291,
+      "sample": {
+        "latitude": 10.695896900000001,
+        "longitude": 123.00142045243902
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 2328.7534465418416,
+      "after_m2": 2328.753446541843,
+      "sample": {
+        "latitude": 10.66451195,
+        "longitude": 123.13246414761699
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 2321.423555419854,
+      "after_m2": 2321.4235554198594,
+      "sample": {
+        "latitude": 10.6931545,
+        "longitude": 123.00319363013608
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 2258.402108695499,
+      "after_m2": 2258.402108695497,
+      "sample": {
+        "latitude": 10.68825965,
+        "longitude": 123.00490257185092
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan"
+      ],
+      "city_edge": true,
+      "before_m2": 2250.414271099177,
+      "after_m2": 2250.4142710991773,
+      "sample": {
+        "latitude": 10.607029,
+        "longitude": 123.00652430242766
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 2199.345268752582,
+      "after_m2": 2199.3452687525846,
+      "sample": {
+        "latitude": 10.682172900000001,
+        "longitude": 123.02702226464437
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 2182.0628506360626,
+      "after_m2": 2182.062850636062,
+      "sample": {
+        "latitude": 10.65305545,
+        "longitude": 122.927144826991
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 2114.00948351396,
+      "after_m2": 2114.00948351396,
+      "sample": {
+        "latitude": 10.683048,
+        "longitude": 122.95004111602235
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 2073.7798132298944,
+      "after_m2": 2073.779813229894,
+      "sample": {
+        "latitude": 10.6148425,
+        "longitude": 122.91850896423477
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 2065.7120114178906,
+      "after_m2": 2065.712011417889,
+      "sample": {
+        "latitude": 10.6849418,
+        "longitude": 123.0103500028157
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 1973.911868351184,
+      "after_m2": 1973.9118683511845,
+      "sample": {
+        "latitude": 10.657975799999999,
+        "longitude": 122.92893814342199
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 1858.8530395591617,
+      "after_m2": 1858.8530395591615,
+      "sample": {
+        "latitude": 10.62648475,
+        "longitude": 122.9237353664422
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 1827.1610170933768,
+      "after_m2": 1827.1610170933798,
+      "sample": {
+        "latitude": 10.70353054322915,
+        "longitude": 122.94108542021723
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 1747.7304666036957,
+      "after_m2": 1747.7304666036962,
+      "sample": {
+        "latitude": 10.6654468,
+        "longitude": 122.93454964030173
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 1704.3568686169735,
+      "after_m2": 1704.356868616973,
+      "sample": {
+        "latitude": 10.6993414,
+        "longitude": 122.99925513374265
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 1690.2895300099638,
+      "after_m2": 1690.2895300099638,
+      "sample": {
+        "latitude": 10.635099499999999,
+        "longitude": 122.92584464153195
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 1672.816462346594,
+      "after_m2": 1672.816462346594,
+      "sample": {
+        "latitude": 10.69388225,
+        "longitude": 122.95107340611207
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan"
+      ],
+      "city_edge": true,
+      "before_m2": 1583.9277410418633,
+      "after_m2": 1583.9277410418651,
+      "sample": {
+        "latitude": 10.620947647724876,
+        "longitude": 123.01749900638531
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 1301.910011168229,
+      "after_m2": 1301.9100111682287,
+      "sample": {
+        "latitude": 10.600563000000001,
+        "longitude": 122.90417954028341
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 1258.4589629738712,
+      "after_m2": 1258.4589629738714,
+      "sample": {
+        "latitude": 10.689793850000001,
+        "longitude": 123.00314058286892
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 1205.749483279519,
+      "after_m2": 1205.7494832795187,
+      "sample": {
+        "latitude": 10.652229817763796,
+        "longitude": 123.11272659044863
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 1199.2207742417638,
+      "after_m2": 1199.2207742417638,
+      "sample": {
+        "latitude": 10.632426490767589,
+        "longitude": 122.92570856844017
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 1190.3714664451204,
+      "after_m2": 1190.37146644512,
+      "sample": {
+        "latitude": 10.631658719274235,
+        "longitude": 122.92528040408683
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 1160.1238099198863,
+      "after_m2": 1160.1238099198874,
+      "sample": {
+        "latitude": 10.68181645,
+        "longitude": 123.03368283047317
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 10",
+        "Barangay 12"
+      ],
+      "city_edge": true,
+      "before_m2": 1121.3247915749466,
+      "after_m2": 1121.3247915749434,
+      "sample": {
+        "latitude": 10.673020402942361,
+        "longitude": 122.94075646509344
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 1095.1671865013884,
+      "after_m2": 1095.167186501388,
+      "sample": {
+        "latitude": 10.653986117777652,
+        "longitude": 123.12228053091734
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 25",
+        "Barangay 28",
+        "Barangay 29",
+        "Barangay 30",
+        "Barangay 31",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 1082.3876908413092,
+      "after_m2": 1082.38769084136,
+      "sample": {
+        "latitude": 10.6632175,
+        "longitude": 122.9561645086684
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 1029.6844309742362,
+      "after_m2": 1029.6844309742355,
+      "sample": {
+        "latitude": 10.68284135,
+        "longitude": 123.02119184615896
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 998.5072733549994,
+      "after_m2": 998.5072733549995,
+      "sample": {
+        "latitude": 10.602526637026237,
+        "longitude": 122.90924123336416
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 929.2018692534048,
+      "after_m2": 929.2018692534045,
+      "sample": {
+        "latitude": 10.707657999999999,
+        "longitude": 122.94909640591442
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 920.1390522149578,
+      "after_m2": 920.1390522149579,
+      "sample": {
+        "latitude": 10.692523999999999,
+        "longitude": 122.95121464409027
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 912.9354684207303,
+      "after_m2": 912.9354684207302,
+      "sample": {
+        "latitude": 10.68289555,
+        "longitude": 123.01346390869566
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 8"
+      ],
+      "city_edge": true,
+      "before_m2": 912.6269049820489,
+      "after_m2": 912.6269049820488,
+      "sample": {
+        "latitude": 10.68193355,
+        "longitude": 122.94958528004902
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 4",
+        "Barangay 5",
+        "Barangay 7",
+        "Barangay 9"
+      ],
+      "city_edge": false,
+      "before_m2": 899.9406533779942,
+      "after_m2": 899.9406533391323,
+      "sample": {
+        "latitude": 10.6824725,
+        "longitude": 122.95567566066973
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 893.5238473636632,
+      "after_m2": 893.5238473636625,
+      "sample": {
+        "latitude": 10.6824435,
+        "longitude": 123.02529216986393
+      }
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 889.7578959867242,
+      "after_m2": 889.7578959867243,
+      "sample": {
+        "latitude": 10.693255050000001,
+        "longitude": 122.95106762172489
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 859.2209831689113,
+      "after_m2": 859.2209831689102,
+      "sample": {
+        "latitude": 10.70337175672551,
+        "longitude": 122.94739839336782
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 16"
+      ],
+      "city_edge": true,
+      "before_m2": 848.3830229102405,
+      "after_m2": 848.3830229102404,
+      "sample": {
+        "latitude": 10.66887625,
+        "longitude": 122.93748107124412
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 828.989367856336,
+      "after_m2": 828.9893678563357,
+      "sample": {
+        "latitude": 10.68383465,
+        "longitude": 123.0120642345679
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 820.2655857068875,
+      "after_m2": 820.2655857068874,
+      "sample": {
+        "latitude": 10.7082465,
+        "longitude": 122.9494663923077
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 743.5766564893098,
+      "after_m2": 743.5766564893095,
+      "sample": {
+        "latitude": 10.65971185,
+        "longitude": 123.1393447315295
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 722.6391893398511,
+      "after_m2": 722.6391893398513,
+      "sample": {
+        "latitude": 10.686332,
+        "longitude": 122.9509857069395
+      }
+    },
+    {
+      "barangays": [
+        "Cabug"
+      ],
+      "city_edge": true,
+      "before_m2": 710.3037796017311,
+      "after_m2": 710.3037796017305,
+      "sample": {
+        "latitude": 10.586020062651308,
+        "longitude": 122.95582720135457
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 13",
+        "Barangay 14",
+        "Barangay 16"
+      ],
+      "city_edge": false,
+      "before_m2": 692.2229363515361,
+      "after_m2": 692.2229363515316,
+      "sample": {
+        "latitude": 10.6681585,
+        "longitude": 122.93988244762352
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 691.4419162650029,
+      "after_m2": 691.4419162650025,
+      "sample": {
+        "latitude": 10.6824835,
+        "longitude": 123.03999851552541
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 16"
+      ],
+      "city_edge": true,
+      "before_m2": 630.8529667078813,
+      "after_m2": 630.852966707881,
+      "sample": {
+        "latitude": 10.6689376566571,
+        "longitude": 122.93838963728828
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 629.9581624181494,
+      "after_m2": 629.9581624181494,
+      "sample": {
+        "latitude": 10.619454999999999,
+        "longitude": 122.92010378512168
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 627.1219133257932,
+      "after_m2": 627.1219133257931,
+      "sample": {
+        "latitude": 10.69722255,
+        "longitude": 122.95140238638132
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 598.8793383048518,
+      "after_m2": 598.8793383048516,
+      "sample": {
+        "latitude": 10.66471795,
+        "longitude": 123.13042466512027
+      }
+    },
+    {
+      "barangays": [
+        "Felisa"
+      ],
+      "city_edge": true,
+      "before_m2": 597.9466761735407,
+      "after_m2": 597.9466761735406,
+      "sample": {
+        "latitude": 10.586609082445058,
+        "longitude": 122.98949401739667
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 24",
+        "Barangay 25",
+        "Barangay 26",
+        "Barangay 27",
+        "Barangay 28",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 582.8116512615286,
+      "after_m2": 582.8116512614681,
+      "sample": {
+        "latitude": 10.665286,
+        "longitude": 122.95436228646899
+      }
+    },
+    {
+      "barangays": [
+        "Bata"
+      ],
+      "city_edge": true,
+      "before_m2": 579.9002872922714,
+      "after_m2": 579.9002872923836,
+      "sample": {
+        "latitude": 10.707690665008663,
+        "longitude": 122.97647787740645
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 21",
+        "Barangay 22",
+        "Barangay 23",
+        "Barangay 24",
+        "Barangay 26",
+        "Barangay 27"
+      ],
+      "city_edge": false,
+      "before_m2": 575.2746737365616,
+      "after_m2": 575.2719197303558,
+      "sample": {
+        "latitude": 10.666949500000001,
+        "longitude": 122.95342420761101
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 535.2430376987035,
+      "after_m2": 535.2430376987035,
+      "sample": {
+        "latitude": 10.63955565,
+        "longitude": 122.9234798321634
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 525.8427152107336,
+      "after_m2": 525.8427152107342,
+      "sample": {
+        "latitude": 10.68302905,
+        "longitude": 123.01865163603819
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 524.5270772002492,
+      "after_m2": 524.5270772002491,
+      "sample": {
+        "latitude": 10.60687,
+        "longitude": 122.91439170738971
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 523.1448522188432,
+      "after_m2": 523.1448522188427,
+      "sample": {
+        "latitude": 10.601102856238285,
+        "longitude": 122.90593237110397
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 517.1131077706046,
+      "after_m2": 517.1131077706048,
+      "sample": {
+        "latitude": 10.59824995,
+        "longitude": 122.89650290680552
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 514.4369979246169,
+      "after_m2": 514.4369979246172,
+      "sample": {
+        "latitude": 10.702106151261981,
+        "longitude": 122.94013367174601
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 2",
+        "Barangay 3"
+      ],
+      "city_edge": false,
+      "before_m2": 503.42172619838925,
+      "after_m2": 503.42172619838834,
+      "sample": {
+        "latitude": 10.686288000000001,
+        "longitude": 122.95371930192033
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 496.98503789555485,
+      "after_m2": 496.98503789555537,
+      "sample": {
+        "latitude": 10.70348945,
+        "longitude": 122.94730588881998
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 495.10686004336355,
+      "after_m2": 495.10686004336344,
+      "sample": {
+        "latitude": 10.664629221209227,
+        "longitude": 123.12354686994259
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 493.33743228879916,
+      "after_m2": 493.33743228879905,
+      "sample": {
+        "latitude": 10.70570765,
+        "longitude": 122.9486358507001
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 489.14985357972057,
+      "after_m2": 489.1498535797199,
+      "sample": {
+        "latitude": 10.63430827060867,
+        "longitude": 122.92260141951763
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 471.94032442026463,
+      "after_m2": 471.94032442026463,
+      "sample": {
+        "latitude": 10.5953585,
+        "longitude": 122.90105316431739
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 13",
+        "Barangay 16"
+      ],
+      "city_edge": true,
+      "before_m2": 451.29472601201286,
+      "after_m2": 451.29472601201275,
+      "sample": {
+        "latitude": 10.669583473454786,
+        "longitude": 122.93913566396742
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 432.5227677681726,
+      "after_m2": 432.5227677681727,
+      "sample": {
+        "latitude": 10.6536243,
+        "longitude": 123.119488375206
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 421.98974907942744,
+      "after_m2": 421.98974907942744,
+      "sample": {
+        "latitude": 10.61860515,
+        "longitude": 122.91945004833826
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 409.7982405620848,
+      "after_m2": 409.7982405620848,
+      "sample": {
+        "latitude": 10.6010585,
+        "longitude": 122.90489343757184
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 398.9908385353376,
+      "after_m2": 398.9908385353376,
+      "sample": {
+        "latitude": 10.681494549559256,
+        "longitude": 123.0298057009031
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 397.67982530200226,
+      "after_m2": 397.6798253020022,
+      "sample": {
+        "latitude": 10.602286150000001,
+        "longitude": 122.90888495861287
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 393.3228761955295,
+      "after_m2": 393.32287619552943,
+      "sample": {
+        "latitude": 10.685736,
+        "longitude": 122.95095064459288
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 392.5251700216555,
+      "after_m2": 392.52517002165547,
+      "sample": {
+        "latitude": 10.708635000000001,
+        "longitude": 122.94909521134272
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 391.0732494994098,
+      "after_m2": 391.0732494994107,
+      "sample": {
+        "latitude": 10.655168568576084,
+        "longitude": 122.92729870974695
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 344.8393903191627,
+      "after_m2": 344.83939031915827,
+      "sample": {
+        "latitude": 10.6181795,
+        "longitude": 122.93891146267495
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 332.99472422042555,
+      "after_m2": 332.99472422042555,
+      "sample": {
+        "latitude": 10.652679603561612,
+        "longitude": 123.11464986429519
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 329.33271713964626,
+      "after_m2": 329.3327171396463,
+      "sample": {
+        "latitude": 10.611888283152044,
+        "longitude": 122.91399913992205
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 328.9346988492825,
+      "after_m2": 328.93469884928277,
+      "sample": {
+        "latitude": 10.61057371098371,
+        "longitude": 122.91532094719602
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 320.40421266765946,
+      "after_m2": 320.4042126676595,
+      "sample": {
+        "latitude": 10.680949600000002,
+        "longitude": 123.0552190729097
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 305.03313251356195,
+      "after_m2": 305.0331325135619,
+      "sample": {
+        "latitude": 10.690811707288841,
+        "longitude": 123.00292208564255
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 304.81187529712895,
+      "after_m2": 304.8118752971289,
+      "sample": {
+        "latitude": 10.682414900000001,
+        "longitude": 123.01466359076576
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 294.535282794849,
+      "after_m2": 294.53528279484914,
+      "sample": {
+        "latitude": 10.662757500000001,
+        "longitude": 122.93262598605966
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 294.0343480570083,
+      "after_m2": 294.0343480570083,
+      "sample": {
+        "latitude": 10.652326770162077,
+        "longitude": 123.11371519001398
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 20",
+        "Barangay 27",
+        "Barangay 41",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 281.6407508224048,
+      "after_m2": 281.6407508224043,
+      "sample": {
+        "latitude": 10.666768908502988,
+        "longitude": 122.95850728464382
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 279.17717974298563,
+      "after_m2": 279.1771797429873,
+      "sample": {
+        "latitude": 10.6571125,
+        "longitude": 122.94496897869956
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 269.5940754301354,
+      "after_m2": 269.5940754301357,
+      "sample": {
+        "latitude": 10.682108549999999,
+        "longitude": 123.03807344054879
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 266.61377277548917,
+      "after_m2": 266.6137727754894,
+      "sample": {
+        "latitude": 10.6345505,
+        "longitude": 122.92638768390313
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 262.5022990009081,
+      "after_m2": 262.5022990009081,
+      "sample": {
+        "latitude": 10.70661343008928,
+        "longitude": 122.94888469850179
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 253.53512831312082,
+      "after_m2": 253.5351283131209,
+      "sample": {
+        "latitude": 10.7026435,
+        "longitude": 122.94109433514029
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 252.5130893207444,
+      "after_m2": 252.51308932074443,
+      "sample": {
+        "latitude": 10.691828239441573,
+        "longitude": 122.95100972146108
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 229.79113435110386,
+      "after_m2": 229.7911343511064,
+      "sample": {
+        "latitude": 10.6149175,
+        "longitude": 122.96232444394084
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 229.33574503118194,
+      "after_m2": 229.33574503118194,
+      "sample": {
+        "latitude": 10.696257,
+        "longitude": 122.95132995461084
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 228.36252134203232,
+      "after_m2": 228.36252134203232,
+      "sample": {
+        "latitude": 10.68390155,
+        "longitude": 123.04177985578372
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 225.9738268046066,
+      "after_m2": 225.97382680460663,
+      "sample": {
+        "latitude": 10.622213464815191,
+        "longitude": 122.92123266816864
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 36",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 217.3692663850706,
+      "after_m2": 217.36926638507063,
+      "sample": {
+        "latitude": 10.6598895,
+        "longitude": 122.9405126386016
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 216.8457890427569,
+      "after_m2": 216.84578904275722,
+      "sample": {
+        "latitude": 10.623787499999999,
+        "longitude": 122.92869773953976
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 209.80823768262076,
+      "after_m2": 209.80823768262078,
+      "sample": {
+        "latitude": 10.68063535,
+        "longitude": 123.05561113686657
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 208.32732172967454,
+      "after_m2": 208.32732172967457,
+      "sample": {
+        "latitude": 10.610190413029589,
+        "longitude": 122.91593518444796
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 206.08780643829556,
+      "after_m2": 206.08780643829556,
+      "sample": {
+        "latitude": 10.682721950000001,
+        "longitude": 123.01586100780142
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 200.87450266599296,
+      "after_m2": 200.87450266599296,
+      "sample": {
+        "latitude": 10.6848628,
+        "longitude": 123.0457034812218
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 19",
+        "Barangay 20",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 197.5000587667279,
+      "after_m2": 197.50005876672793,
+      "sample": {
+        "latitude": 10.6702215,
+        "longitude": 122.95601563423645
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 195.1672554373788,
+      "after_m2": 195.1672554373788,
+      "sample": {
+        "latitude": 10.6950295,
+        "longitude": 122.95117119242674
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 194.3370207109676,
+      "after_m2": 194.33702071096758,
+      "sample": {
+        "latitude": 10.706402,
+        "longitude": 122.94870031585366
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 192.45177960428936,
+      "after_m2": 192.4517796042894,
+      "sample": {
+        "latitude": 10.702847649999999,
+        "longitude": 122.94011399486187
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 191.32373030321207,
+      "after_m2": 191.32373030321216,
+      "sample": {
+        "latitude": 10.701378600000002,
+        "longitude": 122.94900617223902
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 190.23810668916647,
+      "after_m2": 190.23810668916641,
+      "sample": {
+        "latitude": 10.699708000000001,
+        "longitude": 122.9510333274302
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 184.8319851282206,
+      "after_m2": 184.8319851282206,
+      "sample": {
+        "latitude": 10.649141,
+        "longitude": 122.92537939931638
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 181.71855132975432,
+      "after_m2": 181.7185513297543,
+      "sample": {
+        "latitude": 10.633559746361254,
+        "longitude": 122.92627496844514
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 180.8608308156614,
+      "after_m2": 180.86083081566136,
+      "sample": {
+        "latitude": 10.652585835808312,
+        "longitude": 123.11667227023963
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 177.19062681391094,
+      "after_m2": 177.19062681391094,
+      "sample": {
+        "latitude": 10.6254945,
+        "longitude": 123.01394023936169
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 172.29179313513308,
+      "after_m2": 172.29179313513308,
+      "sample": {
+        "latitude": 10.5993864,
+        "longitude": 122.90008875780623
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 171.95090156439082,
+      "after_m2": 171.95090156439082,
+      "sample": {
+        "latitude": 10.7091075,
+        "longitude": 122.94890936972598
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 161.6828256977521,
+      "after_m2": 161.6828256977521,
+      "sample": {
+        "latitude": 10.70423715,
+        "longitude": 122.94793840564628
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 159.6050169248154,
+      "after_m2": 159.60501692481537,
+      "sample": {
+        "latitude": 10.661598096965662,
+        "longitude": 123.13701780482786
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 159.04603040944707,
+      "after_m2": 159.04603040944744,
+      "sample": {
+        "latitude": 10.685301764549578,
+        "longitude": 122.95842239193604
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 151.22001791719242,
+      "after_m2": 151.22001791719242,
+      "sample": {
+        "latitude": 10.6955829,
+        "longitude": 122.95135992099642
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 150.99023619723698,
+      "after_m2": 150.990236197237,
+      "sample": {
+        "latitude": 10.632709329421012,
+        "longitude": 122.9258337144235
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 149.3462299814642,
+      "after_m2": 149.3462299814642,
+      "sample": {
+        "latitude": 10.709313241188534,
+        "longitude": 122.94884184994407
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 147.4221507826547,
+      "after_m2": 147.42215078265426,
+      "sample": {
+        "latitude": 10.6423105,
+        "longitude": 122.96443437115386
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 144.33047423597387,
+      "after_m2": 144.33047423597387,
+      "sample": {
+        "latitude": 10.612343,
+        "longitude": 122.96044969831117
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 143.35231226633906,
+      "after_m2": 143.35231226633886,
+      "sample": {
+        "latitude": 10.657378000000001,
+        "longitude": 122.96527157095343
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 135.13437854064077,
+      "after_m2": 135.13437854064068,
+      "sample": {
+        "latitude": 10.703189586020546,
+        "longitude": 122.94524766758707
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 130.6885162961812,
+      "after_m2": 130.68851629618123,
+      "sample": {
+        "latitude": 10.646133329064675,
+        "longitude": 123.07665933283319
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 130.092703520234,
+      "after_m2": 130.09270352023393,
+      "sample": {
+        "latitude": 10.59562869379646,
+        "longitude": 122.89936132803476
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 129.90543332254637,
+      "after_m2": 129.90543332254634,
+      "sample": {
+        "latitude": 10.6988211,
+        "longitude": 122.95115377844829
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 128.80603472897815,
+      "after_m2": 128.80603472897815,
+      "sample": {
+        "latitude": 10.652408255470633,
+        "longitude": 123.11601265476611
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 128.47146645430828,
+      "after_m2": 128.4714664543083,
+      "sample": {
+        "latitude": 10.649628799999999,
+        "longitude": 122.92549770258265
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 3",
+        "Barangay 4"
+      ],
+      "city_edge": false,
+      "before_m2": 125.74969645714107,
+      "after_m2": 125.74969636874016,
+      "sample": {
+        "latitude": 10.684604,
+        "longitude": 122.9539542926009
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 125.46320031743942,
+      "after_m2": 125.46320031743943,
+      "sample": {
+        "latitude": 10.5946104,
+        "longitude": 122.90371595293865
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 124.86594218285548,
+      "after_m2": 124.86594218285552,
+      "sample": {
+        "latitude": 10.611067786064673,
+        "longitude": 122.91498524643777
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 124.5771698087451,
+      "after_m2": 124.5771698087451,
+      "sample": {
+        "latitude": 10.688103535914749,
+        "longitude": 122.95119081891764
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 31",
+        "Barangay 33",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 120.4479416467884,
+      "after_m2": 120.44794164678936,
+      "sample": {
+        "latitude": 10.660099,
+        "longitude": 122.95120316666666
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 120.34573151358967,
+      "after_m2": 120.34573151358968,
+      "sample": {
+        "latitude": 10.648395165650511,
+        "longitude": 122.92518331930378
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 117.2400902596174,
+      "after_m2": 117.2400902596174,
+      "sample": {
+        "latitude": 10.684130715508058,
+        "longitude": 122.95068128485553
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 117.01956425002255,
+      "after_m2": 117.01956425002257,
+      "sample": {
+        "latitude": 10.66469301833143,
+        "longitude": 123.12549686605851
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 115.72433532032811,
+      "after_m2": 115.72433532032812,
+      "sample": {
+        "latitude": 10.709557499999999,
+        "longitude": 122.9485730420993
+      }
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 115.22498890508037,
+      "after_m2": 115.22498890508038,
+      "sample": {
+        "latitude": 10.698588680260247,
+        "longitude": 122.96214164269446
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 113.83822634162567,
+      "after_m2": 113.83822634162563,
+      "sample": {
+        "latitude": 10.683146,
+        "longitude": 122.95989081432748
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 112.89533126844927,
+      "after_m2": 112.89533126844924,
+      "sample": {
+        "latitude": 10.664109344819291,
+        "longitude": 123.13384497984046
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 112.44231636695137,
+      "after_m2": 112.4423163669514,
+      "sample": {
+        "latitude": 10.61308137892736,
+        "longitude": 122.94570567521518
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 110.42337482855245,
+      "after_m2": 110.42337482855237,
+      "sample": {
+        "latitude": 10.699464,
+        "longitude": 122.98845924692444
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 106.53971191336794,
+      "after_m2": 106.53971191336795,
+      "sample": {
+        "latitude": 10.6012943,
+        "longitude": 122.9041527784727
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 101.29997582784975,
+      "after_m2": 101.29997582784978,
+      "sample": {
+        "latitude": 10.627522500000001,
+        "longitude": 122.99737867796608
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 101.17245898552011,
+      "after_m2": 101.17245898552014,
+      "sample": {
+        "latitude": 10.634949717968901,
+        "longitude": 122.92370726578653
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 100.67025279343805,
+      "after_m2": 100.67025279343807,
+      "sample": {
+        "latitude": 10.655481003635053,
+        "longitude": 123.12869495397685
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 98.07207715454055,
+      "after_m2": 98.07207715454052,
+      "sample": {
+        "latitude": 10.6958525,
+        "longitude": 122.95135156537387
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 97.70287728541958,
+      "after_m2": 97.70287728541958,
+      "sample": {
+        "latitude": 10.6595611,
+        "longitude": 122.92963276027587
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 97.38325446844073,
+      "after_m2": 97.38325446844073,
+      "sample": {
+        "latitude": 10.6171871,
+        "longitude": 122.91846817840326
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 94.64275255876737,
+      "after_m2": 94.64275255876741,
+      "sample": {
+        "latitude": 10.658069741146221,
+        "longitude": 122.95321384056233
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 93.3399498139424,
+      "after_m2": 93.3399498139424,
+      "sample": {
+        "latitude": 10.681793022274224,
+        "longitude": 123.05476686308924
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 92.1641390968666,
+      "after_m2": 92.16413909686656,
+      "sample": {
+        "latitude": 10.655248899041258,
+        "longitude": 122.94454569890814
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 90.22443134517248,
+      "after_m2": 90.22443134517243,
+      "sample": {
+        "latitude": 10.624733004950105,
+        "longitude": 122.96005230409901
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 90.05594095637859,
+      "after_m2": 90.0559409563786,
+      "sample": {
+        "latitude": 10.681246624002732,
+        "longitude": 123.03597699862652
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 88.13548744037126,
+      "after_m2": 88.13548744037125,
+      "sample": {
+        "latitude": 10.664677100171673,
+        "longitude": 123.12674630764656
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 85.82293246834763,
+      "after_m2": 85.82293246834766,
+      "sample": {
+        "latitude": 10.614041499999999,
+        "longitude": 122.94400713143631
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 84.6705722019822,
+      "after_m2": 84.67057220198205,
+      "sample": {
+        "latitude": 10.634283897619806,
+        "longitude": 122.98678940207077
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 84.1763875574913,
+      "after_m2": 84.1763875574913,
+      "sample": {
+        "latitude": 10.660307597548716,
+        "longitude": 122.93895740017129
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 83.06183713246477,
+      "after_m2": 83.0618371324648,
+      "sample": {
+        "latitude": 10.6844638,
+        "longitude": 122.95073903496393
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 82.55387819370182,
+      "after_m2": 82.55387819370179,
+      "sample": {
+        "latitude": 10.59440265,
+        "longitude": 122.90610383398288
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 82.48059862399151,
+      "after_m2": 82.48059862399147,
+      "sample": {
+        "latitude": 10.6903135,
+        "longitude": 122.9513686235766
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 82.43837713092255,
+      "after_m2": 82.43837713092256,
+      "sample": {
+        "latitude": 10.626352430737565,
+        "longitude": 123.00892704086868
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 81.31923395720845,
+      "after_m2": 81.31923395720847,
+      "sample": {
+        "latitude": 10.66496565919525,
+        "longitude": 123.12963410660589
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 81.04168612480508,
+      "after_m2": 81.04168612480508,
+      "sample": {
+        "latitude": 10.6991185,
+        "longitude": 122.989205875
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 79.15931275473412,
+      "after_m2": 79.15931275473412,
+      "sample": {
+        "latitude": 10.652976104600802,
+        "longitude": 122.97199175356279
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 78.86503014507616,
+      "after_m2": 78.86503014507626,
+      "sample": {
+        "latitude": 10.646464000000002,
+        "longitude": 122.94213029514825
+      }
+    },
+    {
+      "barangays": [
+        "Estefania",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 78.07576193700615,
+      "after_m2": 78.0757619370062,
+      "sample": {
+        "latitude": 10.656225,
+        "longitude": 122.9845153229927
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 77.61189512279098,
+      "after_m2": 77.61189512279098,
+      "sample": {
+        "latitude": 10.684812840017269,
+        "longitude": 123.04375654790272
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 77.47671036123188,
+      "after_m2": 77.47671036123194,
+      "sample": {
+        "latitude": 10.625764499999999,
+        "longitude": 123.0035632122565
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 77.03036844788993,
+      "after_m2": 77.03036844788987,
+      "sample": {
+        "latitude": 10.646104000000001,
+        "longitude": 122.94417071649485
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 75.49300417389216,
+      "after_m2": 75.49300417389213,
+      "sample": {
+        "latitude": 10.654892,
+        "longitude": 122.979657029724
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 74.33450763513997,
+      "after_m2": 74.33450763514006,
+      "sample": {
+        "latitude": 10.652663,
+        "longitude": 122.94585466071429
+      }
+    },
+    {
+      "barangays": [
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 73.17147861338061,
+      "after_m2": 73.1714786133806,
+      "sample": {
+        "latitude": 10.693972842065,
+        "longitude": 123.00190395961708
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 73.16441123882046,
+      "after_m2": 73.16441123882058,
+      "sample": {
+        "latitude": 10.654422,
+        "longitude": 122.94440410714286
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 41",
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 72.10311636289241,
+      "after_m2": 72.10311636289265,
+      "sample": {
+        "latitude": 10.659709,
+        "longitude": 122.96240719091904
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 36",
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 71.96662451924766,
+      "after_m2": 71.9666245192476,
+      "sample": {
+        "latitude": 10.6591545,
+        "longitude": 122.94102036522347
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 71.31425918262991,
+      "after_m2": 71.31425918262978,
+      "sample": {
+        "latitude": 10.700366336121268,
+        "longitude": 122.94903254323006
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 71.12032468786967,
+      "after_m2": 71.1203246878696,
+      "sample": {
+        "latitude": 10.6060485,
+        "longitude": 122.97259460315534
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 69.46099867457984,
+      "after_m2": 69.46099867457984,
+      "sample": {
+        "latitude": 10.65411211059315,
+        "longitude": 122.94947703237982
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 68.75931134890004,
+      "after_m2": 68.75931134890003,
+      "sample": {
+        "latitude": 10.693052270995507,
+        "longitude": 122.95116351987053
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 67.4203253809612,
+      "after_m2": 67.4203253809612,
+      "sample": {
+        "latitude": 10.655630940269075,
+        "longitude": 123.12886899312426
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 67.41166048125815,
+      "after_m2": 67.41166048125815,
+      "sample": {
+        "latitude": 10.714601250701513,
+        "longitude": 122.94871381893526
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 67.18603727903137,
+      "after_m2": 67.18603727903135,
+      "sample": {
+        "latitude": 10.600116763735828,
+        "longitude": 122.90288407076613
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 66.98480088378675,
+      "after_m2": 66.98480088378676,
+      "sample": {
+        "latitude": 10.618338088353177,
+        "longitude": 122.91918894430447
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 11",
+        "Barangay 21",
+        "Barangay 9"
+      ],
+      "city_edge": false,
+      "before_m2": 66.57313593286345,
+      "after_m2": 66.57313593286491,
+      "sample": {
+        "latitude": 10.6711375,
+        "longitude": 122.94953103378379
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 65.03738128524196,
+      "after_m2": 65.03738128524198,
+      "sample": {
+        "latitude": 10.62136845,
+        "longitude": 122.92120868582062
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 64.77038230589248,
+      "after_m2": 64.7703823058925,
+      "sample": {
+        "latitude": 10.657401499999999,
+        "longitude": 122.97739980893783
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 64.47147129159187,
+      "after_m2": 64.47147129159187,
+      "sample": {
+        "latitude": 10.618387448299995,
+        "longitude": 122.93357952067902
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 63.16609541019339,
+      "after_m2": 63.1660954101934,
+      "sample": {
+        "latitude": 10.647581516407556,
+        "longitude": 122.92457095365265
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 61.551291391933916,
+      "after_m2": 61.551291391934036,
+      "sample": {
+        "latitude": 10.665437639932907,
+        "longitude": 123.11896256684973
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 60.68171004518973,
+      "after_m2": 60.68171004518973,
+      "sample": {
+        "latitude": 10.68340695,
+        "longitude": 123.04128279382077
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 59.91909051584484,
+      "after_m2": 59.919090515844836,
+      "sample": {
+        "latitude": 10.685226889159507,
+        "longitude": 122.95084967055517
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 59.05514270869779,
+      "after_m2": 59.05514270869784,
+      "sample": {
+        "latitude": 10.6249135,
+        "longitude": 122.96091020785714
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 58.908824286973626,
+      "after_m2": 58.90882428697364,
+      "sample": {
+        "latitude": 10.666699000000001,
+        "longitude": 122.97099048511905
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 58.575179472806525,
+      "after_m2": 58.57517947280665,
+      "sample": {
+        "latitude": 10.6264255,
+        "longitude": 122.99918453836634
+      }
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Barangay 1",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 58.41213270985274,
+      "after_m2": 58.41213270985278,
+      "sample": {
+        "latitude": 10.688181,
+        "longitude": 122.95670531243854
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 58.24025546098015,
+      "after_m2": 58.240255460980144,
+      "sample": {
+        "latitude": 10.618573000000001,
+        "longitude": 122.93618974999997
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 57.63666518835116,
+      "after_m2": 57.63666518835117,
+      "sample": {
+        "latitude": 10.6064445,
+        "longitude": 122.97098787769397
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 57.14224205063671,
+      "after_m2": 57.14224205063666,
+      "sample": {
+        "latitude": 10.6825235,
+        "longitude": 122.95978712499999
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 57.12340469538413,
+      "after_m2": 57.12340469538414,
+      "sample": {
+        "latitude": 10.612745,
+        "longitude": 122.94674557894737
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 57.00741733759058,
+      "after_m2": 57.007417337590596,
+      "sample": {
+        "latitude": 10.6051655,
+        "longitude": 122.91395727295918
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 56.279963561113235,
+      "after_m2": 56.27996356111325,
+      "sample": {
+        "latitude": 10.6266505,
+        "longitude": 122.99865579370629
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 56.02213123414932,
+      "after_m2": 56.02213123414932,
+      "sample": {
+        "latitude": 10.69931725,
+        "longitude": 122.9510044575785
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 55.731879095396195,
+      "after_m2": 55.7318790953962,
+      "sample": {
+        "latitude": 10.59658022251116,
+        "longitude": 122.89821651360513
+      }
+    },
+    {
+      "barangays": [
+        "Estefania",
+        "Granada"
+      ],
+      "city_edge": false,
+      "before_m2": 54.877861002200156,
+      "after_m2": 54.87786100220014,
+      "sample": {
+        "latitude": 10.6825325,
+        "longitude": 123.01019697631989
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Pahanocoy"
+      ],
+      "city_edge": false,
+      "before_m2": 54.76927075283463,
+      "after_m2": 54.76927075283456,
+      "sample": {
+        "latitude": 10.604813,
+        "longitude": 122.93911309550562
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 54.47513744922111,
+      "after_m2": 54.475137449221094,
+      "sample": {
+        "latitude": 10.657983,
+        "longitude": 122.95116210240964
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 54.43425723697941,
+      "after_m2": 54.434257236979406,
+      "sample": {
+        "latitude": 10.6117495,
+        "longitude": 122.9606008125
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 54.06479681415985,
+      "after_m2": 54.064796814159834,
+      "sample": {
+        "latitude": 10.648838572162141,
+        "longitude": 122.92527140291995
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 53.68914148810138,
+      "after_m2": 53.68914148810137,
+      "sample": {
+        "latitude": 10.6965188,
+        "longitude": 122.9513601734534
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 53.07621352191354,
+      "after_m2": 53.07621352191354,
+      "sample": {
+        "latitude": 10.611708741124737,
+        "longitude": 122.96101950167419
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 24",
+        "Barangay 25",
+        "Barangay 29",
+        "Barangay 32",
+        "Barangay 37",
+        "Barangay 38"
+      ],
+      "city_edge": false,
+      "before_m2": 52.28714689029009,
+      "after_m2": 52.28714648473852,
+      "sample": {
+        "latitude": 10.664363,
+        "longitude": 122.94821449256952
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 51.672705258450705,
+      "after_m2": 51.6727052584507,
+      "sample": {
+        "latitude": 10.654657660756502,
+        "longitude": 122.98007714317667
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 51.624134991742125,
+      "after_m2": 51.624134991742075,
+      "sample": {
+        "latitude": 10.68472435,
+        "longitude": 123.0432606575
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 51.554901796867746,
+      "after_m2": 51.55490179686771,
+      "sample": {
+        "latitude": 10.594413728433146,
+        "longitude": 122.90465065690253
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 51.521475536248126,
+      "after_m2": 51.52147553624812,
+      "sample": {
+        "latitude": 10.635134643570735,
+        "longitude": 122.92448426580088
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 50.52398547336158,
+      "after_m2": 50.523985473361584,
+      "sample": {
+        "latitude": 10.659939999999999,
+        "longitude": 122.9379244375
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 49.15148086109323,
+      "after_m2": 49.15148086109321,
+      "sample": {
+        "latitude": 10.625866,
+        "longitude": 123.0026364260998
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 48.98418881942692,
+      "after_m2": 48.98418881942697,
+      "sample": {
+        "latitude": 10.626972585872203,
+        "longitude": 123.01002783001422
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 48.98295479896892,
+      "after_m2": 48.982954798968926,
+      "sample": {
+        "latitude": 10.690867,
+        "longitude": 122.95120436729533
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 46.27865606401845,
+      "after_m2": 46.27865606401843,
+      "sample": {
+        "latitude": 10.614126048703573,
+        "longitude": 122.94349381006148
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 44.2968011310587,
+      "after_m2": 44.29680113105867,
+      "sample": {
+        "latitude": 10.6066285,
+        "longitude": 122.9734530290404
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 43.18551693647402,
+      "after_m2": 43.18551693647404,
+      "sample": {
+        "latitude": 10.653035,
+        "longitude": 122.9725976547619
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 42.686762043266135,
+      "after_m2": 42.68676204326608,
+      "sample": {
+        "latitude": 10.658861,
+        "longitude": 122.94180991379311
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 42.09283812411124,
+      "after_m2": 42.09283812411137,
+      "sample": {
+        "latitude": 10.667047499999999,
+        "longitude": 122.9697534739305
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 41.718506107941764,
+      "after_m2": 41.71850610794177,
+      "sample": {
+        "latitude": 10.660854576923107,
+        "longitude": 122.93660854895103
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 40.92117442640493,
+      "after_m2": 40.92117442640493,
+      "sample": {
+        "latitude": 10.700496364299921,
+        "longitude": 122.95046005510864
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 40.81275310933947,
+      "after_m2": 40.81275310933947,
+      "sample": {
+        "latitude": 10.626644,
+        "longitude": 123.0082918496732
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 40.75190449798748,
+      "after_m2": 40.75190449798749,
+      "sample": {
+        "latitude": 10.682786529744433,
+        "longitude": 123.0166919901234
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 40.4609935319574,
+      "after_m2": 40.46099353195742,
+      "sample": {
+        "latitude": 10.684521,
+        "longitude": 122.95861494942197
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 8"
+      ],
+      "city_edge": false,
+      "before_m2": 39.9313154521962,
+      "after_m2": 39.93131545219623,
+      "sample": {
+        "latitude": 10.680109753773541,
+        "longitude": 122.9491051526748
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 38.97058203943992,
+      "after_m2": 38.97058203943994,
+      "sample": {
+        "latitude": 10.633772217398636,
+        "longitude": 122.99086871735355
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 38.96820952046037,
+      "after_m2": 38.968209520460285,
+      "sample": {
+        "latitude": 10.63354,
+        "longitude": 122.99140348208192
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 38.823640327439286,
+      "after_m2": 38.823640327439314,
+      "sample": {
+        "latitude": 10.626964656356474,
+        "longitude": 123.00901922292886
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 18"
+      ],
+      "city_edge": false,
+      "before_m2": 38.54827291133544,
+      "after_m2": 38.54827291133547,
+      "sample": {
+        "latitude": 10.6723555,
+        "longitude": 122.95282834002975
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 38.485878475004,
+      "after_m2": 38.485878475004,
+      "sample": {
+        "latitude": 10.6255445,
+        "longitude": 123.01674774395161
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 38.106766692487184,
+      "after_m2": 38.106766692487184,
+      "sample": {
+        "latitude": 10.6253445,
+        "longitude": 123.01739054524887
+      }
+    },
+    {
+      "barangays": [
+        "Mandalagan",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 38.09618894300101,
+      "after_m2": 38.096188943000946,
+      "sample": {
+        "latitude": 10.688619,
+        "longitude": 122.96088728205129
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 37.978204665679065,
+      "after_m2": 37.97820466567911,
+      "sample": {
+        "latitude": 10.599914860288887,
+        "longitude": 122.9025658289401
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 37.883947893148644,
+      "after_m2": 37.88394789314864,
+      "sample": {
+        "latitude": 10.683678,
+        "longitude": 122.95969653846154
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 37.498861816556335,
+      "after_m2": 37.498861816556335,
+      "sample": {
+        "latitude": 10.693033348600697,
+        "longitude": 122.98490067662016
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 37.29980143104341,
+      "after_m2": 37.2998014310434,
+      "sample": {
+        "latitude": 10.6322335,
+        "longitude": 122.99361415880503
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 37.265798910527145,
+      "after_m2": 37.26579891052761,
+      "sample": {
+        "latitude": 10.625597500000001,
+        "longitude": 123.00927512306065
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 36.66920752718118,
+      "after_m2": 36.66920752718117,
+      "sample": {
+        "latitude": 10.682672117634347,
+        "longitude": 123.02615271994335
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 35.76648426121159,
+      "after_m2": 35.76648426121161,
+      "sample": {
+        "latitude": 10.6889991,
+        "longitude": 122.95122853247526
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 35.40092257703651,
+      "after_m2": 35.400922577036496,
+      "sample": {
+        "latitude": 10.6924532818072,
+        "longitude": 122.9863077580308
+      }
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Barangay 1"
+      ],
+      "city_edge": false,
+      "before_m2": 34.795720203645836,
+      "after_m2": 34.79572020364587,
+      "sample": {
+        "latitude": 10.6906315,
+        "longitude": 122.95580192234848
+      }
+    },
+    {
+      "barangays": [
+        "Granada",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 34.62115549418002,
+      "after_m2": 34.621155494180215,
+      "sample": {
+        "latitude": 10.659754,
+        "longitude": 123.00316877059925
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 34.462473747160765,
+      "after_m2": 34.46247374716071,
+      "sample": {
+        "latitude": 10.5942845,
+        "longitude": 122.96196700000002
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 34.44963783205259,
+      "after_m2": 34.449637832052574,
+      "sample": {
+        "latitude": 10.6326875,
+        "longitude": 122.99306433536586
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 33.20955464485098,
+      "after_m2": 33.20955464485098,
+      "sample": {
+        "latitude": 10.625278999999999,
+        "longitude": 123.01473580192308
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 33.09881012532616,
+      "after_m2": 33.09881012532616,
+      "sample": {
+        "latitude": 10.7068835,
+        "longitude": 122.94889358121503
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 32.60368799416803,
+      "after_m2": 32.60368799416803,
+      "sample": {
+        "latitude": 10.7060605,
+        "longitude": 122.94874931613673
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 10",
+        "Barangay 11",
+        "Barangay 12",
+        "Barangay 9"
+      ],
+      "city_edge": false,
+      "before_m2": 32.202015813717466,
+      "after_m2": 32.20201581371715,
+      "sample": {
+        "latitude": 10.671867500000001,
+        "longitude": 122.94855759698936
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 31.66329538812269,
+      "after_m2": 31.663295388122638,
+      "sample": {
+        "latitude": 10.599696805836796,
+        "longitude": 122.9024243954697
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 31.54863935425498,
+      "after_m2": 31.54863935425499,
+      "sample": {
+        "latitude": 10.626959791150373,
+        "longitude": 123.00943223596641
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 31.007256679967238,
+      "after_m2": 31.00725667996725,
+      "sample": {
+        "latitude": 10.659947614007937,
+        "longitude": 122.93834066754988
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 30.90873250087065,
+      "after_m2": 30.90873250087065,
+      "sample": {
+        "latitude": 10.655311000000001,
+        "longitude": 122.94127463498097
+      }
+    },
+    {
+      "barangays": [
+        "Banago",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 30.744229970973837,
+      "after_m2": 30.74422997097393,
+      "sample": {
+        "latitude": 10.6954085,
+        "longitude": 122.95965007812501
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 30.592928788569836,
+      "after_m2": 30.59292878856982,
+      "sample": {
+        "latitude": 10.633958476411745,
+        "longitude": 122.98633796964448
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Pahanocoy"
+      ],
+      "city_edge": false,
+      "before_m2": 30.336102884513707,
+      "after_m2": 30.336102884513693,
+      "sample": {
+        "latitude": 10.60447,
+        "longitude": 122.93856813931298
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 29.97399215983725,
+      "after_m2": 29.973992159837245,
+      "sample": {
+        "latitude": 10.654187719981238,
+        "longitude": 122.9441381285857
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Singcang-Airport",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 29.812158057235465,
+      "after_m2": 29.812158057235543,
+      "sample": {
+        "latitude": 10.6539775,
+        "longitude": 122.94673011853003
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 29.801454493861726,
+      "after_m2": 29.801454493861716,
+      "sample": {
+        "latitude": 10.613050999999999,
+        "longitude": 122.94634501129033
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 29.549305904740354,
+      "after_m2": 29.54930590474036,
+      "sample": {
+        "latitude": 10.6261765,
+        "longitude": 122.99975983035714
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 29.431902532712854,
+      "after_m2": 29.431902532712826,
+      "sample": {
+        "latitude": 10.657496,
+        "longitude": 122.94204685783365
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 29.363142824760054,
+      "after_m2": 29.363142824760057,
+      "sample": {
+        "latitude": 10.6571815,
+        "longitude": 122.96412405769232
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 29.2582579571287,
+      "after_m2": 29.258257957128695,
+      "sample": {
+        "latitude": 10.652194387923734,
+        "longitude": 122.9266192077952
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 28.922281398203896,
+      "after_m2": 28.92228139820388,
+      "sample": {
+        "latitude": 10.658420346368711,
+        "longitude": 122.95391824394785
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 28.628831441261333,
+      "after_m2": 28.62883144126136,
+      "sample": {
+        "latitude": 10.607350499999999,
+        "longitude": 122.96933652978724
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 28.591933686192135,
+      "after_m2": 28.591933686192135,
+      "sample": {
+        "latitude": 10.66439755,
+        "longitude": 122.93351568002585
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 28.25911284953365,
+      "after_m2": 28.25911284953366,
+      "sample": {
+        "latitude": 10.612596657338628,
+        "longitude": 122.94693933770466
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 27.712527316524515,
+      "after_m2": 27.71252731652452,
+      "sample": {
+        "latitude": 10.655824260095235,
+        "longitude": 122.94455761313407
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 27.006120162919075,
+      "after_m2": 27.00612016291907,
+      "sample": {
+        "latitude": 10.691404078539756,
+        "longitude": 122.95120973763586
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 26.500436463761616,
+      "after_m2": 26.50043646376162,
+      "sample": {
+        "latitude": 10.610234715477999,
+        "longitude": 122.96703971432497
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 26.241562617922646,
+      "after_m2": 26.241562617922646,
+      "sample": {
+        "latitude": 10.70884847734634,
+        "longitude": 122.94894607839652
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 26.08247419262891,
+      "after_m2": 26.08247419262891,
+      "sample": {
+        "latitude": 10.607171020047264,
+        "longitude": 122.96954554048213
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 25.489673964945865,
+      "after_m2": 25.489673964945858,
+      "sample": {
+        "latitude": 10.653568670958126,
+        "longitude": 122.94745522549249
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 25.094205819246547,
+      "after_m2": 25.094205819246547,
+      "sample": {
+        "latitude": 10.692437359806947,
+        "longitude": 122.98607683068191
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 24.850746049862703,
+      "after_m2": 24.850746049862707,
+      "sample": {
+        "latitude": 10.60634164410546,
+        "longitude": 122.97326860219118
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 24.518018432067805,
+      "after_m2": 24.518018432067812,
+      "sample": {
+        "latitude": 10.681375351583068,
+        "longitude": 123.0361828735162
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 24.401552984028555,
+      "after_m2": 24.401552984028545,
+      "sample": {
+        "latitude": 10.6129165,
+        "longitude": 122.96020002906977
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 24.26368832296775,
+      "after_m2": 24.26368832296775,
+      "sample": {
+        "latitude": 10.627828578331364,
+        "longitude": 122.99567702042172
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Pahanocoy",
+        "Sum-ag"
+      ],
+      "city_edge": false,
+      "before_m2": 23.26753304258787,
+      "after_m2": 23.267533042587896,
+      "sample": {
+        "latitude": 10.60415,
+        "longitude": 122.93816690677966
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 23.180568492411858,
+      "after_m2": 23.180568492411865,
+      "sample": {
+        "latitude": 10.613457590580381,
+        "longitude": 122.94250744628582
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 23.004730301342697,
+      "after_m2": 23.004730301342697,
+      "sample": {
+        "latitude": 10.642561,
+        "longitude": 122.96315721556886
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 22.83215100459985,
+      "after_m2": 22.83215100459985,
+      "sample": {
+        "latitude": 10.699077749999999,
+        "longitude": 122.98981233333333
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 22.15865775463353,
+      "after_m2": 22.15865775463352,
+      "sample": {
+        "latitude": 10.693144761730998,
+        "longitude": 122.98440414573966
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Barangay 36",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 21.98240421091237,
+      "after_m2": 21.98240421091237,
+      "sample": {
+        "latitude": 10.660799716994028,
+        "longitude": 122.93969457367041
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 21.619967441344144,
+      "after_m2": 21.619967441344137,
+      "sample": {
+        "latitude": 10.629138,
+        "longitude": 122.99417232644629
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 21.594587835971097,
+      "after_m2": 21.594587835971105,
+      "sample": {
+        "latitude": 10.6533665,
+        "longitude": 122.94259802272727
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 21.441324163688446,
+      "after_m2": 21.44132416368845,
+      "sample": {
+        "latitude": 10.71514964251626,
+        "longitude": 122.94875910536186
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 21.352929078616675,
+      "after_m2": 21.352929078616675,
+      "sample": {
+        "latitude": 10.654553851225526,
+        "longitude": 122.97258737833414
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 12",
+        "Barangay 13",
+        "Barangay 21",
+        "Barangay 24",
+        "Barangay 37"
+      ],
+      "city_edge": false,
+      "before_m2": 21.329435216487827,
+      "after_m2": 21.329435156473785,
+      "sample": {
+        "latitude": 10.667258499999999,
+        "longitude": 122.94796615067258
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 5",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 21.329352602534918,
+      "after_m2": 21.32935260253504,
+      "sample": {
+        "latitude": 10.687103,
+        "longitude": 122.95737120552147
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 20.823029728203398,
+      "after_m2": 20.823029728203398,
+      "sample": {
+        "latitude": 10.66680885253782,
+        "longitude": 122.97142429705193
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 20.67643257289193,
+      "after_m2": 20.67643257289193,
+      "sample": {
+        "latitude": 10.612188450000001,
+        "longitude": 122.91645665090508
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 20.361158465203836,
+      "after_m2": 20.361158465203822,
+      "sample": {
+        "latitude": 10.604881899999999,
+        "longitude": 122.91362927646429
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Singcang-Airport",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 20.052115714997864,
+      "after_m2": 20.052115714997864,
+      "sample": {
+        "latitude": 10.646248778341793,
+        "longitude": 122.94252476214045
+      }
+    },
+    {
+      "barangays": [
+        "Mandalagan",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 19.67582112861948,
+      "after_m2": 19.67582112861948,
+      "sample": {
+        "latitude": 10.688772614557775,
+        "longitude": 122.96050413972219
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 19.67280987621649,
+      "after_m2": 19.672809876216494,
+      "sample": {
+        "latitude": 10.625920052076435,
+        "longitude": 123.00168809726983
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 19.568233744571565,
+      "after_m2": 19.56823374457162,
+      "sample": {
+        "latitude": 10.66928,
+        "longitude": 122.97234848673469
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 19.5306315998877,
+      "after_m2": 19.5306315998877,
+      "sample": {
+        "latitude": 10.607162540967117,
+        "longitude": 122.970102840534
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 19.52241218997841,
+      "after_m2": 19.52241218997841,
+      "sample": {
+        "latitude": 10.6411729749809,
+        "longitude": 122.95384553025654
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 19.117255589955025,
+      "after_m2": 19.117255589955022,
+      "sample": {
+        "latitude": 10.644429610838637,
+        "longitude": 122.94647347563367
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay",
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 19.065842370553575,
+      "after_m2": 19.065842370553575,
+      "sample": {
+        "latitude": 10.594538501839274,
+        "longitude": 122.90691773408241
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 18.872895283931854,
+      "after_m2": 18.872895283931882,
+      "sample": {
+        "latitude": 10.652534672244645,
+        "longitude": 123.11399025451601
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 41",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 18.829867742362605,
+      "after_m2": 18.829867742362616,
+      "sample": {
+        "latitude": 10.6609655,
+        "longitude": 122.96135723502994
+      }
+    },
+    {
+      "barangays": [
+        "Estefania",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 18.814770795165778,
+      "after_m2": 18.814770795165792,
+      "sample": {
+        "latitude": 10.6794345,
+        "longitude": 122.98623824324324
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 18.76349086480918,
+      "after_m2": 18.763490864809192,
+      "sample": {
+        "latitude": 10.61079309943375,
+        "longitude": 122.96281086092242
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 18.721793329779366,
+      "after_m2": 18.72179332977935,
+      "sample": {
+        "latitude": 10.703838000000001,
+        "longitude": 122.98332220967743
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 18.597324919068896,
+      "after_m2": 18.5973249190689,
+      "sample": {
+        "latitude": 10.6263745,
+        "longitude": 123.0095304040404
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 18.11391617083257,
+      "after_m2": 18.113916170832567,
+      "sample": {
+        "latitude": 10.657437,
+        "longitude": 122.97698613124999
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 17.90969675157428,
+      "after_m2": 17.909696751574288,
+      "sample": {
+        "latitude": 10.594124914059222,
+        "longitude": 122.90504110553746
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 17.90884723825316,
+      "after_m2": 17.90884723825316,
+      "sample": {
+        "latitude": 10.627876,
+        "longitude": 122.9954455393401
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 17.30487198759452,
+      "after_m2": 17.304871987594517,
+      "sample": {
+        "latitude": 10.69520395,
+        "longitude": 122.95117477483937
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 17.26646536346209,
+      "after_m2": 17.26646536346209,
+      "sample": {
+        "latitude": 10.664473155432443,
+        "longitude": 123.12762326447441
+      }
+    },
+    {
+      "barangays": [
+        "Bata"
+      ],
+      "city_edge": true,
+      "before_m2": 17.210373885199118,
+      "after_m2": 17.210373885199118,
+      "sample": {
+        "latitude": 10.706064284731982,
+        "longitude": 122.98124461732132
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 17.133303960014864,
+      "after_m2": 17.1333039600149,
+      "sample": {
+        "latitude": 10.626824465330875,
+        "longitude": 123.01078170445403
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 16.9933452822179,
+      "after_m2": 16.993345282217902,
+      "sample": {
+        "latitude": 10.629313499999999,
+        "longitude": 122.99402523214286
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 16.966977613091057,
+      "after_m2": 16.966977613091057,
+      "sample": {
+        "latitude": 10.610082004006873,
+        "longitude": 122.96688943073386
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 16.879973579616284,
+      "after_m2": 16.879973579616284,
+      "sample": {
+        "latitude": 10.6676565,
+        "longitude": 122.96961221744186
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 16.82209079812045,
+      "after_m2": 16.822090798120428,
+      "sample": {
+        "latitude": 10.6340955,
+        "longitude": 122.98876020115893
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 16.505994007147507,
+      "after_m2": 16.505994007147507,
+      "sample": {
+        "latitude": 10.628014780715048,
+        "longitude": 122.99655461874224
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 16.379071142182816,
+      "after_m2": 16.379071142182813,
+      "sample": {
+        "latitude": 10.681605283494829,
+        "longitude": 123.03129741026909
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 16.27995397452552,
+      "after_m2": 16.27995397452552,
+      "sample": {
+        "latitude": 10.594834252972591,
+        "longitude": 122.906255076238
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 16.096469745263022,
+      "after_m2": 16.096469746546255,
+      "sample": {
+        "latitude": 10.607080035759367,
+        "longitude": 122.97030656707614
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35"
+      ],
+      "city_edge": true,
+      "before_m2": 15.859692245263005,
+      "after_m2": 15.859692245263005,
+      "sample": {
+        "latitude": 10.667624997575246,
+        "longitude": 122.9317910526456
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 15.708780421885267,
+      "after_m2": 15.708780421885272,
+      "sample": {
+        "latitude": 10.625904514258373,
+        "longitude": 123.00135460781384
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 15.087328652267196,
+      "after_m2": 15.087328652267196,
+      "sample": {
+        "latitude": 10.65865708622965,
+        "longitude": 122.96278702194199
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 28",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 14.56131987043479,
+      "after_m2": 14.56131987043479,
+      "sample": {
+        "latitude": 10.663234119176881,
+        "longitude": 122.959107706395
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 14.308242457592618,
+      "after_m2": 14.30824245759262,
+      "sample": {
+        "latitude": 10.690651974356243,
+        "longitude": 122.95120097213083
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 14.061271823061567,
+      "after_m2": 14.06127182306157,
+      "sample": {
+        "latitude": 10.6263295,
+        "longitude": 123.00832602592592
+      }
+    },
+    {
+      "barangays": [
+        "Montevista",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 14.05812820888961,
+      "after_m2": 14.058128208889602,
+      "sample": {
+        "latitude": 10.667968832768068,
+        "longitude": 122.97282870415552
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 36",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 13.876332300320964,
+      "after_m2": 13.876332300320986,
+      "sample": {
+        "latitude": 10.660588447105788,
+        "longitude": 122.94009429469934
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 13.641315338937737,
+      "after_m2": 13.641315338937734,
+      "sample": {
+        "latitude": 10.641194784256559,
+        "longitude": 122.95411566130491
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 13.610665592685018,
+      "after_m2": 13.610665592685018,
+      "sample": {
+        "latitude": 10.610770014117648,
+        "longitude": 122.96300291379413
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 10"
+      ],
+      "city_edge": true,
+      "before_m2": 13.211269282098232,
+      "after_m2": 13.211269282098218,
+      "sample": {
+        "latitude": 10.67683924114456,
+        "longitude": 122.94003469034601
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 13.150917081405868,
+      "after_m2": 13.15091708140586,
+      "sample": {
+        "latitude": 10.613464,
+        "longitude": 122.9427211735294
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Barangay 7",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 13.089354900576026,
+      "after_m2": 13.089354900578954,
+      "sample": {
+        "latitude": 10.6783575,
+        "longitude": 122.95976872328731
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 13.032072484760977,
+      "after_m2": 13.032072484760887,
+      "sample": {
+        "latitude": 10.621015,
+        "longitude": 122.9290635699904
+      }
+    },
+    {
+      "barangays": [
+        "Estefania",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 12.858427507219858,
+      "after_m2": 12.858427507219856,
+      "sample": {
+        "latitude": 10.655866969162428,
+        "longitude": 122.98415726264611
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 12.846612853646228,
+      "after_m2": 12.846612853646262,
+      "sample": {
+        "latitude": 10.6186075,
+        "longitude": 122.96384021428571
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 12.815183701274197,
+      "after_m2": 12.8151837012742,
+      "sample": {
+        "latitude": 10.70074745,
+        "longitude": 122.94902320598669
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 12.771861768167469,
+      "after_m2": 12.771861768167472,
+      "sample": {
+        "latitude": 10.698936982006241,
+        "longitude": 122.98988125234702
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 12.535830351789032,
+      "after_m2": 12.53583035178903,
+      "sample": {
+        "latitude": 10.681300738416017,
+        "longitude": 123.030751441159
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 12.420177310813557,
+      "after_m2": 12.420177310813557,
+      "sample": {
+        "latitude": 10.610457117465018,
+        "longitude": 122.96713947945997
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 12.1075030058205,
+      "after_m2": 12.1075030058205,
+      "sample": {
+        "latitude": 10.653527582799153,
+        "longitude": 122.9479226276176
+      }
+    },
+    {
+      "barangays": [
+        "Bata"
+      ],
+      "city_edge": true,
+      "before_m2": 12.077657241187627,
+      "after_m2": 12.077657241187636,
+      "sample": {
+        "latitude": 10.71260502443258,
+        "longitude": 122.96197930329167
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 11.831688834035681,
+      "after_m2": 11.831688834035681,
+      "sample": {
+        "latitude": 10.6540415,
+        "longitude": 122.94614177777777
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 28",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 11.485841586016893,
+      "after_m2": 11.48584158601689,
+      "sample": {
+        "latitude": 10.662941115302685,
+        "longitude": 122.95901681101755
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 11.37078370560036,
+      "after_m2": 11.37078370560036,
+      "sample": {
+        "latitude": 10.629393100000001,
+        "longitude": 122.9244724279738
+      }
+    },
+    {
+      "barangays": [
+        "Tangub"
+      ],
+      "city_edge": true,
+      "before_m2": 11.051548483779841,
+      "after_m2": 11.051548483779841,
+      "sample": {
+        "latitude": 10.6297665,
+        "longitude": 122.92461742708245
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 11.043409528796325,
+      "after_m2": 11.043409528796328,
+      "sample": {
+        "latitude": 10.626785000000002,
+        "longitude": 123.00835666666666
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 10.750199542016377,
+      "after_m2": 10.750199542016377,
+      "sample": {
+        "latitude": 10.687745160791167,
+        "longitude": 122.95094220942914
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 10.43388345588449,
+      "after_m2": 10.433883455884487,
+      "sample": {
+        "latitude": 10.663302021715289,
+        "longitude": 122.93529145549135
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 9.994988519806574,
+      "after_m2": 9.994988519806574,
+      "sample": {
+        "latitude": 10.600252387181678,
+        "longitude": 122.90357305939528
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 8"
+      ],
+      "city_edge": true,
+      "before_m2": 9.975105796034892,
+      "after_m2": 9.97510579603489,
+      "sample": {
+        "latitude": 10.681023740629328,
+        "longitude": 122.94929515633666
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 9.776982343678482,
+      "after_m2": 9.776982343678483,
+      "sample": {
+        "latitude": 10.68265605,
+        "longitude": 123.02319100397509
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1",
+        "Barangay 2"
+      ],
+      "city_edge": false,
+      "before_m2": 9.483152823617088,
+      "after_m2": 9.48315282361709,
+      "sample": {
+        "latitude": 10.686746,
+        "longitude": 122.95292748897059
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 9.434157859231401,
+      "after_m2": 9.434157859231403,
+      "sample": {
+        "latitude": 10.6651110266,
+        "longitude": 123.12899785175277
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 9.308098573967325,
+      "after_m2": 9.308098573967325,
+      "sample": {
+        "latitude": 10.625882901834405,
+        "longitude": 123.01688696929097
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 9.196470167691155,
+      "after_m2": 9.196470167691155,
+      "sample": {
+        "latitude": 10.65667137466901,
+        "longitude": 122.95033049338932
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 14",
+        "Barangay 16"
+      ],
+      "city_edge": false,
+      "before_m2": 9.020456766640933,
+      "after_m2": 9.02045676664089,
+      "sample": {
+        "latitude": 10.6664285,
+        "longitude": 122.94053681932152
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 8.834911752207239,
+      "after_m2": 8.834911752207239,
+      "sample": {
+        "latitude": 10.609073916666667,
+        "longitude": 122.97800171794871
+      }
+    },
+    {
+      "barangays": [
+        "Alangilan"
+      ],
+      "city_edge": true,
+      "before_m2": 8.496477213230891,
+      "after_m2": 8.496477213230891,
+      "sample": {
+        "latitude": 10.664484923783888,
+        "longitude": 123.12430623211816
+      }
+    },
+    {
+      "barangays": [
+        "Cabug",
+        "Sum-ag"
+      ],
+      "city_edge": false,
+      "before_m2": 8.370884298402842,
+      "after_m2": 8.370884298402842,
+      "sample": {
+        "latitude": 10.603826427294882,
+        "longitude": 122.9377369580994
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 40",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 8.35982999161568,
+      "after_m2": 8.35982999161568,
+      "sample": {
+        "latitude": 10.654617316286341,
+        "longitude": 122.94972358148102
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 8.309024549583444,
+      "after_m2": 8.309024549583446,
+      "sample": {
+        "latitude": 10.625380665829155,
+        "longitude": 123.00349558630109
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 8.252171888442327,
+      "after_m2": 8.252171888442325,
+      "sample": {
+        "latitude": 10.687000766664703,
+        "longitude": 122.95065634413052
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 7.7012551015920225,
+      "after_m2": 7.701255101592022,
+      "sample": {
+        "latitude": 10.657059125705684,
+        "longitude": 122.96426332156568
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 31",
+        "Barangay 40"
+      ],
+      "city_edge": false,
+      "before_m2": 7.651937109904299,
+      "after_m2": 7.651937109904299,
+      "sample": {
+        "latitude": 10.65932579038784,
+        "longitude": 122.95326995289682
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 7.573603419623783,
+      "after_m2": 7.573603419623785,
+      "sample": {
+        "latitude": 10.658327355973443,
+        "longitude": 122.94218590484294
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 7.509349605688975,
+      "after_m2": 7.509349605688975,
+      "sample": {
+        "latitude": 10.692262157362638,
+        "longitude": 122.98598955597954
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 7.350159758210305,
+      "after_m2": 7.350159758210305,
+      "sample": {
+        "latitude": 10.622718659691966,
+        "longitude": 122.92137757869202
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 7.332570301913334,
+      "after_m2": 7.332570301913334,
+      "sample": {
+        "latitude": 10.594646351496193,
+        "longitude": 122.90267258849866
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 6.980685265354892,
+      "after_m2": 6.980685265354892,
+      "sample": {
+        "latitude": 10.634631692483598,
+        "longitude": 122.9878406781979
+      }
+    },
+    {
+      "barangays": [
+        "Singcang-Airport"
+      ],
+      "city_edge": true,
+      "before_m2": 6.909465235892949,
+      "after_m2": 6.90946523589295,
+      "sample": {
+        "latitude": 10.651397277693173,
+        "longitude": 122.92637682148745
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 6.8386643952903325,
+      "after_m2": 6.838664395290333,
+      "sample": {
+        "latitude": 10.653272281446062,
+        "longitude": 122.97274318133165
+      }
+    },
+    {
+      "barangays": [
+        "Taculing",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 6.762334024187111,
+      "after_m2": 6.76233402418711,
+      "sample": {
+        "latitude": 10.65705591405165,
+        "longitude": 122.96445725652927
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 6.700750538405305,
+      "after_m2": 6.700750538405305,
+      "sample": {
+        "latitude": 10.624679757990869,
+        "longitude": 122.96058312554796
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 1"
+      ],
+      "city_edge": true,
+      "before_m2": 6.684845592119986,
+      "after_m2": 6.684845592119986,
+      "sample": {
+        "latitude": 10.691963326743442,
+        "longitude": 122.95089083277948
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 6.646184340358008,
+      "after_m2": 6.646184340358009,
+      "sample": {
+        "latitude": 10.625166594488185,
+        "longitude": 123.00883583070865
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 6.590281493155713,
+      "after_m2": 6.590281493155711,
+      "sample": {
+        "latitude": 10.63254814074803,
+        "longitude": 122.99349679443195
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 6.560248752829731,
+      "after_m2": 6.560248752829736,
+      "sample": {
+        "latitude": 10.713191190205777,
+        "longitude": 122.94863846366587
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 6.556271208410797,
+      "after_m2": 6.556271208410801,
+      "sample": {
+        "latitude": 10.702984295864201,
+        "longitude": 122.94120245976796
+      }
+    },
+    {
+      "barangays": [
+        "Mandalagan",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 6.484969898579082,
+      "after_m2": 6.484969898579083,
+      "sample": {
+        "latitude": 10.687783707640293,
+        "longitude": 122.95978083417535
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 6.36461005503793,
+      "after_m2": 6.364610055037927,
+      "sample": {
+        "latitude": 10.70390354610915,
+        "longitude": 122.94781408180604
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 6.356164077098968,
+      "after_m2": 6.356164077098967,
+      "sample": {
+        "latitude": 10.611419269177322,
+        "longitude": 122.96703392535201
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 6.308703486071321,
+      "after_m2": 6.308703486071321,
+      "sample": {
+        "latitude": 10.609145825910927,
+        "longitude": 122.97806973580722
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 6.137162917329835,
+      "after_m2": 6.1371629173298174,
+      "sample": {
+        "latitude": 10.70037781621448,
+        "longitude": 122.9501106267702
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 5",
+        "Villamonte"
+      ],
+      "city_edge": false,
+      "before_m2": 6.103241339622101,
+      "after_m2": 6.1032413396221,
+      "sample": {
+        "latitude": 10.684573056423433,
+        "longitude": 122.95825140951159
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 6.076770766986005,
+      "after_m2": 6.076770766986006,
+      "sample": {
+        "latitude": 10.618778814836624,
+        "longitude": 122.96351355162118
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 6.063952688687342,
+      "after_m2": 6.063952688687343,
+      "sample": {
+        "latitude": 10.611727723600248,
+        "longitude": 122.9164548471406
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 6.019905610973463,
+      "after_m2": 6.019905610973464,
+      "sample": {
+        "latitude": 10.61552450442478,
+        "longitude": 122.96064920422971
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Handumanan"
+      ],
+      "city_edge": false,
+      "before_m2": 5.866787658026875,
+      "after_m2": 5.866787658026875,
+      "sample": {
+        "latitude": 10.60714627126972,
+        "longitude": 122.9697853096681
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy",
+        "Tangub"
+      ],
+      "city_edge": false,
+      "before_m2": 5.652521439199242,
+      "after_m2": 5.652521439199241,
+      "sample": {
+        "latitude": 10.614166,
+        "longitude": 122.94384422674418
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 5.436199862465689,
+      "after_m2": 5.43619986246569,
+      "sample": {
+        "latitude": 10.625492910569434,
+        "longitude": 123.00287546515439
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Mandalagan"
+      ],
+      "city_edge": false,
+      "before_m2": 5.083003008040523,
+      "after_m2": 5.083003008040523,
+      "sample": {
+        "latitude": 10.693585500000001,
+        "longitude": 122.98396480208334
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 4.763945016464442,
+      "after_m2": 4.763945016464442,
+      "sample": {
+        "latitude": 10.612424568152875,
+        "longitude": 122.91705900905643
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": true,
+      "before_m2": 4.731617257011523,
+      "after_m2": 4.731617257011525,
+      "sample": {
+        "latitude": 10.70552541516693,
+        "longitude": 122.98258679789647
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 36",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 4.718786631533618,
+      "after_m2": 4.718786631533619,
+      "sample": {
+        "latitude": 10.66078617391305,
+        "longitude": 122.93989862173913
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 4.586913458905767,
+      "after_m2": 4.586913458905766,
+      "sample": {
+        "latitude": 10.61141966050883,
+        "longitude": 122.9147601730912
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 4.517273932164571,
+      "after_m2": 4.517273932164571,
+      "sample": {
+        "latitude": 10.71454019155794,
+        "longitude": 122.94860381919106
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 30",
+        "Barangay 32",
+        "Barangay 33"
+      ],
+      "city_edge": false,
+      "before_m2": 4.228054981479627,
+      "after_m2": 4.228054970163328,
+      "sample": {
+        "latitude": 10.663324417150413,
+        "longitude": 122.95064075518151
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 4.0214652365016565,
+      "after_m2": 4.021465236501656,
+      "sample": {
+        "latitude": 10.625120742056074,
+        "longitude": 123.0084866305755
+      }
+    },
+    {
+      "barangays": [
+        "Pahanocoy"
+      ],
+      "city_edge": true,
+      "before_m2": 3.3558222183763213,
+      "after_m2": 3.3558222183763218,
+      "sample": {
+        "latitude": 10.618959691311602,
+        "longitude": 122.91965750063974
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 3.115141189193495,
+      "after_m2": 3.115141189193496,
+      "sample": {
+        "latitude": 10.62651893311286,
+        "longitude": 123.01144574803044
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 3.0875385714121997,
+      "after_m2": 3.087538571412198,
+      "sample": {
+        "latitude": 10.697763524017883,
+        "longitude": 122.95140267369602
+      }
+    },
+    {
+      "barangays": [
+        "Sum-ag"
+      ],
+      "city_edge": true,
+      "before_m2": 3.063284846156692,
+      "after_m2": 3.063284846156692,
+      "sample": {
+        "latitude": 10.612323812675573,
+        "longitude": 122.91681843905386
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35"
+      ],
+      "city_edge": true,
+      "before_m2": 3.0139494973026135,
+      "after_m2": 3.013949497302614,
+      "sample": {
+        "latitude": 10.667449701579478,
+        "longitude": 122.93195913131188
+      }
+    },
+    {
+      "barangays": [
+        "Bata",
+        "Estefania"
+      ],
+      "city_edge": false,
+      "before_m2": 2.9692652452892334,
+      "after_m2": 2.9692652452892334,
+      "sample": {
+        "latitude": 10.70276079660269,
+        "longitude": 122.98353512032958
+      }
+    },
+    {
+      "barangays": [
+        "Bata"
+      ],
+      "city_edge": true,
+      "before_m2": 2.8844144896030435,
+      "after_m2": 2.8844144896030435,
+      "sample": {
+        "latitude": 10.705889468716565,
+        "longitude": 122.9817697602281
+      }
+    },
+    {
+      "barangays": [
+        "Alijis",
+        "Taculing"
+      ],
+      "city_edge": false,
+      "before_m2": 2.8367292003676603,
+      "after_m2": 2.8367292003676603,
+      "sample": {
+        "latitude": 10.646473225433795,
+        "longitude": 122.94343519639784
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 2.645633571150332,
+      "after_m2": 2.6456335711503325,
+      "sample": {
+        "latitude": 10.705173767055255,
+        "longitude": 122.94851301263242
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2"
+      ],
+      "city_edge": true,
+      "before_m2": 2.5869262725883484,
+      "after_m2": 2.5869262725883484,
+      "sample": {
+        "latitude": 10.683855513357429,
+        "longitude": 122.95049855332078
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 39",
+        "Barangay 40",
+        "Singcang-Airport"
+      ],
+      "city_edge": false,
+      "before_m2": 2.492008033517422,
+      "after_m2": 2.492008033517422,
+      "sample": {
+        "latitude": 10.6542075,
+        "longitude": 122.9444114375
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 2",
+        "Barangay 3"
+      ],
+      "city_edge": false,
+      "before_m2": 2.334666629749516,
+      "after_m2": 2.3346666297495164,
+      "sample": {
+        "latitude": 10.686568000000001,
+        "longitude": 122.95253477480915
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 35"
+      ],
+      "city_edge": true,
+      "before_m2": 2.3274456255116434,
+      "after_m2": 2.3274456255116425,
+      "sample": {
+        "latitude": 10.666831000200638,
+        "longitude": 122.93279480440154
+      }
+    },
+    {
+      "barangays": [
+        "Felisa",
+        "Mansilingan"
+      ],
+      "city_edge": false,
+      "before_m2": 2.051806119897029,
+      "after_m2": 2.0518061198970288,
+      "sample": {
+        "latitude": 10.609027155773092,
+        "longitude": 122.97776940484516
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 1.8618737775924812,
+      "after_m2": 1.8618737775924812,
+      "sample": {
+        "latitude": 10.62608862650601,
+        "longitude": 123.0095797253012
+      }
+    },
+    {
+      "barangays": [
+        "Granada"
+      ],
+      "city_edge": true,
+      "before_m2": 1.818284255673475,
+      "after_m2": 1.8182842556734746,
+      "sample": {
+        "latitude": 10.682171036519108,
+        "longitude": 123.0405073790927
+      }
+    },
+    {
+      "barangays": [
+        "Mansilingan",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 1.7357729450571555,
+      "after_m2": 1.7357729450571557,
+      "sample": {
+        "latitude": 10.627979476067939,
+        "longitude": 122.9968744486833
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 1.7260555033230884,
+      "after_m2": 1.7260555033230887,
+      "sample": {
+        "latitude": 10.657109296038403,
+        "longitude": 122.97674435392418
+      }
+    },
+    {
+      "barangays": [
+        "Villamonte",
+        "Vista Alegre"
+      ],
+      "city_edge": false,
+      "before_m2": 1.6221501765956328,
+      "after_m2": 1.6221501765956328,
+      "sample": {
+        "latitude": 10.657594104102127,
+        "longitude": 122.97706103429927
+      }
+    },
+    {
+      "barangays": [
+        "Punta Taytay"
+      ],
+      "city_edge": true,
+      "before_m2": 1.3914318450984522,
+      "after_m2": 1.3914318450984522,
+      "sample": {
+        "latitude": 10.600189047442353,
+        "longitude": 122.90338779133458
+      }
+    },
+    {
+      "barangays": [
+        "Banago"
+      ],
+      "city_edge": true,
+      "before_m2": 1.1885525346895163,
+      "after_m2": 1.1885525346895163,
+      "sample": {
+        "latitude": 10.704587159803166,
+        "longitude": 122.94808201693996
+      }
+    },
+    {
+      "barangays": [
+        "Barangay 17",
+        "Barangay 18"
+      ],
+      "city_edge": false,
+      "before_m2": 1.1313827849328817,
+      "after_m2": 1.1313827849328817,
+      "sample": {
+        "latitude": 10.672574542552624,
+        "longitude": 122.95275506114383
+      }
+    }
+  ]
+}

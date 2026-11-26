@@ -1,0 +1,131 @@
+{
+  "generated_utc": "2026-10-01T05:08:10.102626+00:00",
+  "staging": "/home/user/Neighborlens-AI/data/staging/original_candidates",
+  "global_problems": [],
+  "summary": {
+    "ACCEPTED": 3
+  },
+  "accepted_independent_scenes": 3,
+  "accepted_scenes_per_class": {
+    "broken_streetlight": 3,
+    "clogged_drainage": 0,
+    "pothole": 0,
+    "road_crack": 0
+  },
+  "accepted_background_scenes": 0,
+  "borderline_feature_matches": [
+    {
+      "candidate": "reentry_scene_0109.jpg",
+      "other": "train/29_jpg.rf.3ec43d12eb078500f69a138aa52651c6.jpg",
+      "inliers": 59,
+      "mirrored": true
+    },
+    {
+      "candidate": "reentry_scene_0109.jpg",
+      "other": "train/30_jpg.rf.59231e177451eecc98ce420e2bc117b7.jpg",
+      "inliers": 45,
+      "mirrored": false
+    },
+    {
+      "candidate": "reentry_scene_0109.jpg",
+      "other": "train/59_jpg.rf.614a0c4ac07ab01074c1773546307df3.jpg",
+      "inliers": 69,
+      "mirrored": false
+    }
+  ],
+  "images": [
+    {
+      "file": "reentry_scene_0043.jpg",
+      "status": "ACCEPTED",
+      "scene_id": "scene_0043",
+      "role": "positive",
+      "classes": [
+        "broken_streetlight"
+      ],
+      "class_ids": [
+        0
+      ],
+      "boxes": 1,
+      "sha256": "13a54cc7a311171632a981b91c53d05c2e2b2452e0266eb6733c1787bc38e825",
+      "size": [
+        640,
+        482
+      ],
+      "errors": [],
+      "warnings": [],
+      "provenance": {
+        "file": "reentry_scene_0043.jpg",
+        "source_type": "reannotated_existing",
+        "captured_by": "unknown; from Roboflow export kenjan/neighborlens v2 (train/33_jpg.rf.7c9982f125db3f0d9443e76cf2feb8f8.jpg)",
+        "capture_date": "unknown",
+        "location": "unknown",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs",
+        "consent_or_permission": "same terms as neighborlens_paper_aligned_v2",
+        "role": "positive",
+        "reentry_of_scene_id": "scene_0043"
+      }
+    },
+    {
+      "file": "reentry_scene_0109.jpg",
+      "status": "ACCEPTED",
+      "scene_id": "scene_0109",
+      "role": "positive",
+      "classes": [
+        "broken_streetlight"
+      ],
+      "class_ids": [
+        0
+      ],
+      "boxes": 1,
+      "sha256": "ee9dfed95e1f1d0ee2800bdb02e942d8167f5cf4acfc4edfa4c48d1f4bab95d3",
+      "size": [
+        480,
+        640
+      ],
+      "errors": [],
+      "warnings": [],
+      "provenance": {
+        "file": "reentry_scene_0109.jpg",
+        "source_type": "reannotated_existing",
+        "captured_by": "unknown; from Roboflow export kenjan/neighborlens v2 (train/67_jpg.rf.f60b3f2cdfe4d809bf5861c04ef16181.jpg)",
+        "capture_date": "unknown",
+        "location": "unknown",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs",
+        "consent_or_permission": "same terms as neighborlens_paper_aligned_v2",
+        "role": "positive",
+        "reentry_of_scene_id": "scene_0109"
+      }
+    },
+    {
+      "file": "reentry_scene_0174.jpg",
+      "status": "ACCEPTED",
+      "scene_id": "scene_0174",
+      "role": "positive",
+      "classes": [
+        "broken_streetlight"
+      ],
+      "class_ids": [
+        0
+      ],
+      "boxes": 1,
+      "sha256": "cc43e1ba4d8d04148037e402f0b2ce65d7812354cc7d9d81f43c57300733b4d0",
+      "size": [
+        415,
+        640
+      ],
+      "errors": [],
+      "warnings": [],
+      "provenance": {
+        "file": "reentry_scene_0174.jpg",
+        "source_type": "reannotated_existing",
+        "captured_by": "unknown; from Roboflow export kenjan/neighborlens v2 (test/41_jpg.rf.ba0f277947eaa6cc43e3889dc9b08870.jpg)",
+        "capture_date": "unknown",
+        "location": "unknown",
+        "license": "Private Roboflow workspace export; includes watermarked stock photographs",
+        "consent_or_permission": "same terms as neighborlens_paper_aligned_v2",
+        "role": "positive",
+        "reentry_of_scene_id": "scene_0174"
+      }
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+.report-camera {
+    --camera-control: 44px;
+    --camera-shutter: 70px;
+    position: fixed;
+    inset: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: #090a0b;
+    color: #f7f8fa;
+    color-scheme: dark;
+}
+
+.report-camera[open] {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.report-camera-topbar,
+.report-camera-controls {
+    position: relative;
+    z-index: 1;
+}
+
+.report-camera-topbar {
+    display: grid;
+    grid-template-columns: var(--camera-control) minmax(0, 1fr) var(--camera-control);
+    align-items: center;
+    gap: 8px;
+    padding: max(10px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 8px max(14px, env(safe-area-inset-left));
+}
+
+.report-camera-guide {
+    justify-self: center;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .58);
+    text-align: center;
+}
+
+.report-camera-guide p {
+    margin: 0;
+    color: inherit;
+    font-size: .8125rem;
+    line-height: 1.35;
+}
+
+.report-camera-viewfinder {
+    position: absolute;
+    inset: 0;
+}
+
+.report-camera-viewfinder video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    touch-action: none;
+}
+
+.report-camera-focus {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    translate: -50% -50%;
+    border: 1px solid #ffe36e;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .25);
+    pointer-events: none;
+}
+
+.report-camera-flight,
+.report-camera-flash {
+    position: absolute;
+    pointer-events: none;
+}
+
+.report-camera-flight {
+    z-index: 2;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.report-camera-flash {
+    inset: 0;
+    z-index: 3;
+    background: #fff;
+    opacity: 0;
+}
+
+.report-camera-feedback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 12px;
+    padding: 16px;
+    pointer-events: none;
+    text-align: center;
+}
+
+.report-camera-feedback p {
+    max-width: 32ch;
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #17191d;
+}
+
+.report-camera-controls {
+    display: grid;
+    grid-row: 3;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 12px;
+    justify-self: center;
+    box-sizing: border-box;
+    width: min(100%, 420px);
+    padding: 10px max(14px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+}
+
+.report-camera-zoom {
+    position: relative;
+    grid-column: 1 / -1;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .63);
+}
+
+.report-camera .report-camera-zoom button,
+.report-camera-zoom span {
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 8px;
+    border-radius: 999px;
+    font-size: .8125rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.report-camera .report-camera-zoom button {
+    background: transparent;
+}
+
+.report-camera .report-camera-zoom button[aria-pressed="true"],
+.report-camera-zoom span {
+    background: #24262a;
+    color: #ffe36e;
+}
+
+.report-camera-zoom span {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    min-height: 28px;
+    translate: -50%;
+    display: grid;
+    place-items: center;
+}
+
+.report-camera button {
+    display: inline-grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background: #24262a;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.report-camera button:focus-visible {
+    outline: 2px solid #9fcaff;
+    outline-offset: 3px;
+}
+
+.report-camera button:disabled {
+    cursor: default;
+}
+
+.report-camera button[data-camera-retry] {
+    min-height: var(--camera-control);
+    padding-inline: 14px;
+    border-radius: 8px;
+    pointer-events: auto;
+}
+
+.report-camera-icon {
+    width: var(--camera-control);
+    height: var(--camera-control);
+    border-radius: 50%;
+    font-size: 1.25rem;
+}
+
+.report-camera-icon[data-camera-flip] {
+    justify-self: end;
+}
+
+.report-camera-photos {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.report-camera-photos button {
+    flex: 0 1 var(--camera-control);
+    min-width: 0;
+    height: var(--camera-control);
+    overflow: hidden;
+    border-radius: 8px;
+    font-size: .8125rem;
+}
+
+.report-camera-photos button[aria-current="step"] {
+    box-shadow: inset 0 0 0 2px #d0d3d8;
+}
+
+.report-camera-photos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.report-camera button.report-camera-shutter {
+    width: var(--camera-shutter);
+    height: var(--camera-shutter);
+    background: rgba(0, 0, 0, .4);
+    border: 3px solid currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .65);
+}
+
+.report-camera-shutter::before {
+    content: "";
+    width: calc(var(--camera-shutter) - 14px);
+    height: calc(var(--camera-shutter) - 14px);
+    border-radius: 50%;
+    background: currentColor;
+    transition: transform 120ms ease-out;
+}
+
+.report-camera-shutter:active:not(:disabled)::before {
+    transform: scale(.9);
+}
+
+.report-camera-shutter:disabled {
+    opacity: .45;
+}
+
+.report-camera [hidden],
+.report-camera button[hidden] {
+    display: none;
+}
+
+@media (max-height: 480px) {
+    .report-camera {
+        --camera-shutter: 56px;
+    }
+
+    .report-camera-topbar {
+        padding-block: 6px;
+        padding-block-start: max(6px, env(safe-area-inset-top));
+    }
+
+    .report-camera-controls {
+        padding-block: 6px;
+        padding-block-end: calc(6px + env(safe-area-inset-bottom));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .report-camera-shutter::before {
+        transition: none;
+    }
+
+    .report-camera-shutter:active:not(:disabled)::before {
+        transform: none;
+    }
+}

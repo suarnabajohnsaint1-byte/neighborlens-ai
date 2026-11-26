@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-enabled>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeighborLens AI Admin Access Request</title>
+    <script src="js/shared/themeManager.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="styles/role-login.css?v=brand-logo">
+</head>
+
+<body class="role-login-page" data-login-role="admin">
+    <div class="rl-scene" aria-hidden="true">
+        <img class="rl-landmark" src="assets/admin-assets-login/assets/illustrations/bacolod-city-hall.png" alt="">
+    </div>
+
+    <div class="rl-layout">
+        <header class="rl-brand">
+            <p class="rl-brand-name"><span class="neighborlens-emblem" aria-hidden="true"><img src="assets/logo/neighborlens-logo.png" alt=""></span><b class="neighborlens-wordmark">Neighbor<span>Lens AI</span></b></p>
+            <p class="rl-brand-tagline">Smart Community Infrastructure Monitoring System</p>
+        </header>
+
+        <ul class="rl-features">
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-accounts.svg" alt="">
+                <div>
+                    <h2>Reviewed before activation</h2>
+                    <p>Your request stays pending until an authorized administrator approves it.</p>
+                </div>
+            </li>
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-report.svg" alt="">
+                <div>
+                    <h2>Audited from the start</h2>
+                    <p>Every request, approval, and rejection is recorded in the system audit log.</p>
+                </div>
+            </li>
+            <li class="rl-feature">
+                <img src="assets/admin-assets-login/assets/icons/feature-geotag.svg" alt="">
+                <div>
+                    <h2>Your own account only</h2>
+                    <p>Administrators manage only their own account; others stay read only.</p>
+                </div>
+            </li>
+        </ul>
+
+        <main class="rl-panel">
+            <img class="rl-badge rl-system-logo" src="assets/admin-assets-login/assets/brand/neighborlens-wordmark.svg" alt="NeighborLens AI">
+            <h1>Admin Sign Up</h1>
+            <p class="rl-subhead">Request access to the Admin</p>
+
+            <form id="adminSignupForm" novalidate>
+                <label class="rl-field" for="signupUser">Username
+                    <span class="rl-frame">
+                        <i class="bx bx-user" aria-hidden="true"></i>
+                        <input id="signupUser" name="username" type="text" placeholder="Choose an admin username"
+                            autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64" required>
+                    </span>
+                </label>
+                <label class="rl-field" for="signupFullName">Full name
+                    <span class="rl-frame">
+                        <i class="bx bx-user" aria-hidden="true"></i>
+                        <input id="signupFullName" name="fullName" type="text" placeholder="Your full name"
+                            autocomplete="name" maxlength="190">
+                    </span>
+                </label>
+                <label class="rl-field" for="signupPass">Password
+                    <span class="rl-frame">
+                        <i class="bx bx-lock-alt" aria-hidden="true"></i>
+                        <input id="signupPass" name="password" type="password"
+                            placeholder="At least 12 characters with letters and numbers" autocomplete="new-password"
+                            maxlength="72" required>
+                        <button type="button" class="rl-eye" id="signupEye" aria-label="Show password"
+                            aria-pressed="false">
+                            <i class="bx bx-show" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </label>
+                <label class="rl-field" for="signupConfirm">Confirm password
+                    <span class="rl-frame">
+                        <i class="bx bx-lock-alt" aria-hidden="true"></i>
+                        <input id="signupConfirm" name="confirm" type="password" placeholder="Re-enter your password"
+                            autocomplete="new-password" maxlength="72" required>
+                    </span>
+                </label>
+                <label class="rl-field" for="signupReason">Reason for access (optional)
+                    <span class="rl-frame rl-frame--area">
+                        <textarea id="signupReason" name="reason" rows="2" maxlength="500"
+                            placeholder="Office, position, or who asked you to request access"></textarea>
+                    </span>
+                </label>
+                <button type="submit" class="rl-submit" id="signupSubmit">
+                    <i class="bx bx-right-arrow-alt" aria-hidden="true"></i>
+                    Request Access
+                </button>
+                <p class="rl-message" id="signupMsg" hidden></p>
+            </form>
+            <p class="rl-switch">Already approved? <a href="admin-login.html">Admin login</a></p>
+        </main>
+    </div>
+
+    <script src="js/shared/api.js"></script>
+    <script src="js/auth/security.js"></script>
+    <script src="js/auth/adminSignup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2388 @@
+diff --git a/frontend/admin.html b/frontend/admin.html
+index 7505423..6a5e56c 100644
+--- a/frontend/admin.html
++++ b/frontend/admin.html
+@@ -107,6 +107,11 @@
+                     <p class="number" id="statMinor">...</p>
+                     <span class="trend">Low priority</span>
+                 </div>
++                <button type="button" class="card stat-card stat-card--link" id="pendingPostsCard" onclick="openPendingPosts()" aria-busy="true">
++                    <h3>Pending Posts</h3>
++                    <p class="number" id="statPendingPosts" aria-live="polite">...</p>
++                    <span class="trend" id="pendingPostsHint">Awaiting review</span>
++                </button>
+             </div>
+ 
+             <div id="adminReportsFeedback" class="portal-feedback" role="status" aria-live="polite" hidden></div>
+@@ -313,6 +318,8 @@
+                         <div>
+                             <h2>All Reports</h2>
+                             <p id="adminReportCount" class="section-caption"></p>
++                            <label><input type="checkbox" id="communityReviewOnly"> For Community Review <span id="communityReviewCount"></span></label>
++                            <p id="communityReviewFeedback" role="status"></p>
+                         </div>
+                         <div class="section-actions">
+                             <button id="adminExportReports" type="button" class="portal-button-secondary report-export-button" title="Export all reports matching current filters"><span class="report-export-icon" aria-hidden="true"></span>Export Excel</button>
+@@ -637,6 +644,7 @@
+     <script src="js/shared/reportPresentation.js"></script>
+     <script src="js/shared/reportCard.js"></script>
+     <script src="js/shared/mediaCarousel.js"></script>
++    <script src="js/shared/communityPublication.js"></script>
+     <script src="js/reports/reportDetailsView.js"></script>
+     <script src="js/shared/vision.js"></script>
+     <script src="js/map/mapConfig.js"></script>
+diff --git a/frontend/citizen.html b/frontend/citizen.html
+index df7a63b..154a167 100644
+--- a/frontend/citizen.html
++++ b/frontend/citizen.html
+@@ -254,7 +254,7 @@
+                 <h2 id="communityPickerTitle">Share a Report with Community</h2>
+                 <button type="button" class="cf-icon-button" data-close aria-label="Close dialog"><i class="bx bx-x" aria-hidden="true"></i></button>
+             </div>
+-            <p class="cf-selector-subtitle">Select an eligible, unshared report from your submitted reports to publish to the community feed. Author identity and private details remain protected.</p>
++            <p class="cf-selector-subtitle">Request Admin review to share your report description and submitted photos. Pending and rejected requests are not visible in the Community Feed.</p>
+             <div id="communitySelectorList" class="cf-selector-list" role="list"></div>
+             <p id="communitySelectorStatus" class="cf-selector-status" role="status" aria-live="polite"></p>
+             <div class="cf-dialog-actions">
+@@ -277,6 +277,7 @@
+     <script src="js/shared/reportPresentation.js"></script>
+     <script src="js/shared/reportCard.js"></script>
+     <script src="js/shared/mediaCarousel.js"></script>
++    <script src="js/shared/communityPublication.js"></script>
+     <script src="js/reports/reportDetailsView.js"></script>
+     <script src="js/shared/reportDialog.js"></script>
+     <script src="js/community/communityApi.js?v=5"></script>
+diff --git a/frontend/js/admin/adminLiveReports.js b/frontend/js/admin/adminLiveReports.js
+index c64cb45..d3eb621 100644
+--- a/frontend/js/admin/adminLiveReports.js
++++ b/frontend/js/admin/adminLiveReports.js
+@@ -33,6 +33,7 @@
+                 window.refreshReports(true);
+                 if (hasConnected) window.dispatchEvent(new CustomEvent('admin:reports-changed', { detail: { reason: 'reconnected' } }));
+                 hasConnected = true;
++                window.dispatchEvent(new Event('admin:notifications-changed'));
+             };
+             source.onmessage = event => {
+                 if (!active || run !== generation || getSession()?.apiToken !== token) return;
+@@ -44,6 +45,8 @@
+                 } else if (payload.event === 'reports_changed') {
+                     window.refreshReports(true);
+                     window.dispatchEvent(new Event('admin:reports-changed'));
++                } else if (payload.event === 'read_sync' || payload.reportId) {
++                    window.dispatchEvent(new Event('admin:notifications-changed'));
+                 }
+             };
+             source.onerror = () => {
+diff --git a/frontend/js/admin/admin_logic.js b/frontend/js/admin/admin_logic.js
+index 6eab78f..1d82d4c 100644
+--- a/frontend/js/admin/admin_logic.js
++++ b/frontend/js/admin/admin_logic.js
+@@ -6,7 +6,7 @@
+ let adminFilters = {
+     status: 'all', barangay: 'all', classification: 'all',
+     priority: 'all', category: 'all', dateFrom: '', dateTo: '',
+-    search: '', sort: 'newest'
++    search: '', sort: 'newest', publication: 'all'
+ };
+ 
+ const LEGACY_ACCOUNTS_KEY = 'up_users';
+@@ -38,6 +38,13 @@ let _activeAdminSection = 'overviewSection';
+ let _adminSectionShown = false;
+ let _adminSheets = null;
+ let _adminReportDialog = null;
++let _publicationRequests = new Map();
++let _adminNotifications = [];
++let _adminUnreadCount = 0;
++let _adminNotificationError = '';
++let _publicationReload = false;
++let _publicationLoading = false;
++let _publicationReady = false;
+ const REPORTS_PAGE_SIZE = 5;
+ 
+ function saveAdminView() {
+@@ -59,6 +66,7 @@ function restoreAdminView() {
+     if (![5, 10, 20].includes(Number(_overviewQuery.pageSize))) _overviewQuery.pageSize = 5;
+     _reportsPage = saved.reportsPage;
+     adminFilters = merge(adminFilters, saved.reportFilters);
++    document.getElementById('communityReviewOnly').checked = adminFilters.publication === 'pending';
+     _accountTab = saved.accountTab;
+     _accountPage = saved.accountPage;
+     _accountQuery = merge(_accountQuery, saved.accountQuery);
+@@ -96,6 +104,11 @@ window.addEventListener('DOMContentLoaded', () => {
+     setupAdminActivity();
+     setupAdminSheets();
+     setupAdminReportDialog();
++    loadPublicationQueue();
++    document.getElementById('communityReviewOnly')?.addEventListener('change', event => { adminFilters.publication = event.target.checked ? 'pending' : 'all'; _reportsPage = 1; renderAdminReports(); saveAdminView(); });
++    window.addEventListener('publication:changed', loadPublicationQueue);
++    window.addEventListener('admin:reports-changed', loadPublicationQueue);
++    window.addEventListener('admin:notifications-changed', loadPublicationQueue);
+     setupAdminGisResize();
+     setupAccountFieldValidation();
+     showAdminSection(_activeAdminSection, null, true);
+@@ -105,6 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
+     _auditLogTimer = setInterval(loadAuditLogs, AUDIT_LOG_REFRESH_MS);
+ 
+     onReportsChanged(() => {
++        loadPublicationQueue();
+         renderAdminStats();
+         renderAdminReports();
+         loadBarangays();
+@@ -282,37 +296,37 @@ window.clearOverviewFilters = function () {
+ };
+ window.resetAdminOverview = function () { _overviewBarangay = null; window.clearOverviewFilters(); };
+ 
+-function activityKey(report) {
+-    return `${report.backendId ?? report.id}:${report.status}:${report.updatedAt || report.createdAt || ''}`;
+-}
+-
+-function activityReadKey() { return `neighborlens:admin-activity:${getSession()?.id}`; }
+-
+-function readAdminActivity() {
+-    try { const value = JSON.parse(localStorage.getItem(activityReadKey()) || '[]'); return new Set(Array.isArray(value) ? value : []); }
+-    catch { return new Set(); }
+-}
+-
+ function renderAdminActivity() {
+     const list = document.getElementById('adminActivityList');
+     if (!list) return;
+-    const reports = getAllReports().filter(report => reportDetailsUrl(report)).sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt));
+-    const read = readAdminActivity();
+-    const unread = reports.filter(report => !read.has(activityKey(report))).length;
++    const unread = _adminUnreadCount;
+     const badge = document.getElementById('adminActivityBadge');
+     if (badge) { badge.hidden = !unread; badge.textContent = unread > 99 ? '99+' : String(unread); }
+     const bell = document.getElementById('adminActivityBell');
+     if (bell) bell.setAttribute('aria-label', unread ? `Report notifications, ${unread} unread` : 'Report notifications');
+     const mark = document.getElementById('adminActivityMarkAll');
+     if (mark) mark.disabled = !unread;
+-    window.PortalComponents.render(list, reports.slice(0, 20).map(report => `<li class="notification-item${read.has(activityKey(report)) ? '' : ' unread'}"><a href="${reportDetailsUrl(report)}" data-read-report="${escapeAdminMapText(activityKey(report))}"><div class="notification-item-header"><strong class="notification-item-title">${escapeAdminMapText(report.citizenCategory || report.aiCategory || 'Report')}</strong><span class="notification-item-time">${escapeAdminMapText(report.status)}</span></div><p class="notification-item-desc">${escapeAdminMapText(report.barangay)} &middot; ${formatDate(report.updatedAt || report.createdAt)}</p></a></li>`).join('') || '<li class="notification-empty">No report activity yet</li>');
++    const items = _adminNotifications.map(notification => {
++        const review = ['New post awaiting approval', 'Community publication review'].includes(notification.title);
++        const state = _publicationRequests.get(Number(notification.reportId))?.state;
++        const label = review ? window.CommunityPublication.labels[state] || 'Open latest review' : '';
++        const content = `<div class="notification-item-header"><strong class="notification-item-title">${escapeAdminMapText(notification.title)}</strong><span class="notification-item-time">${escapeAdminMapText(label)}</span></div><p class="notification-item-desc">${escapeAdminMapText(notification.message)}</p>`;
++        return `<li class="notification-item${notification.readAt ? '' : ' unread'}">${notification.reportId ? `<a href="report-details.html?id=${Number(notification.reportId)}" data-read-report="notification:${Number(notification.id)}">${content}</a>` : `<button type="button" class="portal-text-button" data-read-report="notification:${Number(notification.id)}">${content}</button>`}</li>`;
++    });
++    window.PortalComponents.render(list, `${_adminNotificationError ? `<li class="notification-empty" role="status">${escapeAdminMapText(_adminNotificationError)}</li>` : ''}${items.join('') || (!_adminNotificationError ? '<li class="notification-empty">No notifications yet</li>' : '')}`);
+ }
+ 
+-window.markAdminActivityRead = function (key) {
+-    const read = readAdminActivity();
+-    if (key) read.add(key);
+-    else getAllReports().forEach(report => read.add(activityKey(report)));
+-    try { localStorage.setItem(activityReadKey(), JSON.stringify(Array.from(read).slice(-500))); } catch { }
++window.markAdminActivityRead = async function (key) {
++    const session = getSession()?.apiToken;
++    const notification = key?.startsWith('notification:') ? _adminNotifications.find(row => row.id === Number(key.slice(13))) : null;
++    if (notification || !key) {
++        try {
++            const result = await window.apiRequest(notification ? `/api/notifications/${notification.id}/read` : '/api/notifications/mark-all-read', { method: notification ? 'PATCH' : 'POST' });
++            if (getSession()?.apiToken !== session) return;
++            _adminUnreadCount = result.unreadCount;
++            _adminNotifications.forEach(row => { if (!notification || row.id === notification.id) row.readAt = new Date().toISOString(); });
++        } catch { return; }
++    }
+     renderAdminActivity();
+ };
+ 
+@@ -1016,6 +1030,7 @@ function hasActiveAdminFilters() {
+         adminFilters.classification !== 'all' ||
+         adminFilters.priority !== 'all' ||
+         adminFilters.category !== 'all' ||
++        adminFilters.publication === 'pending' ||
+         Boolean(adminFilters.dateFrom) ||
+         Boolean(adminFilters.dateTo) ||
+         Boolean(adminFilters.search?.trim()) ||
+@@ -1029,7 +1044,12 @@ function syncAdminClearFiltersButton() {
+ 
+ function renderAdminReports() {
+     const base = getAllReports();
+-    const reports = filterReports(base, adminFilters);
++    const reviewOnly = document.getElementById('communityReviewOnly')?.checked;
++    const reports = filterReports(base, adminFilters).filter(report => !reviewOnly || (_publicationReady && _publicationRequests.get(Number(report.backendId ?? report.id))?.state === 'pending_approval'));
++    if (reviewOnly) reports.sort((a, b) => {
++        const first = _publicationRequests.get(Number(a.backendId ?? a.id)), second = _publicationRequests.get(Number(b.backendId ?? b.id));
++        return new Date(first.requestedAt) - new Date(second.requestedAt) || Number(a.backendId ?? a.id) - Number(b.backendId ?? b.id);
++    });
+     const tbody = document.getElementById('adminReportsBody');
+     if (!tbody) return;
+     syncAdminClearFiltersButton();
+@@ -1045,6 +1065,12 @@ function renderAdminReports() {
+         window.PortalComponents.render(tbody, '<tr><td colspan="8" class="portal-table-state" role="status">Loading reports...</td></tr>');
+         return;
+     }
++    if (reviewOnly && !_publicationReady) {
++        setEl('adminReportCount', _publicationLoading ? 'Loading pending posts...' : 'Pending posts unavailable');
++        window.PortalComponents.render(tbody, `<tr><td colspan="8" class="portal-table-state" role="status">${_publicationLoading ? 'Loading pending posts...' : 'Pending posts could not be loaded. Retry the Pending Posts card.'}</td></tr>`);
++        ['reportsPrev', 'reportsNext'].forEach(id => { document.getElementById(id).disabled = true; });
++        return;
++    }
+     const page = adminPage(reports, _reportsPage, REPORTS_PAGE_SIZE);
+     if (load.status === 'ready' || base.length) _reportsPage = page.page;
+     renderAdminPagination('reports', page, REPORTS_PAGE_SIZE, 'reports');
+@@ -1058,7 +1084,7 @@ function renderAdminReports() {
+         const load = typeof getReportLoadState === 'function' ? getReportLoadState() : { status: 'ready' };
+         const message = load.status === 'error'
+             ? escapeAdminMapText(load.message || 'Reports could not be loaded.')
+-            : base.length === 0 && load.status !== 'ready' ? 'Loading reports…' : 'No reports match filters.';
++            : base.length === 0 && load.status !== 'ready' ? 'Loading reports…' : reviewOnly ? 'No pending posts awaiting review.' : 'No reports match filters.';
+         window.PortalComponents.render(tbody, `<tr><td colspan="8" class="portal-table-state"${load.status === 'error' ? ' data-tone="error"' : ''}>${message}</td></tr>`);
+         return;
+     }
+@@ -1073,6 +1099,7 @@ function renderAdminReports() {
+                     ${visionBadge(r)}
+                 </div>
+                 ${reportCategoryOriginMarkup(r)}
++                ${_publicationRequests.has(Number(r.backendId ?? r.id)) ? `<small class="section-caption">${escapeAdminMapText(window.CommunityPublication.labels[_publicationRequests.get(Number(r.backendId ?? r.id)).state])}</small>` : ''}
+                 <p class="report-issue-description">${escapeAdminMapText(r.description || '')}</p>
+             </div></td>
+             <td data-label="Barangay" class="report-cell-barangay">${escapeAdminMapText(r.barangay)}</td>
+@@ -1092,6 +1119,51 @@ function adminViewReport(id, trigger = null) {
+     if (!_adminReportDialog?.open(backendId, trigger)) window.location.href = url;
+ }
+ 
++async function loadPublicationQueue() {
++    if (getSession()?.role !== 'admin') return;
++    if (_publicationLoading) { _publicationReload = true; return; }
++    _publicationLoading = true;
++    document.getElementById('pendingPostsCard')?.setAttribute('aria-busy', 'true');
++    const actor = getSession()?.apiToken;
++    try {
++        const result = await window.apiRequest('/api/admin/community-publications');
++        if (getSession()?.apiToken !== actor) return;
++        _publicationRequests = new Map(result.requests.map(row => [row.reportId, row]));
++        _publicationReady = true;
++        setEl('communityReviewCount', `(${result.pendingCount})`);
++        setEl('communityReviewFeedback', '');
++        setEl('statPendingPosts', result.pendingCount);
++        setEl('pendingPostsHint', 'Awaiting review');
++    } catch (error) {
++        if (getSession()?.apiToken === actor) { _publicationReady = false; setEl('communityReviewFeedback', `Community queue unavailable: ${error.message}`); setEl('statPendingPosts', 'Unavailable'); setEl('pendingPostsHint', 'Retry review queue'); }
++    } finally {
++        try {
++            const notifications = await window.apiRequest('/api/notifications?limit=100');
++            if (getSession()?.apiToken === actor) {
++                _adminNotifications = notifications.notifications;
++                _adminUnreadCount = notifications.unreadCount;
++                _adminNotificationError = '';
++            }
++        } catch {
++            if (getSession()?.apiToken === actor) _adminNotificationError = 'Notifications could not be refreshed.';
++        }
++        _publicationLoading = false;
++        document.getElementById('pendingPostsCard')?.setAttribute('aria-busy', 'false');
++        renderAdminReports(); renderAdminActivity();
++        if (_publicationReload) { _publicationReload = false; loadPublicationQueue(); }
++    }
++}
++
++window.openPendingPosts = function () {
++    window.clearAdminFilters();
++    document.getElementById('communityReviewOnly').checked = true;
++    adminFilters.publication = 'pending';
++    _reportsPage = 1;
++    showAdminSection('reportsSection');
++    renderAdminReports();
++    loadPublicationQueue();
++};
++
+ function setupAdminReportDialog() {
+     const dialog = document.getElementById('adminReportDialog');
+     if (!dialog || !window.ReportDialog || !window.ReportDetailsView) return;
+@@ -1112,7 +1184,6 @@ function setupAdminReportDialog() {
+         const trigger = link.closest('.notification-popover') ? document.getElementById('adminActivityBell') : link;
+         if (!_adminReportDialog.open(id, trigger)) return;
+         event.preventDefault();
+-        if (link.dataset.readReport) window.markAdminActivityRead(link.dataset.readReport);
+         closeAdminActivity();
+     });
+ }
+@@ -1252,8 +1323,9 @@ window.clearAdminFilters = function () {
+     _reportsPage = 1;
+     adminFilters = {
+         status: 'all', barangay: 'all', classification: 'all', priority: 'all',
+-        category: 'all', dateFrom: '', dateTo: '', search: '', sort: 'newest'
++        category: 'all', dateFrom: '', dateTo: '', search: '', sort: 'newest', publication: 'all'
+     };
++    document.getElementById('communityReviewOnly').checked = false;
+     document.querySelectorAll('[data-admin-filter]').forEach(b => b.classList.remove('active'));
+     document.querySelector('[data-admin-filter="all"]')?.classList.add('active');
+     ['adminFilterBarangay', 'adminFilterClassification', 'adminFilterPriority',
+diff --git a/frontend/js/citizen/citizen.js b/frontend/js/citizen/citizen.js
+index 2428bc7..9b59a20 100644
+--- a/frontend/js/citizen/citizen.js
++++ b/frontend/js/citizen/citizen.js
+@@ -802,7 +802,6 @@ function setupForm() {
+             return showFormError('Your NeighborLens API session is missing or expired. Log out and sign in again before submitting.');
+         }
+         if (!description) return showFormError('Please describe the issue.');
+-        if (!barangay) return showFormError('Barangay could not be detected from your current location.');
+         if (!detectedGPS || !Number.isFinite(detectedGPS.lat) || !Number.isFinite(detectedGPS.lng)) {
+             return showFormError('Report rejected: an exact live GPS location is required.');
+         }
+@@ -812,7 +811,7 @@ function setupForm() {
+ 
+         if (typeof window.validateReportGeofence === 'function') {
+             const geoCheck = window.validateReportGeofence(detectedGPS.lat, detectedGPS.lng, barangay);
+-            if (!geoCheck.valid) {
++            if (!geoCheck.valid && !geoCheck.isInsideBacolod) {
+                 return showFormError(geoCheck.message || 'Report rejected: GPS coordinates are outside Bacolod City jurisdiction.');
+             }
+         }
+@@ -892,6 +891,11 @@ function setupForm() {
+             }
+         }
+ 
++        if (!isCurrentUploadGeneration(submissionGeneration)) {
++            btn.disabled = false;
++            btn.textContent = 'Submit to AI Analysis';
++            return;
++        }
+         showAIResult(ai, report.id, visionResult);
+         btn.textContent = ' Submitted!';
+ 
+diff --git a/frontend/js/citizen/notificationCenter.js b/frontend/js/citizen/notificationCenter.js
+index 0560fb6..74693b6 100644
+--- a/frontend/js/citizen/notificationCenter.js
++++ b/frontend/js/citizen/notificationCenter.js
+@@ -418,7 +418,8 @@
+     }
+ 
+     function openDefaultPopover() {
+-        const bell = document.querySelector('.notification-bell-btn:not([style*="display: none"])') || document.querySelector('.notification-bell-btn');
++        const bell = Array.from(document.querySelectorAll('.notification-bell-btn')).find(button =>
++            button.getClientRects().length > 0 && getComputedStyle(button).visibility !== 'hidden');
+         if (bell) openPopover(bell);
+     }
+ 
+diff --git a/frontend/js/community/communityApi.js b/frontend/js/community/communityApi.js
+index 47f4496..8f427ee 100644
+--- a/frontend/js/community/communityApi.js
++++ b/frontend/js/community/communityApi.js
+@@ -7,7 +7,7 @@
+         edit: (id, body) => root.apiRequest(path(id), { method: 'PATCH', body: { body } }),
+         remove: id => root.apiRequest(path(id), { method: 'DELETE' }),
+         react: (id, reaction) => root.apiRequest(`${path(id)}/reaction`, { method: 'PUT', body: { reaction } }),
+-        comments: (id, page, parentCommentId = null) => root.apiRequest(`${path(id)}/comments?${query({ page, pageSize: 10, ...(parentCommentId ? { parentCommentId } : {}) })}`),
++        comments: (id, page, parentCommentId = null) => root.apiRequest(`${path(id)}/comments?${query({ page, pageSize: 5, ...(parentCommentId ? { parentCommentId } : {}) })}`),
+         comment: (id, body) => root.apiRequest(`${path(id)}/comments`, { method: 'POST', body }),
+         editComment: (id, comment, body) => root.apiRequest(`${path(id)}/comments/${comment}`, { method: 'PATCH', body: { body } }),
+         deleteComment: (id, comment) => root.apiRequest(`${path(id)}/comments/${comment}`, { method: 'DELETE' }),
+diff --git a/frontend/js/community/communityCards.js b/frontend/js/community/communityCards.js
+index 9a9d42c..9fb7bc9 100644
+--- a/frontend/js/community/communityCards.js
++++ b/frontend/js/community/communityCards.js
+@@ -81,17 +81,18 @@
+                     <p>${escape(post.barangay)} <span aria-hidden="true">&middot;</span> <time datetime="${escape(post.createdAt)}" title="${escape(new Date(post.createdAt).toLocaleString())}">${escape(relativeTime(post.createdAt))}</time></p>
+                 </div>
+                 ${report ? `<span class="cf-status cf-status-pill cf-status-${escape(statusKey)}" data-status="${escape(statusKey)}">${escape(statusLabel)}</span>` : ''}
+-                ${post.canEdit ? `<button type="button" class="cf-icon-button" data-action="post-options" aria-label="Manage your post" aria-expanded="false">${icon('bx-dots-horizontal-rounded')}</button><div class="cf-post-options" hidden><button type="button" data-action="edit">Edit post</button><button type="button" data-action="delete">Delete post</button></div>` : `<button type="button" class="cf-icon-button" aria-label="Post options">${icon('bx-dots-horizontal-rounded')}</button>`}
++                ${post.canEdit || post.canDelete ? `<button type="button" class="cf-icon-button" data-action="post-options" aria-label="Manage your post" aria-expanded="false">${icon('bx-dots-horizontal-rounded')}</button><div class="cf-post-options" hidden>${post.canEdit ? '<button type="button" data-action="edit">Edit post</button>' : ''}${post.canDelete ? '<button type="button" data-action="delete">Delete post</button>' : ''}</div>` : `<button type="button" class="cf-icon-button" aria-label="Post options">${icon('bx-dots-horizontal-rounded')}</button>`}
+             </div>
+             <h3 class="cf-post-title">${escape(cardTitle)}</h3>
+             ${post.body ? `<p class="cf-post-text ${post.body.length > 280 ? 'is-collapsed' : ''}">${escape(post.body)}</p>${post.body.length > 280 ? '<button type="button" class="cf-text-button" data-action="expand" aria-expanded="false">See more</button>' : ''}` : ''}
+             ${media(post.media)}
+             ${report ? `<div class="cf-card-meta">
+                 <span class="cf-meta-tag">${icon('bx-map-pin')} <span>${escape(categoryName)} &middot; ${escape(report.barangay)}</span></span>
++                <button type="button" class="cf-text-button" data-action="report">View report</button>
+             </div>` : ''}
+             <div class="cf-toolbar">
+                 <div class="cf-react-wrap">
+-                    <button type="button" data-action="react" class="cf-react" aria-haspopup="menu" aria-expanded="false">
++                    <button type="button" data-action="react" class="cf-react" aria-label="React to report" aria-haspopup="menu" aria-expanded="false">
+                         <img src="assets/icons/like-icon.png" alt="" class="cf-action-icon" width="20" height="20">
+                         <span class="cf-reaction-total">${post.reactions.total || 0}</span>
+                     </button>
+diff --git a/frontend/js/community/communityComments.js b/frontend/js/community/communityComments.js
+index 16e5f9b..2141891 100644
+--- a/frontend/js/community/communityComments.js
++++ b/frontend/js/community/communityComments.js
+@@ -176,7 +176,7 @@
+                 }
+                 for (const [parent, count] of loadedChildren) {
+                     // Only seed a page counter if there isn't already one from an explicit reply fetch.
+-                    if (!replyPages.has(parent)) replyPages.set(parent, Math.floor(count / 10) + 1);
++                    if (!replyPages.has(parent)) replyPages.set(parent, Math.floor(count / Number(data.pagination.pageSize || 5)) + 1);
+                 }
+ 
+                 page = Number(data.pagination.page || requestedPage) + 1;
+diff --git a/frontend/js/community/communityFeed.js b/frontend/js/community/communityFeed.js
+index eb67e73..d5ac9f5 100644
+--- a/frontend/js/community/communityFeed.js
++++ b/frontend/js/community/communityFeed.js
+@@ -82,14 +82,12 @@
+             if (listEl) listEl.replaceChildren();
+             picker.showModal();
+             try {
+-                const result = await api.eligibleReports();
++                const [result, owned] = await Promise.all([api.eligibleReports(), root.apiRequest('/api/community/publication-requests')]);
+                 if (disposed) return;
+                 const reports = result.reports || [];
+-                if (!reports.length) {
+-                    if (statusEl) statusEl.textContent = 'No eligible unshared reports found in your barangay.';
+-                    return;
+-                }
+-                if (statusEl) statusEl.textContent = '';
++                if (statusEl) statusEl.textContent = owned.requests.length
++                    ? owned.requests.map(row => `Report #${row.reportId}: ${root.CommunityPublication.labels[row.state] || 'Status unavailable'}${row.reason ? `: ${row.reason}` : ''}`).join(' | ')
++                    : reports.length ? '' : 'No eligible unshared reports found in your barangay.';
+                 for (const report of reports) {
+                     const card = document.createElement('div');
+                     card.className = 'cf-selector-item';
+@@ -101,14 +99,14 @@
+                     card.innerHTML = `<div class="cf-selector-item-content">
+                         <div class="cf-selector-item-meta">
+                             <span class="cf-selector-item-id">#${root.CommunityCards.escape(report.id)}</span>
+-                            <span class="cf-status cf-status-pill cf-status-${root.CommunityCards.escape(status)}">${root.CommunityCards.escape(statusLabel)}</span>
++                            <span class="cf-status cf-status-pill cf-status-${root.CommunityCards.escape(status)}" data-status="${root.CommunityCards.escape(status)}">${root.CommunityCards.escape(statusLabel)}</span>
+                             <strong class="cf-selector-item-category">${root.CommunityCards.escape(category)}</strong>
+                             ${dateStr ? `<span class="cf-selector-item-date">${root.CommunityCards.escape(dateStr)}</span>` : ''}
+                         </div>
+                         <p class="cf-selector-item-desc">${root.CommunityCards.escape(desc)}</p>
+                     </div>
+-                    <button type="button" class="cf-button-primary cf-share-action-btn" data-share-report-id="${root.CommunityCards.escape(report.id)}">
+-                        Share to Community
++                    <button type="button" class="cf-button-primary cf-share-action-btn" data-share-report-id="${root.CommunityCards.escape(report.id)}" data-publication-version="${Number(report.publication?.version || 0)}">
++                        ${report.publication?.state === 'rejected' ? 'Resubmit for Review' : 'Share to Community'}
+                     </button>`;
+                     listEl.appendChild(card);
+                 }
+@@ -126,15 +124,15 @@
+                 if (!reportId) return;
+                 sharing = true;
+                 const originalText = button.textContent;
+-                button.textContent = 'Sharing...';
++                button.textContent = 'Requesting review...';
+                 button.disabled = true;
+                 const statusEl = picker.querySelector('#communitySelectorStatus');
+                 if (statusEl) statusEl.textContent = '';
+                 try {
+-                    await api.publish({ reportId, requestKey: crypto.randomUUID() });
++                    await api.publish({ reportId, requestKey: button.dataset.requestKey ||= crypto.randomUUID(), ...(Number(button.dataset.publicationVersion) ? { version: Number(button.dataset.publicationVersion) } : {}) });
+                     if (!disposed) {
+-                        picker.close();
+-                        await refresh();
++                        if (statusEl) statusEl.textContent = `Report #${reportId}: Pending Community Review. It is not public yet.`;
++                        button.textContent = 'Pending Community Review';
+                     }
+                 } catch (error) {
+                     if (!disposed) {
+diff --git a/frontend/js/community/communityState.js b/frontend/js/community/communityState.js
+index e36c78d..8ff7278 100644
+--- a/frontend/js/community/communityState.js
++++ b/frontend/js/community/communityState.js
+@@ -24,7 +24,7 @@
+         async function load(query = {}) {
+             controller?.abort(); controller = new AbortController();
+             const revision = ++generation;
+-            state = { ...state, query: { ...state.query, ...query }, status: 'loading', error: '', reactionError: '' }; notify();
++            state = { ...state, query: { ...state.query, ...query }, status: 'loading', error: '', errorCode: '', reactionError: '' }; notify();
+             try {
+                 const data = await api.list(state.query, controller.signal);
+                 if (destroyed || revision !== generation) return;
+@@ -37,7 +37,7 @@
+                 state = { ...state, ...data, status: 'ready', error: '' };
+             } catch (error) {
+                 if (destroyed || revision !== generation || error.name === 'AbortError') return;
+-                state = { ...state, status: 'error', error: error.message, ...([401, 403].includes(error.status) ? { posts: [], barangay: '' } : {}) };
++                state = { ...state, status: 'error', error: error.message, errorCode: error.code || '', ...([401, 403].includes(error.status) ? { posts: [], barangay: '' } : {}) };
+             }
+             notify();
+         }
+diff --git a/frontend/js/community/communityView.js b/frontend/js/community/communityView.js
+index fdfc386..4c7e674 100644
+--- a/frontend/js/community/communityView.js
++++ b/frontend/js/community/communityView.js
+@@ -34,13 +34,19 @@
+                 <button type="button" role="tab" class="cf-tab active" data-sort="latest" aria-selected="true">${icon('bx-file-blank')}<span>Latest</span></button>
+                 <button type="button" role="tab" class="cf-tab" data-sort="reacted" aria-selected="false">${icon('bxs-flame')}<span>Most reacted</span></button>
+             </div>
+-            <div class="cf-feed-state" role="status" aria-live="polite"></div>
++            <div class="cf-feed-notice">
++                <div class="cf-feed-state" role="status" aria-live="polite"></div>
++                <button type="button" class="cf-retry" hidden>${icon('bx-refresh')}<span>Retry</span></button>
++            </div>
+             <button type="button" class="cf-updates" hidden>New posts available</button>
+-            <button type="button" class="cf-retry cf-button-secondary" hidden>Retry</button>
+             <div class="cf-content-area">
+                 <div class="cf-posts" role="feed" aria-label="Community reports feed"></div>
+             </div>
+-            <nav class="cf-pages" aria-label="Community pages" hidden></nav>
++            <nav class="cf-pages" aria-label="Community pages" hidden>
++                <button type="button" class="cf-text-button" data-page="-1" aria-label="Previous posts">Previous</button>
++                <div class="cf-page-numbers"></div><span aria-live="polite"></span>
++                <button type="button" class="cf-text-button" data-page="1" aria-label="Next posts">Next</button>
++            </nav>
+         </div>`;
+ 
+         let selectedMenu = null, menuTrigger = null;
+@@ -103,6 +109,7 @@
+             const postsList = container.querySelector('.cf-posts');
+ 
+             const membershipError = isMembershipError(state.error);
++            container.querySelector('.cf-feed-notice').classList.toggle('has-error', Boolean(state.error) && !membershipError);
+             if (membershipError) {
+                 stateNotice.innerHTML = `<div class="cf-membership-alert" role="alert">
+                     ${icon('bx-info-circle')}
+@@ -124,8 +131,8 @@
+                 retryButton.hidden = true;
+                 pagesNav.hidden = true;
+             } else if (state.error) {
+-                stateNotice.textContent = `${state.error}${state.posts.length ? ' Showing previous reports.' : ''}`;
+-                retryButton.hidden = false;
++                stateNotice.innerHTML = `<div class="cf-request-error">${icon('bx-info-circle')}<div><h2>Community reports unavailable</h2><p>${escape(state.error)}${state.posts.length ? ' Showing previous reports.' : ''}</p></div></div>`;
++                retryButton.hidden = state.errorCode === 'COMMUNITY_SETUP_REQUIRED';
+                 pagesNav.hidden = !state.posts.length;
+             } else if (!state.posts.length) {
+                 stateNotice.innerHTML = `<div class="cf-empty-box">
+@@ -182,6 +189,7 @@
+             });
+ 
+             const pageSpan = container.querySelector('.cf-pages span');
++            pagesNav.hidden = state.pagination.pages <= 1;
+             if (pageSpan) pageSpan.textContent = `Page ${state.pagination.page} of ${state.pagination.pages}`;
+             renderPageNumbers(state.pagination.page, state.pagination.pages);
+             const prevPageBtn = container.querySelector('[data-page="-1"]');
+@@ -233,11 +241,7 @@
+ 
+             const action = event.target.closest('[data-action]')?.dataset.action;
+             if (action === 'react') {
+-                if (event.target.closest('.cf-react')) {
+-                    handlers.react(post.id, post.reactions.mine === 'like' ? null : 'like');
+-                } else {
+-                    openMenu(node.querySelector('.cf-reaction-menu'), node.querySelector('.cf-react'));
+-                }
++                openMenu(node.querySelector('.cf-reaction-menu'), node.querySelector('.cf-react'));
+             }
+             if (action === 'post-options') openMenu(node.querySelector('.cf-post-options'), event.target.closest('button'));
+             if (action === 'expand') {
+diff --git a/frontend/js/reports/reportDetails.js b/frontend/js/reports/reportDetails.js
+index 09dd9b7..ff79708 100644
+--- a/frontend/js/reports/reportDetails.js
++++ b/frontend/js/reports/reportDetails.js
+@@ -142,6 +142,7 @@
+     window.addEventListener('pageshow', event => { if (event.persisted) load(); });
+     window.addEventListener('focus', () => { if (mounted && fingerprint() !== sessionKey) message('Your session changed. Refresh to view this report.'); });
+     window.addEventListener('reports:mutation', event => { if (!reviewing && event.detail.phase === 'saved' && event.detail.id === id) load(true); });
++    window.addEventListener('publication:changed', event => { if (!reviewing && event.detail?.reportChanged && String(event.detail.reportId) === String(id)) load(true); });
+     window.addEventListener('session:changed', clear);
+     const refresher = window.PortalRefresh.create({ window, document, refresh: () => mounted && !reviewing && !sessionChanged() ? load(true) : Promise.resolve(),
+         cancel: () => { revision++; controller?.abort(); pending = null; } });
+diff --git a/frontend/js/reports/reportDetailsView.js b/frontend/js/reports/reportDetailsView.js
+index 47a9ec8..2cb4867 100644
+--- a/frontend/js/reports/reportDetailsView.js
++++ b/frontend/js/reports/reportDetailsView.js
+@@ -166,6 +166,7 @@
+         }
+ 
+         const form = container.querySelector('.rd-review-form');
++        if (!options.publication && root.CommunityPublication) listeners.push(root.CommunityPublication.mount(container, report, options.role));
+         let saving = false;
+         if (form) {
+             listen(form, 'submit', async event => {
+diff --git a/frontend/js/shared/portalComponents.js b/frontend/js/shared/portalComponents.js
+index 0886ec5..42dd732 100644
+--- a/frontend/js/shared/portalComponents.js
++++ b/frontend/js/shared/portalComponents.js
+@@ -196,5 +196,24 @@
+         return { apply, current: () => current };
+     }
+ 
+-    return { page, render, pagination, load, sheets, resolutionProgress, resolutionProgressMarkup, viewLayout, bindViewToggle, invalidate: element => markup.delete(element) };
++    function confirmAction(document, { title, message, label }) {
++        return new Promise(resolve => {
++            const opener = document.activeElement;
++            const dialog = document.createElement('dialog'); dialog.className = 'portal-confirm';
++            const heading = document.createElement('h2'); heading.textContent = title;
++            const description = document.createElement('p'); description.textContent = message;
++            const actions = document.createElement('div'); actions.className = 'section-actions';
++            const cancel = document.createElement('button'); cancel.type = 'button'; cancel.className = 'portal-button-secondary'; cancel.textContent = 'Cancel';
++            const approve = document.createElement('button'); approve.type = 'button'; approve.className = 'btn-main'; approve.textContent = label;
++            dialog.setAttribute('aria-label', title);
++            actions.append(cancel, approve); dialog.append(heading, description, actions); document.body.append(dialog);
++            let accepted = false;
++            cancel.addEventListener('click', () => dialog.close());
++            approve.addEventListener('click', () => { accepted = true; dialog.close(); });
++            dialog.addEventListener('close', () => { dialog.remove(); if (opener?.isConnected) opener.focus(); resolve(accepted); }, { once: true });
++            dialog.showModal(); cancel.focus();
++        });
++    }
++
++    return { page, render, pagination, load, sheets, resolutionProgress, resolutionProgressMarkup, viewLayout, bindViewToggle, confirmAction, invalidate: element => markup.delete(element) };
+ });
+diff --git a/frontend/js/shared/reportDialog.js b/frontend/js/shared/reportDialog.js
+index 8bb00ab..6df96ca 100644
+--- a/frontend/js/shared/reportDialog.js
++++ b/frontend/js/shared/reportDialog.js
+@@ -98,6 +98,10 @@
+         function changed(event) {
+             if (!active || reviewing) return;
+             if (actor !== fingerprint()) { close(); return; }
++            if (event.type === 'publication:changed') {
++                if (event.detail?.reportChanged && String(event.detail.reportId) === currentId) render(currentId, true);
++                return;
++            }
+             if (event.type === 'reports:mutation') {
+                 if (event.detail.phase === 'started' && event.detail.id === currentId) {
+                     revision++;
+@@ -166,6 +170,7 @@
+ 
+         root.addEventListener?.('reports_updated', changed);
+         root.addEventListener?.('reports:mutation', changed);
++        root.addEventListener?.('publication:changed', changed);
+         root.addEventListener?.('session:changed', close);
+         const instance = {
+             open,
+@@ -182,6 +187,7 @@
+                 dialog.removeEventListener('click', backdrop);
+                 root.removeEventListener?.('reports_updated', changed);
+                 root.removeEventListener?.('reports:mutation', changed);
++                root.removeEventListener?.('publication:changed', changed);
+                 root.removeEventListener?.('session:changed', close);
+                 instances.delete(dialog);
+             }
+diff --git a/frontend/js/shared/reportEvidence.js b/frontend/js/shared/reportEvidence.js
+index e7f7abf..27ff802 100644
+--- a/frontend/js/shared/reportEvidence.js
++++ b/frontend/js/shared/reportEvidence.js
+@@ -70,7 +70,8 @@
+                 const api = new URL(root.neighborLensApiUrl('/'));
+                 try {
+                     if (parsed.origin === api.origin && (/^\/api\/reports\/[1-9]\d*\/images\/(?:[1-9]\d*|legacy-[12])$/.test(parsed.pathname)
+-                        || /^\/api\/community\/posts\/[1-9]\d*\/media\/[1-9]\d*$/.test(parsed.pathname))) {
++                        || /^\/api\/community\/posts\/[1-9]\d*\/media\/[1-9]\d*$/.test(parsed.pathname)
++                        || /^\/api\/admin\/community-publications\/[1-9]\d*\/media\/[1-3]$/.test(parsed.pathname))) {
+                         record.private = true;
+                         const blob = await request(record, source);
+                         if (!current()) return;
+diff --git a/frontend/js/shared/reports.js b/frontend/js/shared/reports.js
+index a604d16..881c768 100644
+--- a/frontend/js/shared/reports.js
++++ b/frontend/js/shared/reports.js
+@@ -21,15 +21,15 @@ function reportStorageGet(key) {
+ }
+ function reportStorageSet(key, value) {
+     reportMemory.set(key, value);
+-    try { sessionStorage.setItem(key, value); } catch {}
++    try { sessionStorage.setItem(key, value); } catch { }
+ }
+ function reportStorageRemove(key) {
+     reportMemory.delete(key);
+-    try { sessionStorage.removeItem(key); } catch {}
++    try { sessionStorage.removeItem(key); } catch { }
+ }
+ 
+ for (const key of [REPORTS_KEY, REPORTS_CONTEXT_KEY]) {
+-    try { localStorage.removeItem(key); } catch {}
++    try { localStorage.removeItem(key); } catch { }
+ }
+ function getReportLoadState() { ensureReportContext(); return { ...reportLoadState }; }
+ 
+@@ -262,7 +262,7 @@ async function syncReportToBackend(report, token) {
+         } else {
+             const errData = await res.json().catch(() => ({}));
+             if (!currentReportRequest(context, epoch, token)) return { ok: false, error: 'Report session changed.' };
+-            const errMsg = errData.message || res.statusText || 'Report submission rejected';
++            const errMsg = errData.error || errData.message || res.statusText || 'Report submission rejected';
+             console.warn('[reports] Server report creation rejected:', errMsg);
+             const reports = getAllReports();
+             const idx = reports.findIndex(r => r.id === report.id);
+@@ -479,8 +479,10 @@ async function syncReportsFromBackend() {
+     } catch (err) {
+         console.warn('[reports] Background fetch error:', err.message);
+         if (isCurrent()) {
+-            reportLoadState = { status: 'error', hasData: reportLoadState.hasData || getAllReports().length > 0,
+-                message: err.name === 'AbortError' ? 'The reports server took too long. Retry to refresh.' : err instanceof TypeError ? 'Cannot reach the reports server. Check your connection and retry.' : err.message };
++            reportLoadState = {
++                status: 'error', hasData: reportLoadState.hasData || getAllReports().length > 0,
++                message: err.name === 'AbortError' ? 'The reports server took too long. Retry to refresh.' : err instanceof TypeError ? 'Cannot reach the reports server. Check your connection and retry.' : err.message
++            };
+             const keep = err instanceof TypeError || err.name === 'AbortError' || err.status >= 500 || err.status === 429;
+             if (keep) notifyReportsChanged();
+             else saveReports(getAllReports().filter(row => pendingReportIds.has(row.id)));
+@@ -531,7 +533,7 @@ function getReportsByBarangay(barangay) {
+ function reportMatchesSearch(report, search) {
+     const query = String(search || '').trim().toLowerCase();
+     return !query || [report.id, report.backendId, report.barangay, report.description, report.location,
+-        report.submittedBy, report.citizenCategory, report.aiCategory]
++    report.submittedBy, report.citizenCategory, report.aiCategory]
+         .some(value => String(value ?? '').toLowerCase().includes(query));
+ }
+ 
+@@ -619,21 +621,21 @@ function formatDate(isoString) {
+ 
+ function statusBadge(status) {
+     const map = {
+-        pending: { color: 'var(--color-status-pending, #f59e0b)', bg: 'var(--color-status-pending-bg, rgba(245,158,11,0.15))', label: 'Pending' },
+-        ongoing: { color: 'var(--color-status-ongoing, var(--color-accent))', bg: 'var(--color-status-ongoing-bg, var(--color-accent-border))', label: 'Ongoing' },
+-        resolved: { color: 'var(--color-status-resolved, var(--color-success))', bg: 'var(--color-status-resolved-bg, var(--color-success-border))', label: 'Resolved' }
++        pending: { color: 'var(--color-status-pending, var(--color-warning))', bg: 'var(--color-status-pending-bg, var(--color-warning-subtle))', border: 'var(--color-warning-border, transparent)', label: 'Pending' },
++        ongoing: { color: 'var(--color-status-ongoing, var(--color-info))', bg: 'var(--color-status-ongoing-bg, var(--color-info-subtle))', border: 'var(--color-accent-border, transparent)', label: 'Ongoing' },
++        resolved: { color: 'var(--color-status-resolved, var(--color-success))', bg: 'var(--color-status-resolved-bg, var(--color-success-subtle))', border: 'var(--color-success-border, transparent)', label: 'Resolved' }
+     };
+-    map.rejected = { color: 'var(--text-dim)', bg: 'var(--surface)', label: 'Rejected' };
+-    const s = map[status] || { color: 'var(--text-dim)', bg: 'var(--surface)', label: 'Unknown status' };
++    map.rejected = { color: 'var(--color-status-rejected, var(--color-danger))', bg: 'var(--color-status-rejected-bg, var(--color-danger-subtle))', border: 'var(--color-danger-border, transparent)', label: 'Rejected' };
++    const s = map[status] || { color: 'var(--text-dim)', bg: 'var(--surface)', border: 'var(--border, transparent)', label: 'Unknown status' };
+     return `<span style="color:${s.color}; background:${s.bg}; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600;">${s.label}</span>`;
+ }
+ 
+ function priorityBadge(priority) {
+     const map = {
+-        Critical: { color: 'var(--color-priority-critical, var(--color-danger))', bg: 'var(--color-priority-critical-bg, var(--color-danger-border))' },
+-        High: { color: 'var(--color-priority-high, var(--color-warning))', bg: 'var(--color-priority-high-bg, var(--color-warning-border))' },
+-        Medium: { color: 'var(--color-priority-medium, #f59e0b)', bg: 'var(--color-priority-medium-bg, rgba(245,158,11,0.15))' },
+-        Low: { color: 'var(--color-priority-low, var(--color-accent))', bg: 'var(--color-priority-low-bg, var(--color-accent-border))' }
++        Critical: { color: 'var(--color-primary, var(--color-danger))', bg: 'var(--color-priority-critical-bg, var(--color-danger-subtle))', border: 'var(--color-danger-border, transparent)' },
++        High: { color: 'var(--color-priority-high, var(--color-warning))', bg: 'var(--color-priority-high-bg, var(--color-warning-subtle))', border: 'var(--color-warning-border, transparent)' },
++        Medium: { color: 'var(--color-priority-medium, var(--color-warning))', bg: 'var(--color-priority-medium-bg, var(--color-warning-subtle))', border: 'var(--color-warning-border, transparent)' },
++        Low: { color: 'var(--color-priority-low, var(--color-info))', bg: 'var(--color-priority-low-bg, var(--color-info-subtle))', border: 'var(--color-accent-border, transparent)' }
+     };
+ 
+     const normalized = String(priority ?? '').trim().toLowerCase();
+@@ -690,7 +692,7 @@ function aiDetailsMarkup(report) {
+     const photos = Array.isArray(report.aiPhotoDetails) ? report.aiPhotoDetails : [];
+     const detections = photos.flatMap(photo => photo?.detections || []);
+     return `
+-        <div style="background:var(--color-legacy-ai-bg, var(--color-accent-subtle)); border:1px solid var(--color-legacy-ai-border, var(--color-accent-border)); border-radius:8px; padding:12px;">
++        <div style="background:var(--color-legacy-ai-bg, var(--color-accent-subtle)); solid var(--color-legacy-ai-border, var(--color-accent-border)); border-radius:8px; padding:12px;">
+             <div style="font-size:0.78rem; font-weight:700; color:var(--accent-blue); margin-bottom:7px;">AI Scan Details</div>
+             <div style="font-size:0.78rem; color:var(--text-dim); line-height:1.6;">
+                 <div><strong>Model:</strong> ${report.aiModel || 'YOLOv8m baseline'}${report.aiTask ? ` · <strong>Task:</strong> ${report.aiTask}` : ''}</div>
+diff --git a/frontend/report-details.html b/frontend/report-details.html
+index 4bf4d27..e473227 100644
+--- a/frontend/report-details.html
++++ b/frontend/report-details.html
+@@ -11,6 +11,7 @@
+     <link rel="stylesheet" href="styles/style.css">
+     <link rel="stylesheet" href="styles/sidebar.css">
+     <link rel="stylesheet" href="styles/report-details.css">
++    <link rel="stylesheet" href="styles/portal-components.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+     <link rel="stylesheet" href="styles/theme-controls.css">
+@@ -26,6 +27,8 @@
+     <script src="js/shared/reportDetailsApi.js" defer></script>
+     <script src="js/shared/portalRefresh.js" defer></script>
+     <script src="js/shared/mediaCarousel.js" defer></script>
++    <script src="js/shared/communityPublication.js" defer></script>
++    <script src="js/shared/portalComponents.js" defer></script>
+     <script src="js/reports/reportDetailsView.js" defer></script>
+     <script src="js/map/mapConfig.js" defer></script>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+diff --git a/frontend/styles/admin-overview.css b/frontend/styles/admin-overview.css
+index 04565fc..a56ebd2 100644
+--- a/frontend/styles/admin-overview.css
++++ b/frontend/styles/admin-overview.css
+@@ -1,30 +1,5 @@
+ .admin-portal {
+-    --color-success: var(--color-accent);
+-    --color-warning: var(--color-accent);
+-    --color-danger: var(--color-accent);
+-    --accent-green: var(--color-accent);
+-    --accent-orange: var(--color-accent);
+-    --accent-pink: var(--color-accent);
+-    --color-success-subtle: var(--color-accent-subtle);
+-    --color-warning-subtle: var(--color-accent-subtle);
+-    --color-danger-subtle: var(--color-accent-subtle);
+-    --color-success-border: var(--color-accent-border);
+-    --color-warning-border: var(--color-accent-border);
+-    --color-danger-border: var(--color-accent-border);
+-    --color-status-pending: var(--color-status-pending);
+-    --color-status-pending-bg: var(--color-surface-hover);
+-    --color-status-ongoing: var(--color-accent);
+-    --color-status-ongoing-bg: var(--color-accent-subtle);
+-    --color-status-resolved: var(--text-primary);
+-    --color-status-resolved-bg: var(--color-surface-hover);
+-    --color-priority-critical: var(--text-primary);
+-    --color-priority-critical-bg: var(--color-surface-hover);
+-    --color-priority-high: var(--text-primary);
+-    --color-priority-high-bg: var(--color-surface-hover);
+-    --color-priority-medium: var(--text-dim);
+-    --color-priority-medium-bg: var(--color-surface-hover);
+-    --color-priority-low: var(--text-dim);
+-    --color-priority-low-bg: var(--color-surface-hover);
++    --text-dim: var(--color-text-secondary);
+ }
+ 
+ .admin-portal .admin-header {
+@@ -54,7 +29,11 @@
+ }
+ 
+ .admin-portal .admin-stats {
+-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
++    display: grid;
++    grid-template-columns: repeat(6, minmax(140px, 1fr));
++    overflow-x: auto;
++    max-width: 100%;
++    overscroll-behavior-inline: contain;
+     gap: var(--space-4);
+     margin-bottom: var(--space-6);
+ }
+@@ -152,6 +131,10 @@
+     gap: var(--space-4);
+ }
+ 
++.admin-portal #hierarchyGrid .report-card-title {
++    font-size: 15px;
++}
++
+ .barangay-card {
+     display: flex;
+     flex-direction: column;
+@@ -628,12 +611,7 @@
+     }
+ 
+     .admin-portal .admin-stats {
+-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+-        gap: var(--space-2) !important;
+-    }
+-
+-    .admin-portal .admin-stats> :first-child {
+-        grid-column: 1 / -1;
++        gap: var(--space-2);
+     }
+ 
+     .admin-portal .stat-card {
+diff --git a/frontend/styles/community.css b/frontend/styles/community.css
+index 11b9c51..3ec7e6d 100644
+--- a/frontend/styles/community.css
++++ b/frontend/styles/community.css
+@@ -228,6 +228,47 @@
+     font-size: 13px;
+ }
+ 
++.cf-feed-notice.has-error {
++    display: flex;
++    align-items: center;
++    flex-wrap: wrap;
++    gap: var(--space-3);
++    padding-block: var(--space-4);
++    border-bottom: 1px solid var(--color-divider);
++    margin-bottom: var(--space-4);
++}
++
++.cf-feed-notice.has-error .cf-feed-state {
++    flex: 1 1 240px;
++    min-width: 0;
++    margin: 0;
++    color: var(--color-text-secondary);
++}
++
++.cf-request-error {
++    display: flex;
++    align-items: flex-start;
++    gap: var(--space-2);
++}
++
++.cf-request-error > .bx {
++    flex: 0 0 auto;
++    font-size: var(--font-size-lg);
++    line-height: 1.5;
++}
++
++.cf-request-error h2 {
++    margin: 0 0 var(--space-1);
++    font-size: var(--font-size-sm);
++    color: var(--color-text-primary);
++}
++
++.cf-request-error p {
++    margin: 0;
++    line-height: 1.5;
++    overflow-wrap: anywhere;
++}
++
+ .cf-membership-alert {
+     display: flex;
+     align-items: flex-start;
+@@ -291,10 +332,31 @@
+ }
+ 
+ .cf-retry {
+-    background: #ffffff !important;
+-    border: 1px solid #cbd5e1 !important;
+-    color: #475569 !important;
+-    margin-bottom: 16px;
++    display: inline-flex;
++    align-items: center;
++    justify-content: center;
++    gap: var(--space-2);
++    min-height: var(--touch-target);
++    padding: var(--space-2) var(--space-3);
++    background: var(--color-surface);
++    border: 1px solid var(--color-border-strong);
++    border-radius: var(--radius-sm);
++    color: var(--color-text-primary);
++    font: inherit;
++    cursor: pointer;
++}
++
++.cf-retry[hidden] {
++    display: none;
++}
++
++.cf-retry:hover {
++    background: var(--color-surface-hover);
++}
++
++.cf-retry:focus-visible {
++    outline: 2px solid var(--color-focus-ring);
++    outline-offset: 2px;
+ }
+ 
+ .cf-posts {
+@@ -398,24 +460,32 @@
+     flex-shrink: 0;
+ }
+ 
+-.cf-status-pending {
+-    background: #f1f5f9;
+-    color: #475569;
++.cf-status-pending,
++.cf-status-pill[data-status="pending"] {
++    background: var(--color-status-pending-bg);
++    color: var(--color-status-pending);
++    border: 1px solid var(--color-warning-border, transparent);
+ }
+ 
+-.cf-status-ongoing {
+-    background: #dbeafe;
+-    color: #1d4ed8;
++.cf-status-ongoing,
++.cf-status-pill[data-status="ongoing"] {
++    background: var(--color-status-ongoing-bg);
++    color: var(--color-status-ongoing);
++    border: 1px solid var(--color-accent-border, transparent);
+ }
+ 
+-.cf-status-resolved {
+-    background: #dcfce7;
+-    color: black;
++.cf-status-resolved,
++.cf-status-pill[data-status="resolved"] {
++    background: var(--color-status-resolved-bg);
++    color: var(--color-status-resolved);
++    border: 1px solid var(--color-success-border, transparent);
+ }
+ 
+-.cf-status-rejected {
+-    background: #fee2e2;
+-    color: #b91c1c;
++.cf-status-rejected,
++.cf-status-pill[data-status="rejected"] {
++    background: var(--color-status-rejected-bg);
++    color: var(--color-status-rejected);
++    border: 1px solid var(--color-danger-border, transparent);
+ }
+ 
+ .cf-more-button {
+@@ -1031,9 +1101,18 @@
+ }
+ 
+ .cf-pages {
+-    display: none !important;
++    display: flex;
++    flex-wrap: wrap;
++    align-items: center;
++    justify-content: center;
++    gap: var(--space-3);
++    padding-block: var(--space-3);
++    color: var(--color-text-secondary);
+ }
+ 
++.cf-pages[hidden] { display: none; }
++.cf-page-numbers { display: flex; flex-wrap: wrap; gap: var(--space-2); }
++
+ .cf-dialog {
+     position: fixed !important;
+     inset: 0 !important;
+@@ -1829,4 +1908,4 @@
+ 
+ :root[data-theme="dark"] .cf-mobile-nav-item.active {
+     color: #60a5fa !important;
+-}
+\ No newline at end of file
++}
+diff --git a/frontend/styles/my-reports.css b/frontend/styles/my-reports.css
+index 51f70d5..859d56f 100644
+--- a/frontend/styles/my-reports.css
++++ b/frontend/styles/my-reports.css
+@@ -211,19 +211,19 @@
+ }
+ 
+ .mr-status[data-status="pending"] {
+-    color: var(--color-warning);
++     color: var(--text-primary);
+ }
+ 
+ .mr-status[data-status="ongoing"] {
+-    color: var(--accent-blue);
++    color: var(--color-status-ongoing, var(--color-info));
+ }
+ 
+ .mr-status[data-status="resolved"] {
+-    color: var(--accent-green);
++    color: var(--color-status-resolved, var(--color-success));
+ }
+ 
+ .mr-status[data-status="rejected"] {
+-    color: var(--color-danger);
++    color: var(--color-status-rejected, var(--color-danger));
+ }
+ 
+ .mr-chevron {
+diff --git a/frontend/styles/portal-components.css b/frontend/styles/portal-components.css
+index 50af571..ca16442 100644
+--- a/frontend/styles/portal-components.css
++++ b/frontend/styles/portal-components.css
+@@ -847,3 +847,16 @@
+         padding: var(--space-4) var(--page-gutter) calc(var(--space-6) + env(safe-area-inset-bottom));
+     }
+ }
++.portal-confirm {
++    margin: auto;
++    width: min(420px, calc(100% - 32px));
++    padding: var(--space-5);
++    border: 1px solid var(--color-border);
++    border-radius: var(--radius-md);
++    background: var(--color-surface);
++    color: var(--color-text-primary);
++}
++.portal-confirm::backdrop { background: var(--color-dialog-backdrop); }
++.portal-confirm h2 { font-size: var(--font-size-lg); margin: 0; }
++.portal-confirm p { margin: var(--space-4) 0; line-height: 1.5; }
++.portal-confirm .section-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+diff --git a/frontend/styles/report-card.css b/frontend/styles/report-card.css
+index 3398499..8eac273 100644
+--- a/frontend/styles/report-card.css
++++ b/frontend/styles/report-card.css
+@@ -1,5 +1,5 @@
+ .report-card {
+-    --report-card-media-height: 160px;
++    --report-card-media-height: 180px;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+@@ -78,6 +78,7 @@
+     align-items: center;
+     min-height: 24px;
+     padding: 3px 12px;
++    border: 1px solid var(--border);
+     border-radius: 9999px;
+     background: var(--surface);
+     color: var(--text-primary);
+@@ -90,20 +91,23 @@
+ }
+ 
+ .report-card .report-card-status[data-status="resolved"] {
+-    color: var(--color-accent);
++    color: var(--color-status-resolved, var(--color-success));
++    background: var(--color-status-resolved-bg, var(--color-success-subtle));
+ }
+ 
+ .report-card .report-card-status[data-status="ongoing"] {
+-    background: var(--color-accent-subtle);
+-    color: var(--color-accent);
++    color: var(--color-status-ongoing, var(--color-info));
++    background: var(--color-status-ongoing-bg, var(--color-info-subtle));
+ }
+ 
+ .report-card .report-card-status[data-status="rejected"] {
+-    color: var(--color-danger);
++    color: var(--color-status-rejected, var(--color-danger));
++    background: var(--color-status-rejected-bg, var(--color-danger-subtle));
+ }
+ 
+ .report-card .report-card-status[data-status="pending"] {
+-    color: var(--text-primary);
++     color: var(--text-primary);
++    background: var(--color-status-pending-bg, var(--color-warning-subtle));
+ }
+ 
+ .report-card-body {
+@@ -380,9 +384,34 @@
+         gap: var(--space-2);
+     }
+ }
+-.report-category-icon { display: inline-block; width: 18px; height: 18px; flex: 0 0 18px; margin-right: 7px; vertical-align: -3px; background: currentColor; mask: var(--report-category-icon) center / contain no-repeat; }
+-.report-category-icon--pothole { --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-pothole.svg'); }
+-.report-category-icon--road-crack { --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-road-crack.svg'); }
+-.report-category-icon--streetlight { --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-streetlight.svg'); }
+-.report-category-icon--drainage { --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-drainage.svg'); }
+-.report-category-icon--report { --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-report.svg'); }
++
++.report-category-icon {
++    display: inline-block;
++    width: 18px;
++    height: 18px;
++    flex: 0 0 18px;
++    margin-right: 7px;
++    vertical-align: -3px;
++    background: currentColor;
++    mask: var(--report-category-icon) center / contain no-repeat;
++}
++
++.report-category-icon--pothole {
++    --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-pothole.svg');
++}
++
++.report-category-icon--road-crack {
++    --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-road-crack.svg');
++}
++
++.report-category-icon--streetlight {
++    --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-streetlight.svg');
++}
++
++.report-category-icon--drainage {
++    --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-drainage.svg');
++}
++
++.report-category-icon--report {
++    --report-category-icon: url('../assets/icons/neighborlens_gis_report_icons/icon-report.svg');
++}
+\ No newline at end of file
+diff --git a/frontend/styles/report-details.css b/frontend/styles/report-details.css
+index e65e7f9..5a2f6fc 100644
+--- a/frontend/styles/report-details.css
++++ b/frontend/styles/report-details.css
+@@ -114,14 +114,50 @@
+     padding: 6px 12px;
+     border-radius: var(--radius-sm);
+     background: var(--color-accent-subtle);
++    border: 1px solid var(--color-accent-border);
+     text-align: right;
+ }
+ 
+ .rd-view .rd-status strong {
+-    color: var(--accent-blue);
++    color: var(--color-accent);
+     font-size: var(--font-size-md);
+ }
+ 
++.rd-view .rd-status[data-status="resolved"] {
++    background: var(--color-status-resolved-bg, var(--color-success-subtle));
++    border-color: var(--color-success-border, var(--border));
++}
++
++.rd-view .rd-status[data-status="resolved"] strong {
++    color: var(--color-status-resolved, var(--color-success));
++}
++
++.rd-view .rd-status[data-status="ongoing"] {
++    background: var(--color-status-ongoing-bg, var(--color-info-subtle));
++    border-color: var(--color-accent-border, var(--border));
++}
++
++.rd-view .rd-status[data-status="ongoing"] strong {
++    color: var(--color-status-ongoing, var(--color-info));
++}
++
++.rd-view .rd-status[data-status="pending"] {
++    background: var(--color-status-pending-bg, var(--color-warning-subtle));
++}
++
++.rd-view .rd-status[data-status="pending"] strong {
++     color: var(--text-primary);
++}
++
++.rd-view .rd-status[data-status="rejected"] {
++    background: var(--color-status-rejected-bg, var(--color-danger-subtle));
++    border-color: var(--color-danger-border, var(--border));
++}
++
++.rd-view .rd-status[data-status="rejected"] strong {
++    color: var(--color-status-rejected, var(--color-danger));
++}
++
+ .rd-view .rd-status p {
+     font-size: var(--font-size-xs);
+     margin-top: 2px;
+@@ -267,7 +303,7 @@
+     margin-top: var(--space-4);
+ }
+ 
+-.rd-view .rd-details-grid > .rd-section {
++.rd-view .rd-details-grid>.rd-section {
+     margin: 0;
+     min-width: 0;
+ }
+@@ -426,7 +462,7 @@
+     flex-wrap: wrap;
+ }
+ 
+-.rd-view .rd-review-actions button {
++.rd-view .rd-review-actions button:not(.rd-publication-button) {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+@@ -595,6 +631,138 @@
+     }
+ }
+ 
++.rd-publication-content {
++    display: grid;
++    gap: var(--space-3);
++    margin-top: var(--space-3);
++    font-size: var(--font-size-sm);
++    line-height: 1.5;
++    min-width: 0;
++}
++
++.rd-publication-content p,
++.rd-publication-content h3,
++.rd-publication-facts,
++.rd-publication-facts dd {
++    margin: 0;
++    overflow-wrap: anywhere;
++}
++
++.rd-publication-content h3 {
++    font-size: var(--font-size-sm);
++}
++
++.rd-publication-state {
++    font-weight: 600;
++}
++
++.rd-publication-facts {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
++    gap: var(--space-3);
++}
++
++.rd-publication-facts dt,
++.rd-publication-feedback {
++    color: var(--color-text-secondary);
++    font-size: var(--font-size-xs);
++}
++
++.rd-publication-description {
++    white-space: pre-wrap;
++}
++
++.rd-publication label {
++    display: grid;
++    gap: var(--space-2);
++}
++
++.rd-publication textarea {
++    box-sizing: border-box;
++    width: 100%;
++    min-height: 80px;
++    padding: var(--space-3);
++    resize: vertical;
++    font: inherit;
++    color: var(--color-input-text);
++    background: var(--color-input-bg);
++    border: 1px solid var(--color-input-border);
++    border-radius: var(--radius-sm);
++}
++
++.rd-publication select {
++    width: 100%;
++    min-height: var(--touch-target);
++    padding: var(--space-2);
++    color: var(--color-input-text);
++    background: var(--color-input-bg);
++    border: 1px solid var(--color-input-border);
++    border-radius: var(--radius-sm);
++    font: inherit;
++}
++
++.rd-view .rd-publication-button {
++    justify-self: start;
++    min-height: var(--touch-target);
++    padding: 10px var(--space-4);
++    border: 1px solid var(--color-border-strong);
++    border-radius: var(--radius-sm);
++    color: var(--color-text-primary);
++    background: var(--color-surface-raised);
++    cursor: pointer;
++    font: inherit;
++    font-weight: 600;
++    overflow-wrap: anywhere;
++}
++
++.rd-view .rd-publication-button-primary {
++    color: var(--color-primary-contrast);
++    background: var(--color-primary);
++    border-color: var(--color-primary);
++}
++
++.rd-view .rd-publication-button:hover:not(:disabled) {
++    background: var(--color-surface-hover);
++}
++
++.rd-view .rd-publication-button-primary:hover:not(:disabled) {
++    background: var(--color-primary-hover);
++}
++
++.rd-publication :is(button, textarea, select):focus-visible {
++    outline: 2px solid var(--color-focus-ring);
++    outline-offset: 2px;
++}
++
++.rd-publication button:disabled {
++    opacity: var(--control-disabled-opacity);
++    cursor: default;
++}
++
++.rd-publication-feedback {
++    margin: var(--space-3) 0 0;
++    line-height: 1.5;
++    overflow-wrap: anywhere;
++}
++
++.rd-publication-feedback:empty {
++    display: none;
++}
++
++.rd-publication-photos {
++    display: grid;
++    grid-template-columns: repeat(2, minmax(0, 1fr));
++    gap: var(--space-2);
++    width: min(100%, 288px);
++}
++
++.rd-publication-photos img {
++    width: 100%;
++    height: 100px;
++    object-fit: cover;
++    border-radius: var(--radius-sm);
++}
++
+ @media (max-width: 540px) {
+     .rd-view .rd-location {
+         grid-template-columns: minmax(0, 1fr);
+@@ -612,4 +780,4 @@
+     .rd-view .rd-review-actions button {
+         flex: 1 1 100%;
+     }
+-}
++}
+\ No newline at end of file
+diff --git a/frontend/styles/style.css b/frontend/styles/style.css
+index 5bd53c7..abdb046 100644
+--- a/frontend/styles/style.css
++++ b/frontend/styles/style.css
+@@ -1490,7 +1490,7 @@ button:disabled {
+         padding: 4px 10px;
+     }
+ 
+-    .stats-container {
++    .stats-container:not(.admin-stats) {
+         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+         gap: 10px !important;
+     }
+diff --git a/frontend/styles/themes.css b/frontend/styles/themes.css
+index baae8ea..0942ceb 100644
+--- a/frontend/styles/themes.css
++++ b/frontend/styles/themes.css
+@@ -16,6 +16,8 @@
+     --color-status-ongoing-bg: var(--color-info-subtle);
+     --color-status-resolved: var(--color-success);
+     --color-status-resolved-bg: var(--color-success-subtle);
++    --color-status-rejected: var(--color-danger);
++    --color-status-rejected-bg: var(--color-danger-subtle);
+     --color-priority-critical: var(--color-danger);
+     --color-priority-critical-bg: var(--color-danger-subtle);
+     --color-priority-high: var(--color-warning);
+@@ -38,7 +40,7 @@
+     --color-surface-selected: #13243d;
+     --color-text-primary: #e8edf5;
+     --color-text-secondary: #9aaac0;
+-    --color-text-muted: #6b7a95;
++    --color-text-muted: #7788a3;
+     --color-border: #1e2535;
+     --color-border-strong: #334456;
+     --color-divider: var(--color-border);
+@@ -48,13 +50,13 @@
+     --color-success: #34d399;
+     --color-warning: #fbbf24;
+     --color-danger: #f87171;
+-    --color-accent-subtle: rgba(76, 157, 255, 0.1);
++    --color-accent-subtle: #13243d;
+     --color-accent-border: rgba(76, 157, 255, 0.3);
+-    --color-success-subtle: rgba(52, 211, 153, 0.08);
++    --color-success-subtle: #0e261f;
+     --color-success-border: rgba(52, 211, 153, 0.28);
+-    --color-warning-subtle: rgba(251, 191, 36, 0.08);
++    --color-warning-subtle: #27200e;
+     --color-warning-border: rgba(251, 191, 36, 0.28);
+-    --color-danger-subtle: rgba(248, 113, 113, 0.08);
++    --color-danger-subtle: #281518;
+     --color-danger-border: rgba(248, 113, 113, 0.28);
+     --color-info-surface: #13243d;
+     --color-info-text: #a9cdff;
+@@ -97,16 +99,16 @@
+     --color-surface-selected: #e4f1ff;
+     --color-text-primary: #081c49;
+     --color-text-secondary: #40598d;
+-    --color-text-muted: #637ba5;
++    --color-text-muted: #566c92;
+     --color-border: #dbe7f7;
+     --color-border-strong: #cbdefa;
+     --color-divider: var(--color-border);
+-    --color-accent: #087af8;
+-    --color-accent-hover: #006add;
++    --color-accent: #0665d0;
++    --color-accent-hover: #0558b6;
+     --color-accent-contrast: #ffffff;
+-    --color-success: #059669;
+-    --color-warning: #d97706;
+-    --color-danger: #dc2626;
++    --color-success: #047857;
++    --color-warning: #b45309;
++    --color-danger: #b91c1c;
+     --color-accent-subtle: #eef6ff;
+     --color-accent-border: #cbdefa;
+     --color-success-subtle: #ecfdf5;
+diff --git a/frontend/styles/tokens.css b/frontend/styles/tokens.css
+index 147e557..1aa00fd 100644
+--- a/frontend/styles/tokens.css
++++ b/frontend/styles/tokens.css
+@@ -7,7 +7,7 @@
+     --color-surface-selected: #13243d;
+     --color-text-primary: #e8edf5;
+     --color-text-secondary: #9aaac0;
+-    --color-text-muted: #6b7a95;
++    --color-text-muted: #7788a3;
+     --color-text-inverse: #ffffff;
+     --color-border: #1e2535;
+     --color-border-strong: #334456;
+@@ -20,18 +20,34 @@
+     --color-warning: #fbbf24;
+     --color-danger: #f87171;
+     --color-info: var(--color-accent);
+-    --color-accent-subtle: rgba(76, 157, 255, 0.1);
++    --color-accent-subtle: #13243d;
+     --color-accent-border: rgba(76, 157, 255, 0.3);
+-    --color-success-subtle: rgba(52, 211, 153, 0.08);
++    --color-success-subtle: #0e261f;
+     --color-success-border: rgba(52, 211, 153, 0.28);
+-    --color-warning-subtle: rgba(251, 191, 36, 0.08);
++    --color-warning-subtle: #27200e;
+     --color-warning-border: rgba(251, 191, 36, 0.28);
+-    --color-danger-subtle: rgba(248, 113, 113, 0.08);
++    --color-danger-subtle: #281518;
+     --color-danger-border: rgba(248, 113, 113, 0.28);
+     --color-info-subtle: var(--color-accent-subtle);
+     --color-info-border: var(--color-accent-border);
+     --color-info-surface: #13243d;
+     --color-info-text: #a9cdff;
++    --color-status-pending: var(--color-warning);
++    --color-status-pending-bg: var(--color-warning-subtle);
++    --color-status-ongoing: var(--color-info);
++    --color-status-ongoing-bg: var(--color-info-subtle);
++    --color-status-resolved: var(--color-success);
++    --color-status-resolved-bg: var(--color-success-subtle);
++    --color-status-rejected: var(--color-danger);
++    --color-status-rejected-bg: var(--color-danger-subtle);
++    --color-priority-critical: var(--color-danger);
++    --color-priority-critical-bg: var(--color-danger-subtle);
++    --color-priority-high: var(--color-warning);
++    --color-priority-high-bg: var(--color-warning-subtle);
++    --color-priority-medium: var(--color-warning);
++    --color-priority-medium-bg: var(--color-warning-subtle);
++    --color-priority-low: var(--color-info);
++    --color-priority-low-bg: var(--color-info-subtle);
+     --color-input-bg: var(--color-surface);
+     --color-input-border: var(--color-border);
+     --color-input-text: var(--color-text-primary);
+diff --git a/package.json b/package.json
+index fdffff6..91bdfab 100644
+--- a/package.json
++++ b/package.json
+@@ -20,6 +20,8 @@
+     "test:e2e:browser": "playwright test --config=playwright.phase1b.config.js",
+     "test:e2e:phase2": "playwright test --config=playwright.phase2.config.js",
+     "test:e2e:details": "playwright test --config=playwright.report-details.config.js",
++    "test:publication": "node --test --test-concurrency=1 server/tests/community-publication.test.js tests/migrations/community-publication-mysql.test.js tests/migrations/community-mysql.test.js",
++    "test:e2e:publication": "playwright test --config=playwright.publication.config.js",
+     "test:migration:phase2": "node --test tests/migrations/phase-2-mysql.test.js",
+     "test:mysql": "node --env-file=.env --test --test-concurrency=1 tests/mysql/*.test.js"
+   },
+diff --git a/server/application/use-cases/community.service.js b/server/application/use-cases/community.service.js
+index 34e2306..86914ef 100644
+--- a/server/application/use-cases/community.service.js
++++ b/server/application/use-cases/community.service.js
+@@ -2,7 +2,7 @@ const rules = require('../../domain/community/community.rules');
+ const { ForbiddenError, NotFoundError, ConflictError, ValidationError, PersistenceError } = require('../../domain/errors');
+ const { categoryOf } = require('../../domain/reports/damageCategories');
+ 
+-function createCommunityService({ getDatabase, repository, reports, reportImages, localEvidence, getImageStorage, media, audit, events, reportClock, persona }) {
++function createCommunityService({ getDatabase, repository, reports, reportImages, localEvidence, getImageStorage, media, audit, events, reportClock, persona, publications }) {
+   function toIso(val, offset = 0) {
+     return val ? reportClock.utc(val, offset) : null;
+   }
+@@ -66,7 +66,7 @@ function createCommunityService({ getDatabase, repository, reports, reportImages
+     return {
+       id: Number(row.id), body: row.body, author: serializableAuthor(row), barangay: row.barangay,
+       createdAt: toIso(row.created_at, dbOffset), updatedAt: toIso(row.updated_at, dbOffset), isOwnPost: Number(row.author_id) === Number(user.id),
+-      canEdit: Number(row.author_id) === Number(user.id), canDelete: Number(row.author_id) === Number(user.id),
++      canEdit: Boolean(row.is_official) && Number(row.author_id) === Number(user.id), canDelete: Number(row.author_id) === Number(user.id),
+       media: images.map(image => ({ id: Number(image.id), order: Number(image.image_order), url: `/api/community/posts/${row.id}/media/${image.id}` })),
+       linkedReport: await linked(row, db),
+       reactions: { total: Number(row.reaction_total), like: Number(row.like_total), heart: Number(row.heart_total), mine: await repository.mine(row.id, user.id, db) },
+@@ -120,18 +120,17 @@ function createCommunityService({ getDatabase, repository, reports, reportImages
+     };
+   }
+   async function publish(user, input, files = []) {
++    if (user?.role === 'citizen') return publications.request(user, input, files);
+     const scope = rules.member(user);
+     const key = rules.key(input.requestKey);
+     const reportId = input.reportId ? rules.id(input.reportId) : null;
+-    const isCitizen = user.role === 'citizen';
+-    if (isCitizen && !reportId) throw new ValidationError('A valid report is required to share with the community.');
+     let report = null;
+     if (reportId) {
+       report = await reports.findById(reportId);
+       if (!report) throw new NotFoundError('Report not found.');
+       if (Number(report.submitted_by) !== Number(user.id) || Number(report.barangay_id) !== scope) throw new ForbiddenError('Only your own reports in this barangay can be published.');
+     }
+-    const body = rules.text(input.body || report?.description || '', 2000, isCitizen ? false : true);
++    const body = rules.text(input.body || report?.description || '', 2000);
+     if (!body && !files.length && !reportId) throw new ValidationError('Add an update, a photo, or an owned report.');
+     if (files.length > 3) throw new ValidationError('Attach up to three photos.');
+     const uploadFiles = [...files];
+@@ -197,9 +196,6 @@ function createCommunityService({ getDatabase, repository, reports, reportImages
+           }
+           throw dbError;
+         }
+-        if (user.role === 'citizen') {
+-          await resolvePersona(created.insertId, user.id, db);
+-        }
+         for (const [index, reference] of uploaded.entries()) await repository.addMedia(created.insertId, reference, index + 1, db);
+         await audit.writeAudit(user.id, 'community_post_created', 'community_post', created.insertId, db);
+         const post = await dto(await visible(created.insertId, user, db), user, db);
+@@ -230,6 +226,7 @@ function createCommunityService({ getDatabase, repository, reports, reportImages
+       await repository.lockPost(rules.id(id), db);
+       const row = await visible(id, user, db);
+       rules.owner(row, user);
++      if (!deleting && !row.is_official) throw new ConflictError('Approved citizen publication content cannot be edited. Delete it or contact an administrator.');
+       const images = deleting ? await repository.media(row.id, db) : [];
+       if (deleting) await repository.remove(row.id, db);
+       else await repository.edit(row.id, rules.text(input.body, 2000), db);
+@@ -381,7 +378,9 @@ function createCommunityService({ getDatabase, repository, reports, reportImages
+     if (user.role !== 'citizen') return { reports: [] };
+     const all = await reports.findAll({ role: 'citizen', userId: user.id, barangayId: scope });
+     const shared = new Set(await repository.sharedReportIds(scope));
+-    const items = (all || []).filter(item => Number(item.barangay_id) === scope && !shared.has(Number(item.id)));
++    const pending = new Map((await publications.owned(user)).requests.map(row => [row.reportId, row]));
++    const items = (all || []).filter(item => Number(item.barangay_id) === scope && !shared.has(Number(item.id)) && (!pending.has(Number(item.id)) || (pending.get(Number(item.id)).state === 'rejected' && pending.get(Number(item.id)).attempts < 3)))
++      .map(item => ({ ...item, publication: pending.get(Number(item.id)) || { state: 'unshared' } }));
+     return { reports: items };
+   }
+   return { list, get, publish, update, react, comments, comment, reactComment, image, publicReport, identity, eligibleReports };
+diff --git a/server/application/use-cases/notification.service.js b/server/application/use-cases/notification.service.js
+index 7a415e3..7e53ef9 100644
+--- a/server/application/use-cases/notification.service.js
++++ b/server/application/use-cases/notification.service.js
+@@ -42,6 +42,18 @@ function parseSafeOffset(val) {
+ 
+ function createNotificationService({ notificationRepository, notificationEvents }) {
+   class NotificationService {
++    async notifyPublicationReview({ userId, reportId, client }) {
++      return notificationRepository.create({ userId, reportId, type: 'status_update', title: 'New post awaiting approval',
++        message: `Report #${reportId} is waiting for Community Feed approval.`
++      }, client);
++    }
++    async notifyPublicationDecision({ userId, reportId, state, reason, client }) {
++      if (!['approved', 'rejected'].includes(state)) throw new ValidationError('Invalid publication outcome.');
++      return notificationRepository.create({ userId, reportId, type: 'status_update',
++        title: state === 'approved' ? 'Community publication approved' : 'Community publication rejected',
++        message: state === 'approved' ? 'Your report has been approved for the Community Feed. Report processing continues separately.' : reason
++      }, client);
++    }
+     async listNotifications(user, query = {}) {
+       if (!user?.id) throw new ValidationError('User identification required.');
+ 
+diff --git a/server/application/use-cases/report.service.js b/server/application/use-cases/report.service.js
+index 98a328a..b552a13 100644
+--- a/server/application/use-cases/report.service.js
++++ b/server/application/use-cases/report.service.js
+@@ -56,6 +56,7 @@ function createReportService({
+   damageDetectionService,
+   assessmentProof,
+   notificationService,
++  publicationService,
+   reportClock
+ }) {
+   const IMAGE_EXTENSIONS = Object.freeze({
+@@ -289,7 +290,7 @@ function createReportService({
+       const value = parsedReport.value;
+       const fileList = parsedImages.value;
+ 
+-      let reportId;
++      let reportId, preparedPublication, queuedPublication;
+       try {
+         for (const file of fileList) await imageInput.validateReportImage(file);
+         const submissionAssessment = await resolveSubmissionAssessment(body, value, fileList, user);
+@@ -321,6 +322,14 @@ function createReportService({
+         const verification = await damageDetectionService.verifyReportImages(fileList);
+ 
+         const storedImages = await storeReportsImage(fileList, user?.id, uploadedRefs);
++        if (user?.role === 'citizen' && publicationService) {
++          const photos = [];
++          for (const file of fileList) {
++            const image = await imageInput.read(file);
++            photos.push({ buffer: image.buffer, mimetype: image.mimeType });
++          }
++          preparedPublication = await publicationService.prepareAutomatic(value.description, photos);
++        }
+ 
+         reportId = await getDatabase().withTransaction(async (tx) => {
+           if (submissionAssessment) {
+@@ -360,9 +369,11 @@ function createReportService({
+           if (verification) await this.persistVerification(insertId, verification, tx);
+ 
+           await auditService.writeAudit(user?.id, 'create', 'report', insertId, tx);
++          if (preparedPublication) queuedPublication = await publicationService.enqueueAutomatic(user, insertId, preparedPublication, tx);
+           return insertId;
+         });
+       } catch (error) {
++        if (preparedPublication) await publicationService.discardAutomatic(preparedPublication);
+         if (error instanceof AppError && !(error instanceof PersistenceError)) {
+           throw error;
+         }
+@@ -370,6 +381,7 @@ function createReportService({
+       }
+ 
+       markPersisted();
++      if (queuedPublication) publicationService.announceAutomatic(queuedPublication);
+ 
+       const created = await reportRepository.findById(reportId);
+       const images = await reportImageRepository.findByReportId(reportId);
+@@ -386,7 +398,7 @@ function createReportService({
+         }
+       }
+ 
+-      return { id: reportId, reportId, ...result };
++      return { id: reportId, reportId, ...result, ...(queuedPublication ? { publication: queuedPublication.publication } : {}) };
+     }
+ 
+     resolveAiFields(assessment) {
+diff --git a/server/application/use-cases/report.validation.js b/server/application/use-cases/report.validation.js
+index 516c757..04fe12f 100644
+--- a/server/application/use-cases/report.validation.js
++++ b/server/application/use-cases/report.validation.js
+@@ -27,7 +27,6 @@ function validateReport(body, maxGpsAccuracyMeters = 100) {
+   const description = text(body?.description, 2000);
+   const barangay = text(body?.barangay, 100);
+   if (!description) return { error: 'Description is required.' };
+-  if (!barangay) return { error: 'Barangay is required.' };
+ 
+   const latitude = finiteOrNull(body?.latitude);
+   const longitude = finiteOrNull(body?.longitude);
+diff --git a/server/composition.js b/server/composition.js
+index 387ec58..cd80de4 100644
+--- a/server/composition.js
++++ b/server/composition.js
+@@ -32,6 +32,18 @@ const { createNotificationService } = require('./application/use-cases/notificat
+ const notificationService = createNotificationService({ notificationRepository, notificationEvents });
+ const geofenceService = createGeofenceService({ config, barangayRepository });
+ const damageDetectionService = createDamageDetectionService({ aiProvider, imageInput, assessmentProof });
++const communityPublicationService = require('./application/use-cases/communityPublication.service').createCommunityPublicationService({
++  getDatabase,
++  barangays: barangayRepository,
++  reportImages: reportImageRepository,
++  reportClock,
++  repository: require('./infrastructure/repositories/communityPublication.repository'),
++  community: require('./infrastructure/repositories/community.repository'),
++  media: require('./infrastructure/storage/communityMedia.adapter'),
++  audit: auditService,
++  notifications: notificationService,
++  events: notificationEvents
++});
+ const reportService = createReportService({
+   config,
+   getDatabase,
+@@ -47,6 +59,7 @@ const reportService = createReportService({
+   damageDetectionService,
+   assessmentProof,
+   notificationService,
++  publicationService: communityPublicationService,
+   reportClock
+ });
+ 
+@@ -72,6 +85,7 @@ const reportGisService = require('./application/use-cases/reportGis.service').cr
+ });
+ const { createCommunityService } = require('./application/use-cases/community.service');
+ const communityService = createCommunityService({
++  publications: communityPublicationService,
+   reportClock,
+   persona: require('./infrastructure/security/communityPersona'),
+   getDatabase,
+@@ -97,6 +111,7 @@ module.exports = {
+   streamTickets,
+   reportAnalyticsService,
+   barangayOperationsService,
+-  communityService
++  communityService,
++  communityPublicationService
+ };
+ 
+diff --git a/server/domain/community/community.rules.js b/server/domain/community/community.rules.js
+index c351dd3..92aa032 100644
+--- a/server/domain/community/community.rules.js
++++ b/server/domain/community/community.rules.js
+@@ -40,7 +40,7 @@ function query(input = {}) {
+ 
+ function commentQuery(input = {}) {
+   const { parentCommentId, ...rest } = input;
+-  return { ...query(rest), parent: parentId(parentCommentId) };
++  return { ...query({ ...rest, pageSize: rest.pageSize ?? 5 }), parent: parentId(parentCommentId) };
+ }
+ 
+ function reaction(value) {
+diff --git a/server/infrastructure/database/sqlite/schema.sql b/server/infrastructure/database/sqlite/schema.sql
+index 76d6168..9c3ead9 100644
+--- a/server/infrastructure/database/sqlite/schema.sql
++++ b/server/infrastructure/database/sqlite/schema.sql
+@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS reports (
+   location TEXT,
+   barangay TEXT NOT NULL,
+   barangay_id INTEGER,
+-  jurisdiction_source TEXT NOT NULL DEFAULT 'citizen_declared' CHECK (jurisdiction_source IN ('citizen_declared', 'geofence_resolved')),
++  jurisdiction_source TEXT NOT NULL DEFAULT 'citizen_declared' CHECK (jurisdiction_source IN ('citizen_declared', 'geofence_resolved', 'admin_assigned')),
+   boundary_check_status TEXT NOT NULL DEFAULT 'service_area_unknown' CHECK (boundary_check_status IN ('inside_service_area', 'outside_service_area', 'service_area_unknown')),
+   latitude REAL,
+   longitude REAL,
+diff --git a/server/infrastructure/database/sqlite/sqliteAdapter.js b/server/infrastructure/database/sqlite/sqliteAdapter.js
+index d6b787a..10595e9 100644
+--- a/server/infrastructure/database/sqlite/sqliteAdapter.js
++++ b/server/infrastructure/database/sqlite/sqliteAdapter.js
+@@ -12,7 +12,7 @@ const { seedBarangayCatalogSync } = require('../barangayCatalog');
+ // repository so runs leave no WAL/SHM artifacts behind.
+ 
+ const SCHEMA_PATH = path.join(__dirname, 'schema.sql');
+-const SCHEMA_VERSION = 5;
++const SCHEMA_VERSION = 7;
+ 
+ function removeStaleDatabase(filePath) {
+   for (const suffix of ['', '-wal', '-shm']) {
+@@ -55,6 +55,7 @@ function openDatabase(filePath) {
+ 
+   db.exec(fs.readFileSync(SCHEMA_PATH, 'utf8'));
+   db.exec(fs.readFileSync(path.join(__dirname, 'community.sql'), 'utf8'));
++  db.exec(fs.readFileSync(path.join(__dirname, 'publication.sql'), 'utf8'));
+   if (!db.prepare('PRAGMA table_info(reports)').all().some(column => column.name === 'submission_assessment')) {
+     db.exec('ALTER TABLE reports ADD COLUMN submission_assessment TEXT CHECK (submission_assessment IS NULL OR json_valid(submission_assessment))');
+   }
+diff --git a/server/infrastructure/repositories/community.repository.js b/server/infrastructure/repositories/community.repository.js
+index 09220c1..d0b05f0 100644
+--- a/server/infrastructure/repositories/community.repository.js
++++ b/server/infrastructure/repositories/community.repository.js
+@@ -9,6 +9,7 @@ const columns = `p.*, b.name AS barangay,
+   cp.display_name AS author_pseudonym,
+   cp.avatar_variant AS author_avatar_variant`;
+ const from = 'FROM community_posts p JOIN barangays b ON b.id = p.barangay_id LEFT JOIN community_personas cp ON cp.post_id = p.id AND cp.user_id = p.author_id';
++const published = `(p.is_official = 1 OR EXISTS (SELECT 1 FROM community_publication_requests approval WHERE approval.post_id = p.id AND approval.state = 'approved') OR EXISTS (SELECT 1 FROM community_publication_legacy legacy WHERE legacy.post_id = p.id))`;
+ const lock = () => getDatabase().driver === 'mysql' ? ' FOR UPDATE' : '';
+ const eligibleComments = `WITH RECURSIVE eligible(id, parent_id) AS (
+   SELECT id, parent_id FROM community_comments WHERE post_id = ? AND deleted_at IS NULL
+@@ -19,7 +20,7 @@ class CommunityRepository {
+   async lockUser(id, db) { return (await db.query(`SELECT id, role, barangay_id, status, token_version FROM users WHERE id = ?${lock()}`, [id]))[0]; }
+   async lockPost(id, db) { await db.query(`SELECT id FROM community_posts WHERE id = ?${lock()}`, [id]); }
+   async find(id, scope, db = getDatabase()) {
+-    const rows = await db.query(`SELECT ${columns} ${from} WHERE p.id = ? AND p.barangay_id = ? AND p.deleted_at IS NULL`, [id, scope]);
++    const rows = await db.query(`SELECT ${columns} ${from} WHERE p.id = ? AND p.barangay_id = ? AND p.deleted_at IS NULL AND ${published}`, [id, scope]);
+     return rows[0] || null;
+   }
+   async byRequest(user, key, db = getDatabase()) {
+@@ -33,7 +34,7 @@ class CommunityRepository {
+     return rows.map(row => Number(row.report_id));
+   }
+   async list(scope, query, db = getDatabase()) {
+-    const terms = ['p.barangay_id = ?', 'p.deleted_at IS NULL'];
++    const terms = ['p.barangay_id = ?', 'p.deleted_at IS NULL', published];
+     const params = [scope];
+     if (query.search) {
+       const extraction = field => getDatabase().driver === 'mysql' ? `JSON_UNQUOTE(JSON_EXTRACT(linked.submission_assessment, '$.${field}'))` : `json_extract(linked.submission_assessment, '$.${field}')`;
+diff --git a/server/infrastructure/storage/communityMedia.adapter.js b/server/infrastructure/storage/communityMedia.adapter.js
+index 76a9be5..2d17c16 100644
+--- a/server/infrastructure/storage/communityMedia.adapter.js
++++ b/server/infrastructure/storage/communityMedia.adapter.js
+@@ -14,17 +14,19 @@ function fingerprint(body, files) {
+   return hash.digest('hex');
+ }
+ 
+-async function publish(file) {
+-  if (!Buffer.isBuffer(file?.buffer) || !file.buffer.length || file.buffer.length > 5 * 1024 * 1024) throw new ValidationError('Choose an image no larger than 5 MB.');
++async function publish(file, { reportEvidence = false } = {}) {
++  const maxBytes = (reportEvidence ? 10 : 5) * 1024 * 1024;
++  if (!Buffer.isBuffer(file?.buffer) || !file.buffer.length || file.buffer.length > maxBytes) throw new ValidationError(`Choose an image no larger than ${reportEvidence ? 10 : 5} MB.`);
++  const options = { failOn: 'warning', ...(reportEvidence ? {} : { limitInputPixels: 16000000 }) };
+   let output;
+   try {
+-    const metadata = await sharp(file.buffer, { limitInputPixels: 16000000, failOn: 'warning' }).metadata();
++    const metadata = await sharp(file.buffer, options).metadata();
+     if ((metadata.pages || 1) !== 1) throw new Error('Animated image.');
+     await imageInput.validateReportImage(file);
+-    output = await sharp(file.buffer, { limitInputPixels: 16000000, failOn: 'warning' }).rotate()
++    output = await sharp(file.buffer, options).rotate()
+       .resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true }).webp({ quality: 82 }).toBuffer();
+   } catch {
+-    throw new ValidationError('Use a complete JPEG, PNG, or WebP photo under 5 MB and 16 megapixels.');
++    throw new ValidationError(reportEvidence ? 'Use a complete supported report photo under 10 MB.' : 'Use a complete JPEG, PNG, or WebP photo under 5 MB and 16 megapixels.');
+   }
+   if (output.length > 5 * 1024 * 1024) throw new ValidationError('Published photo exceeds 5 MB.');
+   const storage = getImageStorage();
+@@ -86,4 +88,4 @@ async function readAttachment(reference) {
+   }
+ }
+ 
+-module.exports = { publish, remove, read, readAttachment, fingerprint };
++module.exports = { publish, publishReportEvidence: file => publish(file, { reportEvidence: true }), remove, read, readAttachment, fingerprint };
+diff --git a/server/presentation/http/controllers/community.controller.js b/server/presentation/http/controllers/community.controller.js
+index 622306c..f25c0ac 100644
+--- a/server/presentation/http/controllers/community.controller.js
++++ b/server/presentation/http/controllers/community.controller.js
+@@ -1,10 +1,8 @@
+ const { communityService } = require('../../../composition');
+-const { AppError, PersistenceError } = require('../../../domain/errors');
++const communityError = require('./communityError');
+ 
+ function safeError(error) {
+-  if (error instanceof AppError) return error;
+-  console.error('Community infrastructure operation failed.');
+-  return new PersistenceError('The community request could not be completed. Please retry.');
++  return communityError(error, 'The community request could not be completed. Please retry.');
+ }
+ 
+ function handle(operation, status = 200) {
+diff --git a/server/presentation/http/routes/admin.routes.js b/server/presentation/http/routes/admin.routes.js
+index 6c02653..28433fe 100644
+--- a/server/presentation/http/routes/admin.routes.js
++++ b/server/presentation/http/routes/admin.routes.js
+@@ -6,6 +6,15 @@ const { requireAuth, requireRole } = require('../middleware/auth.middleware');
+ const router = express.Router();
+ 
+ router.use(requireAuth, requireRole('admin'));
++const publication = require('../controllers/communityPublication.controller');
++const { createRequestRateLimit } = require('../middleware/requestRateLimit.middleware');
++const reviewLimit = createRequestRateLimit({ maximum: 40, key: req => String(req.user.id) });
++router.get('/community-publications', publication.queue);
++router.get('/community-publications/:id', publication.detail);
++router.get('/community-publications/:id/media/:order', publication.image);
++router.post('/community-publications/:id/assign', reviewLimit, publication.assign);
++router.patch('/community-publications/:id', reviewLimit, publication.resolveJurisdiction);
++router.post('/community-publications/:id/decision', reviewLimit, publication.decide);
+ router.get('/analytics/reports', (req, res, next) => reportAnalyticsController.getAnalytics(req, res, next));
+ 
+ router.get('/users', (req, res, next) => adminController.getUsers(req, res, next));
+diff --git a/server/presentation/http/routes/community.routes.js b/server/presentation/http/routes/community.routes.js
+index c091eb7..acc5538 100644
+--- a/server/presentation/http/routes/community.routes.js
++++ b/server/presentation/http/routes/community.routes.js
+@@ -13,6 +13,7 @@ const uploadCapacity = (req, res, next) => req.is('multipart/form-data') ? image
+ router.use(createRequestRateLimit({ maximum: 600 }), requireAuth, limit(240));
+ router.get('/posts/:id/identity', requireRole('admin'), controller.identity);
+ router.use(requireRole('citizen', 'barangay'));
++router.get('/publication-requests', requireRole('citizen'), require('../controllers/communityPublication.controller').owned);
+ router.get('/eligible-reports', controller.eligibleReports);
+ router.get('/posts', controller.list);
+ router.post('/posts', limit(10), uploadCapacity, (req, res, next) => upload(req, res, error => {
+diff --git a/server/tests/community-state.test.js b/server/tests/community-state.test.js
+index e0ba0ce..9684c3a 100644
+--- a/server/tests/community-state.test.js
++++ b/server/tests/community-state.test.js
+@@ -86,16 +86,16 @@ test('Supabase community publishing requires a confirmed private bucket', async
+     await Adapter.prototype.assertPrivate.call({ bucketName: 'fixture', client: { storage: { getBucket: async () => ({ data: { public: false } }) } } });
+ });
+ test('failed transaction cleans only newly published derivatives with bounded retries', async () => {
+-    const { createCommunityService } = require('../application/use-cases/community.service');
++    const { createCommunityPublicationService } = require('../application/use-cases/communityPublication.service');
+     const removed = [], writes = [];
+     const user = { id: 1, role: 'citizen', barangayId: 1, tokenVersion: 0 };
+-    const service = createCommunityService({
++    const service = createCommunityPublicationService({
+         getDatabase: () => ({ withTransaction: async fn => fn({}) }),
+-        repository: { byRequest: async () => null, lockUser: async () => ({ role: 'citizen', status: 'active', barangay_id: 1, token_version: 0 }), create: async () => { throw new Error('Isolated transaction failure'); } },
+-        reports: { findById: async () => ({ submitted_by: 1, barangay_id: 1, image_path: '/uploads/private-original.png' }) },
++        repository: { lockReport: async () => ({ submitted_by: 1, barangay_id: 1 }), admins: async () => [], byKey: async () => null, find: async () => null, workload: async () => [], create: async () => { throw new Error('Isolated transaction failure'); } },
++        community: { byReportId: async () => null, lockUser: async () => ({ role: 'citizen', status: 'active', barangay_id: 1, token_version: 0 }) },
+         media: { fingerprint: () => 'a'.repeat(64), publish: async () => { writes.push('new-derivative'); return 'new-derivative'; }, remove: async reference => { removed.push(reference); if (removed.length === 1) throw new Error('Transient storage failure'); } },
+         audit: {}, events: {}
+     });
+-    await assert.rejects(service.publish(user, { body: 'Public fixture', reportId: 1, requestKey: 'fixture-rollback-key' }, [{ buffer: Buffer.from('fixture') }]), /Isolated transaction failure/);
++    await assert.rejects(service.request(user, { body: 'Public fixture', reportId: 1, requestKey: 'fixture-rollback-key' }, [{ buffer: Buffer.from('fixture') }]), /Isolated transaction failure/);
+     assert.deepEqual(writes, ['new-derivative']); assert.deepEqual(removed, ['new-derivative', 'new-derivative']);
+ });
+diff --git a/server/tests/report.service.storage.test.js b/server/tests/report.service.storage.test.js
+index 11ba58e..f9d9926 100644
+--- a/server/tests/report.service.storage.test.js
++++ b/server/tests/report.service.storage.test.js
+@@ -5,7 +5,7 @@ const { JPEG_BYTES, PNG_BYTES, WEBP_BYTES } = require('../../tests/support/image
+ 
+ const env = require('../infrastructure/config/env');
+ const { setStorageInstance, resetStorage } = require('../infrastructure/storage/storageFactory');
+-const { reportService, damageDetectionService, geofenceService } = require('../composition');
++const { reportService, damageDetectionService, geofenceService, communityPublicationService } = require('../composition');
+ const reportRepository = require('../infrastructure/repositories/report.repository');
+ const barangayRepository = require('../infrastructure/repositories/barangay.repository');
+ const reportImageRepository = require('../infrastructure/repositories/reportImage.repository');
+@@ -62,6 +62,10 @@ function install({
+   };
+ 
+   const originalDriver = env.STORAGE_DRIVER;
++  swap(communityPublicationService, 'prepareAutomatic', async () => ({ media: [] }));
++  swap(communityPublicationService, 'enqueueAutomatic', async () => ({ publication: { state: 'pending_approval' } }));
++  swap(communityPublicationService, 'discardAutomatic', async () => {});
++  swap(communityPublicationService, 'announceAutomatic', () => {});
+   env.STORAGE_DRIVER = driver;
+   restore.push(() => { env.STORAGE_DRIVER = originalDriver; });
+ 
+diff --git a/tests/integration/ai-upload-memory.test.js b/tests/integration/ai-upload-memory.test.js
+index 93db7c2..6bdabd1 100644
+--- a/tests/integration/ai-upload-memory.test.js
++++ b/tests/integration/ai-upload-memory.test.js
+@@ -209,7 +209,7 @@ test('report submission still persists its images to the upload folder', async (
+   assert.equal(body.images.length, 2);
+ 
+   const added = listDir(UPLOAD_ROOT).filter(name => !before.has(name));
+-  assert.equal(added.length, 2);
++  assert.equal(added.length, 4, 'Two original evidence files and two private publication previews are persisted.');
+   for (const image of body.images) {
+     const [row] = await require('../support/test-app').testDatabase().query('SELECT image_path FROM report_images WHERE id = ?', [image.id]);
+     const stored = path.basename(row.image_path);
+diff --git a/tests/integration/audit-remediation.test.js b/tests/integration/audit-remediation.test.js
+index 1469a51..b971ed2 100644
+--- a/tests/integration/audit-remediation.test.js
++++ b/tests/integration/audit-remediation.test.js
+@@ -270,7 +270,7 @@ test('a successfully stored report keeps its evidence on disk', async () => {
+   const { status, body } = await submitReport();
+ 
+   assert.equal(status, 201);
+-  assert.equal(await uploadCount(), before + 2, 'both evidence images must remain');
++  assert.equal(await uploadCount(), before + 4, 'both original evidence images and private publication previews must remain');
+   for (const image of body.images) {
+     const [stored] = await require('../support/test-app').testDatabase().query('SELECT image_path FROM report_images WHERE id = ?', [image.id]);
+     await fs.access(path.join(UPLOAD_ROOT, path.basename(stored.image_path)));
+diff --git a/tests/integration/backend-qa.test.js b/tests/integration/backend-qa.test.js
+index 8a0442a..905d6fb 100644
+--- a/tests/integration/backend-qa.test.js
++++ b/tests/integration/backend-qa.test.js
+@@ -219,15 +219,19 @@ test('non-numeric coordinates are stored as null rather than coerced to zero', a
+   assert.equal(created.longitude, null);
+ });
+ 
+-test('a missing barangay is rejected and the uploaded files do not persist a report', async () => {
++test('an unresolved incident barangay saves a private report and queues Admin review without using registration address', async () => {
+   const response = await fetch(`${baseUrl}/api/reports`, authed(citizenToken, {
+     method: 'POST',
+     body: reportForm({ barangay: '' })
+   }));
+ 
+-  assert.equal(response.status, 400);
++  assert.equal(response.status, 201);
+   const body = await response.json();
+-  assert.match(body.error, /Barangay is required/);
++  assert.equal(body.barangay, '');
++  assert.equal(body.barangay_id, null);
++  assert.equal(body.status, 'pending');
++  assert.equal(body.publication.state, 'pending_approval');
++  assert.equal(body.images.length, 2);
+ });
+ 
+ // -------------------------------------------------------------- damage detection
+diff --git a/tests/integration/community-enhancements.test.js b/tests/integration/community-enhancements.test.js
+index 5762de7..cd7444d 100644
+--- a/tests/integration/community-enhancements.test.js
++++ b/tests/integration/community-enhancements.test.js
+@@ -8,6 +8,8 @@ process.env.TEST_DB_FILE = path.join(os.tmpdir(), `neighborlens-enhancements-${r
+ process.env.STORAGE_DRIVER = 'local';
+ const { startTestServer, testDatabase } = require('../support/test-app');
+ const rules = require('../../server/domain/community/community.rules');
++const { adminSession } = require('../support/accounts');
++const { approvePublication } = require('../support/publication');
+ 
+ let server, base, citizenA, citizenB, post1, post2;
+ 
+@@ -38,6 +40,7 @@ test.before(async () => {
+   base = started.baseUrl;
+   citizenA = await register('citizen_alpha');
+   citizenB = await register('citizen_beta');
++  const admin = await adminSession(base);
+ 
+   const report1 = (await testDatabase().execute(
+     'INSERT INTO reports (description, location, barangay, barangay_id, submitted_by, ai_category) VALUES (?, ?, ?, ?, ?, ?)',
+@@ -54,14 +57,16 @@ test.before(async () => {
+     requestKey: randomUUID(),
+     reportId: report1
+   })).json();
+-  post1 = pub1.post;
++  assert.equal(pub1.publication.state, 'pending_approval');
++  post1 = await approvePublication(base, report1, admin, citizenA);
+ 
+   const pub2 = await (await request('/posts', citizenB, 'POST', {
+     body: 'Public Post Two',
+     requestKey: randomUUID(),
+     reportId: report2
+   })).json();
+-  post2 = pub2.post;
++  assert.equal(pub2.publication.state, 'pending_approval');
++  post2 = await approvePublication(base, report2, admin, citizenB);
+ });
+ 
+ test.after(async () => {
+diff --git a/tests/integration/community.test.js b/tests/integration/community.test.js
+index 897dadc..07772c7 100644
+--- a/tests/integration/community.test.js
++++ b/tests/integration/community.test.js
+@@ -9,6 +9,7 @@ process.env.STORAGE_DRIVER = 'local';
+ const { startTestServer, testDatabase } = require('../support/test-app');
+ const { adminSession, createOfficial } = require('../support/accounts');
+ const { PNG_BYTES } = require('../support/image-fixtures');
++const { approvePublication } = require('../support/publication');
+ let server, base, citizen, neighbor, outsider, official, admin, privateReport, post;
+ 
+ async function request(url, user, method = 'GET', body) {
+@@ -45,7 +46,10 @@ test('explicit publication keeps anonymous DTOs, strips photo metadata and prese
+   form.append('photos', new File([PNG_BYTES], 'PRIVATE-NAME-ID.png', { type: 'image/png' }));
+   const response = await fetch(base + '/api/community/posts', { method: 'POST', headers: { Authorization: `Bearer ${citizen.token}` }, body: form });
+   assert.equal(response.status, 201);
+-  post = (await response.json()).post;
++  const requested = await response.json();
++  assert.equal(requested.publication.state, 'pending_approval');
++  assert.equal((await (await request('/posts', neighbor)).json()).posts.length, 0);
++  post = await approvePublication(base, privateReport, admin, citizen);
+   assert.equal(post.author.label, 'Anonymous resident'); assert.equal(post.author.official, false);
+   assert.equal(post.linkedReport.category, 'Road Damage');
+   const publicData = await (await request(`/posts/${post.id}`, neighbor)).json();
+@@ -74,8 +78,9 @@ test('publication is idempotent and rejects nonowned report linking and forged o
+   const payload = { body: 'Unique publication', requestKey: randomUUID(), official: true, author_id: outsider.user.id, barangayId: 2, reportId: secondReport };
+   const first = await (await request('/posts', citizen, 'POST', payload)).json();
+   const again = await (await request('/posts', citizen, 'POST', payload)).json();
+-  assert.equal(first.post.id, again.post.id); assert.equal(again.created, false);
+-  assert.equal(first.post.author.official, false); assert.equal(first.post.barangay, 'Barangay 1');
++  assert.equal(first.publication.reportId, again.publication.reportId); assert.equal(again.created, false);
++  const approved = await approvePublication(base, secondReport, admin, citizen);
++  assert.equal(approved.author.official, false); assert.equal(approved.barangay, 'Barangay 1');
+   assert.equal((await request('/posts', citizen, 'POST', { ...payload, body: 'Changed' })).status, 409);
+   assert.equal((await request('/posts', citizen, 'POST', { body: 'Duplicate share attempt', requestKey: randomUUID(), reportId: secondReport })).status, 409);
+   assert.equal((await request('/posts', neighbor, 'POST', { body: 'Stolen link', requestKey: randomUUID(), reportId: privateReport })).status, 403);
+@@ -150,7 +155,8 @@ test('real source EXIF is removed and deletion never removes original report att
+   form.append('photos', new File([source], 'private-person.jpg', { type: 'image/jpeg' }));
+   const response = await fetch(base + '/api/community/posts', { method: 'POST', headers: { Authorization: `Bearer ${citizen.token}` }, body: form });
+   assert.equal(response.status, 201);
+-  const published = (await response.json()).post;
++  assert.equal((await response.json()).publication.state, 'pending_approval');
++  const published = await approvePublication(base, exifReport, admin, citizen);
+   const photo = await request(`/posts/${published.id}/media/${published.media[0].id}`, neighbor);
+   assert.equal((await sharp(Buffer.from(await photo.arrayBuffer())).metadata()).exif, undefined);
+   const reference = (await testDatabase().query('SELECT storage_reference FROM community_media WHERE post_id = ?', [published.id]))[0].storage_reference;
+diff --git a/tests/integration/phase-2-correction.test.js b/tests/integration/phase-2-correction.test.js
+index f3e4b52..c336c34 100644
+--- a/tests/integration/phase-2-correction.test.js
++++ b/tests/integration/phase-2-correction.test.js
+@@ -228,8 +228,8 @@ test('Phase 2 failed transaction removes mocked storage objects and does not con
+   auditService.writeAudit = async () => { throw new Error('Isolated audit failure'); };
+   try {
+     assert.equal((await submit(proofs)).status, 500);
+-    assert.deepEqual(removed, uploaded);
+-    assert.equal(uploaded.length, 2);
++    assert.deepEqual([...removed].sort(), [...uploaded].sort());
++    assert.equal(uploaded.length, 4, 'Original evidence and private publication previews are all cleaned on rollback.');
+     assert.equal((await testDatabase().query('SELECT COUNT(*) AS count FROM reports'))[0].count, before);
+   } finally {
+     storage.upload = originalUpload; storage.remove = originalRemove; auditService.writeAudit = originalAudit;
+diff --git a/tests/integration/phase0-security-corrections.test.js b/tests/integration/phase0-security-corrections.test.js
+index 0b42bf8..d19c5bb 100644
+--- a/tests/integration/phase0-security-corrections.test.js
++++ b/tests/integration/phase0-security-corrections.test.js
+@@ -7,6 +7,7 @@ const { randomUUID } = require('node:crypto');
+ process.env.TEST_DB_FILE = path.join(os.tmpdir(), `neighborlens-phase0-${randomUUID()}.sqlite`);
+ const { startTestServer, testDatabase } = require('../support/test-app');
+ const { adminSession, createOfficial } = require('../support/accounts');
++const { approvePublication } = require('../support/publication');
+ let server, base, a, b, admin, official, outside, post, otherPost;
+ async function request(route, actor, method = 'GET', body) {
+   const response = await fetch(base + route, { method, headers: { ...(actor ? { Authorization: `Bearer ${actor.token}` } : {}), ...(body ? { 'Content-Type': 'application/json' } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}) });
+@@ -23,7 +24,10 @@ test.before(async () => {
+   for (const owner of [a, b]) {
+     const report = await testDatabase().execute('INSERT INTO reports (description, barangay, barangay_id, submitted_by) VALUES (?, ?, ?, ?)', ['Private fixture', 'Barangay 1', 1, owner.user.id]);
+     const result = await request('/api/community/posts', owner, 'POST', { body: 'Public fixture', reportId: report.insertId, requestKey: randomUUID() });
+-    assert.equal(result.status, 201); if (owner === a) post = result.data.post; else otherPost = result.data.post;
++    assert.equal(result.status, 201);
++    assert.equal(result.data.publication.state, 'pending_approval');
++    const approved = await approvePublication(base, report.insertId, admin, owner);
++    if (owner === a) post = approved; else otherPost = approved;
+   }
+ });
+ test.after(async () => {
+diff --git a/tests/integration/report-details.test.js b/tests/integration/report-details.test.js
+index de0ef1b..6a57eec 100644
+--- a/tests/integration/report-details.test.js
++++ b/tests/integration/report-details.test.js
+@@ -165,6 +165,8 @@ test('details API: legacy image-path-only reports retain their actual image with
+ 
+ test('details API: missing and deleted reports return safe 404s for details and history', async () => {
+   assert.equal((await get('/api/reports/99999999')).status, 404);
++  await testDatabase().execute('DELETE FROM community_publication_media WHERE request_id IN (SELECT id FROM community_publication_requests WHERE report_id = ?)', [report.id]);
++  await testDatabase().execute('DELETE FROM community_publication_requests WHERE report_id = ?', [report.id]);
+   await testDatabase().execute('DELETE FROM reports WHERE id = ?', [report.id]);
+   assert.equal((await get(`/api/reports/${report.id}`)).status, 404);
+   assert.equal((await get(`/api/reports/${report.id}/history`)).status, 404);
+diff --git a/tests/integration/report-image-security.test.js b/tests/integration/report-image-security.test.js
+index d67af76..769c958 100644
+--- a/tests/integration/report-image-security.test.js
++++ b/tests/integration/report-image-security.test.js
+@@ -131,7 +131,7 @@ for (const scenario of cases) {
+       assert.doesNotMatch(JSON.stringify(payload), /Private provider|libvips|ENOENT|SQL|supabase:/);
+       const rows = await testDatabase().query('SELECT * FROM reports WHERE description = ?', [description]);
+       if (scenario.valid) {
+-        assert.equal(uploadCalls, 2);
++        assert.equal(uploadCalls, 4);
+         assert.equal(aiCalls, 3);
+         assert.equal(rows.length, 1);
+         assert.equal(rows[0].ai_category, null);
+@@ -143,7 +143,11 @@ for (const scenario of cases) {
+         assert.equal(afterCounts.reports, beforeCounts.reports + 1);
+         assert.equal(afterCounts.report_images, beforeCounts.report_images + 2);
+         assert.equal(afterCounts.damage_verifications, beforeCounts.damage_verifications);
+-        assert.equal(afterCounts.audit_logs, beforeCounts.audit_logs + 1);
++        assert.equal(afterCounts.audit_logs, beforeCounts.audit_logs + 2);
++        const review = (await testDatabase().query('SELECT id, state FROM community_publication_requests WHERE report_id = ?', [rows[0].id]))[0];
++        assert.equal(review.state, 'pending_approval');
++        const audit = await testDatabase().query('SELECT action FROM audit_logs WHERE entity_type = ? AND entity_id = ?', ['community_publication', review.id]);
++        assert.match(audit[0].action, /^community_publication_requested_/);
+       } else {
+         if (!scenario.middleware) assert.equal(payload.code, 'IMAGE_VALIDATION_ERROR');
+         assert.equal(uploadCalls, 0);
+diff --git a/tests/integration/supabase-transaction-rollback.test.js b/tests/integration/supabase-transaction-rollback.test.js
+index fa36349..c041f04 100644
+--- a/tests/integration/supabase-transaction-rollback.test.js
++++ b/tests/integration/supabase-transaction-rollback.test.js
+@@ -77,8 +77,8 @@ test('transaction failure after mocked Supabase uploads rolls back rows and remo
+     const payload = await response.json();
+     assert.match(payload.error, /Failed to save report/);
+     assert.doesNotMatch(JSON.stringify(payload), /MySQL|supabase:|uploads\//);
+-    assert.equal(uploaded.length, 2);
+-    assert.deepEqual(removed, uploaded);
++    assert.equal(uploaded.length, 4);
++    assert.deepEqual([...removed].sort(), [...uploaded].sort());
+     assert.equal(objects.size, 0);
+     assert.deepEqual(await db.query('SELECT id FROM reports'), beforeReports);
+     assert.deepEqual(await db.query('SELECT id FROM report_images'), beforeImages);
+diff --git a/tests/migrations/community-mysql.test.js b/tests/migrations/community-mysql.test.js
+index 425526f..01e6b12 100644
+--- a/tests/migrations/community-mysql.test.js
++++ b/tests/migrations/community-mysql.test.js
+@@ -8,15 +8,21 @@ const express = require('express');
+ const { chromium, expect } = require('@playwright/test');
+ const { privateMysql } = require('../support/private-mysql');
+ const { PNG_BYTES, JPEG_BYTES } = require('../support/image-fixtures');
++const { approvePublication } = require('../support/publication');
+ 
+ test('private MySQL Community migration, concurrency and real browser integration', { timeout: 300000 }, async t => {
++  const realNow = Date.now;
++  let offset = 0;
++  t.mock.method(Date, 'now', () => realNow() + offset);
++  t.beforeEach(() => { offset += 61000; });
+   const database = await privateMysql(t);
+   let server, frontend, browser;
+   const { pool, adapter, directory } = database;
+   try {
+     const runner = require('../../server/infrastructure/database/mysql/migrationRunner');
+     await pool.query('CREATE TABLE schema_migrations (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, filename VARCHAR(255) NOT NULL UNIQUE, checksum VARCHAR(64) NOT NULL, applied_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB');
+-    for (const file of (await runner.listMigrationFiles()).filter(name => !['009_community_feed.sql', '010_community_personas_threading.sql'].includes(name))) {
++    const communityMigrations = ['009_community_feed.sql', '010_community_personas_threading.sql', '011_community_publication.sql', '012_pending_publication_jurisdiction.sql'];
++    for (const file of (await runner.listMigrationFiles()).filter(name => !communityMigrations.includes(name))) {
+       const migration = await runner.readMigration(file);
+       for (const statement of migration.statements) await pool.query(statement);
+       await pool.execute('INSERT INTO schema_migrations (filename, checksum) VALUES (?, ?)', [file, migration.checksum]);
+@@ -26,10 +32,14 @@ test('private MySQL Community migration, concurrency and real browser integratio
+     const [owner] = await pool.execute("INSERT INTO users (username, password_hash, role, barangay, barangay_id, full_name) SELECT 'community_browser', ?, 'citizen', name, id, 'Fictional Private Citizen' FROM barangays WHERE name = 'Villamonte'", [password]);
+     const [legacy] = await pool.execute("INSERT INTO reports (description, location, barangay, barangay_id, submitted_by, ai_category) SELECT 'Private original description', 'Private original address', name, id, ?, 'pothole' FROM barangays WHERE name = 'Villamonte'", [owner.insertId]);
+     await t.test('forward migration preserves legacy reports; rollback and reapplication work', async () => {
+-      assert.deepEqual((await runner.runMigrations(pool)).applied, ['009_community_feed.sql', '010_community_personas_threading.sql']);
++      assert.deepEqual((await runner.runMigrations(pool)).applied, communityMigrations);
+       assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_posts'))[0][0].total, 0);
+       const original = (await pool.execute('SELECT description, status FROM reports WHERE id = ?', [legacy.insertId]))[0][0];
+       assert.equal(original.description, 'Private original description'); assert.equal(original.status, 'pending');
++      for (const statement of runner.parseStatements(await fs.readFile('server/infrastructure/database/mysql/migrations/rollback/012_pending_publication_jurisdiction.sql', 'utf8'))) await pool.query(statement);
++      await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['012_pending_publication_jurisdiction.sql']);
++      for (const statement of runner.parseStatements(await fs.readFile('server/infrastructure/database/mysql/migrations/rollback/011_community_publication.sql', 'utf8'))) await pool.query(statement);
++      await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['011_community_publication.sql']);
+       const rollback010 = await fs.readFile(path.resolve('server/infrastructure/database/mysql/migrations/rollback/010_community_personas_threading.sql'), 'utf8');
+       for (const statement of runner.parseStatements(rollback010)) await pool.query(statement);
+       await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['010_community_personas_threading.sql']);
+@@ -37,7 +47,7 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       for (const statement of runner.parseStatements(rollback)) await pool.query(statement);
+       await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['009_community_feed.sql']);
+       assert.equal((await pool.query("SHOW TABLES LIKE 'community_posts'"))[0].length, 0);
+-      assert.deepEqual((await runner.runMigrations(pool)).applied, ['009_community_feed.sql', '010_community_personas_threading.sql']);
++      assert.deepEqual((await runner.runMigrations(pool)).applied, communityMigrations);
+       assert.equal((await pool.query('SELECT COUNT(*) AS total FROM reports'))[0][0].total, 1);
+     });
+     process.env.JWT_SECRET = randomBytes(32).toString('hex');
+@@ -51,6 +61,8 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       assert.equal(response.status, 200); return response.json();
+     }
+     const citizen = await login('community_browser');
++    await pool.execute("INSERT INTO users (username, password_hash, role, barangay, full_name) VALUES (?, ?, 'admin', ?, ?)", ['community_reviewer', password, 'Villamonte', 'Fictional Reviewer']);
++    const admin = await login('community_reviewer', 'admin');
+     const request = async (url, method = 'GET', body, token = citizen.token) => {
+       const response = await fetch(base + '/api/community' + url, { method, headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}) });
+       return { status: response.status, data: await response.json() };
+@@ -60,9 +72,10 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       const input = { body: 'Public infrastructure update', requestKey: randomUUID(), reportId: legacy.insertId };
+       const duplicate = await Promise.all(Array.from({ length: 5 }, () => request('/posts', 'POST', input)));
+       assert.ok(duplicate.every(response => response.status === 201), JSON.stringify(duplicate));
+-      assert.equal(new Set(duplicate.map(response => response.data.post.id)).size, 1);
+-      assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_posts'))[0][0].total, 1);
+-      published = duplicate[0].data.post;
++      assert.equal(new Set(duplicate.map(response => response.data.publication.reportId)).size, 1);
++      assert.ok(duplicate.every(response => response.data.publication.state === 'pending_approval'));
++      assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_posts'))[0][0].total, 0);
++      published = await approvePublication(base, legacy.insertId, admin, citizen);
+       const reactions = await Promise.all(Array.from({ length: 12 }, () => request(`/posts/${published.id}/reaction`, 'PUT', { reaction: 'heart' })));
+       assert.ok(reactions.every(response => response.status === 200));
+       assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_reactions'))[0][0].total, 1);
+@@ -77,8 +90,7 @@ test('private MySQL Community migration, concurrency and real browser integratio
+     assert.equal((await request('/posts', 'POST', { body: 'Scheduled infrastructure inspection.', requestKey: randomUUID() }, official.token)).status, 201);
+     const staticApp = express(); staticApp.use('/shared', express.static(path.resolve('shared'))); staticApp.use('/frontend', express.static(path.resolve('frontend')));
+     frontend = await new Promise(resolve => { const listener = staticApp.listen(0, '127.0.0.1', () => resolve(listener)); });
+-    let frontendUrl = `http://127.0.0.1:${frontend.address().port}/frontend`;
+-    try { const live = await fetch('http://127.0.0.1:5500/frontend/citizen.html', { signal: AbortSignal.timeout(2000) }); if (live.ok && (await live.text()).includes('communitySection')) frontendUrl = 'http://127.0.0.1:5500/frontend'; } catch {}
++    const frontendUrl = `http://127.0.0.1:${frontend.address().port}/frontend`;
+     t.diagnostic(`Browser frontend: ${frontendUrl}; actual isolated API on a different loopback origin. No API success responses mocked.`);
+     browser = await chromium.launch();
+     const page = await browser.newPage({ viewport: { width: 1440, height: 1050 }, permissions: ['geolocation'], geolocation: { latitude: 10.6685, longitude: 122.9647, accuracy: 15 } });
+@@ -88,21 +100,29 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       sessionStorage.setItem('up_session', JSON.stringify({ ...citizen.user, apiToken: citizen.token }));
+     }, { base, citizen });
+     const screenshots = path.resolve('.data/community-screenshots'); await fs.mkdir(screenshots, { recursive: true });
+-    await t.test('existing shell creates a real post, uploads photos, links owned report and refreshes', async () => {
++    let browserReportId;
++    await t.test('existing shell requests review with photos, links owned report and refreshes after approval', async () => {
++      browserReportId = (await pool.execute('INSERT INTO reports (description, location, barangay, barangay_id, submitted_by, ai_category) SELECT ?, location, barangay, barangay_id, submitted_by, ai_category FROM reports WHERE id = ?', ['Community browser fixture <img src=x onerror=alert(1)>', legacy.insertId]))[0].insertId;
++      await fs.mkdir(process.env.UPLOAD_DIR, { recursive: true });
++      for (const [index, buffer] of [JPEG_BYTES, PNG_BYTES].entries()) {
++        const filename = `${randomUUID()}.${index ? 'png' : 'jpg'}`;
++        await fs.writeFile(path.join(process.env.UPLOAD_DIR, filename), buffer);
++        await pool.execute('INSERT INTO report_images (report_id, image_path, image_order, mime_type) VALUES (?, ?, ?, ?)', [browserReportId, `/uploads/${filename}`, index + 1, index ? 'image/png' : 'image/jpeg']);
++      }
+       await page.goto(frontendUrl + '/citizen.html#community');
+       await expect(page.locator('.cf-post')).toHaveCount(2);
+-      await expect(page.locator('.cf-official-updates')).toContainText('Scheduled infrastructure inspection.');
+-      await page.getByRole('textbox', { name: 'Community update', exact: true }).fill('Community browser fixture <img src=x onerror=alert(1)>');
+-      await page.locator('.cf-composer input[type=file]').setInputFiles([{ name: 'fictional-one.jpg', mimeType: 'image/jpeg', buffer: JPEG_BYTES }, { name: 'fictional-two.png', mimeType: 'image/png', buffer: PNG_BYTES }]);
+-      await page.getByRole('button', { name: 'Link a report', exact: true }).click();
+-      await expect(page.locator('#communityReportPicker option')).toHaveCount(1);
+-      await page.locator('#communityReportPicker button[type=submit]').click();
+-      await page.locator('.cf-composer button[type=submit]').click();
+-      await expect(page.locator('.cf-compose-state')).toHaveText('Community update published.');
++      await expect(page.locator('.cf-post').filter({ hasText: 'Scheduled infrastructure inspection.' }).locator('.cf-official')).toHaveText('Official');
++      await page.evaluate(() => CommunityFeed.chooseReport());
++      await page.locator(`[data-share-report-id="${browserReportId}"]`).click();
++      await expect(page.locator('#communitySelectorStatus')).toContainText('Pending Community Review');
++      await expect(page.locator('.cf-post')).toHaveCount(2);
++      await approvePublication(base, browserReportId, admin, citizen);
++      await page.locator('#communityReportPicker [data-close]').first().click();
++      await page.evaluate(() => CommunityFeed.refresh());
+       await expect(page.locator('.cf-post')).toHaveCount(3);
+       const card = page.locator('.cf-post').filter({ hasText: 'Community browser fixture' });
+       await expect(card.locator('.cf-post-text')).toHaveText('Community browser fixture <img src=x onerror=alert(1)>');
+-      await expect.poll(() => card.locator('img').evaluateAll(images => images.length === 2 && images.every(image => image.naturalWidth > 0 && image.src.startsWith('blob:')))).toBe(true);
++      await expect.poll(() => card.locator('.cf-carousel-slide img').evaluateAll(images => images.length === 2 && images.every(image => image.naturalWidth > 0 && image.src.startsWith('blob:')))).toBe(true);
+       assert.equal(await card.locator('.cf-post-text img').count(), 0);
+       await page.reload(); await expect(page.locator('.cf-post')).toHaveCount(3);
+       assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_media'))[0][0].total, 2);
+@@ -110,16 +130,16 @@ test('private MySQL Community migration, concurrency and real browser integratio
+     await t.test('reaction picker, comments, carousel and privacy-safe shared viewer work', async () => {
+       const card = page.locator('.cf-post').filter({ hasText: 'Community browser fixture' });
+       await card.locator('.cf-react').click(); await page.getByRole('menuitemradio', { name: 'Like', exact: true }).click();
+-      await expect(card.locator('.cf-react > span')).toHaveText('Like'); await expect(card.locator('.cf-reaction-total')).toHaveText('1 reaction');
++      await expect(card.locator('[data-reaction=like]')).toHaveAttribute('aria-checked', 'true'); await expect(card.locator('.cf-reaction-total')).toHaveText('1');
+       await card.locator('.cf-react').click(); await page.keyboard.press('Escape'); await expect(card.locator('.cf-reaction-menu')).toBeHidden(); await expect(card.locator('.cf-react')).toBeFocused();
+       await card.locator('.cf-react').click(); await page.getByRole('menuitemradio', { name: 'Heart', exact: true }).click();
+-      await expect(card.locator('.cf-react > span')).toHaveText('Heart'); await expect(card.locator('.cf-reaction-total')).toHaveText('1 reaction');
++      await expect(card.locator('[data-reaction=heart]')).toHaveAttribute('aria-checked', 'true'); await expect(card.locator('.cf-reaction-total')).toHaveText('1');
+       await card.locator('.cf-react').click(); await page.getByRole('menuitem', { name: 'Remove reaction', exact: true }).click();
+-      await expect(card.locator('.cf-reaction-total')).toHaveText('0 reactions');
++      await expect(card.locator('.cf-reaction-total')).toHaveText('0');
+       await card.locator('.cf-comments-toggle').click(); await card.locator('.cf-comment-form input').fill('Safe public comment <script>alert(1)</script>');
+       await card.locator('.cf-comment-form button').click(); await expect(card.locator('.cf-comment')).toHaveCount(1);
+       await expect(card.locator('.cf-comment strong').first()).toHaveText(/^[A-Za-z]+_\d{3}$/);
+-      await card.locator('.cf-carousel-track').focus(); await page.keyboard.press('ArrowRight'); await expect(card.locator('[data-carousel-position]')).toHaveText('Photo 2 of 2');
++      await card.locator('.cf-carousel-track').focus(); await page.keyboard.press('ArrowRight'); await expect(card.locator('.cf-carousel-dot').nth(1)).toHaveAttribute('aria-pressed', 'true');
+       await card.locator('[data-action=report]').click(); await expect(page.locator('#communityReportDialog')).toBeVisible();
+       await expect(page.locator('#communityReportDialog')).toContainText('Community browser fixture');
+       await expect(page.locator('#communityReportDialog .rd-gps, #communityReportDialog .rd-review-section, #communityReportDialog .rd-map')).toHaveCount(0);
+@@ -154,26 +174,30 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       await expect(page.locator('.cf-updates')).toBeVisible();
+       assert.deepEqual(await page.locator('.cf-post').evaluateAll(nodes => nodes.map(node => node.dataset.postId)), ids);
+       await page.locator('.cf-updates').click(); await expect(page.locator('.cf-post')).toHaveCount(4);
+-      await page.locator('.cf-search input').fill('A later official'); await expect(page.locator('.cf-post')).toHaveCount(1);
+-      await page.locator('.cf-search input').fill(''); await expect(page.locator('.cf-post')).toHaveCount(4);
++      await page.locator('.cf-hero-search input').fill('A later official'); await expect(page.locator('.cf-post')).toHaveCount(1);
++      await page.locator('.cf-hero-search input').fill(''); await expect(page.locator('.cf-post')).toHaveCount(4);
+     });
+-    await t.test('an interrupted acknowledgement retries one committed post and preserves the locked draft', async () => {
+-      await page.locator('.cf-composer textarea').fill('Recoverable publication fixture');
++    await t.test('an interrupted acknowledgement retries one pending request and preserves the saved report', async () => {
++      const reportId = (await pool.execute('INSERT INTO reports (description, barangay, barangay_id, submitted_by) SELECT ?, barangay, barangay_id, submitted_by FROM reports WHERE id = ?', ['Recoverable publication fixture', legacy.insertId]))[0].insertId;
++      await page.evaluate(() => CommunityFeed.chooseReport());
++      const share = page.locator(`[data-share-report-id="${reportId}"]`);
+       await page.route(base + '/api/community/posts', async route => {
+         const response = await route.fetch(); assert.equal(response.status(), 201); await route.abort('failed');
+       }, { times: 1 });
+-      await page.locator('.cf-composer button[type=submit]').click();
+-      await expect(page.locator('.cf-compose-state')).toContainText('draft is preserved and locked');
+-      await expect(page.locator('.cf-composer textarea')).toHaveValue('Recoverable publication fixture');
+-      await expect(page.locator('.cf-composer textarea')).toBeDisabled();
++      await share.click();
++      await expect(share).toBeEnabled();
++      const key = await share.getAttribute('data-request-key'); assert.ok(key);
+       await page.route(base + '/api/community/posts', route => route.fulfill({ status: 429, json: { error: 'Isolated retry backpressure' } }), { times: 1 });
+-      await page.locator('.cf-composer button[type=submit]').click();
+-      await expect(page.locator('.cf-compose-state')).toContainText('Isolated retry backpressure');
+-      await expect(page.locator('.cf-composer textarea')).toBeDisabled();
+-      await page.locator('.cf-composer button[type=submit]').click();
+-      await expect(page.locator('.cf-compose-state')).toHaveText('Community update published.');
+-      assert.equal((await pool.execute('SELECT COUNT(*) AS total FROM community_posts WHERE body = ?', ['Recoverable publication fixture']))[0][0].total, 1);
+-      await expect(page.locator('.cf-composer textarea')).toBeEnabled();
++      await share.click();
++      await expect(page.locator('#communitySelectorStatus')).toContainText('Isolated retry backpressure');
++      await expect(share).toHaveAttribute('data-request-key', key);
++      await share.click();
++      await expect(page.locator('#communitySelectorStatus')).toContainText('Pending Community Review');
++      assert.equal((await pool.execute('SELECT COUNT(*) AS total FROM community_publication_requests WHERE report_id = ?', [reportId]))[0][0].total, 1);
++      assert.equal((await pool.execute('SELECT COUNT(*) AS total FROM community_posts WHERE report_id = ?', [reportId]))[0][0].total, 0);
++      assert.equal((await pool.execute('SELECT description FROM reports WHERE id = ?', [reportId]))[0][0].description, 'Recoverable publication fixture');
++      await page.locator('#communityReportPicker [data-close]').first().click();
++      await approvePublication(base, reportId, admin, citizen);
+     });
+     await t.test('feed sorting and pagination are backed by real deterministic queries', async () => {
+       for (let number = 0; number < 11; number++) await pool.execute('INSERT INTO community_posts (barangay_id, author_id, is_official, body, request_key, request_hash) VALUES (?, ?, ?, ?, ?, ?)',
+@@ -183,11 +207,15 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       await page.getByRole('button', { name: 'Next posts', exact: true }).click(); await expect(page.locator('.cf-pages span')).toHaveText('Page 2 of 2');
+       const second = await page.locator('.cf-post').evaluateAll(nodes => nodes.map(node => node.dataset.postId));
+       assert.equal(second.length, 6); assert.equal(second.some(id => first.includes(id)), false);
+-      await page.getByRole('button', { name: 'Most reacted', exact: true }).click(); await expect(page.locator('.cf-pages span')).toHaveText('Page 1 of 2');
++      await page.getByRole('tab', { name: 'Most reacted', exact: true }).click(); await expect(page.locator('.cf-pages span')).toHaveText('Page 1 of 2');
+       assert.equal(await page.locator('.cf-post').first().getAttribute('data-post-id'), String(published.id));
+     });
+     await browser.close(); browser = null;
+     await t.test('rollback of populated Community tables leaves existing users and private reports intact', async () => {
++      for (const statement of runner.parseStatements(await fs.readFile('server/infrastructure/database/mysql/migrations/rollback/012_pending_publication_jurisdiction.sql', 'utf8'))) await pool.query(statement);
++      await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['012_pending_publication_jurisdiction.sql']);
++      for (const statement of runner.parseStatements(await fs.readFile('server/infrastructure/database/mysql/migrations/rollback/011_community_publication.sql', 'utf8'))) await pool.query(statement);
++      await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['011_community_publication.sql']);
+       const rollback010 = await fs.readFile(path.resolve('server/infrastructure/database/mysql/migrations/rollback/010_community_personas_threading.sql'), 'utf8');
+       for (const statement of runner.parseStatements(rollback010)) await pool.query(statement);
+       await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['010_community_personas_threading.sql']);
+@@ -196,7 +224,7 @@ test('private MySQL Community migration, concurrency and real browser integratio
+       await pool.execute('DELETE FROM schema_migrations WHERE filename = ?', ['009_community_feed.sql']);
+       assert.equal((await pool.execute('SELECT description FROM reports WHERE id = ?', [legacy.insertId]))[0][0].description, 'Private original description');
+       assert.equal((await pool.execute('SELECT id FROM users WHERE id = ?', [citizen.user.id]))[0][0].id, citizen.user.id);
+-      assert.deepEqual((await runner.runMigrations(pool)).applied, ['009_community_feed.sql', '010_community_personas_threading.sql']);
++      assert.deepEqual((await runner.runMigrations(pool)).applied, communityMigrations);
+       assert.equal((await pool.query('SELECT COUNT(*) AS total FROM community_posts'))[0][0].total, 0);
+     });
+     t.diagnostic('Actual private MySQL/API persistence, concurrent operations, protected media, Live Server-compatible cross-origin browser requests and SSE verified. Supabase not contacted.');

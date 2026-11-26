@@ -1,0 +1,183 @@
+TAP version 13
+# [reports] Background fetch error: This account is not authorized to access these reports.
+# [reports] Background fetch error: Invalid report response.
+# [reports] Background fetch error: Isolated network failure
+# [reports] Background fetch error: Reports could not be loaded from the server. Retry when connected.
+# [reports] Background fetch error: This account is not authorized to access these reports.
+# Subtest: Phase 2 cache: admin to barangay logout removes prior reports without removing preferences
+ok 1 - Phase 2 cache: admin to barangay logout removes prior reports without removing preferences
+  ---
+  duration_ms: 65.3639
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: barangay to barangay logout removes prior reports without removing preferences
+ok 2 - Phase 2 cache: barangay to barangay logout removes prior reports without removing preferences
+  ---
+  duration_ms: 5.1329
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: citizen to citizen logout removes prior reports without removing preferences
+ok 3 - Phase 2 cache: citizen to citizen logout removes prior reports without removing preferences
+  ---
+  duration_ms: 7.3036
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":2,"username":"user-2","role":"admin","barangay":"Barangay A","apiToken":"token-2-admin"} invalidates prior data
+ok 4 - Phase 2 cache: identity/access context change {"id":2,"username":"user-2","role":"admin","barangay":"Barangay A","apiToken":"token-2-admin"} invalidates prior data
+  ---
+  duration_ms: 5.8136
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"barangay","barangay":"Barangay A","apiToken":"token-9-barangay"} invalidates prior data
+ok 5 - Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"barangay","barangay":"Barangay A","apiToken":"token-9-barangay"} invalidates prior data
+  ---
+  duration_ms: 4.6396
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"admin","barangay":"Barangay B","apiToken":"token-9-admin"} invalidates prior data
+ok 6 - Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"admin","barangay":"Barangay B","apiToken":"token-9-admin"} invalidates prior data
+  ---
+  duration_ms: 5.0204
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: same user refresh retains scoped authorized records and reloads them
+ok 7 - Phase 2 cache: same user refresh retains scoped authorized records and reloads them
+  ---
+  duration_ms: 12.9655
+  type: 'test'
+  ...
+# Subtest: report synchronization refreshes mutable server fields and removes deleted evidence
+ok 8 - report synchronization refreshes mutable server fields and removes deleted evidence
+  ---
+  duration_ms: 12.1946
+  type: 'test'
+  ...
+# Subtest: report cache is isolated between portal tabs that share localStorage
+ok 9 - report cache is isolated between portal tabs that share localStorage
+  ---
+  duration_ms: 9.4681
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: legacy unscoped storage is discarded rather than assigned to the next actor
+ok 10 - Phase 2 cache: legacy unscoped storage is discarded rather than assigned to the next actor
+  ---
+  duration_ms: 4.898
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: cross-jurisdiction and cross-citizen records cannot be read or rendered
+ok 11 - Phase 2 cache: cross-jurisdiction and cross-citizen records cannot be read or rendered
+  ---
+  duration_ms: 10.6896
+  type: 'test'
+  ...
+# Subtest: Barangay state disposal clears authorized records and ignores a late read
+ok 12 - Barangay state disposal clears authorized records and ignores a late read
+  ---
+  duration_ms: 2.9771
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: narrower API results remove omitted reports and invalidate their open modal
+ok 13 - Phase 2 cache: narrower API results remove omitted reports and invalidate their open modal
+  ---
+  duration_ms: 8.6077
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: empty response does not retain stale reports
+ok 14 - Phase 2 cache: empty response does not retain stale reports
+  ---
+  duration_ms: 6.6661
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: access denial response does not retain stale reports
+ok 15 - Phase 2 cache: access denial response does not retain stale reports
+  ---
+  duration_ms: 5.9622
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: malformed body response does not retain stale reports
+ok 16 - Phase 2 cache: malformed body response does not retain stale reports
+  ---
+  duration_ms: 4.8697
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: network error response does not retain stale reports
+ok 17 - Phase 2 cache: network error response does not retain stale reports
+  ---
+  duration_ms: 6.7759
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: delayed GET cannot write data after session switching
+ok 18 - Phase 2 cache: delayed GET cannot write data after session switching
+  ---
+  duration_ms: 7.0735
+  type: 'test'
+  ...
+# Subtest: admin dashboard retains scoped records for transient outages but clears them for access denial
+ok 19 - admin dashboard retains scoped records for transient outages but clears them for access denial
+  ---
+  duration_ms: 7.7302
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: older broad GET cannot restore reports after a newer narrow response
+ok 20 - Phase 2 cache: older broad GET cannot restore reports after a newer narrow response
+  ---
+  duration_ms: 5.4641
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: delayed POST cannot repopulate a logged-out or different account cache
+ok 21 - Phase 2 cache: delayed POST cannot repopulate a logged-out or different account cache
+  ---
+  duration_ms: 7.9644
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: metadata never persists the bearer token or assessment proof
+ok 22 - Phase 2 cache: metadata never persists the bearer token or assessment proof
+  ---
+  duration_ms: 4.694
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin corrected category has accurate attribution
+ok 23 - Phase 2 labels: admin corrected category has accurate attribution
+  ---
+  duration_ms: 6.6912
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin unchanged category has accurate attribution
+ok 24 - Phase 2 labels: admin unchanged category has accurate attribution
+  ---
+  duration_ms: 4.622
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin legacy category has accurate attribution
+ok 25 - Phase 2 labels: admin legacy category has accurate attribution
+  ---
+  duration_ms: 4.6432
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay corrected category has accurate attribution
+ok 26 - Phase 2 labels: barangay corrected category has accurate attribution
+  ---
+  duration_ms: 5.0588
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay unchanged category has accurate attribution
+ok 27 - Phase 2 labels: barangay unchanged category has accurate attribution
+  ---
+  duration_ms: 3.8258
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay legacy category has accurate attribution
+ok 28 - Phase 2 labels: barangay legacy category has accurate attribution
+  ---
+  duration_ms: 4.4595
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 527.759

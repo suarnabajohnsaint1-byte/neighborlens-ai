@@ -1,0 +1,1706 @@
+{
+  "task": "1.6",
+  "base_dataset": "data/datasets/neighborlens_paper_aligned_v3_clean",
+  "review_inputs": [
+    "data/review/task1_5/annotation_review.json",
+    "data/review/task1_5/quarantine_review.json"
+  ],
+  "pipeline_review_dir": "data/review/task1_6",
+  "guideline": "docs/dataset_audit/ANNOTATION_GUIDELINE.md",
+  "class_mapping": {
+    "0": "broken_streetlight",
+    "1": "clogged_drainage",
+    "2": "pothole",
+    "3": "road_crack"
+  },
+  "background_cap_at_current_train_size": 9,
+  "counts": {
+    "NEEDS_BOUNDING_BOX": 6,
+    "NEEDS_CLASS_DECISION": 7,
+    "APPROVE_BACKGROUND": 29,
+    "EXCLUDE": 2,
+    "RESOLVED": 4
+  },
+  "v3_1_blocking_entries": [
+    "AR-003",
+    "AR-006",
+    "AR-004",
+    "AR-005"
+  ],
+  "contact_sheets": {
+    "NEEDS_BOUNDING_BOX": [
+      "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    ],
+    "NEEDS_CLASS_DECISION": [
+      "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    ],
+    "APPROVE_BACKGROUND": [
+      "data/review/task1_6/sheets/approve_background_1.jpg",
+      "data/review/task1_6/sheets/approve_background_2.jpg",
+      "data/review/task1_6/sheets/approve_background_3.jpg"
+    ],
+    "EXCLUDE": [
+      "data/review/task1_6/sheets/exclude_1.jpg"
+    ],
+    "RESOLVED": [
+      "data/review/task1_6/sheets/resolved_1.jpg"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "AR-003",
+      "category": "NEEDS_BOUNDING_BOX",
+      "issue": "POSSIBLE_FRAGMENTATION",
+      "current_decision": "MANUAL_REVIEW_REQUIRED",
+      "proposed_action": "EDIT_ROAD_CRACK_BOXES",
+      "reason": "Pothole lines 1-5 enclose five distinct potholes and are acceptable. road_crack lines 8 and 9 enclose visible cracks. road_crack lines 6, 7 and 10 enclose faint surface texture with no distinct crack, and the cracking that radiates from pothole line 1 is split across boxes.",
+      "human_action_required": "Open the label and image. Delete or redraw road_crack lines 6, 7 and 10 so each box encloses a visible crack network per the guideline; keep pothole lines 1-5 and road_crack lines 8-9 unless wrong. Save the full corrected label to corrections/train/scene_0034_a.txt and set AR-003 decision to RESOLVED.",
+      "files": [
+        {
+          "scene_id": "scene_0034",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0034_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0034_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/28_jpg.rf.a036f1cf078acdf3232dc0ecbc39b1d5.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.434987,
+              "y_center": 0.523045,
+              "width": 0.354833,
+              "height": 0.186914
+            },
+            {
+              "line": 2,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.913882,
+              "y_center": 0.26467,
+              "width": 0.172237,
+              "height": 0.128758
+            },
+            {
+              "line": 3,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.75964,
+              "y_center": 0.092992,
+              "width": 0.115681,
+              "height": 0.071532
+            },
+            {
+              "line": 4,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.389974,
+              "y_center": 0.363277,
+              "width": 0.148586,
+              "height": 0.101862
+            },
+            {
+              "line": 5,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.33856,
+              "y_center": 0.252187,
+              "width": 0.189743,
+              "height": 0.074251
+            },
+            {
+              "line": 6,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.239871,
+              "y_center": 0.815505,
+              "width": 0.284344,
+              "height": 0.213703
+            },
+            {
+              "line": 7,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.622674,
+              "y_center": 0.794295,
+              "width": 0.243805,
+              "height": 0.248539
+            },
+            {
+              "line": 8,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.799177,
+              "y_center": 0.48152,
+              "width": 0.292442,
+              "height": 0.166635
+            },
+            {
+              "line": 9,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.284422,
+              "y_center": 0.133229,
+              "width": 0.184267,
+              "height": 0.131012
+            },
+            {
+              "line": 10,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.182134,
+              "y_center": 0.497722,
+              "width": 0.109229,
+              "height": 0.233374
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": true,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "AR-006",
+      "category": "NEEDS_BOUNDING_BOX",
+      "issue": "BOX_EXTENT_INCONSISTENT",
+      "current_decision": "MANUAL_REVIEW_REQUIRED",
+      "proposed_action": "REDRAW_BOX_EXTENT",
+      "reason": "For tilted or fallen lighting columns these images box only the luminaire, while scene_0114, scene_0143, scene_0153 and scene_0155 box the whole fallen column.",
+      "human_action_required": "Redraw each broken_streetlight box so it covers the tilted or fallen column together with its luminaire as one object. Keep all other lines. Save full corrected labels to corrections/<split>/<stem>.txt and set AR-006 decision to RESOLVED.",
+      "files": [
+        {
+          "scene_id": "scene_0083",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/images/scene_0083_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/labels/scene_0083_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "valid",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/52_jpg.rf.4db93eeac56f61501c4e39bd39211ad9.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.615667,
+              "y_center": 0.285422,
+              "width": 0.159354,
+              "height": 0.086953
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0052",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/images/scene_0052_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/labels/scene_0052_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "valid",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/38_jpg.rf.a1cdee58aaf32c623e9ace342f1be160.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.229669,
+              "y_center": 0.159313,
+              "width": 0.115086,
+              "height": 0.114266
+            },
+            {
+              "line": 2,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.810043,
+              "y_center": 0.849849,
+              "width": 0.31397,
+              "height": 0.072993
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0148",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0148_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0148_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/39_jpg.rf.0a38af69b28dd87469019dc4c25ff20b.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.368094,
+              "y_center": 0.759023,
+              "width": 0.135559,
+              "height": 0.036107
+            },
+            {
+              "line": 2,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.272349,
+              "y_center": 0.919405,
+              "width": 0.540541,
+              "height": 0.161189
+            },
+            {
+              "line": 3,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.799171,
+              "y_center": 0.519354,
+              "width": 0.157728,
+              "height": 0.121538
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": true,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0043-33_jpg.rf.7c",
+      "category": "NEEDS_BOUNDING_BOX",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "ANNOTATE_AND_REENTER_VIA_IMPORT",
+      "reason": "Knocked-down metal lighting pole on roadside verge, matching labelled positives such as scene_0114.",
+      "human_action_required": "Confirm the luminaire is broken per the guideline, draw one broken_streetlight box (column plus luminaire when the column is tilted or fallen), copy the image to data/staging/original_candidates/images/, save the label there, and add a provenance row with source_type=reannotated_existing and reentry_of_scene_id=scene_0043. If not broken, mark it TRUE_NEGATIVE in quarantine_review.json instead.",
+      "files": [
+        {
+          "scene_id": "scene_0043",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/33_jpg.rf.7c9982f125db3f0d9443e76cf2feb8f8.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/33_jpg.rf.7c9982f125db3f0d9443e76cf2feb8f8.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0077-50_jpg.rf.64",
+      "category": "NEEDS_BOUNDING_BOX",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "ANNOTATE_AND_REENTER_VIA_IMPORT",
+      "reason": "Visibly tilted pole carrying a cobra-head luminaire, matching labelled positive scene_0083.",
+      "human_action_required": "Confirm the luminaire is broken per the guideline, draw one broken_streetlight box (column plus luminaire when the column is tilted or fallen), copy the image to data/staging/original_candidates/images/, save the label there, and add a provenance row with source_type=reannotated_existing and reentry_of_scene_id=scene_0077. If not broken, mark it TRUE_NEGATIVE in quarantine_review.json instead.",
+      "files": [
+        {
+          "scene_id": "scene_0077",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/50_jpg.rf.64ed5c21f2977ba93a8ea2bf285ea490.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/50_jpg.rf.64ed5c21f2977ba93a8ea2bf285ea490.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0109-67_jpg.rf.f6",
+      "category": "NEEDS_BOUNDING_BOX",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "ANNOTATE_AND_REENTER_VIA_IMPORT",
+      "reason": "Bent street lighting column with LED head in a residential street.",
+      "human_action_required": "Confirm the luminaire is broken per the guideline, draw one broken_streetlight box (column plus luminaire when the column is tilted or fallen), copy the image to data/staging/original_candidates/images/, save the label there, and add a provenance row with source_type=reannotated_existing and reentry_of_scene_id=scene_0109. If not broken, mark it TRUE_NEGATIVE in quarantine_review.json instead.",
+      "files": [
+        {
+          "scene_id": "scene_0109",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/67_jpg.rf.f60b3f2cdfe4d809bf5861c04ef16181.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/67_jpg.rf.f60b3f2cdfe4d809bf5861c04ef16181.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0174-41_jpg.rf.ba",
+      "category": "NEEDS_BOUNDING_BOX",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "ANNOTATE_AND_REENTER_VIA_IMPORT",
+      "reason": "Severely bent pole that carries a cobra-head luminaire.",
+      "human_action_required": "Confirm the luminaire is broken per the guideline, draw one broken_streetlight box (column plus luminaire when the column is tilted or fallen), copy the image to data/staging/original_candidates/images/, save the label there, and add a provenance row with source_type=reannotated_existing and reentry_of_scene_id=scene_0174. If not broken, mark it TRUE_NEGATIVE in quarantine_review.json instead.",
+      "files": [
+        {
+          "scene_id": "scene_0174",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/41_jpg.rf.ba0f277947eaa6cc43e3889dc9b08870.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/41_jpg.rf.ba0f277947eaa6cc43e3889dc9b08870.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_bounding_box_1.jpg"
+    },
+    {
+      "entry_id": "AR-001",
+      "category": "NEEDS_CLASS_DECISION",
+      "issue": "CONTRADICTORY_LABEL",
+      "current_decision": "QUARANTINE_PENDING_HUMAN_REVIEW",
+      "proposed_action": "KEEP_EXCLUDED_UNTIL_DECIDED",
+      "reason": "Same photograph of a concrete footpath. Copy a labels one box as road_crack, copy b labels the same region as pothole. The surface shows extensive interconnected cracking around a dark, debris-filled depression whose depth cannot be established; the location is a footpath rather than a carriageway.",
+      "human_action_required": "Decide one of: road_crack, pothole, pothole plus road_crack as separate boxes, or out of scope (footpath). Then write identical corrected labels for scene_0051_a and scene_0051_b in corrections/train/ and set the AR-001 decision to RESOLVED; or set it to EXCLUDE.",
+      "files": [
+        {
+          "scene_id": "scene_0051",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0051_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0051_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/38_jpg.rf.6c5aa07a18edafd88d7c4f524047fb20.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.470588,
+              "y_center": 0.534352,
+              "width": 0.832817,
+              "height": 0.744088
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0051",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0051_b.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0051_b.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/54_jpg.rf.820b201dac71f0cc04011ca9c873af49.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.464602,
+              "y_center": 0.576121,
+              "width": 0.80531,
+              "height": 0.846455
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "AR-004",
+      "category": "NEEDS_CLASS_DECISION",
+      "issue": "MICRO_BOXES",
+      "current_decision": "MANUAL_REVIEW_REQUIRED",
+      "proposed_action": "CONFIRM_OR_DELETE_MICRO_BOXES",
+      "reason": "Line 1 is a correct large pothole box. Lines 2 and 3 are micro boxes (area 0.0027 and 0.0017 of the image) on dark specks in the far distance that cannot be confirmed as potholes. Lines 4 and 6 are small but visible distant potholes.",
+      "human_action_required": "Zoom on pothole lines 2 and 3. If they are not potholes, save the label without them to corrections/train/scene_0101_a.txt. If they are potholes, set AR-004 decision to RESOLVED_NO_CHANGE.",
+      "files": [
+        {
+          "scene_id": "scene_0101",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0101_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0101_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/60_jpg.rf.c4a554024afe359f7acca5aedcfb9e8b.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.453834,
+              "y_center": 0.732848,
+              "width": 0.801252,
+              "height": 0.534304
+            },
+            {
+              "line": 2,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.58163,
+              "y_center": 0.328469,
+              "width": 0.076923,
+              "height": 0.035454
+            },
+            {
+              "line": 3,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.630295,
+              "y_center": 0.37018,
+              "width": 0.048665,
+              "height": 0.035454
+            },
+            {
+              "line": 4,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.753026,
+              "y_center": 0.332578,
+              "width": 0.152228,
+              "height": 0.110032
+            },
+            {
+              "line": 5,
+              "class_id": 3,
+              "class": "road_crack",
+              "x_center": 0.962441,
+              "y_center": 0.386694,
+              "width": 0.075117,
+              "height": 0.336798
+            },
+            {
+              "line": 6,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.882335,
+              "y_center": 0.143442,
+              "width": 0.107346,
+              "height": 0.077331
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": true,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "AR-005",
+      "category": "NEEDS_CLASS_DECISION",
+      "issue": "CLASS_DEFINITION_NOT_MET",
+      "current_decision": "MANUAL_REVIEW_REQUIRED",
+      "proposed_action": "CONFIRM_DAMAGE_OR_REMOVE",
+      "reason": "broken_streetlight boxes on luminaires with no visible physical damage; scene_0036 and scene_0136 are illuminated at night, scene_0094 is an intact globe lamp, scene_0145 is a lantern whose glass appears intact.",
+      "human_action_required": "For each image decide whether the boxed luminaire shows visible damage or visible non-function per the guideline. If yes, keep it (no correction file). If no, the image has no other object, so add its file to an EXCLUDE item instead of writing an empty correction; test/scene_0094_a must never be moved to another split. Set AR-005 decision to RESOLVED when all five are decided.",
+      "files": [
+        {
+          "scene_id": "scene_0036",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0036_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0036_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/29_jpg.rf.3ec43d12eb078500f69a138aa52651c6.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.397981,
+              "y_center": 0.257516,
+              "width": 0.140058,
+              "height": 0.115867
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0136",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0136_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0136_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/20_jpg.rf.10ee04a546440f3082e7b4f8548bceb1.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.423268,
+              "y_center": 0.35995,
+              "width": 0.204249,
+              "height": 0.111828
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0136",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0136_b.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0136_b.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/24_jpg.rf.b50ed67bf398524b0c67f7a0a4cf1910.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.414625,
+              "y_center": 0.370271,
+              "width": 0.243566,
+              "height": 0.087842
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0145",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/images/scene_0145_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/train/labels/scene_0145_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "train",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/34_jpg.rf.a965c38e71fe5fe222e97dd73a55982e.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.718982,
+              "y_center": 0.336211,
+              "width": 0.353068,
+              "height": 0.335569
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        },
+        {
+          "scene_id": "scene_0094",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/test/images/scene_0094_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/test/labels/scene_0094_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "test",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/58_jpg.rf.053b07a247463456ac2fb8c26dcb7415.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 0,
+              "class": "broken_streetlight",
+              "x_center": 0.281416,
+              "y_center": 0.417276,
+              "width": 0.391734,
+              "height": 0.347009
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": true,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0090-56_jpg.rf.54",
+      "category": "NEEDS_CLASS_DECISION",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "KEEP_QUARANTINED",
+      "reason": "Snapped pole lying across road; a luminaire on the fallen section cannot be confirmed.",
+      "human_action_required": "Decide: broken_streetlight (then follow the NEEDS_BOUNDING_BOX steps), TRUE_NEGATIVE (then it may be proposed as background), or keep quarantined. An unlit lamp in a single night image must not be marked broken without visible evidence.",
+      "files": [
+        {
+          "scene_id": "scene_0090",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/56_jpg.rf.5434da57fe25ed4116e9bcc121127987.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/56_jpg.rf.5434da57fe25ed4116e9bcc121127987.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0119-73_jpg.rf.20",
+      "category": "NEEDS_CLASS_DECISION",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "KEEP_QUARANTINED",
+      "reason": "Leaning pole over a road; a pale fixture near the top may be a luminaire but is partly hidden by foliage.",
+      "human_action_required": "Decide: broken_streetlight (then follow the NEEDS_BOUNDING_BOX steps), TRUE_NEGATIVE (then it may be proposed as background), or keep quarantined. An unlit lamp in a single night image must not be marked broken without visible evidence.",
+      "files": [
+        {
+          "scene_id": "scene_0119",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/73_jpg.rf.205cc1455c8b34b7e21612cb8462e54f.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/73_jpg.rf.205cc1455c8b34b7e21612cb8462e54f.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0166-28_jpg.rf.f7",
+      "category": "NEEDS_CLASS_DECISION",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "KEEP_QUARANTINED",
+      "reason": "Flooded night roadway; several lighting poles appear unlit, but non-function cannot be confirmed from one frame.",
+      "human_action_required": "Decide: broken_streetlight (then follow the NEEDS_BOUNDING_BOX steps), TRUE_NEGATIVE (then it may be proposed as background), or keep quarantined. An unlit lamp in a single night image must not be marked broken without visible evidence.",
+      "files": [
+        {
+          "scene_id": "scene_0166",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/28_jpg.rf.f7bba5407b2a57907e5197a028f53313.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/28_jpg.rf.f7bba5407b2a57907e5197a028f53313.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0169-30_jpg.rf.5e",
+      "category": "NEEDS_CLASS_DECISION",
+      "candidate_class": "broken_streetlight",
+      "proposed_action": "KEEP_QUARANTINED",
+      "reason": "Unlit lighting pole at night next to lit houses; possible non-functional streetlight, not confirmable.",
+      "human_action_required": "Decide: broken_streetlight (then follow the NEEDS_BOUNDING_BOX steps), TRUE_NEGATIVE (then it may be proposed as background), or keep quarantined. An unlit lamp in a single night image must not be marked broken without visible evidence.",
+      "files": [
+        {
+          "scene_id": "scene_0169",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/30_jpg.rf.5ee35a805bc437d0a0f76bba1b72034f.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/30_jpg.rf.5ee35a805bc437d0a0f76bba1b72034f.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/needs_class_decision_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0001-10_jpg.rf.63",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Lantern housing and glass are intact; no visible damage. Under the rule for intact streetlights it is not broken_streetlight. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0001",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/10_jpg.rf.63a0e6ee5bf1205335132aeff8cc32f7.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/10_jpg.rf.63a0e6ee5bf1205335132aeff8cc32f7.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0004-12_jpg.rf.54",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Damaged traffic signal head; traffic signals are outside the four research classes. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0004",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/12_jpg.rf.5480e38ad01c50ee2612244ffe1fb801.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/12_jpg.rf.5480e38ad01c50ee2612244ffe1fb801.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0010-15_jpg.rf.03",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Traffic signals at a street corner; no streetlight damage, drainage, pothole or crack visible at review resolution. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0010",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/15_jpg.rf.03455115ff8cfdc80099ee80330f0c9c.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/15_jpg.rf.03455115ff8cfdc80099ee80330f0c9c.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0014-16_jpg.rf.8f",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Intersection with traffic signals and intact streetlights; intact streetlights do not qualify. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0014",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/16_jpg.rf.8f9a8c46c8162703342e03d4b76a287b.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/16_jpg.rf.8f9a8c46c8162703342e03d4b76a287b.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0016-18_jpg.rf.a8",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Swinging traffic signals on span wire; out of scope. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0016",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/18_jpg.rf.a8b6a57e2a5dc5b191816743dd351361.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/18_jpg.rf.a8b6a57e2a5dc5b191816743dd351361.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0021-22_jpg.rf.ec",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "WAIT_FOR_AR-005",
+      "reason": "Night road with illuminated, functional-looking streetlights. Under the rule for illuminated functional-looking lamps it is not broken_streetlight. Background use waits for AR-005 because some existing positives are illuminated lamps. Approve only if AR-005 concludes that illuminated undamaged lamps are not broken_streetlight.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0021",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/22_jpg.rf.ec8557c1bab920ed3c2a24a0584dc14a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/22_jpg.rf.ec8557c1bab920ed3c2a24a0584dc14a.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0030-11_jpg.rf.90",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Tilted traffic signal; same scene as train/27_jpg. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0030",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/11_jpg.rf.90dfb235befed23d37b33725c2df8b75.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/11_jpg.rf.90dfb235befed23d37b33725c2df8b75.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0030-27_jpg.rf.6d",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "SAME_SCENE_AS_PROPOSED",
+      "reason": "Tilted traffic signal head; out of scope. Same scene as test/11_jpg. Another image of an already proposed scene; only one image per scene is used.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0030",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/27_jpg.rf.6d9992019b015f47cdb44010b07f032b.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/27_jpg.rf.6d9992019b015f47cdb44010b07f032b.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0047-35_jpg.rf.24",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Dangling traffic signal head; out of scope. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0047",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/35_jpg.rf.243104cbcc4b43a1ebb040a2dfb786c0.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/35_jpg.rf.243104cbcc4b43a1ebb040a2dfb786c0.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0049-37_jpg.rf.28",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Knocked-over traffic signal at a roundabout; nearby lighting column is intact. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0049",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/37_jpg.rf.288c2bc6f1fe9d1645ce7c13d3420b14.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/37_jpg.rf.288c2bc6f1fe9d1645ce7c13d3420b14.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0060-43_jpg.rf.94",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Leaning utility pole and traffic signals; the decorative streetlight in frame is intact. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0060",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/43_jpg.rf.9408c7d89d6f5422255b036f461db797.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/43_jpg.rf.9408c7d89d6f5422255b036f461db797.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0063-45_jpg.rf.bd",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Leaning wooden utility pole without a luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0063",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/45_jpg.rf.bdfe2bc502da4778c623234633af5ab9.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/45_jpg.rf.bdfe2bc502da4778c623234633af5ab9.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_1.jpg"
+    },
+    {
+      "entry_id": "B-scene_0073-4_jpg.rf.189",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Hanging traffic signal; out of scope. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0073",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/4_jpg.rf.189d29e2884e0eb03359dad6074c3d3b.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/4_jpg.rf.189d29e2884e0eb03359dad6074c3d3b.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0106-65_jpg.rf.fc",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Leaning pole in vegetation without a luminaire. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0106",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/65_jpg.rf.fc30ad9c984eb389dbc6397cb59a91de.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/65_jpg.rf.fc30ad9c984eb389dbc6397cb59a91de.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0107-66_jpg.rf.1f",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Leaning pole in a field without a luminaire. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0107",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/66_jpg.rf.1fa6dc457c6a7409670fd2a0460c09ec.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/66_jpg.rf.1fa6dc457c6a7409670fd2a0460c09ec.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0115-71_jpg.rf.2e",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Two leaning wooden utility poles beside a road; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0115",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/71_jpg.rf.2e608a92e8452e1ff948bb077a46aa85.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/71_jpg.rf.2e608a92e8452e1ff948bb077a46aa85.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0121-75_webp.rf.d",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Leaning utility pole across a road with fallen branches; no luminaire visible. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0121",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/75_webp.rf.d873a63e4a6ca9340c9fcdd6698c2f84.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/75_webp.rf.d873a63e4a6ca9340c9fcdd6698c2f84.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0132-14_jpg.rf.93",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Tilted traffic countdown display on a city street; out of scope. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0132",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/14_jpg.rf.93bf4d52aa8c632d07f0751a79b3f509.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/14_jpg.rf.93bf4d52aa8c632d07f0751a79b3f509.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0134-17_jpg.rf.df",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Street view with traffic signal and intact streetlights. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0134",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/17_jpg.rf.df3e5fd358c283789049ba1937f2bfda.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/17_jpg.rf.df3e5fd358c283789049ba1937f2bfda.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0137-25_jpg.rf.7f",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "WAIT_FOR_AR-005",
+      "reason": "Illuminated, functional-looking streetlight at dusk. Not broken_streetlight. Background use waits for AR-005 because some existing positives are illuminated lamps. Approve only if AR-005 concludes that illuminated undamaged lamps are not broken_streetlight.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0137",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/25_jpg.rf.7f502545e9d3585702eb18948d8a89b5.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/25_jpg.rf.7f502545e9d3585702eb18948d8a89b5.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0139-26_jpg.rf.a9",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Traffic signals and enforcers at an intersection; out of scope. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0139",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/26_jpg.rf.a9e0ad6f5308ca1092c7c40893fb492e.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/26_jpg.rf.a9e0ad6f5308ca1092c7c40893fb492e.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0149-42_jpg.rf.03",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Utility pole knocked over by a vehicle; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0149",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/42_jpg.rf.0364c704e93b608e5283ba7f8800e2d2.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/42_jpg.rf.0364c704e93b608e5283ba7f8800e2d2.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0152-48_jpg.rf.d0",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "DO_NOT_APPROVE",
+      "reason": "Damaged wooden utility pole wrapped with tape at a crossing; no luminaire in frame. Asphalt next to the pole shows a visible crack; possible unlabelled road_crack. Not a safe background.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0152",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/48_jpg.rf.d00490f98481c18f89f57526846e2f02.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/48_jpg.rf.d00490f98481c18f89f57526846e2f02.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0158-62_jpg.rf.1e",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Broken crossarm on a utility pole; no luminaire. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0158",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/62_jpg.rf.1e89dbbece110efe7d0b59a546c0af92.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/62_jpg.rf.1e89dbbece110efe7d0b59a546c0af92.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_2.jpg"
+    },
+    {
+      "entry_id": "B-scene_0159-63_jpg.rf.8a",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Snapped wooden utility pole beside a house; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0159",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/63_jpg.rf.8af3a43beef859879f428c49b82735f0.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/63_jpg.rf.8af3a43beef859879f428c49b82735f0.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_3.jpg"
+    },
+    {
+      "entry_id": "B-scene_0160-68_jpg.rf.40",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Fallen utility pole in a field; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0160",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/68_jpg.rf.401884e40df53f78c5ab7f1df67fc7fd.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/68_jpg.rf.401884e40df53f78c5ab7f1df67fc7fd.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_3.jpg"
+    },
+    {
+      "entry_id": "B-scene_0173-3_jpg.rf.acd",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "PROPOSE_APPROVE",
+      "reason": "Traffic signals and overhead cables; out of scope. Hard negative with no road surface or drainage in which an unlabelled pothole, crack or clogged drain could hide.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0173",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/3_jpg.rf.acd450e5bdae0dce4b0fd788cb54ca47.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/3_jpg.rf.acd450e5bdae0dce4b0fd788cb54ca47.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_3.jpg"
+    },
+    {
+      "entry_id": "B-scene_0176-46_jpg.rf.2c",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Broken leaning utility pole; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0176",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/46_jpg.rf.2c095ca35a489ebebda0e1dc85a3f7d9.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/46_jpg.rf.2c095ca35a489ebebda0e1dc85a3f7d9.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_3.jpg"
+    },
+    {
+      "entry_id": "B-scene_0177-47_jpg.rf.5a",
+      "category": "APPROVE_BACKGROUND",
+      "proposed_action": "APPROVE_ONLY_IF_CAPACITY",
+      "reason": "Snapped utility pole with transformer at night; no luminaire. Road surface visible; confirm no pothole, crack or clogged drain before approving.",
+      "human_action_required": "Inspect the full image. If it contains no broken_streetlight, clogged_drainage, pothole or road_crack, set approved_for_train_background=true for this image in data/review/task1_6/quarantine_review.json. Leave false otherwise. Backgrounds go to train only and are capped at 10 percent of train images (currently 9).",
+      "files": [
+        {
+          "scene_id": "scene_0177",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/test/images/47_jpg.rf.5a7e15cce8807fc1025a096e706bd874.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/test/labels/47_jpg.rf.5a7e15cce8807fc1025a096e706bd874.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "test",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/approve_background_3.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0040-31_jpg.rf.2b",
+      "category": "EXCLUDE",
+      "proposed_action": "EXCLUDE_PERMANENTLY",
+      "reason": "Severely underexposed night image; almost no usable content beyond one distant light source.",
+      "human_action_required": null,
+      "files": [
+        {
+          "scene_id": "scene_0040",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/31_jpg.rf.2b089c0006f7121e32c4a22e4396a0c2.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/31_jpg.rf.2b089c0006f7121e32c4a22e4396a0c2.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/exclude_1.jpg"
+    },
+    {
+      "entry_id": "Q-scene_0130-13_jpg.rf.07",
+      "category": "EXCLUDE",
+      "proposed_action": "EXCLUDE_PERMANENTLY",
+      "reason": "Two-photo collage (traffic signal and debris); composite images are not valid scenes.",
+      "human_action_required": null,
+      "files": [
+        {
+          "scene_id": "scene_0130",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/13_jpg.rf.07317da14c720c24bcf15a8ecd5a21b0.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/13_jpg.rf.07317da14c720c24bcf15a8ecd5a21b0.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/exclude_1.jpg"
+    },
+    {
+      "entry_id": "AR-002",
+      "category": "RESOLVED",
+      "issue": "POSSIBLE_FRAGMENTATION",
+      "decision": "NOT_FRAGMENTATION_KEEP",
+      "reason": "Seven pothole boxes on a gravel road. Each box covers a separate water-filled pothole; overlaps come from adjacent potholes, not from one defect split into pieces. Two small puddles at the far top edge are unlabelled.",
+      "files": [
+        {
+          "scene_id": "scene_0031",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/images/scene_0031_a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v3_clean/valid/labels/scene_0031_a.txt",
+          "dataset": "neighborlens_paper_aligned_v3_clean",
+          "split": "valid",
+          "original_source_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/27_jpg.rf.85feb2f5151db875f9c46ba9c965207b.jpg",
+          "current_annotation": [
+            {
+              "line": 1,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.372419,
+              "y_center": 0.68359,
+              "width": 0.435103,
+              "height": 0.374479
+            },
+            {
+              "line": 2,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.746313,
+              "y_center": 0.477516,
+              "width": 0.321534,
+              "height": 0.321298
+            },
+            {
+              "line": 3,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.437316,
+              "y_center": 0.276981,
+              "width": 0.364307,
+              "height": 0.203858
+            },
+            {
+              "line": 4,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.547198,
+              "y_center": 0.199427,
+              "width": 0.138643,
+              "height": 0.088634
+            },
+            {
+              "line": 5,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.468378,
+              "y_center": 0.115224,
+              "width": 0.138643,
+              "height": 0.070907
+            },
+            {
+              "line": 6,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.928466,
+              "y_center": 0.223801,
+              "width": 0.143068,
+              "height": 0.124088
+            },
+            {
+              "line": 7,
+              "class_id": 2,
+              "class": "pothole",
+              "x_center": 0.696991,
+              "y_center": 0.062177,
+              "width": 0.179941,
+              "height": 0.113008
+            }
+          ],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "human_action_required": null,
+      "optional_human_action": "Optional: decide whether the two distant puddles at the top edge are potholes and add boxes if so.",
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/resolved_1.jpg"
+    },
+    {
+      "entry_id": "R-scene_0001",
+      "category": "RESOLVED",
+      "decision": "NOT_BROKEN_STREETLIGHT",
+      "reason": "Lantern housing and glass are intact; no visible damage. Under the rule for intact streetlights it is not broken_streetlight.",
+      "files": [
+        {
+          "scene_id": "scene_0001",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/10_jpg.rf.63a0e6ee5bf1205335132aeff8cc32f7.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/10_jpg.rf.63a0e6ee5bf1205335132aeff8cc32f7.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "human_action_required": null,
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/resolved_1.jpg"
+    },
+    {
+      "entry_id": "R-scene_0021",
+      "category": "RESOLVED",
+      "decision": "NOT_BROKEN_STREETLIGHT",
+      "reason": "Night road with illuminated, functional-looking streetlights. Under the rule for illuminated functional-looking lamps it is not broken_streetlight. Background use waits for AR-005 because some existing positives are illuminated lamps.",
+      "files": [
+        {
+          "scene_id": "scene_0021",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/train/images/22_jpg.rf.ec8557c1bab920ed3c2a24a0584dc14a.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/train/labels/22_jpg.rf.ec8557c1bab920ed3c2a24a0584dc14a.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "train",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "human_action_required": null,
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/resolved_1.jpg"
+    },
+    {
+      "entry_id": "R-scene_0137",
+      "category": "RESOLVED",
+      "decision": "NOT_BROKEN_STREETLIGHT",
+      "reason": "Illuminated, functional-looking streetlight at dusk. Not broken_streetlight. Background use waits for AR-005 because some existing positives are illuminated lamps.",
+      "files": [
+        {
+          "scene_id": "scene_0137",
+          "image_path": "data/datasets/neighborlens_paper_aligned_v2/valid/images/25_jpg.rf.7f502545e9d3585702eb18948d8a89b5.jpg",
+          "label_path": "data/datasets/neighborlens_paper_aligned_v2/valid/labels/25_jpg.rf.7f502545e9d3585702eb18948d8a89b5.txt",
+          "dataset": "neighborlens_paper_aligned_v2 (quarantined from v3_clean)",
+          "split": null,
+          "original_split": "valid",
+          "current_annotation": [],
+          "provenance": {
+            "source_type": "roboflow_export",
+            "dataset": "kenjan/neighborlens version 2 (neighborlens_paper_aligned_v2)",
+            "license": "Private Roboflow workspace export; includes watermarked stock photographs"
+          }
+        }
+      ],
+      "human_action_required": null,
+      "blocks_v3_1": false,
+      "contact_sheet": "data/review/task1_6/sheets/resolved_1.jpg"
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+TAP version 13
+# Subtest: 1. MAJOR is displayed and counted correctly
+ok 1 - 1. MAJOR is displayed and counted correctly
+  ---
+  duration_ms: 1.5321
+  type: 'test'
+  ...
+# Subtest: 2. MINOR is displayed and counted correctly
+ok 2 - 2. MINOR is displayed and counted correctly
+  ---
+  duration_ms: 0.3233
+  type: 'test'
+  ...
+# Subtest: 3. Lowercase and whitespace variations are normalized
+ok 3 - 3. Lowercase and whitespace variations are normalized
+  ---
+  duration_ms: 0.1548
+  type: 'test'
+  ...
+# Subtest: 4. Null classification is UNCLASSIFIED
+ok 4 - 4. Null classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.2332
+  type: 'test'
+  ...
+# Subtest: 5. Undefined classification is UNCLASSIFIED
+ok 5 - 5. Undefined classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.1548
+  type: 'test'
+  ...
+# Subtest: 6. Unknown classification is UNCLASSIFIED
+ok 6 - 6. Unknown classification is UNCLASSIFIED
+  ---
+  duration_ms: 0.1189
+  type: 'test'
+  ...
+# Subtest: 7. Major + Minor + Unclassified counts remain internally consistent
+ok 7 - 7. Major + Minor + Unclassified counts remain internally consistent
+  ---
+  duration_ms: 4.2003
+  type: 'test'
+  ...
+# Subtest: 8. Existing report receives an updated classification from backend
+ok 8 - 8. Existing report receives an updated classification from backend
+  ---
+  duration_ms: 1.6857
+  type: 'test'
+  ...
+# Subtest: 9. Missing backend classification does not erase valid existing classification
+ok 9 - 9. Missing backend classification does not erase valid existing classification
+  ---
+  duration_ms: 0.7373
+  type: 'test'
+  ...
+# Subtest: 10. Repeated synchronization with unchanged data does not trigger unnecessary updates
+ok 10 - 10. Repeated synchronization with unchanged data does not trigger unnecessary updates
+  ---
+  duration_ms: 1.0793
+  type: 'test'
+  ...
+# Subtest: 11. Existing status and image synchronization still works
+ok 11 - 11. Existing status and image synchronization still works
+  ---
+  duration_ms: 1.0063
+  type: 'test'
+  ...
+# Subtest: 12. Explicit null from backend updates classification to null and renders as UNCLASSIFIED
+ok 12 - 12. Explicit null from backend updates classification to null and renders as UNCLASSIFIED
+  ---
+  duration_ms: 0.5114
+  type: 'test'
+  ...
+# Subtest: 13. Classification filtering works with normalized values
+ok 13 - 13. Classification filtering works with normalized values
+  ---
+  duration_ms: 0.2887
+  type: 'test'
+  ...
+# Subtest: shared admin dialog loads the shared report view with admin review and prefixed ids
+ok 14 - shared admin dialog loads the shared report view with admin review and prefixed ids
+  ---
+  duration_ms: 9.3949
+  type: 'test'
+  ...
+# Subtest: shared dialog passes the authenticated barangay role to shared capabilities
+ok 15 - shared dialog passes the authenticated barangay role to shared capabilities
+  ---
+  duration_ms: 1.4376
+  type: 'test'
+  ...
+# Subtest: closing restores scroll, body overflow and opener focus exactly once
+ok 16 - closing restores scroll, body overflow and opener focus exactly once
+  ---
+  duration_ms: 1.8706
+  type: 'test'
+  ...
+# Subtest: escape collapses an expanded map before closing the dialog
+ok 17 - escape collapses an expanded map before closing the dialog
+  ---
+  duration_ms: 1.0898
+  type: 'test'
+  ...
+# Subtest: invalid report ids never open the dialog
+ok 18 - invalid report ids never open the dialog
+  ---
+  duration_ms: 0.685
+  type: 'test'
+  ...
+# Subtest: a load that finishes after the dialog closed is discarded
+ok 19 - a load that finishes after the dialog closed is discarded
+  ---
+  duration_ms: 1.9756
+  type: 'test'
+  ...
+# Subtest: opening another report while open replaces content without stacking dialogs
+ok 20 - opening another report while open replaces content without stacking dialogs
+  ---
+  duration_ms: 1.6436
+  type: 'test'
+  ...
+# Subtest: review saves through the authorized API, notifies the list and reloads the shared view
+ok 21 - review saves through the authorized API, notifies the list and reloads the shared view
+  ---
+  duration_ms: 1.6916
+  type: 'test'
+  ...
+# Subtest: a denied review replaces the view with the access message
+ok 22 - a denied review replaces the view with the access message
+  ---
+  duration_ms: 2.7921
+  type: 'test'
+  ...
+# Subtest: the dialog delegates evidence loading instead of adding another renewal lifecycle
+ok 23 - the dialog delegates evidence loading instead of adding another renewal lifecycle
+  ---
+  duration_ms: 1.0509
+  type: 'test'
+  ...
+# Subtest: report links are parsed only for report details urls
+ok 24 - report links are parsed only for report details urls
+  ---
+  duration_ms: 0.5095
+  type: 'test'
+  ...
+# Subtest: shared view loader enforces ids, sessions, access and identity
+ok 25 - shared view loader enforces ids, sessions, access and identity
+  ---
+  duration_ms: 1.5047
+  type: 'test'
+  ...
+# Subtest: filter sheet opens as a modal sheet, locks scroll and moves focus on mobile
+ok 26 - filter sheet opens as a modal sheet, locks scroll and moves focus on mobile
+  ---
+  duration_ms: 0.7037
+  type: 'test'
+  ...
+# Subtest: filter sheet clear runs the shared clear logic and apply closes with focus restored
+ok 27 - filter sheet clear runs the shared clear logic and apply closes with focus restored
+  ---
+  duration_ms: 0.3397
+  type: 'test'
+  ...
+# Subtest: filter sheet closes on Escape and stays inline on desktop
+ok 28 - filter sheet closes on Escape and stays inline on desktop
+  ---
+  duration_ms: 0.2667
+  type: 'test'
+  ...
+# Subtest: filter sheet count badge announces active filters
+ok 29 - filter sheet count badge announces active filters
+  ---
+  duration_ms: 0.2112
+  type: 'test'
+  ...
+# Subtest: opening report details from the admin list preserves page, filters and location
+ok 30 - opening report details from the admin list preserves page, filters and location
+  ---
+  duration_ms: 31.5416
+  type: 'test'
+  ...
+# Subtest: admin report links open the shared dialog unless the user asks for a new tab
+ok 31 - admin report links open the shared dialog unless the user asks for a new tab
+  ---
+  duration_ms: 2.8315
+  type: 'test'
+  ...
+# [reports] Background fetch error: This account is not authorized to access these reports.
+# [reports] Background fetch error: Invalid report response.
+# [reports] Background fetch error: Isolated network failure
+# [reports] Background fetch error: Reports could not be loaded from the server. Retry when connected.
+# [reports] Background fetch error: This account is not authorized to access these reports.
+# Subtest: Phase 2 cache: admin to barangay logout removes prior reports without removing preferences
+ok 32 - Phase 2 cache: admin to barangay logout removes prior reports without removing preferences
+  ---
+  duration_ms: 41.7665
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: barangay to barangay logout removes prior reports without removing preferences
+ok 33 - Phase 2 cache: barangay to barangay logout removes prior reports without removing preferences
+  ---
+  duration_ms: 2.7056
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: citizen to citizen logout removes prior reports without removing preferences
+ok 34 - Phase 2 cache: citizen to citizen logout removes prior reports without removing preferences
+  ---
+  duration_ms: 2.9391
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":2,"username":"user-2","role":"admin","barangay":"Barangay A","apiToken":"token-2-admin"} invalidates prior data
+ok 35 - Phase 2 cache: identity/access context change {"id":2,"username":"user-2","role":"admin","barangay":"Barangay A","apiToken":"token-2-admin"} invalidates prior data
+  ---
+  duration_ms: 2.5821
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"barangay","barangay":"Barangay A","apiToken":"token-9-barangay"} invalidates prior data
+ok 36 - Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"barangay","barangay":"Barangay A","apiToken":"token-9-barangay"} invalidates prior data
+  ---
+  duration_ms: 3.3853
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"admin","barangay":"Barangay B","apiToken":"token-9-admin"} invalidates prior data
+ok 37 - Phase 2 cache: identity/access context change {"id":9,"username":"user-9","role":"admin","barangay":"Barangay B","apiToken":"token-9-admin"} invalidates prior data
+  ---
+  duration_ms: 2.8298
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: same user refresh retains scoped authorized records and reloads them
+ok 38 - Phase 2 cache: same user refresh retains scoped authorized records and reloads them
+  ---
+  duration_ms: 6.9814
+  type: 'test'
+  ...
+# Subtest: report synchronization refreshes mutable server fields and removes deleted evidence
+ok 39 - report synchronization refreshes mutable server fields and removes deleted evidence
+  ---
+  duration_ms: 4.0224
+  type: 'test'
+  ...
+# Subtest: report cache is isolated between portal tabs that share localStorage
+ok 40 - report cache is isolated between portal tabs that share localStorage
+  ---
+  duration_ms: 5.6947
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: legacy unscoped storage is discarded rather than assigned to the next actor
+ok 41 - Phase 2 cache: legacy unscoped storage is discarded rather than assigned to the next actor
+  ---
+  duration_ms: 3.0181
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: cross-jurisdiction and cross-citizen records cannot be read or rendered
+ok 42 - Phase 2 cache: cross-jurisdiction and cross-citizen records cannot be read or rendered
+  ---
+  duration_ms: 6.1497
+  type: 'test'
+  ...
+# Subtest: Barangay state disposal clears authorized records and ignores a late read
+ok 43 - Barangay state disposal clears authorized records and ignores a late read
+  ---
+  duration_ms: 1.8599
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: narrower API results remove omitted reports and invalidate their open modal
+ok 44 - Phase 2 cache: narrower API results remove omitted reports and invalidate their open modal
+  ---
+  duration_ms: 2.9625
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: empty response does not retain stale reports
+ok 45 - Phase 2 cache: empty response does not retain stale reports
+  ---
+  duration_ms: 2.2079
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: access denial response does not retain stale reports
+ok 46 - Phase 2 cache: access denial response does not retain stale reports
+  ---
+  duration_ms: 2.9042
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: malformed body response does not retain stale reports
+ok 47 - Phase 2 cache: malformed body response does not retain stale reports
+  ---
+  duration_ms: 2.5097
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: network error response does not retain stale reports
+ok 48 - Phase 2 cache: network error response does not retain stale reports
+  ---
+  duration_ms: 2.477
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: delayed GET cannot write data after session switching
+ok 49 - Phase 2 cache: delayed GET cannot write data after session switching
+  ---
+  duration_ms: 3.8393
+  type: 'test'
+  ...
+# Subtest: admin dashboard retains scoped records for transient outages but clears them for access denial
+ok 50 - admin dashboard retains scoped records for transient outages but clears them for access denial
+  ---
+  duration_ms: 3.7358
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: older broad GET cannot restore reports after a newer narrow response
+ok 51 - Phase 2 cache: older broad GET cannot restore reports after a newer narrow response
+  ---
+  duration_ms: 2.7484
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: delayed POST cannot repopulate a logged-out or different account cache
+ok 52 - Phase 2 cache: delayed POST cannot repopulate a logged-out or different account cache
+  ---
+  duration_ms: 4.4376
+  type: 'test'
+  ...
+# Subtest: Phase 2 cache: metadata never persists the bearer token or assessment proof
+ok 53 - Phase 2 cache: metadata never persists the bearer token or assessment proof
+  ---
+  duration_ms: 3.2616
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin corrected category has accurate attribution
+ok 54 - Phase 2 labels: admin corrected category has accurate attribution
+  ---
+  duration_ms: 4.8848
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin unchanged category has accurate attribution
+ok 55 - Phase 2 labels: admin unchanged category has accurate attribution
+  ---
+  duration_ms: 2.6871
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: admin legacy category has accurate attribution
+ok 56 - Phase 2 labels: admin legacy category has accurate attribution
+  ---
+  duration_ms: 2.9102
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay corrected category has accurate attribution
+ok 57 - Phase 2 labels: barangay corrected category has accurate attribution
+  ---
+  duration_ms: 3.7337
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay unchanged category has accurate attribution
+ok 58 - Phase 2 labels: barangay unchanged category has accurate attribution
+  ---
+  duration_ms: 2.5009
+  type: 'test'
+  ...
+# Subtest: Phase 2 labels: barangay legacy category has accurate attribution
+ok 59 - Phase 2 labels: barangay legacy category has accurate attribution
+  ---
+  duration_ms: 2.5122
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 268.532

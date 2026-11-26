@@ -1,0 +1,631 @@
+{
+  "source": {
+    "filename": "image(20261015-101514).png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "34509ec6ab5ba693361976c2be0f6347af7f4c27c50ae2578d2e0f105f8aad16"
+  },
+  "assets": [
+    {
+      "name": "brand-and-tagline",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        228,
+        43,
+        589,
+        105
+      ],
+      "width": 361,
+      "height": 62,
+      "png": "02-exact-crops/png/brand-and-tagline.png",
+      "svg": "02-exact-crops/svg/brand-and-tagline.svg"
+    },
+    {
+      "name": "brand-wordmark",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        228,
+        43,
+        484,
+        79
+      ],
+      "width": 256,
+      "height": 36,
+      "png": "02-exact-crops/png/brand-wordmark.png",
+      "svg": "02-exact-crops/svg/brand-wordmark.svg"
+    },
+    {
+      "name": "brand-tagline",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        229,
+        82,
+        590,
+        104
+      ],
+      "width": 361,
+      "height": 22,
+      "png": "02-exact-crops/png/brand-tagline.png",
+      "svg": "02-exact-crops/svg/brand-tagline.svg"
+    },
+    {
+      "name": "feature-report-complete",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        182,
+        617,
+        276
+      ],
+      "width": 427,
+      "height": 94,
+      "png": "02-exact-crops/png/feature-report-complete.png",
+      "svg": "02-exact-crops/svg/feature-report-complete.svg"
+    },
+    {
+      "name": "feature-report-icon-tile",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        182,
+        286,
+        277
+      ],
+      "width": 96,
+      "height": 95,
+      "png": "02-exact-crops/png/feature-report-icon-tile.png",
+      "svg": "02-exact-crops/svg/feature-report-icon-tile.svg"
+    },
+    {
+      "name": "feature-report-copy",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        310,
+        194,
+        617,
+        276
+      ],
+      "width": 307,
+      "height": 82,
+      "png": "02-exact-crops/png/feature-report-copy.png",
+      "svg": "02-exact-crops/svg/feature-report-copy.svg"
+    },
+    {
+      "name": "feature-track-complete",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        310,
+        546,
+        401
+      ],
+      "width": 356,
+      "height": 91,
+      "png": "02-exact-crops/png/feature-track-complete.png",
+      "svg": "02-exact-crops/svg/feature-track-complete.svg"
+    },
+    {
+      "name": "feature-track-icon-tile",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        310,
+        286,
+        403
+      ],
+      "width": 96,
+      "height": 93,
+      "png": "02-exact-crops/png/feature-track-icon-tile.png",
+      "svg": "02-exact-crops/svg/feature-track-icon-tile.svg"
+    },
+    {
+      "name": "feature-track-copy",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        310,
+        319,
+        548,
+        401
+      ],
+      "width": 238,
+      "height": 82,
+      "png": "02-exact-crops/png/feature-track-copy.png",
+      "svg": "02-exact-crops/svg/feature-track-copy.svg"
+    },
+    {
+      "name": "feature-community-complete",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        436,
+        660,
+        531
+      ],
+      "width": 470,
+      "height": 95,
+      "png": "02-exact-crops/png/feature-community-complete.png",
+      "svg": "02-exact-crops/svg/feature-community-complete.svg"
+    },
+    {
+      "name": "feature-community-icon-tile",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        190,
+        436,
+        286,
+        532
+      ],
+      "width": 96,
+      "height": 96,
+      "png": "02-exact-crops/png/feature-community-icon-tile.png",
+      "svg": "02-exact-crops/svg/feature-community-icon-tile.svg"
+    },
+    {
+      "name": "feature-community-copy",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        310,
+        449,
+        660,
+        531
+      ],
+      "width": 350,
+      "height": 82,
+      "png": "02-exact-crops/png/feature-community-copy.png",
+      "svg": "02-exact-crops/svg/feature-community-copy.svg"
+    },
+    {
+      "name": "illustration-left-visible-scene",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        0,
+        532,
+        818,
+        941
+      ],
+      "width": 818,
+      "height": 409,
+      "png": "02-exact-crops/png/illustration-left-visible-scene.png",
+      "svg": "02-exact-crops/svg/illustration-left-visible-scene.svg"
+    },
+    {
+      "name": "illustration-citizen-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        0,
+        551,
+        376,
+        941
+      ],
+      "width": 376,
+      "height": 390,
+      "png": "02-exact-crops/png/illustration-citizen-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-citizen-visible-region.svg"
+    },
+    {
+      "name": "illustration-phone-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        279,
+        705,
+        356,
+        825
+      ],
+      "width": 77,
+      "height": 120,
+      "png": "02-exact-crops/png/illustration-phone-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-phone-visible-region.svg"
+    },
+    {
+      "name": "illustration-city-hall-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        280,
+        615,
+        677,
+        807
+      ],
+      "width": 397,
+      "height": 192,
+      "png": "02-exact-crops/png/illustration-city-hall-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-city-hall-visible-region.svg"
+    },
+    {
+      "name": "illustration-philippine-flag-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        406,
+        539,
+        470,
+        616
+      ],
+      "width": 64,
+      "height": 77,
+      "png": "02-exact-crops/png/illustration-philippine-flag-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-philippine-flag-visible-region.svg"
+    },
+    {
+      "name": "illustration-road-pothole-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        370,
+        819,
+        680,
+        941
+      ],
+      "width": 310,
+      "height": 122,
+      "png": "02-exact-crops/png/illustration-road-pothole-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-road-pothole-visible-region.svg"
+    },
+    {
+      "name": "illustration-cone-and-barrier-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        675,
+        793,
+        818,
+        891
+      ],
+      "width": 143,
+      "height": 98,
+      "png": "02-exact-crops/png/illustration-cone-and-barrier-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-cone-and-barrier-visible-region.svg"
+    },
+    {
+      "name": "illustration-right-city-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1485,
+        330,
+        1672,
+        941
+      ],
+      "width": 187,
+      "height": 611,
+      "png": "02-exact-crops/png/illustration-right-city-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-right-city-visible-region.svg"
+    },
+    {
+      "name": "illustration-church-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1558,
+        437,
+        1672,
+        748
+      ],
+      "width": 114,
+      "height": 311,
+      "png": "02-exact-crops/png/illustration-church-visible-region.png",
+      "svg": "02-exact-crops/svg/illustration-church-visible-region.svg"
+    },
+    {
+      "name": "sky-upper-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        590,
+        0,
+        1672,
+        115
+      ],
+      "width": 1082,
+      "height": 115,
+      "png": "02-exact-crops/png/sky-upper-visible-region.png",
+      "svg": "02-exact-crops/svg/sky-upper-visible-region.svg"
+    },
+    {
+      "name": "cloud-left-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        0,
+        120,
+        165,
+        170
+      ],
+      "width": 165,
+      "height": 50,
+      "png": "02-exact-crops/png/cloud-left-visible-region.png",
+      "svg": "02-exact-crops/svg/cloud-left-visible-region.svg"
+    },
+    {
+      "name": "cloud-center-visible-region",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        545,
+        144,
+        700,
+        189
+      ],
+      "width": 155,
+      "height": 45,
+      "png": "02-exact-crops/png/cloud-center-visible-region.png",
+      "svg": "02-exact-crops/svg/cloud-center-visible-region.svg"
+    },
+    {
+      "name": "login-card-complete",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        819,
+        117,
+        1484,
+        905
+      ],
+      "width": 665,
+      "height": 788,
+      "png": "02-exact-crops/png/login-card-complete.png",
+      "svg": "02-exact-crops/svg/login-card-complete.svg"
+    },
+    {
+      "name": "login-community-badge",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1060,
+        151,
+        1239,
+        327
+      ],
+      "width": 179,
+      "height": 176,
+      "png": "02-exact-crops/png/login-community-badge.png",
+      "svg": "02-exact-crops/svg/login-community-badge.svg"
+    },
+    {
+      "name": "login-heading",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1030,
+        332,
+        1272,
+        374
+      ],
+      "width": 242,
+      "height": 42,
+      "png": "02-exact-crops/png/login-heading.png",
+      "svg": "02-exact-crops/svg/login-heading.svg"
+    },
+    {
+      "name": "login-description",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        976,
+        384,
+        1331,
+        434
+      ],
+      "width": 355,
+      "height": 50,
+      "png": "02-exact-crops/png/login-description.png",
+      "svg": "02-exact-crops/svg/login-description.svg"
+    },
+    {
+      "name": "username-field-with-label",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        877,
+        466,
+        1427,
+        564
+      ],
+      "width": 550,
+      "height": 98,
+      "png": "02-exact-crops/png/username-field-with-label.png",
+      "svg": "02-exact-crops/svg/username-field-with-label.svg"
+    },
+    {
+      "name": "username-field",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        878,
+        498,
+        1426,
+        563
+      ],
+      "width": 548,
+      "height": 65,
+      "png": "02-exact-crops/png/username-field.png",
+      "svg": "02-exact-crops/svg/username-field.svg"
+    },
+    {
+      "name": "username-icon",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        901,
+        514,
+        929,
+        546
+      ],
+      "width": 28,
+      "height": 32,
+      "png": "02-exact-crops/png/username-icon.png",
+      "svg": "02-exact-crops/svg/username-icon.svg"
+    },
+    {
+      "name": "password-field-with-label",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        877,
+        584,
+        1427,
+        684
+      ],
+      "width": 550,
+      "height": 100,
+      "png": "02-exact-crops/png/password-field-with-label.png",
+      "svg": "02-exact-crops/svg/password-field-with-label.svg"
+    },
+    {
+      "name": "password-field",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        878,
+        616,
+        1426,
+        683
+      ],
+      "width": 548,
+      "height": 67,
+      "png": "02-exact-crops/png/password-field.png",
+      "svg": "02-exact-crops/svg/password-field.svg"
+    },
+    {
+      "name": "password-lock-icon",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        900,
+        633,
+        927,
+        665
+      ],
+      "width": 27,
+      "height": 32,
+      "png": "02-exact-crops/png/password-lock-icon.png",
+      "svg": "02-exact-crops/svg/password-lock-icon.svg"
+    },
+    {
+      "name": "password-visibility-icon",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1371,
+        636,
+        1407,
+        662
+      ],
+      "width": 36,
+      "height": 26,
+      "png": "02-exact-crops/png/password-visibility-icon.png",
+      "svg": "02-exact-crops/svg/password-visibility-icon.svg"
+    },
+    {
+      "name": "remember-checkbox",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        877,
+        702,
+        905,
+        730
+      ],
+      "width": 28,
+      "height": 28,
+      "png": "02-exact-crops/png/remember-checkbox.png",
+      "svg": "02-exact-crops/svg/remember-checkbox.svg"
+    },
+    {
+      "name": "remember-me-control",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        877,
+        702,
+        1045,
+        731
+      ],
+      "width": 168,
+      "height": 29,
+      "png": "02-exact-crops/png/remember-me-control.png",
+      "svg": "02-exact-crops/svg/remember-me-control.svg"
+    },
+    {
+      "name": "forgot-password-link",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1266,
+        705,
+        1427,
+        731
+      ],
+      "width": 161,
+      "height": 26,
+      "png": "02-exact-crops/png/forgot-password-link.png",
+      "svg": "02-exact-crops/svg/forgot-password-link.svg"
+    },
+    {
+      "name": "sign-in-button",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        878,
+        750,
+        1426,
+        820
+      ],
+      "width": 548,
+      "height": 70,
+      "png": "02-exact-crops/png/sign-in-button.png",
+      "svg": "02-exact-crops/svg/sign-in-button.svg"
+    },
+    {
+      "name": "sign-in-arrow",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1089,
+        771,
+        1121,
+        801
+      ],
+      "width": 32,
+      "height": 30,
+      "png": "02-exact-crops/png/sign-in-arrow.png",
+      "svg": "02-exact-crops/svg/sign-in-arrow.svg"
+    },
+    {
+      "name": "create-account-footer",
+      "kind": "exact-raster-crop",
+      "bounds_xyxy": [
+        1028,
+        862,
+        1275,
+        888
+      ],
+      "width": 247,
+      "height": 26,
+      "png": "02-exact-crops/png/create-account-footer.png",
+      "svg": "02-exact-crops/svg/create-account-footer.svg"
+    },
+    {
+      "name": "camera",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/camera.svg"
+    },
+    {
+      "name": "report-document",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/report-document.svg"
+    },
+    {
+      "name": "community",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/community.svg"
+    },
+    {
+      "name": "user",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/user.svg"
+    },
+    {
+      "name": "lock",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/lock.svg"
+    },
+    {
+      "name": "eye",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/eye.svg"
+    },
+    {
+      "name": "arrow-right",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/arrow-right.svg"
+    },
+    {
+      "name": "checkbox-empty",
+      "kind": "recreated-editable-vector",
+      "file": "03-editable-icons/checkbox-empty.svg"
+    }
+  ],
+  "limitations": [
+    "The supplied source is a flattened PNG, not a layered design file.",
+    "Exact crops retain any visible background, nearby objects and occlusion. They are not transparent isolated layers.",
+    "SVG files in 01-original and 02-exact-crops embed PNG pixels; they are not vector illustrations.",
+    "03-editable-icons contains manually recreated vector paths, not recovered original icon paths.",
+    "Artwork hidden beneath the form or text is unavailable. Font family and design tokens are estimates."
+  ]
+}

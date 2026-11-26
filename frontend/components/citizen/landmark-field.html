@@ -1,0 +1,44 @@
+<label for="landmarkDescription" class="citizen-field-label">
+    Nearby landmark
+    <span class="citizen-req-mark">*</span>
+</label>
+
+<div class="citizen-landmark-composer">
+
+    <textarea id="landmarkDescription" name="landmarkDescription" rows="2" maxlength="250"
+        placeholder="e.g. Beside the school entrance..." aria-describedby="landmarkHint" required></textarea>
+
+    <div class="citizen-landmark-toolbar">
+
+        <div class="citizen-landmark-actions">
+
+            <button type="button" id="landmarkPreviewBtn" class="citizen-landmark-preview"
+                aria-label="Preview landmark photo" hidden>
+
+                <img id="landmarkPreview" alt="Captured landmark">
+
+            </button>
+
+            <button type="button" id="landmarkCameraBtn" class="citizen-landmark-camera">
+
+                <i class="bx bx-camera" aria-hidden="true"></i>
+
+                <span id="landmarkCameraLabel">
+                    Take photo
+                </span>
+
+            </button>
+
+        </div>
+
+        <span id="landmarkCharCounter" class="citizen-landmark-counter">
+            0/250
+        </span>
+
+    </div>
+
+</div>
+
+<p id="landmarkHint" class="citizen-landmark-hint">
+    Photo and description required.
+</p>

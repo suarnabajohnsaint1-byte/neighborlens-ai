@@ -1,0 +1,4 @@
+DROP TABLE community_publication_reviews;
+DROP TABLE community_publication_media;
+DROP TABLE community_publication_requests;
+DROP TABLE community_publication_legacy;
