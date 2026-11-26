@@ -9,7 +9,7 @@
     "server:dev": "node --env-file=.env --watch server/app.js",
     "ai": "concurrently --kill-others-on-fail \"npm run ai:damage\" \"npm run ai:identity\"",
     "ai:damage": "node --env-file=.env scripts/start-ai.js",
-    "ai:identity": ".venv\\Scripts\\python.exe -m uvicorn ai.identity.forensics_api:app --host 127.0.0.1 --port 8001 --env-file .env --no-access-log",
+    "ai:identity": ".venv\\Scripts\\python.exe -m uvicorn ai.identity.forensics_api:app --host 127.0.0.1 --port 8001 --env-file .env",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run ai\"",
     "dev": "concurrently \"npm run server:dev\" \"npm run ai\"",
     "test": "node --test --test-concurrency=1 server/tests/*.test.js tests/integration/*.test.js",
