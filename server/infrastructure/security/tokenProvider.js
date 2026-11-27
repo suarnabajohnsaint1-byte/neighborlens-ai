@@ -1,8 +1,12 @@
 const jwt = require('jsonwebtoken');
 const env = require('../config/env');
+const registrationFraud = require('../config/registrationFraud');
 const { createHmac, randomUUID } = require('node:crypto');
 
 const DEFAULT_TTL = '8h';
+const sessionKey = registrationFraud.isolatedEnrollment
+  ? createHmac('sha256', env.JWT_SECRET).update(`neighborlens:local-enrollment:${env.DB_NAME}`).digest()
+  : env.JWT_SECRET;
 
 // A JWT is signed, not encrypted, so the payload carries only identity and
 // authorization scope.
@@ -15,13 +19,13 @@ function issue(safeUser, ttl = DEFAULT_TTL) {
       barangay: safeUser.barangay,
       tv: Number(safeUser.token_version ?? safeUser.tokenVersion ?? 0)
     },
-    env.JWT_SECRET,
+    sessionKey,
     { expiresIn: ttl, algorithm: 'HS256', issuer: 'neighborlens-api', audience: 'neighborlens-session' }
   );
 }
 
 function verify(token) {
-  const claims = jwt.verify(token, env.JWT_SECRET, { algorithms: ['HS256'] });
+  const claims = jwt.verify(token, sessionKey, { algorithms: ['HS256'] });
   if ((claims.iss !== undefined && claims.iss !== 'neighborlens-api') || (claims.aud !== undefined && claims.aud !== 'neighborlens-session')) throw new jwt.JsonWebTokenError('Invalid session purpose.');
   return claims;
 }

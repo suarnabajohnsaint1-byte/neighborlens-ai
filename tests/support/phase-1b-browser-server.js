@@ -7,6 +7,7 @@ const previewPort = process.env.PHASE2_PREVIEW_PORT;
 const enrollmentFixture = process.env.NEIGHBORLENS_ENROLLMENT_FIXTURE === '1' && previewPort === '4318';
 if (previewPort) process.env.JWT_SECRET = randomBytes(32).toString('hex');
 if (enrollmentFixture) {
+  process.env.REGISTRATION_FRAUD_SCREENING_ENABLED = 'true';
   process.env.REGISTRATION_VERIFIER_URL = 'http://127.0.0.1:4318/__fixture_verify_id';
   process.env.REGISTRATION_VERIFIER_SECRET = randomBytes(32).toString('hex');
   process.env.REGISTRATION_FRAUD_URL = 'http://127.0.0.1:4318/__fixture_screen_id';

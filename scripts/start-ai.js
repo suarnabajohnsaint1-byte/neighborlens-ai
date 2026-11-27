@@ -1,6 +1,6 @@
-const { spawn } = require("node:child_process");
 const path = require("node:path");
 
+const root = path.resolve(__dirname, "..");
 const faceDev = process.argv.includes("--face-dev");
 const host = process.env.AI_HOST || "127.0.0.1";
 if (faceDev && (
@@ -14,8 +14,8 @@ if (faceDev && (
 const environment = faceDev ? ".venv-yolo" : ".venv";
 const python =
     process.platform === "win32"
-        ? path.resolve(environment, "Scripts", "python.exe")
-        : path.resolve(environment, "bin", "python");
+        ? path.join(root, environment, "Scripts", "python.exe")
+        : path.join(root, environment, "bin", "python");
 
 const weights =
     process.env.AI_MODEL_WEIGHTS ||
@@ -42,11 +42,11 @@ const args = [
 if (process.env.AI_PORTRAIT_MODEL) args.push("--portrait-model", process.env.AI_PORTRAIT_MODEL);
 if (process.env.AI_OBJECT_MODEL) args.push("--object-model", process.env.AI_OBJECT_MODEL);
 
-const child = spawn(python, args, { stdio: "inherit", env: process.env });
+module.exports = { root, python, damageArgs: args, damageHost: host, damagePort: Number(port) };
 
-child.on("exit", code => {
-    process.exit(code ?? 1);
-});
-
-process.on("SIGINT", () => child.kill("SIGINT"));
-process.on("SIGTERM", () => child.kill("SIGTERM"));
+if (require.main === module) {
+    require("./start-ai-services").launch({ damageOnly: true }).catch(error => {
+        console.error(error.message);
+        process.exitCode = 1;
+    });
+}

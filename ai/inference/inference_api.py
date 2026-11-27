@@ -7,6 +7,7 @@ import asyncio
 import json
 import logging
 import hashlib
+import os
 import uuid
 from enum import Enum
 from collections.abc import Callable
@@ -338,6 +339,9 @@ def create_app(
         return {
             "ok": True,
             "service": "neighborlens-yolo-api",
+            "protocol": 1,
+            "profile": os.environ.get("NEIGHBORLENS_DAMAGE_PROFILE"),
+            "instance": os.environ.get("NEIGHBORLENS_AI_INSTANCE"),
             "status": "running",
             "classes": CANONICAL_CLASS_NAMES,
             "min_confidence": confidence,
@@ -534,6 +538,10 @@ def create_app(
 
 
 def main() -> None:
+    if os.environ.get("NEIGHBORLENS_AI_INSTANCE"):
+        from ai.service_lifecycle import watch_launcher
+
+        watch_launcher()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--weights", default=str(DEFAULT_PRODUCTION_WEIGHTS))
     parser.add_argument("--host", default="0.0.0.0")

@@ -334,7 +334,7 @@
                     <h1>Citizen Login</h1>
                     <p class="rl-subhead">Sign in to access NeighborLens AI<br>and report issues in your community.</p>
                 </div>
-                <form id="loginForm" autocomplete="off">
+                <form id="loginForm" method="post" autocomplete="off">
                     <label class="rl-field" for="loginUser">Username<span class="rl-frame"><i class="bx bx-user"
                                 aria-hidden="true"></i><input type="text" id="loginUser" name="username"
                                 placeholder="Enter your username" required autocomplete="username"></span></label>
@@ -350,7 +350,7 @@
                     </div>
                     <p id="loginHelp" class="rl-help" hidden>Contact your barangay or system administrator for account
                         recovery. Remember me only saves your username on this device.</p>
-                    <button type="submit" id="citizenLoginSubmit" class="rl-submit btn-primary"><i
+                    <button type="submit" id="citizenLoginSubmit" class="rl-submit btn-primary" disabled><i
                             class="bx bx-right-arrow-alt" aria-hidden="true"></i>Sign In</button>
                 </form>
                 <div id="loginMsg" style="margin-top:8px;"></div>
@@ -370,7 +370,7 @@
                     <div class="step-bar-item" id="stepBarCreds">2 · SET CREDENTIALS</div>
                 </div>
 
-                <form id="signupForm" autocomplete="off">
+                <form id="signupForm" method="post" autocomplete="off">
 
                     <!-- Real-Time Live Location Detection for Account Registration -->
                     <div class="input-group">
@@ -570,7 +570,7 @@
                     <button type="submit" id="signupSubmitBtn" class="btn-main btn-primary"
                         aria-describedby="signupSubmitStatus" style="width:100%; margin-top:4px; opacity:0.4;" disabled
                         title="Verify your government ID first">
-                        Register as Citizen
+                        Create Account
                     </button>
 
                 </form>

@@ -280,6 +280,7 @@
     if (status.textContent !== hint) status.textContent = hint;
   }
   function update() {
+    byId("regBarangay").required = !enrollment?.outsideTest;
     const eligible = Boolean(scan?.valid && confirmed && (account || enrollment));
     const identityReviewed = Boolean(scan?.valid && confirmed && (account || enrollment || reviewToken));
     byId("signupCredentials").hidden = !account && !identityReviewed;
@@ -297,7 +298,7 @@
       submit.textContent = identitySaved
         ? "Save identity corrections"
         : "Retry Identity Submission";
-    else submit.textContent = "Register as Citizen";
+    else submit.textContent = "Create Account";
     let status;
     if (registrationComplete)
       status = "Registration saved. Opening Citizen Portal...";
@@ -728,7 +729,7 @@
         if (idType && (result.valid || canEditOcrResult(result))) {
           reviewScan({ ...result, fields: { ...fields, idType } });
           if (enrollment?.basic) {
-            message("idVerifyStatus", "Review your scanned details to create a limited account. Your identity remains unverified.");
+            message("idVerifyStatus", "ID captured — identity verification pending.");
           } else if (provisionalReview === "OUTSIDE_BACOLOD_TEST") {
             message("idVerifyStatus", "Basic document checks passed. Review the scanned details.");
           } else showScanResult();
@@ -1076,8 +1077,8 @@
           const validation = IdIdentityService.validateDocumentFields(parsed);
           const flagged = localScreenWarning ||
             ["SUSPICIOUS", "POTENTIALLY_FAKE"].includes(screeningClassification(approved));
-          const needsRetake = !documentType || validation.missingFields.length ||
-            parsed.birthDate > new Date().toISOString().slice(0, 10);
+          const needsRetake = !documentType || (testPreview && (validation.missingFields.length ||
+            parsed.birthDate > new Date().toISOString().slice(0, 10)));
           if (flagged || needsRetake || validation.isExpired) {
             if (flagged || validation.isExpired) discardDraft();
             const unreadable = validation.missingFields.map(key => fieldLabels[key]).filter(Boolean).join(", ");
@@ -1094,7 +1095,7 @@
         if (approved.decision === "BASIC_REGISTRATION_ELIGIBLE" &&
           approved.ocrPrefillAllowed === true && !localScreenWarning &&
           ["LOW_RISK", "UNABLE_TO_ASSESS"].includes(screeningClassification(approved))) {
-          enrollment = { token, basic: true };
+          enrollment = { token, basic: true, outsideTest: approved.outsideTest === true };
           await reviewCapturedPhoto(recognized);
           return;
         }
@@ -1167,6 +1168,7 @@
             REGISTRATION_ID_RETAKE_REQUIRED: error.message || retakePhotoDetail,
             REGISTRATION_ID_INVALID: "This ID could not be validated. Please use a current, supported government ID.",
             REGISTRATION_ID_ALREADY_USED: "This ID or photo is already linked to an account. Sign in or recover that account.",
+            REGISTRATION_CAPTURE_OCR_UNAVAILABLE: "Server-side ID reading is temporarily unavailable. Please try again.",
             REGISTRATION_STORAGE_UNAVAILABLE: "Your review application could not be saved. Please try again later."
           };
 
@@ -1301,6 +1303,7 @@
       button.disabled = false;
     }
   });
+  byId("citizenLoginSubmit").disabled = false;
   byId("signupForm").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (busy || registrationComplete) return;
@@ -1313,7 +1316,7 @@
         throw new Error("ID verification is required before registration.");
       const data = validateFacts();
       const barangay = byId("regBarangay").value;
-      if (!window.BACOLOD_BARANGAYS.includes(barangay))
+      if (!enrollment?.outsideTest && !window.BACOLOD_BARANGAYS.includes(barangay))
         throw new Error("Select an official Bacolod barangay.");
       const username = byId("regUser").value.trim();
       const password = byId("regPass").value;

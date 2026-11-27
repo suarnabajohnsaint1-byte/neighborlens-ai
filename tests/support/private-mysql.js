@@ -15,7 +15,7 @@ function waitExit(child, timeout) {
   });
 }
 
-async function privateMysql(t, { executable = process.env.PRIVATE_MYSQL_EXECUTABLE } = {}) {
+async function privateMysql(t, { executable = process.env.PRIVATE_MYSQL_EXECUTABLE, database = 'community_isolated' } = {}) {
   const windows = process.platform === 'win32';
   executable ||= windows
     ? 'C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqld.exe'
@@ -67,8 +67,8 @@ async function privateMysql(t, { executable = process.env.PRIVATE_MYSQL_EXECUTAB
     const [identity] = await connection.query('SELECT @@datadir AS directory, VERSION() AS version');
     assert.equal(path.resolve(identity[0].directory).toLowerCase(), path.resolve(directory).toLowerCase());
     t.diagnostic(`Private MySQL ${identity[0].version}, verified temporary data directory and random loopback port.`);
-    await connection.query('CREATE DATABASE community_isolated'); await connection.end();
-    pool = mysql.createPool({ host: '127.0.0.1', port, user: 'root', database: 'community_isolated', dateStrings: true, connectionLimit: 10 });
+    await connection.query(`CREATE DATABASE ${mysql.escapeId(database)}`); await connection.end();
+    pool = mysql.createPool({ host: '127.0.0.1', port, user: 'root', database, dateStrings: true, connectionLimit: 10 });
     const client = executor => ({ query: async (sql, params = []) => (await executor.execute(sql, params))[0], execute: async (sql, params = []) => (await executor.execute(sql, params))[0] });
     const adapter = { ...client(pool), driver: 'mysql', withTransaction: async operation => {
       const connection = await pool.getConnection();
@@ -76,7 +76,7 @@ async function privateMysql(t, { executable = process.env.PRIVATE_MYSQL_EXECUTAB
       catch (error) { await connection.rollback(); throw error; }
       finally { connection.release(); }
     } };
-    return { pool, adapter, directory, close };
+    return { pool, adapter, directory, close, port, database };
   } catch (error) {
     if (diagnostics.trim()) t.diagnostic(diagnostics.trim());
     await close();

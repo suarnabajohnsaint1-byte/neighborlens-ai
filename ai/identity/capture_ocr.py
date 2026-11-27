@@ -1,11 +1,37 @@
-"""Read a document number from the same normalized image as the fraud model."""
+"""Read a document number from the normalized enrollment capture."""
 
+import os
 import re
 import subprocess
 from io import BytesIO
+from pathlib import Path
+from shutil import which
 from time import monotonic
 
 from PIL import Image, ImageFilter, ImageOps
+
+
+def resolve_tesseract(configured):
+    if configured:
+        executable = which(configured)
+        if not executable:
+            raise ValueError("REGISTRATION_CAPTURE_TESSERACT does not resolve to an executable.")
+        return executable
+    if os.name == "nt" and os.environ.get("ProgramFiles"):
+        executable = Path(os.environ["ProgramFiles"]) / "Tesseract-OCR" / "tesseract.exe"
+        if executable.is_file():
+            return str(executable)
+    return which("tesseract")
+
+
+def check_tesseract(executable):
+    try:
+        result = subprocess.run([executable, "--list-langs"], timeout=5, check=True,
+                                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    except (OSError, subprocess.SubprocessError):
+        raise ValueError("Tesseract could not list installed language data.") from None
+    if b"eng" not in result.stdout.splitlines():
+        raise ValueError("Tesseract English language data (eng) is unavailable.")
 
 
 DOCUMENT_PATTERNS = (
@@ -51,6 +77,16 @@ def _search_interface(text):
     )
     controls = re.findall(r"(?m)^\s*(VISIT|SHARE|SAVE)\s*$", text)
     return bool(search and len(set(controls)) >= 2)
+
+
+def validate_capture_jpeg(image):
+    try:
+        with Image.open(BytesIO(image)) as original:
+            if original.format != "JPEG" or min(original.size) < 300 or original.width * original.height > 4_000_000:
+                raise ValueError("Invalid capture JPEG.")
+            original.verify()
+    except (OSError, Image.DecompressionBombError):
+        raise ValueError("Invalid capture JPEG.") from None
 
 
 def capture_evidence(executable, image):
