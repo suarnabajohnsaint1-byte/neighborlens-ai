@@ -123,4 +123,7 @@ function createKnownReplayCheck(file) {
   return frame => digests.has(createHash('sha256').update(frame).digest('hex'));
 }
 
-module.exports = { createRegistrationVerifier, createFraudAssessmentClient, verificationUnavailable, normalizeFrame, createKnownReplayCheck };
+module.exports = {
+  createRegistrationVerifier, createFraudAssessmentClient, verificationUnavailable, normalizeFrame,
+  createKnownReplayCheck, privateEndpoint, captureBody, readSignedAssessment
+};

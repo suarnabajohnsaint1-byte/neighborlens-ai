@@ -53,9 +53,10 @@ function addressBarangays(address, names) {
   });
 }
 
-function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarangayByName, verifier, fraudAssessor, normalizeFrame, verificationUnavailable,
+function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarangayByName, verifier, fraudAssessor, captureOcr, normalizeFrame, verificationUnavailable,
   fingerprintKey, keyUsed, documentUsed, manualReview, knownReplay, basicRegistrationEnabled = false,
-  queueManualReview = Boolean(manualReview), allowOutsideScan = false, maxAccuracy = 100, clock = Date.now }) {
+  queueManualReview = Boolean(manualReview), allowOutsideScan = false, allowOutsideEnrollment = false,
+  maxAccuracy = 100, clock = Date.now }) {
   const sessions = new Map();
   let boundaryPromise;
   const digest = (scope, value) => createHmac('sha256', fingerprintKey).update(scope + '\0').update(value).digest('hex');
@@ -120,17 +121,18 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
   }
 
   return {
-    isScanTestEnabled: () => allowOutsideScan,
+    isScanTestEnabled: () => allowOutsideScan && !allowOutsideEnrollment,
     assertCaptureSession(token) {
       active(token, 'capture');
     },
     async start(position) {
       const geometry = await boundary();
       const now = clock();
-      const insideBacolod = allowOutsideScan && position === null
+      const insideBacolod = allowOutsideScan && !allowOutsideEnrollment && position === null
         ? false : checkPosition(position, geometry, now, maxAccuracy, allowOutsideScan);
       if (fraudAssessor && !fraudAssessor.available) throw fraudUnavailable();
-      if ((!fraudAssessor && !verifier.available && !manualReview) ||
+      const canReadUnverifiedCapture = captureOcr && (basicRegistrationEnabled || !insideBacolod);
+      if ((!fraudAssessor && !verifier.available && !manualReview && !canReadUnverifiedCapture) ||
         typeof fingerprintKey !== 'string' || fingerprintKey.length < 32) throw verificationUnavailable();
       if (sessions.size >= MAX_SESSIONS) throw verificationUnavailable();
       const token = randomBytes(32).toString('base64url');
@@ -141,7 +143,7 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
     async capture({ token, position, frames }) {
       const session = active(token, 'capture');
       const geometry = await boundary();
-      const insideBacolod = allowOutsideScan && session.outsideBacolodTest && position === null
+      const insideBacolod = allowOutsideScan && !allowOutsideEnrollment && session.outsideBacolodTest && position === null
         ? false : checkPosition(position, geometry, clock(), maxAccuracy, allowOutsideScan);
       active(token, 'capture');
       session.state = 'processing';
@@ -210,8 +212,18 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
           if (['SUSPICIOUS', 'POTENTIALLY_FAKE'].includes(screening?.classification)) {
             throw retakeRequired('Screening flagged possible manipulation. Retake the ID photo with the live camera.', 'SCREENING_WARNING');
           }
-          if (!fraud?.basicCapture) throw fraudUnavailable();
-          const document = fraud.basicCapture.document;
+          let document;
+          if (captureOcr) {
+            const evidence = await captureOcr(normalizedFrame, captureId);
+            if (evidence.searchInterfaceDetected) {
+              screening = screeningResult('SUSPICIOUS', ['Search image controls were found in the captured photo.'], ['Visible search interface']);
+              throw retakeRequired('A search image appears in the photo. Scan the physical ID directly.', 'SCREEN_INTERFACE');
+            }
+            document = evidence.captureDocument;
+          } else {
+            if (!fraud?.basicCapture) throw fraudUnavailable();
+            document = fraud.basicCapture.document;
+          }
           if (!document) throw retakeRequired('The ID number could not be read reliably. Retake the photo with the number fully visible.', 'ID_NUMBER_UNREADABLE');
           const limitedDocumentKey = documentKey(document, 'limited-document');
           const keys = [limitedDocumentKey, digest('limited-frame', normalizedFrame)].sort();
@@ -220,7 +232,7 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
               { code: 'REGISTRATION_ID_ALREADY_USED' });
           }
           active(token, 'processing');
-          if (scanTest) {
+          if (scanTest && !allowOutsideEnrollment) {
             sessions.delete(token);
             return {
               decision: 'VERIFICATION_REQUIRED',
@@ -230,8 +242,9 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
             };
           }
           const expiresAt = clock() + APPROVAL_WINDOW_MS;
-          save(token, { state: 'basic', expiresAt, keys, limitedDocumentKey });
-          return { decision: 'BASIC_REGISTRATION_ELIGIBLE', expiresAt, screening, ocrPrefillAllowed: true };
+          save(token, { state: 'basic', expiresAt, keys, limitedDocumentKey, outsideTest: scanTest });
+          return { decision: 'BASIC_REGISTRATION_ELIGIBLE', expiresAt, screening, ocrPrefillAllowed: true,
+            ...(scanTest ? { outsideTest: true } : {}) };
         }
         const canQueueReview = queueManualReview && manualReview && screening?.classification !== 'UNABLE_TO_ASSESS';
 
@@ -423,7 +436,8 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
       const state = sessions.get(token)?.state === 'basic' ? 'basic' : 'approved';
       if (!manualReview || !/^[A-Za-z0-9_-]{43}$/.test(token || '') || sessions.has(token)) active(token, state);
       const geometry = await boundary();
-      checkPosition(position, geometry, clock(), maxAccuracy);
+      const outsideTest = state === 'basic' && sessions.get(token)?.outsideTest === true && allowOutsideEnrollment;
+      checkPosition(position, geometry, clock(), maxAccuracy, outsideTest);
       if (manualReview && !sessions.has(token)) {
         const approval = await manualReview.approved(token, geometry.boundaryVersion, identity);
         return persist({ ...approval, residence: await confirmResidence(position, barangay, approval.facts, geometry) });
@@ -439,9 +453,9 @@ function createCitizenEnrollment({ loadBoundary, resolveJurisdiction, findBarang
       }
       session.state = 'enrolling';
       try {
-        const residence = await confirmResidence(position, barangay, limited ? facts : session.facts, geometry);
+        const residence = outsideTest ? null : await confirmResidence(position, barangay, limited ? facts : session.facts, geometry);
         const result = await persist({
-          keys: session.keys, limited, residence,
+          keys: session.keys, limited, residence, outsideTest,
           facts: limited ? { ...facts, documentValidationStatus: 'needs_review', ocrConfidence: null }
             : { ...session.facts, ocrConfidence: facts.ocrConfidence }
         });

@@ -158,7 +158,7 @@ class AuthService {
     }
     if (Buffer.byteLength(password, 'utf8') > 72) throw new ValidationError('Password must be at most 72 UTF-8 bytes.');
     assertWithinLimits({ username, barangay });
-    return this.citizenEnrollment.enroll(payload, async ({ facts, keys, reviewId, residence, limited = false }) => {
+    return this.citizenEnrollment.enroll(payload, async ({ facts, keys, reviewId, residence, limited = false, outsideTest = false }) => {
       const session = await this.getDatabase().withTransaction(async tx => {
         if (limited && await this.documentUsed(facts, tx)) {
           throw new ConflictError('This document is already associated with an account.', { code: 'REGISTRATION_ID_ALREADY_USED' });
@@ -168,7 +168,7 @@ class AuthService {
         }
         const result = await userRepository.create({
           username, passwordHash: passwordHasher.hash(password), role: 'citizen',
-          barangay: residence?.name ?? barangay, barangayId: residence?.id,
+          barangay: outsideTest ? '' : residence?.name ?? barangay, barangayId: residence?.id,
           fullName: facts.fullName, enrollmentTier: limited ? 'ACTIVE_LIMITED' : 'FULLY_VERIFIED'
         }, tx);
         const userId = Number(result.insertId);

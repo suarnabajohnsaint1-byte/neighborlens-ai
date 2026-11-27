@@ -52,7 +52,7 @@ test('production rejects known insecure JWT secrets longer than 32 characters', 
   ];
 
   for (const secret of longInsecureSecrets) {
-    const result = spawnSync(process.execPath, ['-e', `require('./server/infrastructure/config/env')`, { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' }]);
+    const result = spawnSync(process.execPath, ['-e', "require('./server/infrastructure/config/env')"], { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' });
     assert.notEqual(result.status, 0, `Expected ${secret} to be rejected in production`);
     assert.match(result.stderr, /JWT_SECRET/, `Expected error mentioning JWT_SECRET for ${secret}`);
   }
@@ -66,7 +66,7 @@ test('production accepts custom secure JWT secrets longer than 32 characters', (
   ];
 
   for (const secret of secureSecrets) {
-    const result = spawnSync(process.execPath, ['-e', `require('./server/infrastructure/config/env')`, { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' }]);
+    const result = spawnSync(process.execPath, ['-e', "require('./server/infrastructure/config/env')"], { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' });
     assert.equal(result.status, 0, `Expected ${secret.substring(0, 20)}... to be accepted in production`);
   }
 });
@@ -75,7 +75,7 @@ test('production rejects known insecure JWT secrets case-insensitively', () => {
   const insecureSecrets = ['SECRET', 'SUPER-SECRET', 'Jwt-Secret'];
 
   for (const secret of insecureSecrets) {
-    const result = spawnSync(process.execPath, ['-e', `require('./server/infrastructure/config/env')`, { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' }]);
+    const result = spawnSync(process.execPath, ['-e', "require('./server/infrastructure/config/env')"], { cwd: process.cwd(), env: { ...process.env, NODE_ENV: 'production', JWT_SECRET: secret }, encoding: 'utf8' });
     assert.notEqual(result.status, 0, `Expected ${secret} (case-insensitive) to be rejected in production`);
   }
 });

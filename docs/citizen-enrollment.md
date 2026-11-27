@@ -1,6 +1,6 @@
 # Citizen enrollment
 
-New citizen registration supports PhilSys National IDs and LTO driver's licenses. After the card is aligned, Tesseract reads the single guide crop locally. Express receives the same JPEG, normalizes it, and sends it to the loopback assessor. Fresh Bacolod GPS is checked when starting enrollment, submitting the capture, and creating the account. The permanent address printed on the ID can be outside Bacolod.
+New citizen registration supports PhilSys National IDs and LTO driver's licenses. After the card is aligned, browser Tesseract reads the single guide crop. Express receives and normalizes the same JPEG. Normal enrollment checks fresh Bacolod GPS at each step. At account creation, the ID address must name Bacolod City and the same barangay as the GPS and selected barangay.
 
 An approved capture fills the existing editable fields from trusted document facts. A readable capture with inconclusive screening can show an editable OCR preview under `VERIFICATION_REQUIRED`, which carries no enrollment approval. Confirmed invalid, flagged, or unusable captures do not populate fields. Unusable images return `RETAKE_REQUIRED`. The existing manual reviewer system remains an optional workflow when authorized reviewers are configured.
 
@@ -8,11 +8,75 @@ An approved capture fills the existing editable fields from trusted document fac
 
 1. Apply the MySQL migrations through `022_citizen_enrollment_tier.sql` with `npm run migrate:mysql`.
 2. Serve the bundled boundary files alongside `frontend/assets/bacolod-boundary-version.json`. The browser maps and Express use the same city outline and 61-barangay reference dataset. Express checks both SHA-256 digests after normalizing CRLF to LF, validates the polygon structure, and rejects a missing or mismatched dataset. The old per-environment registration geometry variables are retired. If your deployment previously used a separately approved polygon, review the shared geometry before switching; publish any corrections in the shared dataset and advance the version.
-3. Set `REGISTRATION_FRAUD_URL` to the private FastAPI endpoint, normally `http://127.0.0.1:8001/assess-capture`, and configure the same random ASCII `REGISTRATION_FRAUD_SECRET` of at least 32 characters in both services. Launch FastAPI with `python -m uvicorn ai.identity.forensics_api:app --host 127.0.0.1 --port 8001 --env-file .env --no-access-log`. The default `IDENTITY_RESEARCH_MODEL=none` measures OpenCV sharpness without model weights. A flat frame requires a retake. A screening outage requires a retry.
+3. Set `REGISTRATION_FRAUD_SCREENING_ENABLED=true` for signed screening. Set `REGISTRATION_FRAUD_URL` to the private FastAPI endpoint, normally `http://127.0.0.1:8001/assess-capture`, and configure the same random ASCII `REGISTRATION_FRAUD_SECRET` of at least 32 characters in both services. The secret also authenticates requests to the private OCR endpoint. With screening enabled and `IDENTITY_RESEARCH_MODEL=none`, FastAPI measures OpenCV sharpness without model weights. A flat frame requires a retake. A screening outage requires a retry. Production always requires signed screening and independent verification.
 4. Set `REGISTRATION_FINGERPRINT_KEY` to a separate stable secret of at least 32 characters. Keep it stable across instances and restarts so the same verified subject and captures retain the same keys.
 5. Set `REGISTRATION_REVIEWER_IDS` only for an authorized in-person workflow.
 6. If using an approved machine verifier, set `REGISTRATION_VERIFIER_URL` and `REGISTRATION_VERIFIER_SECRET`. The verifier secret must differ from the fraud secret. Express only allows loopback endpoints and rejects redirects.
-7. For a limited-account rollout, leave both verifier variables unset and set `REGISTRATION_BASIC_CITIZEN_ENABLED=true` in Express. In the private FastAPI service, configure `IDENTITY_RESEARCH_MODEL=freuid-a31`, `FREUID_ASSETS`, `FREUID_RESEARCH_LAYOUT`, and `REGISTRATION_CAPTURE_TESSERACT` (a local Tesseract executable with English data). The feature is off by default. Use the same fraud signer and fingerprint configuration across restarts. A missing, unsigned or image-mismatched response cannot authorize registration.
+7. For development-only limited accounts, use the configuration below. Keep the fingerprint key stable across restarts and between screening modes.
+
+### Development with fraud screening disabled
+
+Use a dedicated local MySQL database with a name ending in `_test`. Keep its credentials and signing keys private. Install the repository's AI requirements in `.venv` and ensure Tesseract has English language data (`eng`). On Windows the Identity API checks the standard Program Files installation, then PATH. Set `REGISTRATION_CAPTURE_TESSERACT` only to override discovery.
+
+```dotenv
+NODE_ENV=development
+HOST=127.0.0.1
+PORT=3000
+DB_DRIVER=mysql
+DB_TARGET=local
+DB_HOST=127.0.0.1
+DB_NAME=neighborlens_ocr_test
+STORAGE_DRIVER=local
+JWT_SECRET=<private-test-jwt-secret>
+REGISTRATION_FRAUD_SCREENING_ENABLED=false
+REGISTRATION_BASIC_CITIZEN_ENABLED=true
+IDENTITY_RESEARCH_MODEL=none
+IDENTITY_RESEARCH_DEVICE=cpu
+REGISTRATION_CAPTURE_TESSERACT=
+REGISTRATION_FRAUD_SECRET=<private-ascii-secret-at-least-32-characters>
+REGISTRATION_FINGERPRINT_KEY=<your-stable-private-key>
+REGISTRATION_VERIFIER_URL=
+REGISTRATION_VERIFIER_SECRET=
+REGISTRATION_ALLOW_OUTSIDE_BACOLOD_SCAN=true
+AI_PORT=8000
+IDENTITY_API_PORT=8001
+```
+
+Run `npm run migrate:mysql` once to initialize the test database. In separate PowerShell terminals at the project root, run `npm run server` and `npm run ai`. Open `http://127.0.0.1:3000/login.html` directly. The AI launcher starts YOLO on port 8000 and Identity/OCR on port 8001 using the project's Python environment. It waits for authenticated OCR health and damage readiness, reuses compatible services, and reports incompatible port listeners. Ctrl+C shuts down services started by that launcher.
+
+Express submits the normalized JPEG to the authenticated `/ocr-capture` route and verifies the signed, frame-bound response. The OCR-only service skips research model initialization and disables `/assess-capture`. An unavailable OCR service produces `REGISTRATION_CAPTURE_OCR_UNAVAILABLE` with a sanitized diagnostic in the server log.
+
+An outside-city test capture still needs fresh GPS. The account has no assigned barangay or confirmed residency and receives the restricted tier. The server binds the isolated app to IPv4 and IPv6 loopback and limits test sessions to the test database's signing scope. Use `http://localhost:3000/login.html` or `http://127.0.0.1:3000/login.html`. `REGISTRATION_ALLOW_OUTSIDE_BACOLOD_SCAN` is the supported registration switch. `ALLOW_OUTSIDE_BACOLOD_TEST` and an npm `CITIZEN_ID_UPLOAD_TEST` setting have no effect. Live enrollment uses the camera.
+
+### Authenticated mobile testing through Cloudflare
+
+Keep the isolated local MySQL settings above. Stop any existing public Quick Tunnel before restarting Express with the updated build. Start `npm run server` and `npm run ai` in separate terminals.
+
+For a Quick Tunnel on Windows, install `cloudflared.exe` at `C:\Program Files (x86)\cloudflared\cloudflared.exe` and make the installed `qrcode-terminal.cmd` available on PATH. Run the launcher from the repository root in Terminal 3:
+
+```powershell
+.\scripts\start-mobile-tunnel.ps1
+```
+
+If Windows PowerShell is set to `Restricted`, this equivalent command applies `RemoteSigned` to the child PowerShell process only:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\scripts\start-mobile-tunnel.ps1
+```
+
+Enter the exact approved tester email addresses, separated by commas. The launcher forwards to `http://127.0.0.1:3000` and uses Cloudflare's `--allowed-mail` option. It prints the QR after verifying that Cloudflare redirects unauthenticated visitors to its sign-in page. [Cloudflare Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/)
+
+Leave Terminal 3 open while testers use the link. A new connector generates a new link and QR. The launcher requires no tunnel settings in `.env`, and changing the link requires no Express restart.
+
+Testers scan the QR, enter their approved email address and one-time PIN on Cloudflare, then use the normal Citizen registration and sign-in forms. OCR-only enrollment must stay behind authenticated tunnel access.
+
+For a stable hostname, protect the entire named tunnel route with a Cloudflare Access Allow policy for the approved tester email addresses. Enable **Protect with Access** on that route and preserve the public Host header when forwarding to the loopback origin. [Cloudflare self-hosted Access setup](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/)
+
+### Restore FREUID
+
+Set `REGISTRATION_FRAUD_SCREENING_ENABLED=true` and `IDENTITY_RESEARCH_MODEL=freuid-a31`. Set `REGISTRATION_FRAUD_URL=http://127.0.0.1:8001/assess-capture`, `REGISTRATION_FRAUD_SECRET` to a private ASCII secret of at least 32 characters, `FREUID_ASSETS` to the directory containing the pinned assets, and `FREUID_RESEARCH_LAYOUT` to the provisioned research layout such as `BENIN/DL`. For TruFor research, select `IDENTITY_RESEARCH_MODEL=trufor` and provision `TRUFOR_SOURCE` and `TRUFOR_WEIGHTS_ARCHIVE`. Restart both npm commands.
+
+For standard verified enrollment, disable basic and outside-city test enrollment and configure the approved independent verifier. For a production deployment, restore its database, signing and fingerprint configuration and set `NODE_ENV=production`. Signed FREUID research results can support limited enrollment in the isolated test database. Government ID authenticity still requires independent verification.
 
 The boundary manifest pins the existing city outline from the ArcGIS city/municipal map layer and the existing PSGC-derived barangay map layer. The 61 barangay polygons and the city outline passed a Shapely topology check. The union and city reference differ by about 20.4% of the city polygon's area in the source coordinates, so enrollment uses the existing city outline. These are map references with no CPDO certification asserted. Existing report routing that requires a separately approved barangay jurisdiction continues to require that evidence. Browser GPS is a location policy input and can be spoofed.
 
@@ -24,11 +88,22 @@ The browser can recognize visible screen controls inside the same guide crop as 
 
 Express returns `screening` with the classification, indicators and completed checks. `LOW_RISK` means screening checks ran and cleared. Independent approval is required for `VERIFIED`. FREUID research scores remain inconclusive for Philippine IDs and set no approval or rejection threshold.
 
-`BASIC_REGISTRATION_ELIGIBLE` requires signed FREUID inference and a supported, unambiguous document number read by server-side OCR from the exact assessment JPEG. Express matches the submitted number and document type before saving the account and validates the remaining registration fields. An unreadable number requires a retake. Browser OCR still fills the existing form. A warning from a trusted fraud assessment requires a retake or review. A browser screen warning also keeps the form gated. The private local service returns extraction data only to Express, which keeps keyed document and image references and omits OCR data from the capture response.
+`BASIC_REGISTRATION_ELIGIBLE` requires a supported, unambiguous document number read by server-side OCR from the exact normalized JPEG. Signed FREUID inference is also required in screening mode. Express matches the submitted number and document type before saving the account and validates the remaining registration fields. An unreadable number requires a retake. Browser OCR fills the editable form. Exact replay checks and visible search-interface warnings still apply. Express keeps keyed document and image references and omits server OCR data from the capture response. When screening is disabled, the response omits the screening result.
 
 MySQL stores the account tier `ACTIVE_LIMITED`, which the auth API exposes with `identityStatus: UNVERIFIED`. The account can sign in to see its own account, identity and report list and can change its password or sign out. Writes to reports, community and identity and admin, barangay and notification-stream access remain gated. Basic document and frame keys are separate from independently verified keys, so a limited claim cannot reserve a verified identity. There is currently no in-place upgrade workflow.
 
-The test `tests/migrations/citizen-basic-enrollment-mysql.test.js` starts private MySQL and FastAPI, serves the live scanner and exercises the synthetic browser camera, client/server OCR, actual pretrained FREUID, database registration and login. Run it with `ENROLLMENT_TEST_TESSERACT` and `ENROLLMENT_TEST_FREUID_ASSETS`. Set `ENROLLMENT_TEST_PYTHON` and `PYTHONPATH` if needed for the local Python virtual environment. If the browser OCR CDN is unreliable, install `tesseract.js@5.1.1`, `tesseract.js-core@5.1.1` and `@tesseract.js-data/eng@1.0.0` into a test-only directory and point `ENROLLMENT_TEST_BROWSER_ASSETS` at its `node_modules`. Public rollout still requires checkpoint deployment rights, consented physical-device validation and production configuration review.
+Run the isolated MySQL test against synthetic camera fixtures on desktop and mobile. The harness starts both required npm commands with screening disabled and exercises the real FastAPI OCR route.
+
+```powershell
+$env:ENROLLMENT_TEST_SCREENING_DISABLED = '1'
+node --test tests/migrations/citizen-basic-enrollment-mysql.test.js
+```
+
+To check actual Windows Ctrl+C handling on isolated ports, run `.venv/Scripts/python.exe tests/support/ai-console-smoke.py`. It also accepts `ai:damage` or `ai:identity` to exercise each diagnostic command separately.
+
+The automated browser test uses synthetic ID captures on localhost and IPv4 loopback. For mobile verification, open the QR link on a physical device, finish Cloudflare email verification, and check camera capture, GPS, OCR autofill, citizen registration, login, and portal access.
+
+For the FREUID-backed run, clear `ENROLLMENT_TEST_SCREENING_DISABLED` and set `ENROLLMENT_TEST_FREUID_ASSETS` and `ENROLLMENT_TEST_TESSERACT`. That mode starts a private FastAPI process and uses actual pretrained FREUID. Set `ENROLLMENT_TEST_PYTHON` if FastAPI uses a different Python environment. If the browser OCR CDN is unreliable, install `tesseract.js@5.1.1`, `tesseract.js-core@5.1.1` and `@tesseract.js-data/eng@1.0.0` into a test-only directory and point `ENROLLMENT_TEST_BROWSER_ASSETS` at its `node_modules`. Public rollout still requires checkpoint deployment rights, consented physical-device validation and production configuration review.
 
 An enrollment outcome of `VERIFIED` authorizes submission of verifier-confirmed fields. `BLOCK_INVALID` is reserved for decisive, capture-bound evidence from the configured verifier. `REVIEW_REQUIRED` includes a pending application reference when successful local screening still leaves the identity unverified. `RETAKE_REQUIRED` applies to unusable captures. Invalid boundary data and a failed or unavailable screening service have distinct error codes. A dedicated monitor detector, printed-counterfeit detector, cross-application near-duplicate detection and a PhilSys-specific layout and manipulation policy still need authorized held-out evaluation.
 

@@ -71,7 +71,7 @@ class UserRepository {
     try {
       return await client.execute(
         `INSERT INTO users (username, password_hash, role, barangay, barangay_id, full_name, enrollment_tier)
-         VALUES (?, ?, ?, ?, COALESCE(?, (SELECT id FROM barangays WHERE name = ?)), ?, ?)`,
+         VALUES (?, ?, ?, ?, COALESCE(?, (SELECT id FROM barangays WHERE name = NULLIF(?, ''))), ?, ?)`,
         [username, passwordHash, role, barangay, barangayId, barangay, fullName, enrollmentTier]
       );
     } catch (error) {

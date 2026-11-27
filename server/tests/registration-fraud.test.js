@@ -4,12 +4,71 @@ const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
 const test = require('node:test');
+const { execFileSync } = require('node:child_process');
 const { createFraudAssessmentClient, createKnownReplayCheck, createRegistrationVerifier } = require('../infrastructure/adapters/registrationVerifier');
 
 const secret = 'isolated-fraud-test-secret-at-least-32';
 const verifierSecret = 'isolated-verifier-test-secret-at-least-32';
 const captureId = 'c'.repeat(32);
 const frames = [Buffer.from('synthetic-fixture-one')];
+
+test('only an explicit, isolated development setting bypasses the required fraud provider', () => {
+  const script = `
+    const { citizenEnrollment } = require('./server/composition');
+    citizenEnrollment.start({ latitude: 10.66850, longitude: 122.96470, accuracy: 15, timestamp: Date.now() })
+      .then(() => process.stdout.write('CHALLENGE_ISSUED'), error => process.stdout.write(error.code || 'UNEXPECTED_ERROR'));
+  `;
+  for (const [environment, setting, expected, isolation] of [
+    ['development', 'false', 'CHALLENGE_ISSUED'],
+    ['development', 'false', 'REGISTRATION_FRAUD_UNAVAILABLE', { HOST: '0.0.0.0' }],
+    ['development', 'false', 'REGISTRATION_FRAUD_UNAVAILABLE', { DB_NAME: 'neighborlens_ai' }],
+    ['development', 'false', 'REGISTRATION_FRAUD_UNAVAILABLE', { DB_HOST: '192.0.2.1' }],
+    ['development', '', 'REGISTRATION_FRAUD_UNAVAILABLE'],
+    ['development', 'true', 'REGISTRATION_FRAUD_UNAVAILABLE'],
+    ['production', 'false', 'REGISTRATION_FRAUD_UNAVAILABLE'],
+    ['', 'false', 'REGISTRATION_FRAUD_UNAVAILABLE']
+  ]) {
+    assert.equal(execFileSync(process.execPath, ['-e', script], {
+      encoding: 'utf8',
+      cwd: path.resolve(__dirname, '../..'),
+      env: {
+        ...process.env, NODE_ENV: environment, JWT_SECRET: secret, VERCEL: '',
+        HOST: '127.0.0.1', DB_HOST: '127.0.0.1', DB_NAME: 'neighborlens_ocr_test',
+        DB_DRIVER: 'mysql', DB_TARGET: 'local', ...isolation,
+        REGISTRATION_FRAUD_SCREENING_ENABLED: setting, REGISTRATION_BASIC_CITIZEN_ENABLED: 'true',
+        REGISTRATION_FRAUD_URL: 'http://127.0.0.1:1/assess-capture', REGISTRATION_FRAUD_SECRET: '',
+        REGISTRATION_VERIFIER_URL: '', REGISTRATION_VERIFIER_SECRET: '', REGISTRATION_FINGERPRINT_KEY: secret,
+        REGISTRATION_ALLOW_OUTSIDE_BACOLOD_SCAN: 'false'
+      }
+    }), expected);
+  }
+});
+
+test('test enrollment sessions cannot authenticate with the production signing configuration', () => {
+  const env = {
+    ...process.env, NODE_ENV: 'development', VERCEL: '', HOST: '127.0.0.1', DB_HOST: '127.0.0.1',
+    DB_NAME: 'neighborlens_ocr_test', DB_DRIVER: 'mysql', DB_TARGET: 'local', JWT_SECRET: secret,
+    REGISTRATION_FRAUD_SCREENING_ENABLED: 'false', REGISTRATION_BASIC_CITIZEN_ENABLED: 'true'
+  };
+  const cwd = path.resolve(__dirname, '../..');
+  const options = { env, cwd, encoding: 'utf8' };
+  const token = execFileSync(process.execPath, ['-e', `
+    const tokens = require('./server/infrastructure/security/tokenProvider');
+    process.stdout.write(tokens.issue({ id: 1, username: 'test-only', role: 'citizen' }));
+  `], options);
+  const verify = `
+    try {
+      require('./server/infrastructure/security/tokenProvider').verify(process.env.TEST_ENROLLMENT_JWT);
+      process.stdout.write('accepted');
+    } catch { process.stdout.write('denied'); }
+  `;
+  assert.equal(execFileSync(process.execPath, ['-e', verify], {
+    ...options, env: { ...env, TEST_ENROLLMENT_JWT: token }
+  }), 'accepted');
+  assert.equal(execFileSync(process.execPath, ['-e', verify], {
+    ...options, env: { ...env, NODE_ENV: 'production', TEST_ENROLLMENT_JWT: token }
+  }), 'denied');
+});
 
 test('the optional catalog rejects malformed configuration and only matches exact normalized bytes', async () => {
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'neighborlens-replay-'));

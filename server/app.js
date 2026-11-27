@@ -1,6 +1,8 @@
 const path = require('node:path');
+const { once } = require('node:events');
 const express = require('express');
 const env = require('./infrastructure/config/env');
+const registrationFraud = require('./infrastructure/config/registrationFraud');
 const { getDatabase } = require('./infrastructure/database');
 
 const authRoutes = require('./presentation/http/routes/auth.routes');
@@ -29,7 +31,10 @@ app.use((req, res, next) => {
   const local = process.env.NODE_ENV !== 'production' && /^http:\/\/(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/.test(origin || '');
 
   const disabledOriginCheck = process.env.DISABLE_ORIGIN_CHECK === 'true' && process.env.NODE_ENV === 'development';
-  const sameOrigin = origin === `${req.protocol}://${req.get('host')}`;
+  const host = req.get('host');
+  // The authenticated tunnel terminates HTTPS and preserves the public Host on its loopback request.
+  const sameOrigin = origin === `${req.protocol}://${host}` ||
+    (registrationFraud.isolatedEnrollment && registrationFraud.isLoopbackSocket(req) && origin === `https://${host}`);
 
   if (!disabledOriginCheck && origin && !sameOrigin && !allowed.includes(origin) && !local) {
     return res.status(403).json({ error: 'Origin is not allowed.' });
@@ -81,7 +86,11 @@ app.get('/:page([a-zA-Z0-9_.-]+)', (req, res, next) => {
 
 app.get('/', (req, res) => res.redirect('/login.html'));
 app.get('/login.htm', (_req, res) => res.redirect('/login.html'));
-app.get('/api/health', (req, res) => res.json({ ok: true, service: 'neighborlens-api' }));
+app.get('/api/health', (req, res) => res.json({
+  ok: true, service: 'neighborlens-api',
+  ...(registrationFraud.disabled && registrationFraud.basicEnabled && registrationFraud.isLoopbackSocket(req)
+    ? { isolatedOcrEnrollment: true } : {})
+}));
 
 // Display convenience only. A returned address is NOT evidence that a point
 // falls within a given barangay; that question belongs to the geofence service
@@ -151,10 +160,29 @@ async function assertDatabaseReachable() {
 
 // Named startHttpServer rather than `listen` so it never shadows Express's own
 // app.listen on the exported app.
-function startHttpServer({ port = env.PORT, host = env.HOST } = {}) {
-  const server = app.listen(port, host, () => {
-    console.log(`NeighborLens API running at http://localhost:${port} and http://${host}:${port}`);
-  });
+async function startHttpServer({ port = env.PORT, host = env.HOST } = {}) {
+  const localOnly = registrationFraud.isolatedEnrollment;
+  const server = app.listen(port, localOnly ? '127.0.0.1' : host);
+  await once(server, 'listening');
+  let ipv6;
+  if (localOnly) {
+    try {
+      ipv6 = app.listen(server.address().port, '::1');
+      await once(ipv6, 'listening');
+    } catch (error) {
+      ipv6 = undefined;
+      if (!['EAFNOSUPPORT', 'EADDRNOTAVAIL'].includes(error.code)) {
+        server.close();
+        throw error;
+      }
+      console.warn('IPv6 loopback is unavailable. IPv4 loopback is ready.');
+    }
+    if (ipv6) server.once('close', () => ipv6.close());
+  }
+  const { address, port: listeningPort } = server.address();
+  const addresses = localOnly ? ['localhost', address, ...(ipv6 ? ['[::1]'] : [])] :
+    [address.includes(':') ? `[${address}]` : address];
+  console.log(`NeighborLens API running at ${addresses.map(name => `http://${name}:${listeningPort}`).join(', ')}`);
 
   const shutdown = (signal) => {
     console.log(`Received ${signal}; shutting down.`);
@@ -175,6 +203,13 @@ function startHttpServer({ port = env.PORT, host = env.HOST } = {}) {
 }
 
 async function start(options = {}) {
+  if (env.NODE_ENV === 'development' &&
+      (process.env.ALLOW_OUTSIDE_BACOLOD_TEST !== undefined || process.env.CITIZEN_ID_UPLOAD_TEST !== undefined)) {
+    console.warn('Remove unsupported .env settings ALLOW_OUTSIDE_BACOLOD_TEST and CITIZEN_ID_UPLOAD_TEST. Use REGISTRATION_ALLOW_OUTSIDE_BACOLOD_SCAN for isolated registration.');
+  }
+  if (registrationFraud.unsafeOptOut) {
+    console.warn('OCR-only enrollment requires a loopback server and a dedicated loopback MySQL database ending in _test. Signed screening remains required.');
+  }
   await assertDatabaseReachable();
   return startHttpServer(options);
 }

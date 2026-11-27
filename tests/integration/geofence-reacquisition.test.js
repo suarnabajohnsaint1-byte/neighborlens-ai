@@ -227,9 +227,11 @@ test('Villamonte keeps its address through GPS drift and a late sample, then fol
 test('pending native reads are shared, including when one consumer requires a stricter fix', async () => {
     let complete;
     let calls = 0;
+    let staleFix;
     const env = installEnvironment({ getCurrentPosition(success, error, options) {
         calls++;
         assert.deepEqual(options, { enableHighAccuracy: true, maximumAge: 0, timeout: 20000 });
+        if (staleFix) return success(staleFix);
         complete = success;
     } }, 'gps-coalesce');
     try {
@@ -239,10 +241,9 @@ test('pending native reads are shared, including when one consumer requires a st
         complete({ coords: { latitude: 10.6685, longitude: 122.9647, accuracy: 101 }, timestamp: Date.now() });
         assert.equal((await display).accuracy, 101);
         await assert.rejects(submission, /100 meters/);
-        const fresh = window.getCurrentLocation({ requireAccurate: true });
-        assert.equal(calls, 2);
-        complete({ coords: { latitude: 10.6685, longitude: 122.9647, accuracy: 5 }, timestamp: Date.now() - 31_000 });
-        await assert.rejects(fresh, /out of date/);
+        staleFix = { coords: { latitude: 10.6685, longitude: 122.9647, accuracy: 5 }, timestamp: Date.now() - 31_000 };
+        await assert.rejects(window.getCurrentLocation({ requireAccurate: true }), /out of date/);
+        assert.equal(calls, 4);
     } finally {
         env.restore();
     }

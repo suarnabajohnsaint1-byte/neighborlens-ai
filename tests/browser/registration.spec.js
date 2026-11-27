@@ -25,10 +25,10 @@ test.beforeAll(async () => {
     .png()
     .toBuffer();
 });
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, context }) => {
   page.errors = [];
   page.on("pageerror", (error) => page.errors.push(error.message));
-  await page.addInitScript(() =>
+  await context.addInitScript(() =>
     Object.defineProperty(window, "NEIGHBORLENS_API_BASE_URL", {
       configurable: true,
       get: () => location.origin,
@@ -317,12 +317,30 @@ async function loadPinnedOCR(page) {
   }
 }
 
-test("basic MySQL enrollment with live scanner and local FREUID", async ({ page }, info) => {
-  test.skip(process.env.NEIGHBORLENS_BASIC_E2E !== "1", "Run with the isolated MySQL and FREUID harness.");
+test("citizen credentials cannot submit before the authentication handler loads", async ({ page }) => {
+  const resume = Promise.withResolvers();
+  await page.route("**/js/auth/auth.js", async route => {
+    await resume.promise;
+    await route.continue();
+  });
+  await page.reload({ waitUntil: "commit" });
+  try {
+    await expect(page.locator("#loginForm")).toHaveAttribute("method", "post");
+    await expect(page.locator("#signupForm")).toHaveAttribute("method", "post");
+    await expect(page.locator("#citizenLoginSubmit")).toBeDisabled();
+  } finally {
+    resume.resolve();
+  }
+  await expect(page.locator("#citizenLoginSubmit")).toBeEnabled();
+});
+
+test("basic MySQL enrollment with live scanner and OCR", async ({ page }, info) => {
+  test.skip(process.env.NEIGHBORLENS_BASIC_E2E !== "1", "Run with the isolated MySQL enrollment harness.");
+  const outside = process.env.NEIGHBORLENS_OUTSIDE_ENROLLMENT === "true";
   await page.context().setGeolocation(
     {
-      latitude: 10.66850,
-      longitude: 122.96470,
+      latitude: outside ? 14.59 : 10.66850,
+      longitude: outside ? 120.98 : 122.96470,
       accuracy: 15,
     }
   )
@@ -332,9 +350,11 @@ test("basic MySQL enrollment with live scanner and local FREUID", async ({ page 
   const mobile = info.project.name === "mobile";
   const restrictedPreview = process.env.NEIGHBORLENS_RESTRICTED_PREVIEW === "1";
   const previewSerial = Number(process.env.NEIGHBORLENS_PREVIEW_SERIAL || 456796);
-  const serial = (restrictedPreview ? previewSerial : 456788) + Number(!mobile);
+  const offset = Number(process.env.NEIGHBORLENS_BASIC_FIXTURE_OFFSET || 0);
+  const serial = (restrictedPreview ? previewSerial : 456788 + offset) + Number(!mobile);
   const number = `N01-23-${serial}`;
-  const image = await renderLicense(text.replace("N01-23-456789", number), !mobile);
+  const document = outside ? text.replace("VILLAMONTE BACOLOD CITY", "SYNTHETIC STREET MANILA CITY") : text;
+  const image = await renderLicense(document.replace("N01-23-456789", number), !mobile);
   await installAlignedTestCamera(page, image.toString("base64"));
   await page.locator("#idModeCameraBtn").click();
   const capture = page.waitForResponse(response =>
@@ -346,12 +366,18 @@ test("basic MySQL enrollment with live scanner and local FREUID", async ({ page 
   await expect(page.locator("#regIdNumber")).toHaveValue(number);
   await expect(page.locator("#regFullName")).toHaveValue(/Fictional Test Citizen/i);
   await expect(page.locator("#regBirthDate")).toHaveValue("1990-05-15");
+  await expect(page.locator("#regDocumentType")).toHaveValue("DRIVERS_LICENSE");
+  await expect(page.locator("#regAddress")).toHaveValue(outside ? /Synthetic Street.*Manila City/i : /Villamonte.*Bacolod City/i);
+  await expect(page.locator("#idVerifyStatus")).toHaveText("ID captured — identity verification pending.");
+  await page.locator("#regFullName").fill("Fictional Corrected Citizen");
   console.log(`${info.project.name} capture-to-autofill: ${Math.round(performance.now() - captureStarted)} ms`);
   if (assets) await page.unroute("**/js/shared/vision.js");
   await page.locator("#confirmIdentityBtn").click();
   await expect(page.locator("#signupCredentials")).toBeVisible();
-  const username = restrictedPreview ? `basic_preview_${serial}` : `basic_e2e_${info.project.name}`;
+  const username = restrictedPreview ? `basic_preview_${serial}`
+    : `basic_e2e_${info.project.name}${offset ? `_${offset}` : ''}`;
   await credentials(page, username);
+  if (outside) await page.locator("#regBarangay").selectOption("");
   const registration = page.waitForResponse(response =>
     response.request().method() === "POST" && response.url().endsWith("/api/auth/register"));
   await page.locator("#signupSubmitBtn").click();
@@ -362,25 +388,42 @@ test("basic MySQL enrollment with live scanner and local FREUID", async ({ page 
     `Registration failed: ${responseBody?.code ?? "UNKNOWN"}`
   ).toBe(201);
   await expect(page).toHaveURL(/citizen.html$/);
-  expect((await savedIdentity(page)).documentValidationStatus).toBe("needs_review");
-  const login = await page.request.post("/api/auth/citizen/login", {
-    data: { username, password: "FictionalPass123!" },
+  const session = await page.evaluate(() => JSON.parse(sessionStorage.getItem("up_session")));
+  const portalRequest = (endpoint, { token, body } = {}) => page.evaluate(async ({ endpoint, token, body }) => {
+    const headers = {};
+    if (token) headers.Authorization = `Bearer ${token}`;
+    if (body !== undefined) headers["Content-Type"] = "application/json";
+    const response = await fetch(endpoint, {
+      method: body === undefined ? "GET" : "POST",
+      headers, body: body === undefined ? undefined : JSON.stringify(body),
+      signal: AbortSignal.timeout(30000),
+    });
+    return { status: response.status, json: await response.json().catch(() => null) };
+  }, { endpoint, token, body });
+  const identity = await portalRequest("/api/identity/me", { token: session.apiToken });
+  expect(identity.status).toBe(200);
+  expect(identity.json.identity).toMatchObject({ documentValidationStatus: "needs_review", fullName: "Fictional Corrected Citizen" });
+  expect(session).toMatchObject({ accountStatus: "ACTIVE_LIMITED", identityStatus: "UNVERIFIED", residencyVerified: false });
+  await page.reload();
+  await expect(page).toHaveURL(/citizen.html$/);
+  expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem("up_session")))).toEqual(session);
+  const login = await portalRequest("/api/auth/citizen/login", {
+    body: { username, password: "FictionalPass123!" },
   });
-  expect(login.status()).toBe(200);
-  const { token, user } = await login.json();
+  expect(login.status).toBe(200);
+  const { token, user } = login.json;
   expect(user).toMatchObject({ role: "citizen", accountStatus: "ACTIVE_LIMITED", identityStatus: "UNVERIFIED" });
-  const headers = { Authorization: `Bearer ${token}` };
   for (const endpoint of ["/api/reports", "/api/community/posts", "/api/identity", "/api/notifications/stream-ticket"]) {
-    const result = await page.request.post(endpoint, { headers });
+    const result = await portalRequest(endpoint, { token, body: {} });
     if (restrictedPreview && endpoint !== "/api/reports") {
-      expect(result.status()).toBe(404);
+      expect(result.status).toBe(404);
     } else {
-      expect(result.status()).toBe(403);
-      expect((await result.json()).code).toBe("IDENTITY_VERIFICATION_REQUIRED");
+      expect(result.status, endpoint).toBe(403);
+      expect(result.json.code).toBe("IDENTITY_VERIFICATION_REQUIRED");
     }
   }
   for (const endpoint of ["/api/admin/users", "/api/barangays/gis"]) {
-    expect((await page.request.get(endpoint, { headers })).status()).toBe(restrictedPreview ? 404 : 403);
+    expect((await portalRequest(endpoint, { token })).status).toBe(restrictedPreview ? 404 : 403);
   }
 });
 
@@ -1112,7 +1155,7 @@ async function captureProvisionalId(page, retake = false, image = null) {
   }
     await page.locator(retake ? '#idCameraCapturedPreviewWrapper .btn-thumb-retake' : '#idModeCameraBtn').click();
     await page.locator('#idCaptureBtn').click();
-    await expect(page.locator('#idVerifyStatus')).toContainText('Automatic ID verification is unavailable');
+    await expect(page.locator('#idVerifyStatus')).toContainText('Automatic ID verification is unavailable', { timeout: 20000 });
   }
 
   async function captureApprovedId(page) {
@@ -2692,6 +2735,12 @@ K22-22-900371 2027/07/11 K22`,
       )
       .toBe(900);
     await fixtureOCR(page);
+    await page.route("**/api/auth/enrollment/start", route =>
+      route.fulfill({ json: { token: "c".repeat(43) } }));
+    await page.route("**/api/auth/enrollment/capture", route =>
+      route.fulfill({ json: {
+        decision: "VERIFICATION_REQUIRED", verificationReason: "VERIFIER_NOT_CONFIGURED", ocrPrefillAllowed: true,
+      } }));
     await page.locator("#idCaptureBtn").click();
     await expect(page.locator("#idCapturedImg")).toBeVisible();
     await expect(page.locator("#regFullName")).toHaveValue(
@@ -2705,9 +2754,8 @@ K22-22-900371 2027/07/11 K22`,
       ),
   ).toBe(true);
 });
-test("My Reports loads real owned rows without localStorage and shows server errors instead of a false empty result", async ({
-  page,
-  request,
+test("My Reports loads owned rows per tab without localStorage and shows server errors", async ({
+  page, context, request,
 }, info) => {
   const registered = await request.post("/__fixture_citizen", {
     data: {
@@ -2720,6 +2768,9 @@ test("My Reports loads real owned rows without localStorage and shows server err
   const form = new FormData();
   for (const [key, value] of Object.entries({
     description: "Real isolated report for list regression",
+    location: "Recorded report location",
+    citizenCategory: "Road Damage",
+    landmarkDescription: "Beside the school entrance.",
     barangay: "Villamonte",
     latitude: "10.6685",
     longitude: "122.9647",
@@ -2729,12 +2780,13 @@ test("My Reports loads real owned rows without localStorage and shows server err
     form.append(key, value);
   form.append("images", new File([PNG_BYTES], "one.png", { type: "image/png" }));
   form.append("images", new File([JPEG_BYTES], "two.jpg", { type: "image/jpeg" }));
+  form.append("landmarkImage", new File([JPEG_BYTES], "landmark.jpg", { type: "image/jpeg" }));
   const created = await fetch(new URL("/api/reports", registered.url()), {
     method: "POST",
     headers: { Authorization: `Bearer ${body.token}` },
     body: form,
   });
-  expect(created.status).toBe(201);
+  expect(created.status, await created.text()).toBe(201);
   await page.addInitScript(
     (session) => {
       if (!sessionStorage.getItem("registration-list-fixture")) {
@@ -2753,6 +2805,22 @@ test("My Reports loads real owned rows without localStorage and shows server err
   await expect(page.locator("#myReports")).toContainText(
     "Real isolated report for list regression",
   );
+  const otherUsername = "other_" + Date.now();
+  const other = await request.post("/__fixture_citizen", {
+    data: { username: otherUsername, password: "FictionalPass123!", barangay: "Villamonte" },
+  });
+  expect(other.status()).toBe(201);
+  const otherTab = await context.newPage();
+  await otherTab.goto("/login.html");
+  await otherTab.locator("#loginUser").fill(otherUsername);
+  await otherTab.locator("#loginPass").fill("FictionalPass123!");
+  await otherTab.locator('#loginForm button[type="submit"]').click();
+  await expect(otherTab).toHaveURL(/citizen\.html$/);
+  await otherTab.goto("/citizen.html#my-reports");
+  await expect(otherTab.locator("#myReports")).toContainText("No reports submitted yet");
+  await expect(otherTab.locator("#myReports")).not.toContainText("Real isolated report for list regression");
+  expect(await page.evaluate(() => JSON.parse(sessionStorage.getItem("up_session")).username)).toBe(body.user.username);
+  await otherTab.close();
   await page.route("**/api/reports", (route) =>
     route.fulfill({ status: 503, json: { error: "Controlled outage" } }),
   );

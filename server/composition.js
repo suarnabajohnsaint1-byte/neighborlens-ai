@@ -38,13 +38,19 @@ const enrollmentReviews = require('./infrastructure/repositories/citizenEnrollme
 const { createCitizenEnrollmentReview } = require('./application/use-cases/citizenEnrollmentReview.service');
 const citizenIdentityRepository = require('./infrastructure/repositories/citizenIdentity.repository');
 const { createRegistrationVerifier, createFraudAssessmentClient, verificationUnavailable, normalizeFrame, createKnownReplayCheck } = require('./infrastructure/adapters/registrationVerifier');
+const { createCaptureOcr } = require('./infrastructure/adapters/registrationCaptureOcr');
+const registrationFraud = require('./infrastructure/config/registrationFraud');
 const { loadBacolodBoundary } = require('./infrastructure/adapters/bacolodBoundary');
 const geofenceService = createGeofenceService({ config, barangayRepository, loadBoundary: loadBacolodBoundary });
 
 const registrationVerifier = createRegistrationVerifier({
-  endpoint: process.env.REGISTRATION_VERIFIER_URL,
-  secret: process.env.REGISTRATION_VERIFIER_SECRET
+  endpoint: registrationFraud.disabled ? null : process.env.REGISTRATION_VERIFIER_URL,
+  secret: registrationFraud.disabled ? null : process.env.REGISTRATION_VERIFIER_SECRET
 });
+const fraudScreeningRequired = !registrationFraud.disabled && (
+  config.NODE_ENV === 'production' || registrationFraud.explicitlyEnabled ||
+  process.env.REGISTRATION_FRAUD_URL || !registrationVerifier.available
+);
 const citizenEnrollmentReview = createCitizenEnrollmentReview({
   repository: enrollmentReviews, audit: auditService.writeAudit.bind(auditService),
   fingerprintKey: process.env.REGISTRATION_FINGERPRINT_KEY,
@@ -60,16 +66,20 @@ const citizenEnrollment = createCitizenEnrollment({
   }),
   findBarangayByName: name => barangayRepository.findByName(name),
   verifier: registrationVerifier,
-  fraudAssessor: config.NODE_ENV === 'production' || process.env.REGISTRATION_FRAUD_URL || !registrationVerifier.available ? createFraudAssessmentClient({
+  fraudAssessor: fraudScreeningRequired ? createFraudAssessmentClient({
     endpoint: process.env.REGISTRATION_FRAUD_URL,
     secret: process.env.REGISTRATION_FRAUD_SECRET,
     verifierSecret: process.env.REGISTRATION_VERIFIER_SECRET
   }) : null,
+  captureOcr: registrationFraud.disabled ? createCaptureOcr({
+    endpoint: `http://127.0.0.1:${registrationFraud.identityPort}/ocr-capture`,
+    secret: process.env.REGISTRATION_FRAUD_SECRET
+  }) : null,
   normalizeFrame, verificationUnavailable,
   knownReplay: createKnownReplayCheck(process.env.REGISTRATION_KNOWN_REPLAY_SHA256_FILE),
-  allowOutsideScan: config.NODE_ENV === 'development' && process.env.REGISTRATION_ALLOW_OUTSIDE_BACOLOD_SCAN,
-  basicRegistrationEnabled: config.NODE_ENV === 'development' && process.env.REGISTRATION_BASIC_CITIZEN_ENABLED === 'true' &&
-    !process.env.REGISTRATION_VERIFIER_URL && !process.env.REGISTRATION_VERIFIER_SECRET,
+  allowOutsideScan: registrationFraud.allowOutsideScan,
+  allowOutsideEnrollment: registrationFraud.allowOutsideEnrollment,
+  basicRegistrationEnabled: registrationFraud.basicEnabled,
   fingerprintKey: process.env.REGISTRATION_FINGERPRINT_KEY,
   keyUsed: anyKeyUsed, documentUsed: verifiedDocumentUsed
 });
